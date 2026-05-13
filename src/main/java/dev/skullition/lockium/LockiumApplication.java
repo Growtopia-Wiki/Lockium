@@ -1,12 +1,15 @@
 package dev.skullition.lockium;
 
+import dev.skullition.lockium.config.SecretsConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "dev.skullition.lockium")
+@EnableConfigurationProperties(SecretsConfig.class)
 public class LockiumApplication {
 
-	public static void main(String[] args) {
+	static void main(String[] args) {
 		SpringApplication.run(LockiumApplication.class, args);
 	}
 
