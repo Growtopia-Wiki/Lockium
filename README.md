@@ -47,8 +47,8 @@ Early alpha – expect breaking changes.
    secrets.token=YOUR_DISCORD_BOT_TOKEN
 
    # Growtopia Wiki API
-   secrets.api.key=YOUR_WIKI_API_KEY
-   secrets.api.url=https://api.growtopia.wiki
+   secrets.apiKey=YOUR_WIKI_API_KEY
+   secrets.apiUrl=https://api.growtopiawiki.com
    ```
 3. Run locally
    ```bash

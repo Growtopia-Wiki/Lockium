@@ -10,6 +10,8 @@ import net.dv8tion.jda.api.hooks.IEventManager;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.jspecify.annotations.NullMarked;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -17,6 +19,7 @@ import java.util.Set;
 @Service
 @NullMarked
 public class LockiumBot extends JDAService {
+    private static final Logger logger = LoggerFactory.getLogger(LockiumBot.class);
     private final JDAConfiguration jdaConfiguration;
     private final SecretsConfig secretsConfig;
 
@@ -42,5 +45,6 @@ public class LockiumBot extends JDAService {
                 .setActivity(Activity.customStatus("Hello there! :)"))
                 .setEventManager(iEventManager)
                 .build();
+        logger.info("Lockium started, Wiki API={}", secretsConfig.apiUrl());
     }
 }
