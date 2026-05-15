@@ -21,7 +21,7 @@ public class LockiumConfiguration {
     public WikiClient wikiClient(RestClient.Builder builder) {
         RestClient restClient = builder
                 .baseUrl(secretsConfig.apiUrl())
-                .defaultHeaders(headers -> headers.setBearerAuth(secretsConfig.token()))
+                .defaultHeaders(headers -> headers.setBearerAuth(secretsConfig.apiKey()))
                 .requestFactory(new JdkClientHttpRequestFactory())
                 .build();
 
