@@ -1,6 +1,6 @@
-package dev.skullition.lockium;
+package dev.skullition.lockium.config;
 
-import dev.skullition.lockium.config.SecretsConfig;
+import dev.skullition.lockium.properties.WikiApiProperties;
 import dev.skullition.lockium.service.client.WikiClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,18 +10,19 @@ import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 @Configuration
-public class LockiumConfiguration {
-    private final SecretsConfig secretsConfig;
+public class ClientConfiguration {
 
-    public LockiumConfiguration(SecretsConfig secretsConfig) {
-        this.secretsConfig = secretsConfig;
+    private final WikiApiProperties properties;
+
+    public ClientConfiguration(WikiApiProperties properties) {
+        this.properties = properties;
     }
-    
+
     @Bean
     public WikiClient wikiClient(RestClient.Builder builder) {
         RestClient restClient = builder
-                .baseUrl(secretsConfig.apiUrl())
-                .defaultHeaders(headers -> headers.setBearerAuth(secretsConfig.apiKey()))
+                .baseUrl(properties.url())
+                .defaultHeaders(headers -> headers.setBearerAuth(properties.key()))
                 .requestFactory(new JdkClientHttpRequestFactory())
                 .build();
 

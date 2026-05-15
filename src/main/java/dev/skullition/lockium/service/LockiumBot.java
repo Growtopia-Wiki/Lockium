@@ -1,6 +1,7 @@
 package dev.skullition.lockium.service;
 
-import dev.skullition.lockium.config.SecretsConfig;
+import dev.skullition.lockium.properties.DiscordProperties;
+import dev.skullition.lockium.properties.WikiApiProperties;
 import io.github.freya022.botcommands.api.core.JDAService;
 import io.github.freya022.botcommands.api.core.config.JDAConfiguration;
 import io.github.freya022.botcommands.api.core.events.BReadyEvent;
@@ -21,11 +22,13 @@ import java.util.Set;
 public class LockiumBot extends JDAService {
     private static final Logger logger = LoggerFactory.getLogger(LockiumBot.class);
     private final JDAConfiguration jdaConfiguration;
-    private final SecretsConfig secretsConfig;
+    private final DiscordProperties discordProperties;
+    private final WikiApiProperties wikiApiProperties;
 
-    public LockiumBot(JDAConfiguration jdaConfiguration, SecretsConfig secretsConfig) {
+    public LockiumBot(JDAConfiguration jdaConfiguration, DiscordProperties discordProperties, WikiApiProperties wikiApiProperties) {
         this.jdaConfiguration = jdaConfiguration;
-        this.secretsConfig = secretsConfig;
+        this.discordProperties = discordProperties;
+        this.wikiApiProperties = wikiApiProperties;
     }
 
     @Override
@@ -40,11 +43,11 @@ public class LockiumBot extends JDAService {
 
     @Override
     protected void createJDA(BReadyEvent bReadyEvent, IEventManager iEventManager) {
-        JDABuilder.createDefault(secretsConfig.token(), getIntents())
+        JDABuilder.createDefault(discordProperties.token(), getIntents())
                 .enableCache(getCacheFlags())
                 .setActivity(Activity.customStatus("Hello there! :)"))
                 .setEventManager(iEventManager)
                 .build();
-        logger.info("Lockium started, Wiki API={}", secretsConfig.apiUrl());
+        logger.info("Lockium started, Wiki API={}", wikiApiProperties.url());
     }
 }

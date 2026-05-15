@@ -44,11 +44,11 @@ Early alpha – expect breaking changes.
 2. Create secrets.properties in the project root (this file is gitignored):
    ```properties
    # Discord
-   secrets.token=YOUR_DISCORD_BOT_TOKEN
+   discord.token=YOUR_DISCORD_BOT_TOKEN
 
    # Growtopia Wiki API
-   secrets.apiKey=YOUR_WIKI_API_KEY
-   secrets.apiUrl=https://api.growtopiawiki.com
+   growtopia.api.key=YOUR_WIKI_API_KEY
+   growtopia.api.url=https://api.growtopiawiki.com
    ```
 3. Run locally
    ```bash
