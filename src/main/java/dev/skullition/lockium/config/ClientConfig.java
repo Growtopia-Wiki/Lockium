@@ -10,11 +10,11 @@ import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 @Configuration
-public class ClientConfiguration {
+public class ClientConfig {
 
     private final WikiApiProperties properties;
 
-    public ClientConfiguration(WikiApiProperties properties) {
+    public ClientConfig(WikiApiProperties properties) {
         this.properties = properties;
     }
 
