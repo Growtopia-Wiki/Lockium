@@ -8,7 +8,7 @@ import java.util.Map;
 
 @NullMarked
 public record ItemsResponse(
-        @JsonProperty Map<Integer, GrowtopiaItem> items
+        @JsonProperty Map<Integer, ItemCatalogue> items
 ) {
 }
 

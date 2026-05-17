@@ -10,6 +10,6 @@ public interface WikiClient {
     @GetExchange("/health")
     void health();
 
-    @GetExchange("v1/items")
+    @GetExchange("/v1/items")
     ItemsResponse getItems();
 }
