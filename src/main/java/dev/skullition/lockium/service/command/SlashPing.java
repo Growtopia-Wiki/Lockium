@@ -1,6 +1,6 @@
 package dev.skullition.lockium.service.command;
 
-import dev.skullition.lockium.service.client.WikiClient;
+import dev.skullition.lockium.service.WikiService;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.application.slash.GuildSlashEvent;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit;
 @Command
 public class SlashPing {
     private static final Logger logger = LoggerFactory.getLogger(SlashPing.class);
-    private final WikiClient wikiClient;
+    private final WikiService wiki;
 
-    public SlashPing(WikiClient wikiClient) {
-        this.wikiClient = wikiClient;
+    public SlashPing(WikiService wiki) {
+        this.wiki = wiki;
     }
 
     @JDASlashCommand(name = "ping", description = "Check Discord and Wiki latency.")
@@ -36,7 +36,7 @@ public class SlashPing {
     private long pingMillis() {
         long start = System.nanoTime();
         try {
-            wikiClient.health();
+            wiki.health();
             return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
         } catch (Exception e) {
             logger.error("Ping failed!", e);
