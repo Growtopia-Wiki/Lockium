@@ -13,7 +13,8 @@ public class WikiService {
         this.client = client;
     }
 
-    @Cacheable(value = "items", sync = true)
+    // Maybe set to sync = true
+    @Cacheable(value = "items")
     public ItemsResponse getItems() {
         return client.getItems();
     }
