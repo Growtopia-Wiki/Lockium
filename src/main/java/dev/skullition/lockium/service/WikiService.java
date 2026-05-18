@@ -18,26 +18,25 @@ public class WikiService {
 
     @Nullable
     public ItemCatalogue findByName(String itemName) {
-        String searchKey = ItemUtils.norm(itemName);
-        
+
         var index = wiki.getNameIndex();
-        ItemCatalogue exactMatch =  index.get(searchKey);
+        ItemCatalogue exactMatch = index.get(itemName);
         if (exactMatch != null) {
             return exactMatch;
         }
-        
+
         // Fallback O(N) lookup - Might remove if laggy.
         return index.entrySet().stream()
-                .filter(entry -> ItemUtils.norm(entry.getKey()).equals(itemName))
+                .filter(entry -> ItemUtils.norm(entry.getKey()).startsWith(itemName))
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .orElse(null);
     }
-    
+
     public ItemsResponse getItems() {
         return wiki.getItems();
     }
-    
+
     public Map<String, ItemCatalogue> getNameIndex() {
         return wiki.getNameIndex();
     }
