@@ -40,18 +40,13 @@ public class ItemCatalogueResolver
     public ItemCatalogue resolve(SlashCommandOption option, CommandInteractionPayload event, OptionMapping optionMapping) {
         return resolveItemByName(optionMapping);
     }
-    
-    
+
+
     @Nullable
     private ItemCatalogue resolveItemByName(OptionMapping optionMapping) {
         String itemName = optionMapping.getAsString().trim();
-        Map<Integer, ItemCatalogue> items = wikiService.getItems().items();
-        
-        return items.values()
-                .stream()
-                .filter(item -> item.itemName().equalsIgnoreCase(itemName))
-                .findAny()
-                .orElse(null);
+
+        return wikiService.findByName(itemName);
     }
 
     @Override

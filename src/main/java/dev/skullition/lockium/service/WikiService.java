@@ -1,25 +1,46 @@
 package dev.skullition.lockium.service;
 
+import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemsResponse;
-import dev.skullition.lockium.service.client.WikiClient;
-import org.springframework.cache.annotation.Cacheable;
+import dev.skullition.lockium.util.ItemUtils;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
-@Service
-public class WikiService {
-    private final WikiClient client;
+import java.util.Map;
 
-    public WikiService(WikiClient client) {
-        this.client = client;
+@Service
+@NullMarked
+public class WikiService {
+    private final WikiDataService wiki;
+
+    public WikiService(WikiDataService wiki) {
+        this.wiki = wiki;
     }
 
-    // Maybe set to sync = true
-    @Cacheable(value = "items")
-    public ItemsResponse getItems() {
-        return client.getItems();
+    @Nullable
+    public ItemCatalogue findByName(String itemName) {
+        String searchKey = ItemUtils.norm(itemName);
+        
+        var index = wiki.getNameIndex();
+        ItemCatalogue exactMatch =  index.get(searchKey);
+        if (exactMatch != null) {
+            return exactMatch;
+        }
+        
+        // Fallback O(N) lookup - Might remove if laggy.
+        return index.entrySet().stream()
+                .filter(entry -> entry.getKey().startsWith(searchKey))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(null);
     }
     
+    public ItemsResponse getItems() {
+        return wiki.getItems();
+    }
+
     public void health() {
-        client.health();
+        wiki.health();
     }
 }
