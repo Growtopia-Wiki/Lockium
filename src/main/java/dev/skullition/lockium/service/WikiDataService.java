@@ -3,7 +3,6 @@ package dev.skullition.lockium.service;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemsResponse;
 import dev.skullition.lockium.service.client.WikiClient;
-import org.jspecify.annotations.NullMarked;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-@NullMarked
 public class WikiDataService {
     private static final Logger logger = LoggerFactory.getLogger(WikiDataService.class);
     private final WikiClient client;

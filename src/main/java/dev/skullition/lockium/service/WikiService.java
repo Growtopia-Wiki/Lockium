@@ -3,14 +3,12 @@ package dev.skullition.lockium.service;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemsResponse;
 import dev.skullition.lockium.util.ItemUtils;
-import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
-@NullMarked
 public class WikiService {
     private final WikiDataService wiki;
 

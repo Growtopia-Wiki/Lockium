@@ -10,7 +10,6 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.IEventManager;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import org.jspecify.annotations.NullMarked;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-@NullMarked
 public class LockiumBot extends JDAService {
     private static final Logger logger = LoggerFactory.getLogger(LockiumBot.class);
     private final JDAConfiguration jdaConfiguration;

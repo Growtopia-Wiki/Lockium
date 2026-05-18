@@ -9,11 +9,9 @@ import io.github.freya022.botcommands.api.parameters.resolvers.SlashParameterRes
 import net.dv8tion.jda.api.interactions.commands.CommandInteractionPayload;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
-import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
 @Resolver
-@NullMarked
 public class ItemCatalogueResolver
         extends ClassParameterResolver<ItemCatalogueResolver, ItemCatalogue>
         implements SlashParameterResolver<ItemCatalogueResolver, ItemCatalogue> {
