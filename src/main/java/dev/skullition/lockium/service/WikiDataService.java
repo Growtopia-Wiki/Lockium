@@ -18,15 +18,15 @@ import java.util.stream.Stream;
 @Service
 @NullMarked
 public class WikiDataService {
-    private final WikiClient client;
     private static final Logger logger = LoggerFactory.getLogger(WikiDataService.class);
+    private final WikiClient client;
 
     public WikiDataService(WikiClient client) {
         this.client = client;
     }
 
     // Methods to actually call
-    
+
     @Cacheable(value = "items")
     public ItemsResponse getItems() {
         logger.info("Items cache is empty, fetching...");
@@ -38,16 +38,20 @@ public class WikiDataService {
         return buildIndex(getItems());
     }
 
+    public void health() {
+        client.health();
+    }
+
     // Background Writes
 
     @CachePut(value = "items")
     public ItemsResponse refreshItems() {
-        return client.getItems(); 
+        return client.getItems();
     }
 
     @CachePut(value = "itemIndex", key = "'byName'")
     public Map<String, ItemCatalogue> refreshNameIndex(ItemsResponse items) {
-        return buildIndex(items); 
+        return buildIndex(items);
     }
 
     private Map<String, ItemCatalogue> buildIndex(ItemsResponse itemsResponse) {
@@ -68,8 +72,4 @@ public class WikiDataService {
                 ));
     }
 
-
-    public void health() {
-        client.health();
-    }
 }
