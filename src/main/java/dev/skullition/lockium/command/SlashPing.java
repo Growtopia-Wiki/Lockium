@@ -1,4 +1,4 @@
-package dev.skullition.lockium.service.command;
+package dev.skullition.lockium.command;
 
 import dev.skullition.lockium.service.WikiService;
 import io.github.freya022.botcommands.api.commands.annotations.Command;

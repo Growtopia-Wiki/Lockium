@@ -1,4 +1,4 @@
-package dev.skullition.lockium.service.command;
+package dev.skullition.lockium.command;
 
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.service.WikiService;
