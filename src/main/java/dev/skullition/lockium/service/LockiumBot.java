@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.jspecify.annotations.NullMarked;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -24,11 +25,16 @@ public class LockiumBot extends JDAService {
     private final JDAConfiguration jdaConfiguration;
     private final DiscordProperties discordProperties;
     private final WikiApiProperties wikiApiProperties;
+    private final String defaultStatus;
 
-    public LockiumBot(JDAConfiguration jdaConfiguration, DiscordProperties discordProperties, WikiApiProperties wikiApiProperties) {
+    public LockiumBot(JDAConfiguration jdaConfiguration,
+                      DiscordProperties discordProperties,
+                      WikiApiProperties wikiApiProperties, 
+                      @Value("${lockium.status}") String defaultStatus) {
         this.jdaConfiguration = jdaConfiguration;
         this.discordProperties = discordProperties;
         this.wikiApiProperties = wikiApiProperties;
+        this.defaultStatus = defaultStatus;
     }
 
     @Override
@@ -45,7 +51,7 @@ public class LockiumBot extends JDAService {
     protected void createJDA(BReadyEvent bReadyEvent, IEventManager iEventManager) {
         JDABuilder.createDefault(discordProperties.token(), getIntents())
                 .enableCache(getCacheFlags())
-                .setActivity(Activity.customStatus("Hello there! :)"))
+                .setActivity(Activity.customStatus(defaultStatus))
                 .setEventManager(iEventManager)
                 .build();
         logger.info("Lockium started, Wiki API={}", wikiApiProperties.url());
