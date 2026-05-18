@@ -30,7 +30,7 @@ public class WikiService {
         
         // Fallback O(N) lookup - Might remove if laggy.
         return index.entrySet().stream()
-                .filter(entry -> entry.getKey().startsWith(searchKey))
+                .filter(entry -> ItemUtils.norm(entry.getKey()).equals(itemName))
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .orElse(null);
@@ -38,6 +38,10 @@ public class WikiService {
     
     public ItemsResponse getItems() {
         return wiki.getItems();
+    }
+    
+    public Map<String, ItemCatalogue> getNameIndex() {
+        return wiki.getNameIndex();
     }
 
     public void health() {

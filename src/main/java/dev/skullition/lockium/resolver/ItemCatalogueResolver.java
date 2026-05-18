@@ -6,17 +6,11 @@ import io.github.freya022.botcommands.api.commands.application.slash.options.Sla
 import io.github.freya022.botcommands.api.core.service.annotations.Resolver;
 import io.github.freya022.botcommands.api.parameters.ClassParameterResolver;
 import io.github.freya022.botcommands.api.parameters.resolvers.SlashParameterResolver;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.CommandInteractionPayload;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 @Resolver
 @NullMarked
@@ -47,14 +41,5 @@ public class ItemCatalogueResolver
         String itemName = optionMapping.getAsString().trim();
 
         return wikiService.findByName(itemName);
-    }
-
-    @Override
-    public Collection<Command.Choice> getPredefinedChoices(@Nullable Guild guild) {
-        Map<Integer, ItemCatalogue> items = wikiService.getItems().items();
-        var predefinedItems = List.of(items.get(1), items.get(2), items.get(3));
-        return predefinedItems.stream()
-                .map(item -> new Command.Choice(item.itemName(), item.itemId()))
-                .toList();
     }
 }

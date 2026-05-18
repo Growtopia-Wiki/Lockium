@@ -3,7 +3,6 @@ package dev.skullition.lockium.service;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemsResponse;
 import dev.skullition.lockium.service.client.WikiClient;
-import dev.skullition.lockium.util.ItemUtils;
 import org.jspecify.annotations.NullMarked;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,10 +57,11 @@ public class WikiDataService {
         return itemsResponse.items().values().stream()
                 .flatMap(item -> {
                     Stream<Map.Entry<String, ItemCatalogue>> base =
-                            Stream.of(Map.entry(ItemUtils.norm(item.itemName()), item));
+                            Stream.of(Map.entry(item.itemName(), item));
+                    
                     if (item.seedName() != null) {
                         return Stream.concat(base,
-                                Stream.of(Map.entry(ItemUtils.norm(item.seedName()), item)));
+                                Stream.of(Map.entry(item.seedName(), item)));
                     }
                     return base;
                 })
