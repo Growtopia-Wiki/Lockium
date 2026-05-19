@@ -29,8 +29,22 @@ public record GrowtopiaObject(
     public record TypeInfo(int id, @Nullable String name) {}
     public record PropFlag(int raw, List<String> names) {}
     public record ColorInfo(long raw, @Nullable String hex) {
-        public String hexOrTransparent() {
-            return hex != null ? hex : "#00000000";
+        public int intOrTransparent() {
+            if (hex == null) {
+                return 0;
+            }
+            String h = hex.replace("#", "");
+            if (h.length() == 3)
+                h = "" + h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2) + "FF";
+            if (h.length() == 4)
+                h = "" + h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2) + h.charAt(3) + h.charAt(3);
+            if (h.length() == 6) h = h + "FF"; // assume RRGGBB → add alpha
+
+            // assume input is RRGGBBAA → convert to AARRGGBB
+            if (h.length() == 8) {
+                h = h.substring(6, 8) + h.substring(0, 6);
+            }
+            return (int) Long.parseLong(h, 16);
         }
     }
 }
