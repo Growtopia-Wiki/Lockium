@@ -3,6 +3,7 @@ package dev.skullition.lockium.command;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.service.WikiService;
+import dev.skullition.lockium.util.ItemUtils;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlashEvent;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
@@ -11,8 +12,6 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
-import net.dv8tion.jda.api.components.separator.Separator;
-import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
 
@@ -48,17 +47,14 @@ public class SlashSprite {
         String seedUrl = String.format(ITEM_SPRITE_URL, itemName.seedId());
         String treeUrl = String.format(TREE_SPRITE_URL, itemName.seedId());
         
-        Container container = Container.of(
-                TextDisplay.of(String.format("# %s", itemName.itemName())), // title
-                Separator.create(true, Separator.Spacing.LARGE),
+        Container container = ItemUtils.createItemContainer(
+                item,
                 MediaGallery.of(
                         MediaGalleryItem.fromUrl(itemUrl),
                         MediaGalleryItem.fromUrl(seedUrl),
                         MediaGalleryItem.fromUrl(treeUrl)
-                ),
-                Separator.create(true, Separator.Spacing.SMALL),
-                TextDisplay.of("-# With love, by the [Growtopia Wiki](https://growtopiawiki.com).")
-        ).withAccentColor(item.seed().overColor().intOrTransparent());
+                )
+        );
         
         event.replyComponents(container)
                 .useComponentsV2()
