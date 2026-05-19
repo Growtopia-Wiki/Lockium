@@ -1,6 +1,7 @@
 package dev.skullition.lockium.handler;
 
 import dev.skullition.lockium.service.WikiService;
+import io.github.freya022.botcommands.api.commands.application.slash.autocomplete.AutocompleteMode;
 import io.github.freya022.botcommands.api.commands.application.slash.autocomplete.annotations.AutocompleteHandler;
 import io.github.freya022.botcommands.api.core.annotations.Handler;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
@@ -16,7 +17,7 @@ public class ItemNameAutocompleteHandler {
         this.wikiService = wikiService;
     }
 
-    @AutocompleteHandler(ITEM_AUTOCOMPLETE_NAME)
+    @AutocompleteHandler(value = ITEM_AUTOCOMPLETE_NAME, mode = AutocompleteMode.CONTINUITY)
     public Collection<String> onItemNameAutocomplete(CommandAutoCompleteInteractionEvent event) {
         return wikiService.getNameIndex().keySet();
     }
