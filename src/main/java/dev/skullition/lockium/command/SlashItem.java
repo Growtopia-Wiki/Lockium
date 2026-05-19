@@ -36,7 +36,7 @@ public class SlashItem {
                             @SlashOption(description = "The item name you are looking for.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
                             ItemCatalogue itemName) {
         logger.debug("onSlashItem: itemName={}", itemName);
-        event.reply(itemName.toString()).queue();
+        event.reply(wikiService.getItemDetail(itemName).toString()).queue();
     }
 
 }

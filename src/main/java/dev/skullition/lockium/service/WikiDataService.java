@@ -1,6 +1,7 @@
 package dev.skullition.lockium.service;
 
 import dev.skullition.lockium.model.ItemCatalogue;
+import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemsResponse;
 import dev.skullition.lockium.service.client.WikiClient;
 import org.slf4j.Logger;
@@ -33,6 +34,10 @@ public class WikiDataService {
     @Cacheable(value = "itemIndex", key = "'byName'", sync = true)
     public Map<String, ItemCatalogue> getNameIndex() {
         return buildIndex(getItems());
+    }
+    
+    public ItemDetailResponse getItemDetail(int id) {
+        return client.getItemDetail(id);
     }
 
     public void health() {

@@ -1,6 +1,7 @@
 package dev.skullition.lockium.service;
 
 import dev.skullition.lockium.model.ItemCatalogue;
+import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemsResponse;
 import dev.skullition.lockium.util.ItemUtils;
 import org.jspecify.annotations.Nullable;
@@ -35,6 +36,14 @@ public class WikiService {
 
     public ItemsResponse getItems() {
         return wiki.getItems();
+    }
+    
+    public ItemDetailResponse getItemDetail(int id) {
+        return wiki.getItemDetail(id);
+    }
+    
+    public ItemDetailResponse getItemDetail(ItemCatalogue itemCatalogue) {
+        return wiki.getItemDetail(itemCatalogue.catalogueId());
     }
 
     public Map<String, ItemCatalogue> getNameIndex() {
