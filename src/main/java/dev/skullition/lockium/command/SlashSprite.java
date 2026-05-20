@@ -22,8 +22,6 @@ import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AU
 @Command
 public class SlashSprite {
     private final WikiService wikiService;
-    public static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
-    public static final String TREE_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s-tree.png";
 
     public SlashSprite(WikiService wikiService) {
         this.wikiService = wikiService;
@@ -40,12 +38,12 @@ public class SlashSprite {
     @JDASlashCommand(name = "sprite", description = "Lookup a Growtopia item.")
     public void onSlashSprite(GlobalSlashEvent event,
                               @SlashOption(description = "The item name you are looking for.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
-                              ItemCatalogue itemName) {
+                              ItemCatalogue itemQuery) {
         // Might remove or cache this in the future if rate-limited
-        ItemDetailResponse item = wikiService.getItemDetail(itemName);
-        String itemUrl = String.format(ITEM_SPRITE_URL, itemName.itemId());
-        String seedUrl = String.format(ITEM_SPRITE_URL, itemName.seedId());
-        String treeUrl = String.format(TREE_SPRITE_URL, itemName.seedId());
+        ItemDetailResponse item = wikiService.getItemDetail(itemQuery);
+        String itemUrl = ItemUtils.getItemSpriteUrl(item.item().id());
+        String seedUrl = ItemUtils.getItemSpriteUrl(item.seed().id());
+        String treeUrl = ItemUtils.getTreeSpriteUrl(item.seed().id());
         
         Container container = ItemUtils.createItemContainer(
                 item,

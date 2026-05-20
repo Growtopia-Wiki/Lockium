@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @Handler
 public class ItemNameAutocompleteHandler {
-    public static final String ITEM_AUTOCOMPLETE_NAME = "SlashItem: itemName";
+    public static final String ITEM_AUTOCOMPLETE_NAME = "SlashItem: itemQuery";
     private final WikiService wikiService;
 
     public ItemNameAutocompleteHandler(WikiService wikiService) {

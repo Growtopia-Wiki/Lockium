@@ -11,6 +11,16 @@ import java.util.List;
 import java.util.Locale;
 
 public class ItemUtils {
+    private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
+    private static final String TREE_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s-tree.png";
+
+    public static String getItemSpriteUrl(int id) {
+        return String.format(ITEM_SPRITE_URL, id);
+    }
+
+    public static String getTreeSpriteUrl(int id) {
+        return String.format(TREE_SPRITE_URL, id);
+    }
 
     public static String norm(String itemName) {
         return itemName.trim().toLowerCase(Locale.ROOT);
