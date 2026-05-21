@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -29,7 +30,7 @@ public class ItemUtils {
         return itemName.trim().toLowerCase(Locale.ROOT);
     }
 
-    public static Container createItemContainer(ItemDetailResponse item, ContainerChildComponent... components) {
+    public static Container createItemContainer(ItemDetailResponse item, List<ContainerChildComponent> components) {
         List<ContainerChildComponent> container = new ArrayList<>();
 
         // 1. Add Header
@@ -43,13 +44,17 @@ public class ItemUtils {
         container.add(Separator.create(true, Separator.Spacing.LARGE));
 
         // 2. Add Middle Components
-        container.addAll(List.of(components));
+        container.addAll(components);
 
         // 3. Add Footer
         container.add(Separator.create(true, Separator.Spacing.SMALL));
         container.add(TextDisplay.of("-# With love, by the [Growtopia Wiki](https://growtopiawiki.com)."));
 
         return Container.of(container).withAccentColor(item.seed().overColor().intOrTransparent());
+    }
+    
+    public static Container createItemContainer(ItemDetailResponse item, ContainerChildComponent... components) {
+        return createItemContainer(item, Arrays.asList(components));
     }
 
     public static String getWikiItemName(String itemName) {
