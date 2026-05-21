@@ -1,16 +1,26 @@
 package dev.skullition.lockium.command;
 
+import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
+import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.service.WikiService;
+import dev.skullition.lockium.util.AppEmojis;
+import dev.skullition.lockium.util.ItemUtils;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlashEvent;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
+import net.dv8tion.jda.api.components.container.Container;
+import net.dv8tion.jda.api.components.container.ContainerChildComponent;
+import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AUTOCOMPLETE_NAME;
 
@@ -34,9 +44,27 @@ public class SlashItem {
     @JDASlashCommand(name = "item", description = "Lookup a Growtopia item.")
     public void onSlashItem(GlobalSlashEvent event,
                             @SlashOption(description = "The item name you are looking for.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
-                            ItemCatalogue itemName) {
-        logger.debug("onSlashItem: itemName={}", itemName);
-        event.reply(wikiService.getItemDetail(itemName).toString()).queue();
+                            ItemCatalogue itemQuery) {
+        logger.debug("onSlashItem: itemQuery={}", itemQuery);
+        ItemDetailResponse itemResponse = wikiService.getItemDetail(itemQuery);
+        GrowtopiaObject item = itemResponse.item();
+
+        List<ContainerChildComponent> components = new ArrayList<>();
+        components.add(TextDisplay.of("**%s Rarity:** %s".formatted(AppEmojis.RARITY, item.rarity())));
+        if (item.category().type() == null) {
+            components.add(TextDisplay.of("%s".formatted(item.category().name())));
+        } else {
+            components.add(TextDisplay.of("%s (%s)".formatted(item.category().name(), item.category().type())));
+        }
+
+        Container container = ItemUtils.createItemContainer(
+                itemResponse,
+                components
+        );
+
+        event.replyComponents(container)
+                .useComponentsV2()
+                .queue();
     }
 
 }
