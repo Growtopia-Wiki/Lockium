@@ -1,7 +1,7 @@
 package dev.skullition.lockium.config;
 
 import dev.skullition.lockium.properties.WikiApiProperties;
-import dev.skullition.lockium.service.client.WikiClient;
+import dev.skullition.lockium.client.WikiClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.JdkClientHttpRequestFactory;

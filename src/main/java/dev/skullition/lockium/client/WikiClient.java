@@ -1,4 +1,4 @@
-package dev.skullition.lockium.service.client;
+package dev.skullition.lockium.client;
 
 import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemsResponse;

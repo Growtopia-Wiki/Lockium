@@ -3,7 +3,7 @@ package dev.skullition.lockium.service;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemsResponse;
-import dev.skullition.lockium.service.client.WikiClient;
+import dev.skullition.lockium.client.WikiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CachePut;
