@@ -47,4 +47,13 @@ public record GrowtopiaObject(
             return (int) Long.parseLong(h, 16);
         }
     }
+    
+    public String propFlagText() {
+        return ItemProperty.toDisplay(propFlag.raw());
+    }
+    
+    @Nullable
+    public String propFlag2Text() {
+        return ItemProperty2.toDisplay(propFlag2.raw());
+    }
 }

@@ -50,12 +50,20 @@ public class SlashItem {
         GrowtopiaObject item = itemResponse.item();
 
         List<ContainerChildComponent> components = new ArrayList<>();
-        components.add(TextDisplay.of("**%s Rarity:** %s".formatted(AppEmojis.RARITY, item.rarity())));
+        components.add(TextDisplay.of("**%s Rarity:** %s  **%s %s**".formatted(
+                AppEmojis.RARITY, item.rarity(), AppEmojis.COLLISION, item.collisionType().name())));
         if (item.category().type() == null) {
-            components.add(TextDisplay.of("%s".formatted(item.category().name())));
+            components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
         } else {
-            components.add(TextDisplay.of("%s (%s)".formatted(item.category().name(), item.category().type())));
+            components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), item.category().type())));
         }
+        String propFlag = item.propFlagText();
+        
+        String propFlag2Text = item.propFlag2Text();
+        if (propFlag2Text != null) {
+            propFlag = propFlag + propFlag2Text;
+        }
+        components.add(TextDisplay.of(propFlag));
 
         Container container = ItemUtils.createItemContainer(
                 itemResponse,

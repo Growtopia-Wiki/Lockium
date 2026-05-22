@@ -9,6 +9,7 @@ import static io.github.freya022.botcommands.api.emojis.AppEmojisRegistry.get;
 public class AppEmojis {
     public static final ApplicationEmoji RARITY = get("RARITY");
     public static final ApplicationEmoji WOTD = get("WOTD");
+    public static final ApplicationEmoji COLLISION = get("COLLISION");
     public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
     public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
     public static final ApplicationEmoji FAIRY_WINGS = get("FAIRY_WINGS");
