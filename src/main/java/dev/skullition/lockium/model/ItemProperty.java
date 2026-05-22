@@ -3,12 +3,12 @@ package dev.skullition.lockium.model;
 import dev.skullition.lockium.util.AppEmojis;
 import org.jspecify.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public enum ItemProperty {
-    MULTI_FACING(0x01,  "%s This item can be placed in two directions, depending on the direction you're facing.".formatted(AppEmojis.MULTI_FACING)),
+    MULTI_FACING(0x01, "%s This item can be placed in two directions, depending on the direction you're facing.".formatted(AppEmojis.MULTI_FACING)),
     WRENCHABLE(0x02, "%s This item has special properties you can adjust with the Wrench.".formatted(AppEmojis.WRENCHABLE)),
     NO_SEED(0x04, "%s This item never drops any seeds.".formatted(AppEmojis.NO_SEED)),
     PERMANENT(0x08, null),
@@ -46,10 +46,32 @@ public enum ItemProperty {
         if (flags == 0) {
             return "This item has no properties.";
         }
-        return fromInt(flags).stream()
-                .map(ItemProperty::description)
-                .filter(Objects::nonNull)
-                .collect(Collectors.joining("\n• ", "• ", ""));
+        
+        var set = fromInt(flags);
+        List<String> lines = new ArrayList<>();
+
+        boolean permanent = set.remove(PERMANENT);
+        boolean autoPickup = set.remove(AUTO_PICKUP);
+
+        // Classic SethHam spaghetti
+        if (permanent) {
+            if (autoPickup) {
+                lines.add("%s This item can't be destroyed - smashing it will return it to your backpack if you have room!".formatted(AppEmojis.FIST));
+            } else {
+                lines.add("%s This item can't be destroyed - smashing it will always yield a new one.".formatted(AppEmojis.FIST));
+            }
+        } else if (autoPickup) {
+            // AUTO_PICKUP without PERMANENT – keep its normal meaning
+            lines.add("Auto-pickup");
+        }
+
+        // everything else is independent
+        for (var p : set) {
+            if (p.description() != null) lines.add(p.description());
+        }
+
+        if (lines.isEmpty()) return "No special properties";
+        return "• " +String.join("\n• ", lines);
     }
 
     @Nullable
