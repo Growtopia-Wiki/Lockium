@@ -1,5 +1,6 @@
 package dev.skullition.lockium.model;
 
+import dev.skullition.lockium.util.AppEmojis;
 import org.jspecify.annotations.Nullable;
 
 import java.util.EnumSet;
@@ -7,22 +8,22 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public enum ItemProperty {
-    MULTI_FACING(0x01, "This item can be placed in two directions, depending on the direction you're facing."),
-    WRENCHABLE(0x02, "This item has special properties you can adjust with the Wrench."),
-    NO_SEED(0x04, "This item never drops any seeds."),
+    MULTI_FACING(0x01,  "%s This item can be placed in two directions, depending on the direction you're facing.".formatted(AppEmojis.MULTI_FACING)),
+    WRENCHABLE(0x02, "%s This item has special properties you can adjust with the Wrench.".formatted(AppEmojis.WRENCHABLE)),
+    NO_SEED(0x04, "%s This item never drops any seeds.".formatted(AppEmojis.NO_SEED)),
     PERMANENT(0x08, null),
-    NO_DROP(0x10, "This item never drops anything."),
-    NO_SELF(0x20, "This item can't be used on yourself."),
+    NO_DROP(0x10, "%s This item never drops anything.".formatted(AppEmojis.NO)),
+    NO_SELF(0x20, "%s This item can't be used on yourself.".formatted(AppEmojis.NO)),
     NO_SHADOW(0x40, null),
-    WORLD_LOCK(0x80, "This item can only be used in World-Locked worlds."),
-    BETA(0x100, "This item can only be placed in the world BETA."),
-    AUTO_PICKUP(0x200, "This item can't be destroyed - smashing it will return it to your backpack if you have room!"),
-    MOD(0x400, "This item can only be picked up by mods."),
-    RANDOM_GROW(0x800, "A tree of this type can bear surprising fruit!"),
-    PUBLIC(0x1000, "This item is PUBLIC: Even if it's locked, anyone can smash it."),
+    WORLD_LOCK(0x80, "%s This item can only be used in World-Locked worlds.".formatted(AppEmojis.WORLD_LOCK)),
+    BETA(0x100, "%s This item can only be placed in the world BETA.".formatted(AppEmojis.BETA)),
+    AUTO_PICKUP(0x200, "%s This item can't be destroyed - smashing it will return it to your backpack if you have room!".formatted(AppEmojis.FIST)),
+    MOD(0x400, "%s This item can only be picked up by mods.".formatted(AppEmojis.MOD)),
+    RANDOM_GROW(0x800, "%s A tree of this type can bear surprising fruit!".formatted(AppEmojis.TRACTOR)),
+    PUBLIC(0x1000, "%s This item is PUBLIC: Even if it's locked, anyone can smash it.".formatted(AppEmojis.GARBAGE)),
     FOREGROUND(0x2000, null),
     HOLIDAY(0x4000, null),
-    UNTRADABLE(0x8000, "This item cannot be dropped or traded.");
+    UNTRADABLE(0x8000, "%s This item cannot be dropped or traded.".formatted(AppEmojis.UNTRADEABLE));
 
     private final int mask;
     @Nullable
@@ -32,9 +33,6 @@ public enum ItemProperty {
         this.mask = mask;
         this.description = description;
     }
-
-    @Nullable
-    public String description() { return description; }
 
     public static EnumSet<ItemProperty> fromInt(int flags) {
         EnumSet<ItemProperty> set = EnumSet.noneOf(ItemProperty.class);
@@ -52,5 +50,10 @@ public enum ItemProperty {
                 .map(ItemProperty::description)
                 .filter(Objects::nonNull)
                 .collect(Collectors.joining("\n• ", "• ", ""));
+    }
+
+    @Nullable
+    public String description() {
+        return description;
     }
 }

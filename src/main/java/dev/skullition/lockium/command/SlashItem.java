@@ -3,6 +3,7 @@ package dev.skullition.lockium.command;
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
+import dev.skullition.lockium.model.ItemProperty;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ItemUtils;
@@ -58,8 +59,10 @@ public class SlashItem {
             components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), item.category().type())));
         }
         String propFlag = item.propFlagText();
+        logger.info(String.valueOf(ItemProperty.fromInt(item.propFlag().raw())));
         
         String propFlag2Text = item.propFlag2Text();
+        // Maybe add non-flag like fish in the future
         if (propFlag2Text != null) {
             propFlag = propFlag + propFlag2Text;
         }

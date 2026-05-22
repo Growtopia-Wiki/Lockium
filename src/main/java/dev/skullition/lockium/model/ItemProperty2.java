@@ -1,5 +1,6 @@
 package dev.skullition.lockium.model;
 
+import dev.skullition.lockium.util.AppEmojis;
 import org.jspecify.annotations.Nullable;
 
 import java.util.EnumSet;
@@ -23,8 +24,8 @@ public enum ItemProperty2 {
     SMOD(0x4000, null),
     TILE_DEADLY_IF_ON(0x8000, null),
     LONG_HAND_ITEM64x32(0x10000, null),
-    GEMLESS(0x20000, "This item never drops gems."),
-    TRANSMUTABLE(0x40000, "This item can be transmuted.");
+    GEMLESS(0x20000, "%s This item never drops gems.".formatted(AppEmojis.GEM)),
+    TRANSMUTABLE(0x40000, "%s This item can be transmuted.".formatted(AppEmojis.TRANSMUTABLE)),;
 
     private final int mask;
     @Nullable
