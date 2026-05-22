@@ -22,7 +22,7 @@ public enum ItemProperty {
     RANDOM_GROW(0x800, "%s A tree of this type can bear surprising fruit!".formatted(AppEmojis.TRACTOR)),
     PUBLIC(0x1000, "%s This item is PUBLIC: Even if it's locked, anyone can smash it.".formatted(AppEmojis.GARBAGE)),
     FOREGROUND(0x2000, null),
-    HOLIDAY(0x4000, null),
+    HOLIDAY(0x4000, "%s This item can only be created during its event release.".formatted(AppEmojis.EASTER)),
     UNTRADABLE(0x8000, "%s This item cannot be dropped or traded.".formatted(AppEmojis.UNTRADEABLE));
 
     private final int mask;

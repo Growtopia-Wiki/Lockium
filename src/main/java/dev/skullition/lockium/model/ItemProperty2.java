@@ -5,6 +5,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.EnumSet;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public enum ItemProperty2 {
     ROBOT_DEADLY(0x1, null),
@@ -50,9 +51,13 @@ public enum ItemProperty2 {
         if (flags == 0) {
             return null;
         }
-        return fromInt(flags).stream()
+        String result = fromInt(flags).stream()
                 .map(ItemProperty2::description)
                 .filter(Objects::nonNull)
-                .collect(java.util.stream.Collectors.joining("\n• ", "\n• ", ""));
+                .collect(Collectors.joining("\n• ", "\n• ", ""));
+        if (result.equals("\n• ")) {
+            return null;
+        }
+        return result;
     }
 }

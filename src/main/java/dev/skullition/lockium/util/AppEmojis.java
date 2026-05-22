@@ -23,6 +23,7 @@ public class AppEmojis {
     public static final ApplicationEmoji UNTRADEABLE = get("UNTRADEABLE");
     public static final ApplicationEmoji TRANSMUTABLE = get("TRANSMUTABLE");
     public static final ApplicationEmoji GEM = get("GEM");
+    public static final ApplicationEmoji EASTER = get("EASTER");
     public static final ApplicationEmoji PICKAXE = get("PICKAXE");
     public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
     public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
