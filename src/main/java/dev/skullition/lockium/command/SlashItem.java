@@ -50,15 +50,18 @@ public class SlashItem {
         GrowtopiaObject item = itemResponse.item();
 
         List<ContainerChildComponent> components = new ArrayList<>();
+        
+        String rarity = item.rarity() == 999 ? "None (999)" : String.valueOf(item.rarity());
         components.add(TextDisplay.of("**%s Rarity:** %s  **%s %s**".formatted(
-                AppEmojis.RARITY, item.rarity(), AppEmojis.COLLISION, item.collisionType().name())));
+                AppEmojis.RARITY, rarity, AppEmojis.COLLISION, item.collisionType().name())));
+        
         if (item.category().type() == null) {
             components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
         } else {
             components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), item.category().type())));
         }
-        String propFlag = item.propFlagText();
         
+        String propFlag = item.propFlagText();
         String propFlag2Text = item.propFlag2Text();
         // Maybe add non-flag like fish in the future
         if (propFlag2Text != null) {
