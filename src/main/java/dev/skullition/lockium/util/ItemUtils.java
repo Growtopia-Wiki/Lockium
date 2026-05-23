@@ -1,5 +1,6 @@
 package dev.skullition.lockium.util;
 
+import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
@@ -8,10 +9,7 @@ import net.dv8tion.jda.api.components.separator.Separator;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class ItemUtils {
     private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
@@ -30,14 +28,17 @@ public class ItemUtils {
         return itemName.trim().toLowerCase(Locale.ROOT);
     }
 
-    public static Container createItemContainer(ItemDetailResponse item, List<ContainerChildComponent> components) {
+    public static Container createItemContainer(ItemDetailResponse item, 
+                                                ItemCatalogue itemCatalogue,
+                                                List<ContainerChildComponent> components) {
         List<ContainerChildComponent> container = new ArrayList<>();
 
         // 1. Add Header
-        String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(item.item().name()));
+        String itemName = itemCatalogue.seedName() == null ? item.item().name() : itemCatalogue.seedName();
+        String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(itemName));
         Section header = Section.of(Thumbnail.fromUrl(
                         getItemSpriteUrl(item.item().id())),
-                TextDisplay.of(String.format("## [%s](%s)", item.item().name(), itemUrl)),
+                TextDisplay.of(String.format("## [%s](%s)", itemName, itemUrl)),
                 TextDisplay.of(item.item().description())
         );
         container.add(header);
@@ -52,9 +53,11 @@ public class ItemUtils {
 
         return Container.of(container).withAccentColor(item.seed().overColor().intOrTransparent());
     }
-    
-    public static Container createItemContainer(ItemDetailResponse item, ContainerChildComponent... components) {
-        return createItemContainer(item, Arrays.asList(components));
+
+    public static Container createItemContainer(ItemDetailResponse item,
+                                                ItemCatalogue itemCatalogue,
+                                                ContainerChildComponent... components) {
+        return createItemContainer(item, itemCatalogue, List.of(components));
     }
 
     public static String getWikiItemName(String itemName) {

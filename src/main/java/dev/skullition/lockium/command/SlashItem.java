@@ -71,6 +71,7 @@ public class SlashItem {
 
         Container container = ItemUtils.createItemContainer(
                 itemResponse,
+                itemQuery,
                 components
         );
 

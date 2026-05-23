@@ -47,6 +47,7 @@ public class SlashSprite {
         
         Container container = ItemUtils.createItemContainer(
                 item,
+                itemQuery,
                 MediaGallery.of(
                         MediaGalleryItem.fromUrl(itemUrl),
                         MediaGalleryItem.fromUrl(seedUrl),
