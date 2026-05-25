@@ -65,6 +65,10 @@ public class SlashItem {
         components.add(TextDisplay.of("**Hardness:** %s %s hits **%s** %s hits (%s seconds to restore.)".formatted(
                 AppEmojis.FIST, Math.ceil(hardness / 6.0), AppEmojis.PICKAXE, Math.ceil(hardness / 8.0), item.restoreTime())));
         
+        String baseColor = itemResponse.seed().baseColor().hex();
+        String overColor = itemResponse.seed().overColor().hex();
+        components.add(TextDisplay.of("**Base color:** %s **Overlay color:** %s".formatted(baseColor, overColor)));
+        
         String propFlag = item.propFlagText();
         String propFlag2Text = item.propFlag2Text();
         // Maybe add non-flag like fish in the future
