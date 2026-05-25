@@ -56,10 +56,14 @@ public class SlashItem {
         components.add(TextDisplay.of("**%s Rarity:** %s  **%s %s**".formatted(
                 AppEmojis.RARITY, rarity, AppEmojis.COLLISION, item.collisionType().name())));
         
-        if (item.category().type() == null) {
-            components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
+        if (item.clothingType() != null) {
+            String clothingType = item.clothingType().name();
+            components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), clothingType)));
+        } else if (item.category().type() != null) {
+            String categoryType = item.category().name();
+            components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), categoryType)));
         } else {
-            components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), item.category().type())));
+            components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
         }
         
         int hardness = item.hardness();
