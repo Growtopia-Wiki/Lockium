@@ -1,6 +1,9 @@
 package dev.skullition.lockium.command;
 
-import dev.skullition.lockium.model.*;
+import dev.skullition.lockium.model.GrowtopiaObject;
+import dev.skullition.lockium.model.ItemCatalogue;
+import dev.skullition.lockium.model.ItemDetailResponse;
+import dev.skullition.lockium.model.ItemProperty2;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ItemUtils;
@@ -67,29 +70,29 @@ public class SlashItem {
         } else {
             components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
         }
-        
+
         String rarity = item.rarity() == 999 ? "None (999)" : String.valueOf(item.rarity());
         components.add(TextDisplay.of("**%s Rarity:** `%s`  **%s %s**".formatted(
                 AppEmojis.RARITY, rarity, AppEmojis.COLLISION, item.collisionType().name())));
-        
+
         int hardness = item.hardness();
         components.add(TextDisplay.of("**Hardness:** %s `%s hits` **%s** `%s hits (%s seconds to restore.)`".formatted(
-                AppEmojis.FIST, Math.ceil(hardness / 6.0), AppEmojis.PICKAXE, Math.ceil(hardness / 8.0), item.restoreTime())));
-        
+                AppEmojis.FIST, (int) Math.ceil(hardness / 6.0), AppEmojis.PICKAXE, (int) Math.ceil(hardness / 8.0), item.restoreTime())));
+
         String baseColor = seed.baseColor().hex();
         String overColor = seed.overColor().hex();
         components.add(TextDisplay.of("**Base color:** `%s` **Overlay color:** `%s`".formatted(baseColor, overColor)));
-        
+
         String growTime = ItemUtils.toDHMS(seed.growTime());
         components.add(TextDisplay.of("%s `%s` to grow.".formatted(AppEmojis.GROW_SPRAY, growTime)));
-        
+
         String gemDrops;
         if (item.rarity() == 999 || ItemProperty2.fromInt(item.propFlag2().raw()).contains(ItemProperty2.GEMLESS)) {
             gemDrops = "N/A";
         } else if (item.rarity() > 30) {
-            gemDrops = "0 - %s".formatted(Math.floor(item.rarity() / 4.0 + 1.0)); 
+            gemDrops = "0 - %s".formatted((int) Math.floor(item.rarity() / 4.0 + 1.0));
         } else if (item.rarity() >= 8) {
-            gemDrops = "0 - %s".formatted(Math.floor(Math.floor(item.rarity() / 4.0) * 0.75 + 1.0));
+            gemDrops = "0 - %s".formatted((int) Math.floor(Math.floor(item.rarity() / 4.0) * 0.75 + 1.0));
         } else {
             gemDrops = "0 - 1";
         }
