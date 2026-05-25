@@ -22,8 +22,8 @@ public class WikiCacheJob {
         refreshCaches();
     }
 
-    // 2. Refresh, runs every 5.5 hours (19,800,000 ms)
-    @Scheduled(fixedRateString = "19800000")
+    // 2. Refresh, runs every 30 minutes (1,800,000 ms)
+    @Scheduled(fixedRateString = "1800000")
     public void refreshCaches() {
         // 1 API call gets the new data and updates the "items" cache
         ItemsResponse freshItems = dataService.refreshItems();
