@@ -51,11 +51,15 @@ public class SlashItem {
         GrowtopiaObject seed = itemResponse.seed();
 
         List<ContainerChildComponent> components = new ArrayList<>();
-        
-        String rarity = item.rarity() == 999 ? "None (999)" : String.valueOf(item.rarity());
-        components.add(TextDisplay.of("**%s Rarity:** %s  **%s %s**".formatted(
-                AppEmojis.RARITY, rarity, AppEmojis.COLLISION, item.collisionType().name())));
-        
+
+        String propFlag = item.propFlagText();
+        String propFlag2Text = item.propFlag2Text();
+        // Maybe add non-flag like fish in the future
+        if (propFlag2Text != null) {
+            propFlag = propFlag + propFlag2Text;
+        }
+        components.add(TextDisplay.of(propFlag));
+
         if (item.clothingType() != null) {
             String clothingType = item.clothingType().name();
             components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), clothingType)));
@@ -66,24 +70,20 @@ public class SlashItem {
             components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
         }
         
+        String rarity = item.rarity() == 999 ? "None (999)" : String.valueOf(item.rarity());
+        components.add(TextDisplay.of("**%s Rarity:** `%s`  **%s %s**".formatted(
+                AppEmojis.RARITY, rarity, AppEmojis.COLLISION, item.collisionType().name())));
+        
         int hardness = item.hardness();
-        components.add(TextDisplay.of("**Hardness:** %s %s hits **%s** %s hits (%s seconds to restore.)".formatted(
+        components.add(TextDisplay.of("**Hardness:** %s `%s hits` **%s** `%s hits (%s seconds to restore.)`".formatted(
                 AppEmojis.FIST, Math.ceil(hardness / 6.0), AppEmojis.PICKAXE, Math.ceil(hardness / 8.0), item.restoreTime())));
         
         String baseColor = seed.baseColor().hex();
         String overColor = seed.overColor().hex();
-        components.add(TextDisplay.of("**Base color:** %s **Overlay color:** %s".formatted(baseColor, overColor)));
+        components.add(TextDisplay.of("**Base color:** `%s` **Overlay color:** `%s`".formatted(baseColor, overColor)));
         
         String growTime = ItemUtils.toDHMS(seed.growTime());
-        components.add(TextDisplay.of("%s %s to grow.".formatted(AppEmojis.GROW_SPRAY, growTime)));
-        
-        String propFlag = item.propFlagText();
-        String propFlag2Text = item.propFlag2Text();
-        // Maybe add non-flag like fish in the future
-        if (propFlag2Text != null) {
-            propFlag = propFlag + propFlag2Text;
-        }
-        components.add(TextDisplay.of(propFlag));
+        components.add(TextDisplay.of("%s `%s` to grow.".formatted(AppEmojis.GROW_SPRAY, growTime)));
 
         Container container = ItemUtils.createItemContainer(
                 itemResponse,
