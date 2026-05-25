@@ -61,6 +61,10 @@ public class SlashItem {
             components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), item.category().type())));
         }
         
+        int hardness = item.hardness();
+        components.add(TextDisplay.of("**Hardness:** %s %s hits **%s** %s hits (%s seconds to restore.)".formatted(
+                AppEmojis.FIST, Math.ceil(hardness / 6.0), AppEmojis.PICKAXE, Math.ceil(hardness / 8.0), item.restoreTime())));
+        
         String propFlag = item.propFlagText();
         String propFlag2Text = item.propFlag2Text();
         // Maybe add non-flag like fish in the future
