@@ -48,6 +48,7 @@ public class SlashItem {
         logger.debug("onSlashItem: itemQuery={}", itemQuery);
         ItemDetailResponse itemResponse = wikiService.getItemDetail(itemQuery);
         GrowtopiaObject item = itemResponse.item();
+        GrowtopiaObject seed = itemResponse.seed();
 
         List<ContainerChildComponent> components = new ArrayList<>();
         
@@ -65,9 +66,12 @@ public class SlashItem {
         components.add(TextDisplay.of("**Hardness:** %s %s hits **%s** %s hits (%s seconds to restore.)".formatted(
                 AppEmojis.FIST, Math.ceil(hardness / 6.0), AppEmojis.PICKAXE, Math.ceil(hardness / 8.0), item.restoreTime())));
         
-        String baseColor = itemResponse.seed().baseColor().hex();
-        String overColor = itemResponse.seed().overColor().hex();
+        String baseColor = seed.baseColor().hex();
+        String overColor = seed.overColor().hex();
         components.add(TextDisplay.of("**Base color:** %s **Overlay color:** %s".formatted(baseColor, overColor)));
+        
+        String growTime = ItemUtils.toDHMS(seed.growTime());
+        components.add(TextDisplay.of("%s %s to grow.".formatted(AppEmojis.GROW_SPRAY, growTime)));
         
         String propFlag = item.propFlagText();
         String propFlag2Text = item.propFlag2Text();

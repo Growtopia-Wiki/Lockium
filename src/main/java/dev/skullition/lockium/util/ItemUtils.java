@@ -63,4 +63,22 @@ public class ItemUtils {
     public static String getWikiItemName(String itemName) {
         return itemName.replace(" ", "_");
     }
+
+    public static String toDHMS(int totalSeconds) {
+        if (totalSeconds <= 0) return "0s";
+
+        var d = java.time.Duration.ofSeconds(totalSeconds);
+
+        StringBuilder sb = new StringBuilder();
+        append(sb, d.toDays(), 'd');
+        append(sb, d.toHoursPart(), 'h');
+        append(sb, d.toMinutesPart(), 'm');
+        append(sb, d.toSecondsPart(), 's');
+
+        return sb.toString().trim();
+    }
+
+    private static void append(StringBuilder sb, long value, char unit) {
+        if (value > 0) sb.append(value).append(unit).append(' ');
+    }
 }

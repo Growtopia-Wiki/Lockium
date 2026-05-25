@@ -25,6 +25,7 @@ public class AppEmojis {
     public static final ApplicationEmoji GEM = get("GEM");
     public static final ApplicationEmoji EASTER = get("EASTER");
     public static final ApplicationEmoji PICKAXE = get("PICKAXE");
+    public static final ApplicationEmoji GROW_SPRAY = get("GROW_SPRAY");
     public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
     public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
     public static final ApplicationEmoji FAIRY_WINGS = get("FAIRY_WINGS");
