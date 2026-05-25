@@ -1,8 +1,6 @@
 package dev.skullition.lockium.command;
 
-import dev.skullition.lockium.model.GrowtopiaObject;
-import dev.skullition.lockium.model.ItemCatalogue;
-import dev.skullition.lockium.model.ItemDetailResponse;
+import dev.skullition.lockium.model.*;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ItemUtils;
@@ -84,6 +82,18 @@ public class SlashItem {
         
         String growTime = ItemUtils.toDHMS(seed.growTime());
         components.add(TextDisplay.of("%s `%s` to grow.".formatted(AppEmojis.GROW_SPRAY, growTime)));
+        
+        String gemDrops;
+        if (item.rarity() == 999 || ItemProperty2.fromInt(item.propFlag2().raw()).contains(ItemProperty2.GEMLESS)) {
+            gemDrops = "N/A";
+        } else if (item.rarity() > 30) {
+            gemDrops = "0 - %s".formatted(Math.floor(item.rarity() / 4.0 + 1.0)); 
+        } else if (item.rarity() >= 8) {
+            gemDrops = "0 - %s".formatted(Math.floor(Math.floor(item.rarity() / 4.0) * 0.75 + 1.0));
+        } else {
+            gemDrops = "0 - 1";
+        }
+        components.add(TextDisplay.of("%s `%s` gems dropped.".formatted(AppEmojis.GEM, gemDrops)));
 
         Container container = ItemUtils.createItemContainer(
                 itemResponse,
