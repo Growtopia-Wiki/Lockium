@@ -14,9 +14,11 @@ Lockium connects Discord directly to the Growtopia Wiki's internal API. Instead 
 ## Features
 
 - `/ping` – shows Discord gateway latency and Wiki API latency
-- `/item <name>` – fetch wiki data for an item *(in development)*
-- `/world <name>` – fetch world info *(planned)*
-- `/recipe <item>` – show crafting recipe *(planned)*
+- `/item <name>` – fetch wiki data for an item 
+- `/sprite <name>` – fetch wiki data for an item's sprite
+- `/wotd` – display today's WOTD
+- `/farm <name>` – Check how many items would drop from farming item, whether it's farmable etc.
+- etc!
 
 Early alpha – expect breaking changes.
 
