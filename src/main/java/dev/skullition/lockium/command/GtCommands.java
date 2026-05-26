@@ -1,11 +1,14 @@
 package dev.skullition.lockium.command;
 
+import dev.skullition.lockium.client.GrowtopiaDetailClient;
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemProperty2;
+import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
+import dev.skullition.lockium.util.ContainerUtil;
 import dev.skullition.lockium.util.ItemUtils;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlashEvent;
@@ -14,6 +17,8 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
+import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
+import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
@@ -26,12 +31,16 @@ import java.util.List;
 import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AUTOCOMPLETE_NAME;
 
 @Command
-public class SlashItem {
-    private static final Logger logger = LoggerFactory.getLogger(SlashItem.class);
+public class GtCommands {
+    private static final Logger logger = LoggerFactory.getLogger(GtCommands.class);
     private final WikiService wikiService;
+    private final GrowtopiaDetailClient detailClient;
+    private final LockiumProperties lockiumProperties;
 
-    public SlashItem(WikiService wikiService) {
+    public GtCommands(WikiService wikiService, GrowtopiaDetailClient detailClient, LockiumProperties lockiumProperties ) {
         this.wikiService = wikiService;
+        this.detailClient = detailClient;
+        this.lockiumProperties = lockiumProperties;
     }
 
     @TopLevelSlashCommandData(
@@ -40,9 +49,10 @@ public class SlashItem {
             },
             integrationTypes = {
                     IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL
-            }
+            },
+            description = "Commands related to Growtopia."
     )
-    @JDASlashCommand(name = "item", description = "Lookup a Growtopia item.")
+    @JDASlashCommand(name = "gt", subcommand = "item", description = "Lookup a Growtopia item.")
     public void onSlashItem(GlobalSlashEvent event,
                             @SlashOption(description = "The item name you are looking for.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
                             ItemCatalogue itemQuery) {
@@ -109,4 +119,44 @@ public class SlashItem {
                 .queue();
     }
 
+    @JDASlashCommand(name = "gt", subcommand = "sprite", description = "Lookup a Growtopia item's sprite.")
+    public void onSlashSprite(GlobalSlashEvent event,
+                              @SlashOption(description = "The item name you are looking for.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
+                              ItemCatalogue itemQuery) {
+        ItemDetailResponse item = wikiService.getItemDetail(itemQuery);
+        String itemUrl = ItemUtils.getItemSpriteUrl(item.item().id());
+        String seedUrl = ItemUtils.getItemSpriteUrl(item.seed().id());
+        String treeUrl = ItemUtils.getTreeSpriteUrl(item.seed().id());
+
+        Container container = ItemUtils.createItemContainer(
+                item,
+                itemQuery,
+                MediaGallery.of(
+                        MediaGalleryItem.fromUrl(itemUrl),
+                        MediaGalleryItem.fromUrl(seedUrl),
+                        MediaGalleryItem.fromUrl(treeUrl)
+                )
+        );
+
+        event.replyComponents(container)
+                .useComponentsV2()
+                .queue();
+    }
+
+    @JDASlashCommand(name = "gt", subcommand = "wotd", description = "Render today's World of the Day.")
+    public void onSlashWotd(GlobalSlashEvent event) {
+        var detail = detailClient.getGrowtopiaDetail();
+        String wotd = detail.wotd().fullSize().substring(7);
+        int dotIndex = wotd.indexOf(".");
+
+        String renderUrl = lockiumProperties.renderUrl();
+        var container = ContainerUtil.createGenericContainer(
+                TextDisplay.of("## %s WOTD: %s".formatted(AppEmojis.WOTD, wotd.substring(0, dotIndex).toUpperCase())),
+                MediaGallery.of(MediaGalleryItem.fromUrl(renderUrl + wotd.toLowerCase()))
+        );
+
+        event.replyComponents(container)
+                .useComponentsV2()
+                .queue();
+    }
 }

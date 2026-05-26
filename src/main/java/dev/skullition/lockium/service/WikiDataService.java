@@ -48,6 +48,7 @@ public class WikiDataService {
 
     @CachePut(value = "items")
     public ItemsResponse refreshItems() {
+        logger.info("Refreshing items...");
         return client.getItems();
     }
 
