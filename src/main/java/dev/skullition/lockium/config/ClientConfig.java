@@ -1,9 +1,9 @@
 package dev.skullition.lockium.config;
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
+import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.properties.WikiApiProperties;
 import dev.skullition.lockium.client.WikiClient;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -21,19 +21,19 @@ import java.util.List;
 @Configuration
 public class ClientConfig {
 
-    private final WikiApiProperties properties;
-    private final String growtopiaDetailUrl;
+    private final WikiApiProperties apiProperties;
+    private final LockiumProperties lockiumProperties;
 
-    public ClientConfig(WikiApiProperties properties, @Value("${lockium.detail-url}") String growtopiaDetailUrl) {
-        this.properties = properties;
-        this.growtopiaDetailUrl = growtopiaDetailUrl;
+    public ClientConfig(WikiApiProperties apiProperties, LockiumProperties lockiumProperties) {
+        this.apiProperties = apiProperties;
+        this.lockiumProperties = lockiumProperties;
     }
 
     @Bean
     public WikiClient wikiClient(RestClient.Builder builder) {
         RestClient restClient = builder
-                .baseUrl(properties.url())
-                .defaultHeaders(headers -> headers.setBearerAuth(properties.key()))
+                .baseUrl(apiProperties.url())
+                .defaultHeaders(headers -> headers.setBearerAuth(apiProperties.key()))
                 .requestFactory(new JdkClientHttpRequestFactory())
                 .build();
 
@@ -50,7 +50,7 @@ public class ClientConfig {
         RestTemplate template = new RestTemplate(List.of(converter));
         RestClient restClient = RestClient.create(template) // inherits the converters
                 .mutate()
-                .baseUrl(growtopiaDetailUrl)
+                .baseUrl(lockiumProperties.detailUrl())
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE)
                 .build();
 
