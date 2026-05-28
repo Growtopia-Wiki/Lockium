@@ -26,9 +26,16 @@ public class AppEmojis {
     public static final ApplicationEmoji EASTER = get("EASTER");
     public static final ApplicationEmoji PICKAXE = get("PICKAXE");
     public static final ApplicationEmoji GROW_SPRAY = get("GROW_SPRAY");
+    public static final ApplicationEmoji TOP_HAT = get("TOP_HAT");
+    public static final ApplicationEmoji GREEN_SHIRT = get("GREEN_SHIRT");
+    public static final ApplicationEmoji JEANS = get("JEANS");
+    public static final ApplicationEmoji BOOTS = get("BOOTS");
+    public static final ApplicationEmoji SHADES = get("SHADES");
+    public static final ApplicationEmoji FAIRY_WINGS = get("FAIRY_WINGS");
+    public static final ApplicationEmoji RED_HAIR = get("RED_HAIR");
+    public static final ApplicationEmoji GOLD_CHAIN = get("GOLD_CHAIN");
     public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
     public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
-    public static final ApplicationEmoji FAIRY_WINGS = get("FAIRY_WINGS");
     public static final ApplicationEmoji TICKING_CLOCK = get("TICKING_CLOCK");
     public static final ApplicationEmoji BATTLE_LEASH = get("BATTLE_LEASH");
     public static final ApplicationEmoji EARTH = get("EARTH");

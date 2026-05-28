@@ -71,14 +71,15 @@ public class GtCommands {
         }
         components.add(TextDisplay.of(propFlag));
 
-        if (item.clothingType() != null) {
-            String clothingType = item.clothingType().name();
-            components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), clothingType)));
-        } else if (item.category().type() != null) {
-            String categoryType = item.category().name();
-            components.add(TextDisplay.of("**%s - %s**".formatted(item.category().name(), categoryType)));
+        if (item.getClothingType() != null) {
+            String clothingType = item.getClothingType().getItemName();
+            var icon = item.getClothingType().getIcon();
+            components.add(TextDisplay.of("**%s Clothes - %s**".formatted(icon, clothingType)));
+        } else if (item.categoryInfo().type() != null) {
+            String categoryType = item.categoryInfo().name();
+            components.add(TextDisplay.of("**%s - %s**".formatted(item.categoryInfo().name(), categoryType)));
         } else {
-            components.add(TextDisplay.of("**%s**".formatted(item.category().name())));
+            components.add(TextDisplay.of("**%s**".formatted(item.categoryInfo().name())));
         }
 
         String rarity = item.rarity() == 999 ? "None (999)" : String.valueOf(item.rarity());
