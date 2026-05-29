@@ -1,6 +1,8 @@
 package dev.skullition.lockium.service;
 
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.Map;
 @Service
 public class TreeFruitService {
     private volatile Map<Integer, Integer> maxDrops = Map.of();
+    private final Logger logger = LoggerFactory.getLogger(TreeFruitService.class);
 
     @PostConstruct
     public void load() {
@@ -42,6 +45,7 @@ public class TreeFruitService {
         }
 
         maxDrops = Collections.unmodifiableMap(map);
+        logger.info("Loaded {} tree fruit entries.", maxDrops.size());
     }
 
     public int getMaxDrop(int itemId) {
