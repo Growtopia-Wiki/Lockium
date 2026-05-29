@@ -3,10 +3,11 @@ package dev.skullition.lockium.model;
 
 import org.jspecify.annotations.Nullable;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum ItemCategory {
-    UNKNOWN(-1, "Unknown", "Unknown"),
     FIST(0, "Fist", null),
     WRENCH(1, "Wrench", null),
     DOORS(2, "Door", "Doors"),
@@ -152,14 +153,19 @@ public enum ItemCategory {
     FRIENDS_ENTRANCE(142, "Friends Entrance", null),
     // 143 unused
     CONVEYOR_BELT(144, "Conveyor Belt", null),
-    CLIMBING_ROCKS(145, "Climbing Rocks", null);
+    CLIMBING_ROCKS(145, "Climbing Rocks", null),
+    UNKNOWN(-1, "Unknown", "Unknown");
 
-    private static final ItemCategory[] BY_ID;
+    private static final Map<Integer, ItemCategory> BY_ID;
 
     static {
-        int max = Arrays.stream(values()).mapToInt(ItemCategory::id).max().orElse(0);
-        BY_ID = new ItemCategory[max + 1];
-        for (ItemCategory c : values()) BY_ID[c.id] = c;
+        Map<Integer, ItemCategory> map = new HashMap<>();
+        for (ItemCategory c : values()) {
+            if (c.id >= 0) {          // skip the -1 sentinel
+                map.put(c.id, c);
+            }
+        }
+        BY_ID = Collections.unmodifiableMap(map);
     }
 
     private final int id;
@@ -173,9 +179,7 @@ public enum ItemCategory {
     }
 
     public static ItemCategory fromId(int id) {
-        return id >= 0 && id < BY_ID.length
-                ? BY_ID[id]
-                : UNKNOWN;
+        return BY_ID.getOrDefault(id, UNKNOWN);
     }
 
     public int id() {
@@ -188,7 +192,7 @@ public enum ItemCategory {
         } else if (icon != null) {
             return icon;
         }
-        return String.valueOf(id);
+        return "Category " + id;
     }
 
 }
