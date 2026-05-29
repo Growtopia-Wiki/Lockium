@@ -172,8 +172,8 @@ public class GtCommands {
                         TextDisplay.of("Are you using the Lucky! mod? (e.g. Lucky Clover, Songpyeon)"),
                         Label.of("Yes or no?", 
                                         StringSelectMenu.create(SlashBreakModal.INPUT_LUCKY)
-                                                .addOption("Yes", "Yes")
-                                                .addOption("No", "No")
+                                                .addOption("Yes", "True")
+                                                .addOption("No", "False")
                                         .build()
                 ))
                 .bindTo(SlashBreakModal.MODAL_NAME, item, blockCount)

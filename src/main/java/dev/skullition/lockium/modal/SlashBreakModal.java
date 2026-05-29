@@ -22,6 +22,14 @@ public class SlashBreakModal {
             @ModalData int count,
             @ModalInput(INPUT_LUCKY) List<String> lucky
             ) {
-        event.reply("%s = %s using clover = %s".formatted(item.name(), count, lucky)).queue();
+        boolean luckyBoolean = parseBoolean(lucky);
+        event.reply("%s = %s using clover = %s".formatted(item.name(), count, luckyBoolean)).queue();
+    }
+    
+    private boolean parseBoolean(List<String> input) {
+        if (input.size() > 2) {
+            return false;
+        }
+        return input.getFirst().equals("True");
     }
 }
