@@ -11,7 +11,6 @@ import io.github.freya022.botcommands.api.commands.text.annotations.TextOption;
 import net.dv8tion.jda.api.entities.Activity;
 
 @Command
-@RequireOwner
 public class OwnerCommands {
     private final TreeFruitService fruitService;
     private final WikiCacheService cacheService;
@@ -21,12 +20,14 @@ public class OwnerCommands {
         this.cacheService = cacheService;
     }
 
+    @RequireOwner
     @JDATextCommandVariation(path = {"activity"}, description = "Update bot activity.")
     public void onTextUpdateStatus(CommandEvent event, @TextOption String activity) {
         event.getJDA().getPresence().setActivity(Activity.customStatus(activity));
         event.reply("Activity updated to %s".formatted(activity)).queue();
     }
 
+    @RequireOwner
     @JDATextCommandVariation(path = {"reload"}, description = "Reloads all bot cache.")
     public void onTextReload(CommandEvent event) {
         cacheService.refreshCaches();
