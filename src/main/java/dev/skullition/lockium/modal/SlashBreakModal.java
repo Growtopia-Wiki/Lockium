@@ -1,6 +1,6 @@
 package dev.skullition.lockium.modal;
 
-import dev.skullition.lockium.model.ItemCatalogue;
+import dev.skullition.lockium.model.GrowtopiaObject;
 import io.github.freya022.botcommands.api.core.annotations.Handler;
 import io.github.freya022.botcommands.api.modals.ModalEvent;
 import io.github.freya022.botcommands.api.modals.annotations.ModalData;
@@ -18,10 +18,10 @@ public class SlashBreakModal {
     @ModalHandler(MODAL_NAME)
     public void onBreakModal(
             ModalEvent event,
-            @ModalData ItemCatalogue itemQuery,
+            @ModalData GrowtopiaObject item,
             @ModalData int count,
             @ModalInput(INPUT_LUCKY) List<String> lucky
             ) {
-        event.reply("%s = %s using clover = %s".formatted(itemQuery.itemName(), count, lucky)).queue();
+        event.reply("%s = %s using clover = %s".formatted(item.name(), count, lucky)).queue();
     }
 }

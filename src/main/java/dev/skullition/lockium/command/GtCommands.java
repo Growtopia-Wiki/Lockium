@@ -2,10 +2,7 @@ package dev.skullition.lockium.command;
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
 import dev.skullition.lockium.modal.SlashBreakModal;
-import dev.skullition.lockium.model.GrowtopiaObject;
-import dev.skullition.lockium.model.ItemCatalogue;
-import dev.skullition.lockium.model.ItemDetailResponse;
-import dev.skullition.lockium.model.ItemProperty2;
+import dev.skullition.lockium.model.*;
 import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
@@ -159,6 +156,17 @@ public class GtCommands {
                              ItemCatalogue itemQuery,
                              @SlashOption(description = "How many blocks?") int blockCount
                              ) {
+        GrowtopiaObject item = wikiService.getItemDetail(itemQuery).item();
+        var category = ItemCategory.fromId(item.categoryInfo().id());
+        
+        if (!isValidItemCategory(category)) {
+            event.reply("This is not a valid item to break.").queue();
+            return;
+        } else if (blockCount < 10 || blockCount > 1_000_000) {
+            event.reply("Must be at least 10 and no more than 1,000,000 blocks!").queue();
+            return;
+        }
+        
         var modal = modals.create("Break %s".formatted(itemQuery.itemName()))
                 .addComponents(
                         TextDisplay.of("Are you using the Lucky! mod? (e.g. Lucky Clover, Songpyeon)"),
@@ -168,9 +176,20 @@ public class GtCommands {
                                                 .addOption("No", "No")
                                         .build()
                 ))
-                .bindTo(SlashBreakModal.MODAL_NAME, itemQuery, blockCount)
+                .bindTo(SlashBreakModal.MODAL_NAME, item, blockCount)
                 .build();
         event.replyModal(modal).queue();
+    }
+    
+    private boolean isValidItemCategory(ItemCategory category) {
+        return category != ItemCategory.CLOTHES &&
+                category != ItemCategory.COMPONENTS &&
+                category != ItemCategory.COMPONENTS_2 &&
+                category != ItemCategory.CONSUMABLES &&
+                category != ItemCategory.ARTIFACTS &&
+                category != ItemCategory.BEDROCK &&
+                category != ItemCategory.FIST &&
+                category != ItemCategory.WRENCH;
     }
 
     @JDASlashCommand(name = "gt", subcommand = "wotd", description = "Render today's World of the Day.")
