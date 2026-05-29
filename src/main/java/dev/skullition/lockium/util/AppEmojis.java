@@ -34,6 +34,7 @@ public class AppEmojis {
     public static final ApplicationEmoji FAIRY_WINGS = get("FAIRY_WINGS");
     public static final ApplicationEmoji RED_HAIR = get("RED_HAIR");
     public static final ApplicationEmoji GOLD_CHAIN = get("GOLD_CHAIN");
+    public static final ApplicationEmoji LOADING = get("LOADING");
     public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
     public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
     public static final ApplicationEmoji TICKING_CLOCK = get("TICKING_CLOCK");
