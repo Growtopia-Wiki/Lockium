@@ -1,6 +1,7 @@
 package dev.skullition.lockium.command;
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
+import dev.skullition.lockium.modal.SlashBreakModal;
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
@@ -15,10 +16,13 @@ import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlash
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
+import io.github.freya022.botcommands.api.modals.Modals;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
+import net.dv8tion.jda.api.components.label.Label;
 import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
+import net.dv8tion.jda.api.components.selections.StringSelectMenu;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
@@ -33,11 +37,16 @@ import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AU
 @Command
 public class GtCommands {
     private static final Logger logger = LoggerFactory.getLogger(GtCommands.class);
+    private final Modals modals;
     private final WikiService wikiService;
     private final GrowtopiaDetailClient detailClient;
     private final LockiumProperties lockiumProperties;
 
-    public GtCommands(WikiService wikiService, GrowtopiaDetailClient detailClient, LockiumProperties lockiumProperties ) {
+    public GtCommands(Modals modals,
+                      WikiService wikiService,
+                      GrowtopiaDetailClient detailClient, 
+                      LockiumProperties lockiumProperties) {
+        this.modals = modals;
         this.wikiService = wikiService;
         this.detailClient = detailClient;
         this.lockiumProperties = lockiumProperties;
@@ -142,6 +151,26 @@ public class GtCommands {
         event.replyComponents(container)
                 .useComponentsV2()
                 .queue();
+    }
+
+    @JDASlashCommand(name = "gt", subcommand = "break", description = "Get the amount of items you get from breaking blocks.")
+    public void onSlashBreak(GlobalSlashEvent event,
+                             @SlashOption(description = "The item name you'd like to break.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
+                             ItemCatalogue itemQuery,
+                             @SlashOption(description = "How many blocks?") int blockCount
+                             ) {
+        var modal = modals.create("Break %s".formatted(itemQuery.itemName()))
+                .addComponents(
+                        TextDisplay.of("Are you using the Lucky! mod? (e.g. Lucky Clover, Songpyeon)"),
+                        Label.of("Yes or no?", 
+                                        StringSelectMenu.create(SlashBreakModal.INPUT_LUCKY)
+                                                .addOption("Yes", "Yes")
+                                                .addOption("No", "No")
+                                        .build()
+                ))
+                .bindTo(SlashBreakModal.MODAL_NAME, itemQuery, blockCount)
+                .build();
+        event.replyModal(modal).queue();
     }
 
     @JDASlashCommand(name = "gt", subcommand = "wotd", description = "Render today's World of the Day.")
