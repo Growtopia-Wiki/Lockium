@@ -14,22 +14,20 @@ import java.util.List;
 public class SlashBreakModal {
     public static final String MODAL_NAME = "SlashBreak: break";
     public static final String INPUT_LUCKY = "SlashBreak: lucky";
+    public static final String INPUT_BUDDY = "SlashBreak: buddy";
     
     @ModalHandler(MODAL_NAME)
     public void onBreakModal(
             ModalEvent event,
             @ModalData GrowtopiaObject item,
             @ModalData int count,
-            @ModalInput(INPUT_LUCKY) List<String> lucky
+            @ModalInput(INPUT_LUCKY) String lucky
             ) {
         boolean luckyBoolean = parseBoolean(lucky);
         event.reply("%s = %s using clover = %s".formatted(item.name(), count, luckyBoolean)).queue();
     }
     
-    private boolean parseBoolean(List<String> input) {
-        if (input.size() > 2) {
-            return false;
-        }
-        return input.getFirst().equals("True");
+    private boolean parseBoolean(String input) {
+        return input.equals("True");
     }
 }

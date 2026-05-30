@@ -19,7 +19,7 @@ import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.label.Label;
 import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
-import net.dv8tion.jda.api.components.selections.StringSelectMenu;
+import net.dv8tion.jda.api.components.radiogroup.RadioGroup;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
@@ -171,7 +171,7 @@ public class GtCommands {
                 .addComponents(
                         TextDisplay.of("Are you using the Lucky! mod? (e.g. Lucky Clover, Songpyeon)"),
                         Label.of("Yes or no?", 
-                                        StringSelectMenu.create(SlashBreakModal.INPUT_LUCKY)
+                                        RadioGroup.create(SlashBreakModal.INPUT_LUCKY)
                                                 .addOption("Yes", "True")
                                                 .addOption("No", "False")
                                         .build()
