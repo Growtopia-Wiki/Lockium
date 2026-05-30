@@ -21,6 +21,8 @@ import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
 import net.dv8tion.jda.api.components.radiogroup.RadioGroup;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
+import net.dv8tion.jda.api.components.textinput.TextInput;
+import net.dv8tion.jda.api.components.textinput.TextInputStyle;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
 import org.slf4j.Logger;
@@ -41,7 +43,7 @@ public class GtCommands {
 
     public GtCommands(Modals modals,
                       WikiService wikiService,
-                      GrowtopiaDetailClient detailClient, 
+                      GrowtopiaDetailClient detailClient,
                       LockiumProperties lockiumProperties) {
         this.modals = modals;
         this.wikiService = wikiService;
@@ -155,10 +157,11 @@ public class GtCommands {
                              @SlashOption(description = "The item name you'd like to break.", autocomplete = ITEM_AUTOCOMPLETE_NAME)
                              ItemCatalogue itemQuery,
                              @SlashOption(description = "How many blocks?") int blockCount
-                             ) {
-        GrowtopiaObject item = wikiService.getItemDetail(itemQuery).item();
+    ) {
+        var itemDetail = wikiService.getItemDetail(itemQuery);
+        var item = itemDetail.item();
         var category = ItemCategory.fromId(item.categoryInfo().id());
-        
+
         if (!isValidItemCategory(category)) {
             event.reply("This is not a valid item to break.").queue();
             return;
@@ -166,21 +169,29 @@ public class GtCommands {
             event.reply("Must be at least 10 and no more than 1,000,000 blocks!").queue();
             return;
         }
-        
+
         var modal = modals.create("Break %s".formatted(itemQuery.itemName()))
                 .addComponents(
-                        TextDisplay.of("Are you using the Lucky! mod? (e.g. Lucky Clover, Songpyeon)"),
-                        Label.of("Yes or no?", 
-                                        RadioGroup.create(SlashBreakModal.INPUT_LUCKY)
-                                                .addOption("Yes", "True")
-                                                .addOption("No", "False")
-                                        .build()
-                ))
-                .bindTo(SlashBreakModal.MODAL_NAME, item, blockCount)
+                        Label.of("Using Lucky! mod?",
+                                RadioGroup.create(SlashBreakModal.INPUT_LUCKY)
+                                        .addOption("Yes", "True")
+                                        .addOption("No", "False")
+                                        .build()),
+                        Label.of("Buddy's Block Head?",
+                                RadioGroup.create(SlashBreakModal.INPUT_BUDDY)
+                                        .addOption("Yes", "True")
+                                        .addOption("No", "False")
+                                        .build()),
+                        Label.of("Ancestral Tesseract level?", TextInput.create(SlashBreakModal.INPUT_ANCES, TextInputStyle.SHORT)
+                                .setValue("0")
+                                .setRequiredRange(1, 1)
+                                .build())
+                )
+                .bindTo(SlashBreakModal.MODAL_NAME, itemDetail, itemQuery, blockCount)
                 .build();
         event.replyModal(modal).queue();
     }
-    
+
     private boolean isValidItemCategory(ItemCategory category) {
         return category != ItemCategory.CLOTHES &&
                 category != ItemCategory.COMPONENTS &&
