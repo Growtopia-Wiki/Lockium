@@ -133,22 +133,24 @@ public class SlashBreakModal {
         if (!dropsGems) {
             components.add(TextDisplay.of("%s Block does not drop gems.".formatted(AppEmojis.EXCLAMATION)));
         }
-        
-        components.add(TextDisplay.of("### Results for %s blocks:".formatted(blockCount)));
+
+        String countFormatted = String.format(Locale.US, "%,d", blockCount);
+        components.add(TextDisplay.of("### Results for %s blocks:".formatted(countFormatted)));
         
         int seedsFromDroppedBlocks = (int)(baseBlockDrop * 0.25f);
         
         String baseBlockDropFormatted = String.format(Locale.US, "%,.0f", baseBlockDrop);
         String baseBlockSeedDropFormatted = String.format(Locale.US, "%,.0f", baseSeedDrop);
-        String gemDropsFormatted = String.format(Locale.US, "%.0f", gemDrops);
+        String totalBlocksAndSeedsFormatted = String.format(Locale.US, "%,.0f", baseSeedDrop + seedsFromDroppedBlocks);
+        String gemDropsFormatted = String.format(Locale.US, "%,.0f", gemDrops);
         components.add(TextDisplay.of("""
                 **Average Base Block Drops:** `%s` (+`~%s` seeds if broken)
                 **Average Seed Drops:** `%s` (Total `%s` with seeds from broken blocks)
-                %s Will not include all seeds dropped from extra blocks from the base broken blocks!
+                    (%s Will not include all seeds dropped from extra blocks from the base broken blocks!)
                 **Average Gem Drops:** `%s`
                 """
                 .formatted(baseBlockDropFormatted, seedsFromDroppedBlocks,
-                        baseBlockSeedDropFormatted, baseSeedDrop + seedsFromDroppedBlocks,
+                        baseBlockSeedDropFormatted, totalBlocksAndSeedsFormatted,
                         AppEmojis.EXCLAMATION, gemDropsFormatted)));
 
         Container container = ItemUtils.createItemContainer(itemDetail, itemCatalogue, components);
