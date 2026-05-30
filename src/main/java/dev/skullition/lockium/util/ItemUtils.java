@@ -1,5 +1,6 @@
 package dev.skullition.lockium.util;
 
+import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import net.dv8tion.jda.api.components.container.Container;
@@ -9,7 +10,9 @@ import net.dv8tion.jda.api.components.separator.Separator;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class ItemUtils {
     private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
@@ -28,7 +31,21 @@ public class ItemUtils {
         return itemName.trim().toLowerCase(Locale.ROOT);
     }
 
-    public static Container createItemContainer(ItemDetailResponse item, 
+    public static double getAverageGemCountToDropOnTreeSmash(GrowtopiaObject item) {
+        if (item.rarity() == 999) {
+            return 0d;
+        }
+
+        int gemDrop = item.rarity() / 4;
+        if (item.rarity() <= 30) {
+            gemDrop = (3 * gemDrop) / 4;
+        }
+
+        int end = Math.max(gemDrop, 2);
+        return Math.round((end - 1) / 2d);
+    }
+
+    public static Container createItemContainer(ItemDetailResponse item,
                                                 ItemCatalogue itemCatalogue,
                                                 List<ContainerChildComponent> components) {
         List<ContainerChildComponent> container = new ArrayList<>();
