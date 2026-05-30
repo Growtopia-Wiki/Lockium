@@ -79,7 +79,7 @@ public class SlashBreakModal {
 
         if (lucky) {
             components.add(
-                    TextDisplay.of("%s **Lucky effect** (10%% chance of triggering) - Increased chance of block drops and 5x gems."
+                    TextDisplay.of("%s **Lucky! effect** (10%% chance of triggering) - Increased chance of block drops and 5x gems."
                             .formatted(AppEmojis.LUCKY_CLOVER)));
             int luckyBlocks = blockCount / 10; // 10%
             int normalBlocks = blockCount - luckyBlocks;
@@ -112,7 +112,7 @@ public class SlashBreakModal {
             } else {
                 increase = 0.05f + (((float) ances - 1f) / 100);
             }
-            components.add(TextDisplay.of("%s Ancestral Tesseract of Dimensions Lv.%s (%s%% extra blocks.)"
+            components.add(TextDisplay.of("%s Ancestral Tesseract of Dimensions Lv.%s (%s%% extra blocks)."
                     .formatted(AppEmojis.ANCES_TESSERACT, ances, (int) (increase * 100))));
 
             baseBlockDrop += blockCount * increase;
