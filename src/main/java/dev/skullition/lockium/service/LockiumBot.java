@@ -6,6 +6,7 @@ import dev.skullition.lockium.properties.WikiApiProperties;
 import io.github.freya022.botcommands.api.core.JDAService;
 import io.github.freya022.botcommands.api.core.config.JDAConfiguration;
 import io.github.freya022.botcommands.api.core.events.BReadyEvent;
+import java.util.Set;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.IEventManager;
@@ -15,43 +16,64 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
+/**
+ * BotCommands {@link JDAService} implementation for Lockium.
+ *
+ * <p>Responsible for building the single JDA instance with the intents, cache flags, and activity
+ * status defined in application properties. Delegates intent/cache configuration to {@link
+ * JDAConfiguration} to keep this class focused on bootstrapping.
+ */
 @Service
 public class LockiumBot extends JDAService {
-    private static final Logger logger = LoggerFactory.getLogger(LockiumBot.class);
-    private final JDAConfiguration jdaConfiguration;
-    private final DiscordProperties discordProperties;
-    private final WikiApiProperties wikiApiProperties;
-    private final LockiumProperties lockiumProperties;
+  private static final Logger logger = LoggerFactory.getLogger(LockiumBot.class);
+  private final JDAConfiguration jdaConfiguration;
+  private final DiscordProperties discordProperties;
+  private final WikiApiProperties wikiApiProperties;
+  private final LockiumProperties lockiumProperties;
 
-    public LockiumBot(JDAConfiguration jdaConfiguration,
-                      DiscordProperties discordProperties,
-                      WikiApiProperties wikiApiProperties, LockiumProperties lockiumProperties
-    ) {
-        this.jdaConfiguration = jdaConfiguration;
-        this.discordProperties = discordProperties;
-        this.wikiApiProperties = wikiApiProperties;
-        this.lockiumProperties = lockiumProperties;
-    }
+  /**
+   * JDA lifecycle service for the Lockium Discord bot.
+   *
+   * <p>Extends BotCommands' {@link JDAService} to provide a centralized place for Gateway Intents,
+   * CacheFlags, and JDA construction. All configuration is sourced from Spring properties:
+   *
+   * <ul>
+   *   <li>{@link DiscordProperties} – bot token
+   *   <li>{@link JDAConfiguration} – intents and cache flags
+   *   <li>{@link LockiumProperties} – custom activity status
+   *   <li>{@link WikiApiProperties} – logged on startup for diagnostics
+   * </ul>
+   *
+   * <p>This service is instantiated once by Spring and managed by BotCommands.
+   */
+  public LockiumBot(
+      JDAConfiguration jdaConfiguration,
+      DiscordProperties discordProperties,
+      WikiApiProperties wikiApiProperties,
+      LockiumProperties lockiumProperties) {
+    this.jdaConfiguration = jdaConfiguration;
+    this.discordProperties = discordProperties;
+    this.wikiApiProperties = wikiApiProperties;
+    this.lockiumProperties = lockiumProperties;
+  }
 
-    @Override
-    public Set<GatewayIntent> getIntents() {
-        return jdaConfiguration.getIntents();
-    }
+  @Override
+  public Set<GatewayIntent> getIntents() {
+    return jdaConfiguration.getIntents();
+  }
 
-    @Override
-    public Set<CacheFlag> getCacheFlags() {
-        return jdaConfiguration.getCacheFlags();
-    }
+  @Override
+  public Set<CacheFlag> getCacheFlags() {
+    return jdaConfiguration.getCacheFlags();
+  }
 
-    @Override
-    protected void createJDA(BReadyEvent bReadyEvent, IEventManager iEventManager) {
-        JDABuilder.createDefault(discordProperties.token(), getIntents())
-                .enableCache(getCacheFlags())
-                .setActivity(Activity.customStatus(lockiumProperties.status()))
-                .setEventManager(iEventManager)
-                .build();
-        logger.info("Lockium started, Wiki API={}", wikiApiProperties.url());
-    }
+  @Override
+  protected void createJDA(BReadyEvent botReadyEvent, IEventManager eventManager) {
+    JDABuilder.createDefault(discordProperties.token(), getIntents())
+        .enableCache(getCacheFlags())
+        .setActivity(Activity.customStatus(lockiumProperties.status()))
+        .setEventManager(eventManager)
+        .build();
+    logger.info("Lockium started, Wiki API={}", wikiApiProperties.url());
+  }
 }
