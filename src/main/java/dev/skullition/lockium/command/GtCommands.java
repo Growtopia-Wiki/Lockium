@@ -147,7 +147,7 @@ public class GtCommands {
         TextDisplay.of(
             "**Base color:** `%s` **Overlay color:** `%s`".formatted(baseColor, overColor)));
 
-    String growTime = ItemUtils.toDHMS(seed.growTime());
+    String growTime = ItemUtils.toDayHourMinutesSeconds(seed.growTime());
     components.add(TextDisplay.of("%s `%s` to grow.".formatted(AppEmojis.GROW_SPRAY, growTime)));
 
     String gemDrops;
