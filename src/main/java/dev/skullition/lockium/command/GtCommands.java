@@ -11,6 +11,7 @@ import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemProperty;
 import dev.skullition.lockium.model.ItemProperty2;
 import dev.skullition.lockium.properties.LockiumProperties;
+import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ContainerUtil;
@@ -23,6 +24,7 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.modals.Modals;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.label.Label;
@@ -51,6 +53,7 @@ public class GtCommands {
   private final WikiService wikiService;
   private final GrowtopiaDetailClient detailClient;
   private final LockiumProperties lockiumProperties;
+  private final TreeFruitService fruitService;
 
   /**
    * Creates the command handler.
@@ -59,16 +62,19 @@ public class GtCommands {
    * @param wikiService cached access to the wiki item API
    * @param detailClient client for live Growtopia data (WOTD)
    * @param lockiumProperties application configuration, including render URLs
+   * @param fruitService service used to determine an item is farmable
    */
   public GtCommands(
       Modals modals,
       WikiService wikiService,
       GrowtopiaDetailClient detailClient,
-      LockiumProperties lockiumProperties) {
+      LockiumProperties lockiumProperties,
+      TreeFruitService fruitService) {
     this.modals = modals;
     this.wikiService = wikiService;
     this.detailClient = detailClient;
     this.lockiumProperties = lockiumProperties;
+    this.fruitService = fruitService;
   }
 
   /**
@@ -274,6 +280,138 @@ public class GtCommands {
         && category != ItemCategory.BEDROCK
         && category != ItemCategory.FIST
         && category != ItemCategory.WRENCH;
+  }
+
+  /**
+   * Handles {@code /gt harvest}.
+   *
+   * <p>Validates the item category and tree count, performs the calculation for harvesting trees
+   * using all modifiers.
+   *
+   * @param event the slash interaction
+   * @param itemQuery the block to break
+   * @param treeCount number of blocks; must be between 10 and 1,000,000 (inclusive)
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "harvest",
+      description = "Get the amount of items you get from harvesting trees.")
+  public void onSlashHarvest(
+      GlobalSlashEvent event,
+      @SlashOption(
+              description = "The item name you'd like to break.",
+              autocomplete = ITEM_AUTOCOMPLETE_NAME)
+          ItemCatalogue itemQuery,
+      @SlashOption(description = "How many trees?") int treeCount) {
+    if (treeCount < 10 || treeCount > 1_000_000) {
+      event.reply("Must be at least 10 and no more than 1,000,000 trees!").queue();
+      return;
+    }
+    var itemDetail = wikiService.getItemDetail(itemQuery);
+    var item = itemDetail.item();
+    if (!item.canHaveTrees()) {
+      event.reply("This item cannot have trees").queue();
+      return;
+    }
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(TextDisplay.of("### Harvesting %s %s Trees.".formatted(treeCount, item.name())));
+
+    boolean isFarmable = fruitService.getMaxDrop(item.id()) > 4;
+    if (isFarmable) {
+      components.add(TextDisplay.of("%s Item is farmable.".formatted(AppEmojis.TRACTOR)));
+    } else {
+      components.add(TextDisplay.of("%s Item is **not** farmable.".formatted(AppEmojis.TRACTOR)));
+    }
+
+    double treeDropCount = isFarmable ? treeCount * 3.75 : treeCount * 2.5;
+    String treeDropCountFormatted = String.format(Locale.US, "%,.0f", treeDropCount);
+    components.add(
+        TextDisplay.of(
+            "%s Block drops: ~**%s**".formatted(AppEmojis.DIRT_BLOCK, treeDropCountFormatted)));
+
+    double fuelTotal = treeDropCount * 1.1;
+    String fuelTotalFormatted = String.format(Locale.US, "%,.0f", fuelTotal);
+    var extraBlocksHarvesterAvg = Math.floor(treeDropCount * 1.10) - treeDropCount;
+    String extraBlocksHarvesterAvgFormatted =
+        String.format(Locale.US, "%,.0f", extraBlocksHarvesterAvg);
+    String consumedFuelPacksFormatted = String.format(Locale.US, "%,d", treeCount / 10);
+    components.add(
+        TextDisplay.of(
+            "%s Extra block drops with harvester: `~%s` (Total `~%s`) (**%s fuel packs consumed**)"
+                .formatted(
+                    AppEmojis.FUEL,
+                    extraBlocksHarvesterAvgFormatted,
+                    fuelTotalFormatted,
+                    consumedFuelPacksFormatted)));
+
+    double gemDropAvg = ItemUtils.getAverageGemCountToDropOnTreeSmash(item);
+    if (gemDropAvg == 0) {
+      components.add(TextDisplay.of("%s No gem drops.".formatted(AppEmojis.GEM)));
+    } else {
+      double totalGemDrop = treeCount * gemDropAvg;
+      String totalGemFormatted = String.format(Locale.US, "%,.0f", totalGemDrop);
+      String gemDropAvgFormatted = String.format(Locale.US, "%,.0f", gemDropAvg);
+      components.add(
+          TextDisplay.of(
+              "%s Gem drops: `~%s` (`~%s` per tree)"
+                  .formatted(AppEmojis.GEM, totalGemFormatted, gemDropAvgFormatted)));
+    }
+
+    var properties = ItemProperty.fromInt(item.propFlag().raw());
+    if (properties.contains(ItemProperty.NO_SEED)) {
+      components.add(
+          TextDisplay.of("%s No seed - Tree does not drop seeds.".formatted(AppEmojis.NO_SEED)));
+    } else {
+      double chanceSeedDrop = ItemUtils.getChanceToDropSeedOnTreeSmash(item.rarity());
+      int totalSeedDrop = (int) (treeCount / (100 / chanceSeedDrop));
+
+      String chanceSeedDropFormatted = String.format(Locale.US, "%,.0f", chanceSeedDrop);
+      String totalSeedDropFormatted = String.format(Locale.US, "%,d", totalSeedDrop);
+      components.add(
+          TextDisplay.of(
+              "%s Seed drops: `%s` seeds. (`~%s`%% chance.)"
+                  .formatted(
+                      AppEmojis.DIRT_SEED, totalSeedDropFormatted, chanceSeedDropFormatted)));
+
+      var totalSeedsEarned = Math.round(treeDropCount / 4) + totalSeedDrop;
+      double blockBlockDrop = treeDropCount / 12;
+      double blockBlockDropHarvester = blockBlockDrop * 1.10;
+
+      String totalSeedsEarnedFormatted = String.format(Locale.US, "%,d", totalSeedsEarned);
+      String blockBlockDropFormatted = String.format(Locale.US, "%,.0f", blockBlockDrop);
+      components.add(
+          TextDisplay.of(
+              ("`~%s` seeds after harvesting and breaking blocks from trees, "
+                      + "`%s` block drop from blocks.")
+                  .formatted(totalSeedsEarnedFormatted, blockBlockDropFormatted)));
+      String harvesterFuelTotalFormatted = String.format(Locale.US, "%,.0f", fuelTotal / 4);
+      String blockBlockDropHarvesterFormatted =
+          String.format(Locale.US, "%,.0f", blockBlockDropHarvester);
+      components.add(
+          TextDisplay.of(
+              "%s Harvester: `~%s` seeds + `%s` blocks after breaking, using harvester."
+                  .formatted(
+                      AppEmojis.FUEL,
+                      harvesterFuelTotalFormatted,
+                      blockBlockDropHarvesterFormatted)));
+
+      String finalNoHarvesterFormatted =
+          String.format(Locale.US, "%,.0f", totalSeedsEarned + (blockBlockDrop / 4));
+      String finalHarvesterFormatted =
+          String.format(
+              Locale.US, "%,.0f", (totalSeedsEarned * 1.10) + (blockBlockDropHarvester / 4));
+      components.add(
+          TextDisplay.of(
+              "### %s TOTAL: %s seeds after one cycle, `~%s` with harvester."
+                  .formatted(
+                      AppEmojis.CHECKBOX_ENABLED,
+                      finalNoHarvesterFormatted,
+                      finalHarvesterFormatted)));
+    }
+
+    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
+    event.replyComponents(container).useComponentsV2().queue();
   }
 
   /**

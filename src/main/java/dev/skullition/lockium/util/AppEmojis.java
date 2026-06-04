@@ -55,6 +55,9 @@ public class AppEmojis {
   public static final ApplicationEmoji ANCES_TESSERACT = get("ANCES_TESSERACT");
   public static final ApplicationEmoji BBH = get("BBH");
   public static final ApplicationEmoji EXCLAMATION = get("EXCLAMATION");
+  public static final ApplicationEmoji FUEL = get("FUEL");
+  public static final ApplicationEmoji DIRT_BLOCK = get("DIRT_BLOCK");
+  public static final ApplicationEmoji DIRT_SEED = get("DIRT_SEED");
   public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
   public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
   public static final ApplicationEmoji TICKING_CLOCK = get("TICKING_CLOCK");

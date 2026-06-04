@@ -56,7 +56,7 @@ public class ItemUtils {
   }
 
   /**
-   * Calculates the average gems dropped when smashing a tree.
+   * Calculates the average gems dropped when harvesting a tree.
    *
    * <p>Implements the in-game formula: {@code rarity/4}, reduced by 25% for rarity ≤30, with a
    * minimum of 2, then averaged. Returns 0 for rarity 999 (unbreakable items).
@@ -76,6 +76,23 @@ public class ItemUtils {
 
     int end = Math.max(gemDrop, 2);
     return Math.round((end - 1) / 2d);
+  }
+
+  /**
+   * Calculates the chance of getting seed as a drop when harvesting a tree.
+   *
+   * @param rarity the rarity of the item
+   * @return the drop chance
+   */
+  public static double getChanceToDropSeedOnTreeSmash(int rarity) {
+    if (rarity == 999) {
+      return 0;
+    }
+
+    // chance is 1/max
+    var max = (rarity / 4) + 3;
+
+    return 100.0 / ((double) max); // Random(max)
   }
 
   /**
