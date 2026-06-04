@@ -1,6 +1,7 @@
 package dev.skullition.lockium.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.EnumSet;
 import java.util.List;
 import org.jspecify.annotations.Nullable;
 
@@ -60,6 +61,42 @@ public record GrowtopiaObject(
    */
   public String propFlagText() {
     return ItemProperty.toDisplay(propFlag.raw());
+  }
+
+  /**
+   * Returns whether this item can have trees based on certain properties or whether its in a
+   * category.
+   */
+  public boolean canHaveTrees() {
+    EnumSet<ItemProperty> properties = ItemProperty.fromInt(propFlag.raw);
+    if (properties.contains(ItemProperty.MOD)
+        || properties.contains(ItemProperty.UNTRADABLE)
+        || properties.contains(ItemProperty.BETA)
+        || properties.contains(ItemProperty.AUTO_PICKUP)
+        || properties.contains(ItemProperty.PERMANENT)) {
+      return false;
+    }
+    var category = ItemCategory.fromId(categoryInfo.id());
+    return switch (category) {
+      case ARTIFACTS,
+          FIST,
+          WRENCH,
+          GEMS,
+          FISHES,
+          LOCKS,
+          BEDROCK,
+          SUNGATE,
+          BLANK,
+          HEART_MONITOR,
+          SECURITY_CAMERAS,
+          SPOTLIGHT,
+          SOLAR_COLLECTOR,
+          FORGE,
+          GIVING_TREE,
+          SILKWORM -> // There's DEFINITELY more.
+          false;
+      default -> true;
+    };
   }
 
   /**
