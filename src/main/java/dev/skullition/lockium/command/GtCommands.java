@@ -315,7 +315,9 @@ public class GtCommands {
     }
 
     List<ContainerChildComponent> components = new ArrayList<>();
-    components.add(TextDisplay.of("### Harvesting %s %s Trees.".formatted(treeCount, item.name())));
+    String treeCountFormatted = String.format(Locale.US, "%,d", treeCount);
+    components.add(
+        TextDisplay.of("### Harvesting %s %s Trees.".formatted(treeCountFormatted, item.name())));
 
     boolean isFarmable = fruitService.getMaxDrop(item.id()) > 4;
     if (isFarmable) {
