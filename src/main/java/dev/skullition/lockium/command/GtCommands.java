@@ -398,6 +398,13 @@ public class GtCommands {
                       harvesterFuelTotalFormatted,
                       blockBlockDropHarvesterFormatted)));
 
+      int secondsToHarvest = Math.toIntExact(Math.round(treeCount / 3.61111));
+      String timeToHarvest = ItemUtils.toDayHourMinutesSeconds(secondsToHarvest);
+      components.add(
+          TextDisplay.of(
+              "%s Approximately `%s` to harvest all the trees."
+                  .formatted(AppEmojis.TICKING_CLOCK, timeToHarvest)));
+
       String finalNoHarvesterFormatted =
           String.format(Locale.US, "%,.0f", totalSeedsEarned + (blockBlockDrop / 4));
       String finalHarvesterFormatted =
@@ -405,7 +412,7 @@ public class GtCommands {
               Locale.US, "%,.0f", (totalSeedsEarned * 1.10) + (blockBlockDropHarvester / 4));
       components.add(
           TextDisplay.of(
-              "### %s TOTAL: %s seeds after one cycle, `~%s` with harvester."
+              "### %s TOTAL: %s seeds after one cycle, ~%s with harvester."
                   .formatted(
                       AppEmojis.CHECKBOX_ENABLED,
                       finalNoHarvesterFormatted,
