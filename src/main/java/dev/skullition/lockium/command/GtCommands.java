@@ -474,10 +474,10 @@ public class GtCommands {
         TextDisplay.of(
             "%s Gems per item: %s - %s"
                 .formatted(AppEmojis.GEM, recycleResult.rangeMin(), recycleResult.rangeMax())));
+    String gemCountFormatted = String.format(Locale.US, "%,d", recycleResult.gemCount());
     components.add(
         TextDisplay.of(
-            "### %s Total gems: `~%s`"
-                .formatted(AppEmojis.CHECKBOX_ENABLED, recycleResult.gemCount())));
+            "### %s Total gems: `~%s`".formatted(AppEmojis.CHECKBOX_ENABLED, gemCountFormatted)));
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
