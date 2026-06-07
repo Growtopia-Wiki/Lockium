@@ -31,6 +31,8 @@ import org.jspecify.annotations.Nullable;
  * @param overStyle overlay sprite variant index
  * @param baseColor base tint color
  * @param overColor overlay tint color
+ * @param recipe1 first splicing recipe of an item
+ * @param recipe2 second splicing recipe of an item
  * @see ItemCategory
  * @see ClothingType
  */
@@ -52,7 +54,9 @@ public record GrowtopiaObject(
     int baseStyle,
     int overStyle,
     ColorInfo baseColor,
-    ColorInfo overColor) {
+    ColorInfo overColor,
+    @Nullable RecipeInfo recipe1,
+    @Nullable RecipeInfo recipe2) {
   /**
    * Returns a human-readable description of the primary flags.
    *
@@ -222,4 +226,11 @@ public record GrowtopiaObject(
       return (int) Long.parseLong(h, 16);
     }
   }
+
+  /**
+   * Possibly null representation of item's seed recipe.
+   *
+   * @param id the item's id associated with the splicing recipe.
+   */
+  public record RecipeInfo(int id) {}
 }
