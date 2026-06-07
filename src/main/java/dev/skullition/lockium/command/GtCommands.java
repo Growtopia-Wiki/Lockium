@@ -16,6 +16,7 @@ import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ContainerUtil;
 import dev.skullition.lockium.util.ItemUtils;
+import dev.skullition.lockium.util.RecycleUtil;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlashEvent;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
@@ -418,6 +419,63 @@ public class GtCommands {
                       finalNoHarvesterFormatted,
                       finalHarvesterFormatted)));
     }
+
+    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
+   * Handles {@code /gt recycle}.
+   *
+   * <p>Calculates how many gems you'd receive for recycling an item. Currently only supports items
+   * with rarity (rarity != 999).
+   *
+   * @param event the slash interaction
+   * @param itemQuery the item to recycle
+   * @param itemCount number of items; must be between 10 and 100,000 (inclusive)
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "recycle",
+      description = "Gives you gem values for recycling an item.")
+  public void onSlashRecycle(
+      GlobalSlashEvent event,
+      @SlashOption(
+              description = "The item name you'd like to break.",
+              autocomplete = ITEM_AUTOCOMPLETE_NAME)
+          ItemCatalogue itemQuery,
+      @SlashOption(description = "How many items?") int itemCount) {
+    if (itemCount < 1 || itemCount > 100_000) {
+      event.reply("Must be between 1 and 100.000 items.").queue();
+      return;
+    }
+    var itemDetail = wikiService.getItemDetail(itemQuery);
+    var item = itemDetail.item();
+    if (item.rarity() == 999) {
+      event.reply("Items with no rarity are currently not supported.").queue();
+      return;
+    }
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+
+    components.add(TextDisplay.of("### Recycling %s".formatted(item.name())));
+    // Could also check for !ItemProperties.NO_SEED
+    boolean isFarmable = fruitService.getMaxDrop(item.id()) > 4;
+    if (isFarmable) {
+      components.add(TextDisplay.of("%s Item is farmable.".formatted(AppEmojis.TRACTOR)));
+    } else {
+      components.add(TextDisplay.of("%s Item is **not** farmable.".formatted(AppEmojis.TRACTOR)));
+    }
+    var recycleResult = RecycleUtil.getRecycleValueForItem(itemDetail, itemCount);
+    components.add(TextDisplay.of("%s Rarity: %s".formatted(AppEmojis.RARITY, item.rarity())));
+    components.add(
+        TextDisplay.of(
+            "%s Gems per item: %s - %s"
+                .formatted(AppEmojis.GEM, recycleResult.rangeMin(), recycleResult.rangeMax())));
+    components.add(
+        TextDisplay.of(
+            "### %s Total gems: `~%s`"
+                .formatted(AppEmojis.CHECKBOX_ENABLED, recycleResult.gemCount())));
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
