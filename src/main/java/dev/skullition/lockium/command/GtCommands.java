@@ -11,6 +11,7 @@ import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemProperty;
 import dev.skullition.lockium.model.ItemProperty2;
 import dev.skullition.lockium.properties.LockiumProperties;
+import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
@@ -52,7 +53,7 @@ public class GtCommands {
   private static final Logger logger = LoggerFactory.getLogger(GtCommands.class);
   private final Modals modals;
   private final WikiService wikiService;
-  private final GrowtopiaDetailClient detailClient;
+  private final GrowtopiaDetailService detailService;
   private final LockiumProperties lockiumProperties;
   private final TreeFruitService fruitService;
 
@@ -61,19 +62,19 @@ public class GtCommands {
    *
    * @param modals modal manager for interactive flows
    * @param wikiService cached access to the wiki item API
-   * @param detailClient client for live Growtopia data (WOTD)
+   * @param detailService client for live Growtopia data (WOTD)
    * @param lockiumProperties application configuration, including render URLs
    * @param fruitService service used to determine an item is farmable
    */
   public GtCommands(
       Modals modals,
       WikiService wikiService,
-      GrowtopiaDetailClient detailClient,
+      GrowtopiaDetailService detailService,
       LockiumProperties lockiumProperties,
       TreeFruitService fruitService) {
     this.modals = modals;
     this.wikiService = wikiService;
-    this.detailClient = detailClient;
+    this.detailService = detailService;
     this.lockiumProperties = lockiumProperties;
     this.fruitService = fruitService;
   }
@@ -496,7 +497,14 @@ public class GtCommands {
       subcommand = "wotd",
       description = "Render today's World of the Day.")
   public void onSlashWotd(GlobalSlashEvent event) {
-    var detail = detailClient.getGrowtopiaDetail();
+    var detail = detailService.getDetail();
+    if (detail == null) {
+      event
+          .reply("Unexpected error while trying to query WOTD data. Please try again later.")
+          .queue();
+      return;
+    }
+    
     String wotd = detail.wotd().fullSize().substring(7);
     int dotIndex = wotd.indexOf(".");
 
