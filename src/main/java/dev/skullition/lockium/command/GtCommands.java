@@ -458,7 +458,9 @@ public class GtCommands {
 
     List<ContainerChildComponent> components = new ArrayList<>();
 
-    components.add(TextDisplay.of("### Recycling %s".formatted(item.name())));
+    String itemCountFormatted = String.format(Locale.US, "%,d", itemCount);
+    components.add(
+        TextDisplay.of("### Recycling %s %s".formatted(itemCountFormatted, item.name())));
     // Could also check for !ItemProperties.NO_SEED
     boolean isFarmable = fruitService.getMaxDrop(item.id()) > 4;
     if (isFarmable) {
