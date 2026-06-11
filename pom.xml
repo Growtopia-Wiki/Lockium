@@ -115,6 +115,33 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:25-jre</image>
+					</from>
+					<to>
+						<image>ghcr.io/growtopia-wiki/lockium</image>
+						<tags>
+							<tag>latest</tag>
+							<tag>${project.version}</tag>
+						</tags>
+					</to>
+					<container>
+						<mainClass>dev.skullition.lockium.LockiumApplication</mainClass>
+						<jvmFlags>
+							<jvmFlag>-XX:MaxRAMPercentage=75.0</jvmFlag>
+						</jvmFlags>
+						<labels>
+							<org.opencontainers.image.source>https://github.com/growtopia-wiki/lockium</org.opencontainers.image.source>
+						</labels>
+					</container>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
