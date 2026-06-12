@@ -58,6 +58,12 @@ public class AppEmojis {
   public static final ApplicationEmoji FUEL = get("FUEL");
   public static final ApplicationEmoji DIRT_BLOCK = get("DIRT_BLOCK");
   public static final ApplicationEmoji DIRT_SEED = get("DIRT_SEED");
+  public static final ApplicationEmoji FISHER = get("FISHER");
+  public static final ApplicationEmoji STAR_CAPTAIN = get("STAR_CAPTAIN");
+  public static final ApplicationEmoji FARMER = get("FARMER");
+  public static final ApplicationEmoji COOK = get("COOK");
+  public static final ApplicationEmoji SURGEON = get("SURGEON");
+  public static final ApplicationEmoji BUILDER = get("BUILDER");
   public static final ApplicationEmoji CHECKBOX_ENABLED = get("CHECKBOX_ENABLED");
   public static final ApplicationEmoji CHECKBOX_DISABLED = get("CHECKBOX_DISABLED");
   public static final ApplicationEmoji TICKING_CLOCK = get("TICKING_CLOCK");

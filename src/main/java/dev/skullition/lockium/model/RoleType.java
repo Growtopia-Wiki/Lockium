@@ -1,10 +1,70 @@
 package dev.skullition.lockium.model;
 
+import dev.skullition.lockium.util.AppEmojis;
+import net.dv8tion.jda.api.entities.emoji.ApplicationEmoji;
+
+/**
+ * A Growtopia "role" (profession) selectable in {@code /gt role}.
+ *
+ * <p>Each role belongs to a {@link RoleCategory} that determines its base XP and gem costs:
+ * supplier roles share one set of values, crafter roles another.
+ */
 public enum RoleType {
-    FISHING,
-    STAR_CAPTAIN,
-    FARMER,
-    CHEF,
-    SURGEON,
-    BUILDER
+  FISHING("Fisher", RoleCategory.SUPPLIER),
+  STAR_CAPTAIN("Star Captain", RoleCategory.SUPPLIER),
+  FARMER("Farmer", RoleCategory.SUPPLIER),
+  CHEF("Chef", RoleCategory.CRAFTER),
+  SURGEON("Surgeon", RoleCategory.SUPPLIER),
+  BUILDER("Builder", RoleCategory.CRAFTER);
+
+  private final String roleName;
+  private final RoleCategory category;
+
+  RoleType(String roleName, RoleCategory category) {
+    this.roleName = roleName;
+    this.category = category;
+  }
+
+  /**
+   * Creates the application emoji used as the container icon.
+   *
+   * <p>Read on demand; only valid once BotCommands has loaded the app emojis (i.e. during command
+   * execution, not during command registration).
+   */
+  public ApplicationEmoji getEmoji() {
+    return switch (this) {
+      case FISHING -> AppEmojis.FISHER;
+      case STAR_CAPTAIN -> AppEmojis.STAR_CAPTAIN;
+      case FARMER -> AppEmojis.FARMER;
+      case CHEF -> AppEmojis.COOK;
+      case SURGEON -> AppEmojis.SURGEON;
+      case BUILDER -> AppEmojis.BUILDER;
+    };
+  }
+
+  public String getRoleName() {
+    return roleName;
+  }
+
+  public int getBaseXp() {
+    return category.baseXp;
+  }
+
+  public int getBaseGemCost() {
+    return category.baseGemCost;
+  }
+
+  /** Groups roles by their shared base XP and gem-cost values. */
+  private enum RoleCategory {
+    SUPPLIER(1300, 3000),
+    CRAFTER(1500, 4000);
+
+    private final int baseXp;
+    private final int baseGemCost;
+
+    RoleCategory(int baseXp, int baseGemCost) {
+      this.baseXp = baseXp;
+      this.baseGemCost = baseGemCost;
+    }
+  }
 }
