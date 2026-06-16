@@ -1,26 +1,51 @@
 package dev.skullition.lockium.resolver;
 
 import dev.skullition.lockium.model.RoleType;
+import io.github.freya022.botcommands.api.commands.application.slash.options.SlashCommandOption;
 import io.github.freya022.botcommands.api.core.service.annotations.Resolver;
-import io.github.freya022.botcommands.api.parameters.ParameterResolver;
-import io.github.freya022.botcommands.api.parameters.Resolvers;
-import java.util.EnumSet;
-import org.springframework.stereotype.Service;
+import io.github.freya022.botcommands.api.parameters.ClassParameterResolver;
+import io.github.freya022.botcommands.api.parameters.resolvers.SlashParameterResolver;
+import java.util.Arrays;
+import java.util.Collection;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.interactions.commands.Command;
+import net.dv8tion.jda.api.interactions.commands.CommandInteractionPayload;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import org.jspecify.annotations.Nullable;
 
-/** BotCommands resolver that converts a slash-command string into an {@link RoleType}. */
-@Service
-public class RoleTypeResolver {
-  @Resolver
-  public static ParameterResolver<?, RoleType> getRoleTypeResolver() {
-    return Resolvers.enumResolver(
-            RoleType.class,
-            EnumSet.of(
-                RoleType.FISHING,
-                RoleType.STAR_CAPTAIN,
-                RoleType.BUILDER,
-                RoleType.CHEF,
-                RoleType.FARMER,
-                RoleType.SURGEON))
-        .build();
+/**
+ * Resolves the {@code role} option of {@code /gt role} into a {@link RoleType}.
+ *
+ * <p>Replaces the library's built-in enum resolver. Choices use each role's {@link
+ * RoleType#getRoleName() display name} (e.g. {@code "Star Captain"}) rather than the humanized
+ * constant name, and resolution no longer depends on the framework reflecting over the enum's extra
+ * fields.
+ */
+@Resolver
+public class RoleTypeResolver extends ClassParameterResolver<RoleTypeResolver, RoleType>
+    implements SlashParameterResolver<RoleTypeResolver, RoleType> {
+
+  /** Creates the resolver. */
+  public RoleTypeResolver() {
+    super(RoleType.class);
+  }
+
+  @Override
+  public OptionType getOptionType() {
+    return OptionType.STRING;
+  }
+
+  @Override
+  public Collection<Command.Choice> getPredefinedChoices(@Nullable Guild guild) {
+    return Arrays.stream(RoleType.values())
+        .map(role -> new Command.Choice(role.getRoleName(), role.name()))
+        .toList();
+  }
+
+  @Override
+  public RoleType resolve(
+      SlashCommandOption option, CommandInteractionPayload event, OptionMapping optionMapping) {
+    return RoleType.valueOf(optionMapping.getAsString());
   }
 }

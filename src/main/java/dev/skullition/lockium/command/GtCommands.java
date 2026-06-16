@@ -10,6 +10,7 @@ import dev.skullition.lockium.model.ItemCategory;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemProperty;
 import dev.skullition.lockium.model.ItemProperty2;
+import dev.skullition.lockium.model.RoleType;
 import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.TreeFruitService;
@@ -33,6 +34,7 @@ import net.dv8tion.jda.api.components.label.Label;
 import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
 import net.dv8tion.jda.api.components.radiogroup.RadioGroup;
+import net.dv8tion.jda.api.components.separator.Separator;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.components.textinput.TextInput;
 import net.dv8tion.jda.api.components.textinput.TextInputStyle;
@@ -482,6 +484,61 @@ public class GtCommands {
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
+   * Handles {@code /gt role}. Shows the XP curve (per level) and gem-cost curve (per daily quest
+   * count) for the chosen role.
+   *
+   * @param event the slash interaction
+   * @param role the chosen role; never {@code null} since it comes from predefined enum choices
+   */
+  @JDASlashCommand(
+          name = "gt",
+          subcommand = "role",
+          description = "Check role XP / gems needed for roles.")
+  public void onSlashRole(
+          GlobalSlashEvent event,
+          @SlashOption(description = "Which role to choose.", usePredefinedChoices = true)
+          RoleType role) {
+    final String roleName = role.getRoleName();
+    final int baseXp = role.getBaseXp();
+    final int baseGem = role.getBaseGemCost();
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(TextDisplay.of("## %s %s".formatted(role.getEmoji(), roleName)));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+
+    StringBuilder xp = new StringBuilder("### Experience to reach Level\n");
+    long totalXp = 0;
+    for (int level = 1; level <= 10; level++) {
+      long levelXp = (long) baseXp * level * level;
+      totalXp += levelXp;
+      xp.append(
+              "▫ Lv.**%d**: `%s` xp required (Total `%s`)\n"
+                      .formatted(level, formatNumber(levelXp), formatNumber(totalXp)));
+    }
+    components.add(TextDisplay.of(xp.toString()));
+    components.add(Separator.create(true, Separator.Spacing.SMALL));
+
+    StringBuilder gems = new StringBuilder("### Quest Costs per Day\n");
+    long totalGem = 0;
+    for (int quests = 1; quests <= 10; quests++) {
+      // First quest is free
+      long gemCost = (long) baseGem * (quests - 1) * (quests - 1);
+      totalGem += gemCost;
+      gems.append(
+              "▫ **%d** quest(s): `%s` gems (Total `%s`)\n"
+                      .formatted(quests, formatNumber(gemCost), formatNumber(totalGem)));
+    }
+    components.add(TextDisplay.of(gems.toString()));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  private static String formatNumber(long value) {
+    return String.format(Locale.US, "%,d", value);
   }
 
   /**
