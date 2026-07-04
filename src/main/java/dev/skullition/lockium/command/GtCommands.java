@@ -793,7 +793,7 @@ public class GtCommands {
           Integer maxLevel) {
     int min = minLevel == null ? 1 : minLevel;
     int max = maxLevel == null ? MAX_GT_LEVEL : maxLevel;
-    if (min < 0 || max < 0 || min > MAX_GT_LEVEL + 1 || max > MAX_GT_LEVEL + 1 || min > max) {
+    if (min < 0 || max < 0 || max > MAX_GT_LEVEL + 1 || min > max) {
       event
           .reply("Invalid input. Min level must be above 0, max level below %d!"
                   .formatted(MAX_GT_LEVEL))
