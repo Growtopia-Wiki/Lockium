@@ -72,7 +72,6 @@ public class AppEmojis {
   public static final ApplicationEmoji BATTLE_LEASH = get("BATTLE_LEASH");
   public static final ApplicationEmoji EARTH = get("EARTH");
   public static final ApplicationEmoji FIRE = get("FIRE");
-  public static final ApplicationEmoji MISSING = get("MISSING");
   public static final ApplicationEmoji WATER = get("WATER");
   public static final ApplicationEmoji AIR = get("AIR");
   public static final ApplicationEmoji GROWTOKEN = get("GROWTOKEN");
