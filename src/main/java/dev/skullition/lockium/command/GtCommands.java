@@ -43,6 +43,7 @@ import net.dv8tion.jda.api.components.textinput.TextInput;
 import net.dv8tion.jda.api.components.textinput.TextInputStyle;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,6 +59,8 @@ public class GtCommands {
   private static final Logger logger = LoggerFactory.getLogger(GtCommands.class);
   /** The day Growtopia was released. */
   private static final LocalDate GROWTOPIA_RELEASE_DATE = LocalDate.of(2012, 11, 30);
+  /** The maximum level reachable in-game. */
+  private static final int MAX_GT_LEVEL = 125;
 
   private final Modals modals;
   private final WikiService wikiService;
@@ -545,6 +548,80 @@ public class GtCommands {
 
   private static String formatNumber(long value) {
     return String.format(Locale.US, "%,d", value);
+  }
+
+  /**
+   * Handles {@code /gt xp}.
+   *
+   * <p>Sums the XP required between two levels using the in-game formula {@code 50 * (level² + 2)}
+   * per level, then lists how many hits of common XP blocks that equals, along with the XP
+   * multipliers of consumables and equipment.
+   *
+   * @param event the slash interaction
+   * @param minLevel starting level; defaults to 1
+   * @param maxLevel target level; defaults to {@value #MAX_GT_LEVEL}
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "xp",
+      description = "Calculate experience needed for levels.")
+  public void onSlashXp(
+      GlobalSlashEvent event,
+      @SlashOption(name = "min_level", description = "Minimum level - i.e 1.") @Nullable
+          Integer minLevel,
+      @SlashOption(name = "max_level", description = "Maximum level - i.e 125.") @Nullable
+          Integer maxLevel) {
+    int min = minLevel == null ? 1 : minLevel;
+    int max = maxLevel == null ? MAX_GT_LEVEL : maxLevel;
+    if (min < 0 || max < 0 || min > MAX_GT_LEVEL + 1 || max > MAX_GT_LEVEL + 1 || min > max) {
+      event
+          .reply("Invalid input. Min level must be above 0, max level below %d!"
+                  .formatted(MAX_GT_LEVEL))
+          .queue();
+      return;
+    }
+
+    long totalXp = 0;
+    for (int level = min; level < max; level++) {
+      totalXp += 50L * ((long) level * level + 2);
+    }
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        TextDisplay.of(
+            "### XP required from level %d to %d: %s"
+                .formatted(min, max, formatNumber(totalXp))));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+
+    StringBuilder hits = new StringBuilder("**[Hits] Blocks to break:**\n");
+    appendXpBlock(hits, "7-6", totalXp, 18, "Chandeliers/Sorcerer Stones");
+    appendXpBlock(hits, "4-3", totalXp, 10, "Pepper Trees");
+    appendXpBlock(hits, "3-3", totalXp, 9, "Fish Tanks");
+    appendXpBlock(hits, "5-4", totalXp, 14, "Laser Grids");
+    appendXpBlock(hits, "7-6", totalXp, 11, "Pinball Bumpers");
+    appendXpBlock(hits, "6-5", totalXp, 11, "Floor Grills");
+    appendXpBlock(hits, "10-8", totalXp, 20, "Magic Bells");
+    components.add(TextDisplay.of(hits.toString()));
+    components.add(Separator.create(true, Separator.Spacing.SMALL));
+
+    components.add(
+        TextDisplay.of(
+            """
+            **Divide by:**
+            ▫ `x1.50` if using Biotronic Brain Enhancer.
+            ▫ `x1.25` with Egg Benedict.
+            ▫ `x1.10` with Ring Of Wisdom.
+            ▫ `x1.05-1.10` with Ancestral Totem of Wisdom. (+1% per level)
+            ▫ `x1.01` with Premium Subscription."""));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  private static void appendXpBlock(
+      StringBuilder sb, String hits, long totalXp, int xpPerBreak, String blockName) {
+    long breaks = (long) Math.ceil((double) totalXp / xpPerBreak);
+    sb.append("[%s] **%s** %s.\n".formatted(hits, formatNumber(breaks), blockName));
   }
 
   /**
