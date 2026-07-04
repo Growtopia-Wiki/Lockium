@@ -18,7 +18,7 @@ All commands work in servers, DMs, and as a user-install app.
 - `/ping` – shows Discord gateway latency and Wiki API latency
 - `/gt item <name>` – look up an item: properties, category, rarity, hardness, colors, grow time, and gem drops
 - `/gt sprite <name>` – show an item's block, seed, and tree sprites
-- `/gt break <name> <count>` – calculate drops from breaking blocks, with modifiers (Lucky! mod, Buddy's Block, Ancestral Tesseract)
+- `/gt break <name> <count>` – calculate drops from breaking blocks, with modifiers (Lucky! mod, Buddy's Block Head, Galaxy Skin, Winter Wishing Star, Ancestral Tesseract); clothing block bonuses respect the in-game 15% cap, which the Winter Wishing Star bypasses for an effective 17% maximum
 - `/gt harvest <name> <count>` – calculate block/seed/gem drops from harvesting trees, with and without a Harvester
 - `/gt recycle <name> <count>` – calculate gems received for recycling an item
 - `/gt role <role>` – show XP requirements per level and daily quest gem costs for a role
