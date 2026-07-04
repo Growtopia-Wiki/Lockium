@@ -545,7 +545,8 @@ public class GtCommands {
             """
             Total: `~%s` mooncakes
             ▫ Of which `~%s` should be colored mooncakes (`~%s` of each color)
-            ▫ And `~%s` are balance mooncakes"""
+            ▫ And `~%s` are balance mooncakes\
+            """
                 .formatted(
                     formatNumber(totalMooncakes),
                     formatNumber(normalMooncakes),
@@ -560,7 +561,8 @@ public class GtCommands {
             **ℹ Additional Info**
             ▫ Tree takes `%s` to grow.
             ▫ Roughly `%.2f` farms. (2,500 trees/farm)
-            ▫ A tree has `%.1f%%` chance to drop a cake."""
+            ▫ A tree has `%.1f%%` chance to drop a cake.\
+            """
                 .formatted(growTime, treeCount / 2500.0, dropChance * 100)));
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
@@ -745,7 +747,8 @@ public class GtCommands {
                 ▫ `41100`-`41199` - Warehouse
                 ▫ `53785` - Sales-Man
                 ▫ `77777` - Nobody
-                ▫ `90210` - Beverly Hill"""));
+                ▫ `90210` - Beverly Hill\
+                """));
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -811,7 +814,8 @@ public class GtCommands {
             ▫ `x1.25` with Egg Benedict.
             ▫ `x1.10` with Ring Of Wisdom.
             ▫ `x1.05-1.10` with Ancestral Totem of Wisdom. (+1% per level)
-            ▫ `x1.01` with Premium Subscription."""));
+            ▫ `x1.01` with Premium Subscription.\
+            """));
 
     Container container = ContainerUtil.createGenericContainer(components);
     event.replyComponents(container).useComponentsV2().queue();

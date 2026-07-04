@@ -68,7 +68,8 @@ public class ProviderCommands {
             """
             %1$s Total Gems: `~%2$s`
             %1$s Total Gems (1 week): `~%3$s`
-            %1$s Total Gems (30 days): `~%4$s`"""
+            %1$s Total Gems (30 days): `~%4$s`\
+            """
                 .formatted(
                     AppEmojis.GEM,
                     formatNumber(totalGems),
@@ -79,7 +80,8 @@ public class ProviderCommands {
         TextDisplay.of(
             """
             ▫ ATM Cost (3/3.5 WLs each) -> `%s-%s` %s
-            ▫ Cost from Store: `%s` gems"""
+            ▫ Cost from Store: `%s` gems\
+            """
                 .formatted(
                     formatNumber(atmCount * 3L),
                     formatNumber((long) (atmCount * 3.5)),
@@ -155,7 +157,8 @@ public class ProviderCommands {
         TextDisplay.of(
             """
             ▫ Tackle Box Cost (3/3.5 WLs each) -> `%s-%s` %s
-            ▫ Cost from Store: `%s` gems"""
+            ▫ Cost from Store: `%s` gems\
+            """
                 .formatted(
                     formatNumber(tackleCount * 3L),
                     formatNumber((long) (tackleCount * 3.5)),
