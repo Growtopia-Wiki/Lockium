@@ -16,6 +16,7 @@ import dev.skullition.lockium.model.ItemProperty2;
 import dev.skullition.lockium.model.RoleType;
 import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
+import dev.skullition.lockium.service.RiddleService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.service.WorldRenderService;
@@ -45,9 +46,11 @@ import net.dv8tion.jda.api.components.label.Label;
 import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
 import net.dv8tion.jda.api.components.radiogroup.RadioGroup;
+import net.dv8tion.jda.api.components.section.Section;
 import net.dv8tion.jda.api.components.selections.StringSelectMenu;
 import net.dv8tion.jda.api.components.separator.Separator;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
+import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 import net.dv8tion.jda.api.components.textinput.TextInput;
 import net.dv8tion.jda.api.components.textinput.TextInputStyle;
 import net.dv8tion.jda.api.interactions.IntegrationType;
@@ -87,6 +90,7 @@ public class GtCommands {
   private final LockiumProperties lockiumProperties;
   private final TreeFruitService fruitService;
   private final WorldRenderService worldRenderService;
+  private final RiddleService riddleService;
 
   /**
    * Creates the command handler.
@@ -97,6 +101,7 @@ public class GtCommands {
    * @param lockiumProperties application configuration, including render URLs
    * @param fruitService service used to determine an item is farmable
    * @param worldRenderService service used to look up world renders
+   * @param riddleService service that holds the ancestral riddle dataset
    */
   public GtCommands(
       Modals modals,
@@ -104,13 +109,15 @@ public class GtCommands {
       GrowtopiaDetailService detailService,
       LockiumProperties lockiumProperties,
       TreeFruitService fruitService,
-      WorldRenderService worldRenderService) {
+      WorldRenderService worldRenderService,
+      RiddleService riddleService) {
     this.modals = modals;
     this.wikiService = wikiService;
     this.detailService = detailService;
     this.lockiumProperties = lockiumProperties;
     this.fruitService = fruitService;
     this.worldRenderService = worldRenderService;
+    this.riddleService = riddleService;
   }
 
   /**
@@ -927,6 +934,49 @@ public class GtCommands {
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
                 "%s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
+   * Handles {@code /gt riddle}.
+   *
+   * <p>Searches the known ancestral riddles for the given text via {@link RiddleService}. Exactly
+   * one match is required to show the answer - with zero or multiple matches the user is asked to
+   * refine the input.
+   *
+   * @param event the slash interaction
+   * @param description part of the riddle text shown in-game
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "riddle",
+      description = "Find which block an ancestral riddle requires.")
+  public void onSlashRiddle(
+      GlobalSlashEvent event,
+      @SlashOption(description = "Part of the riddle text.") String description) {
+    var matches = riddleService.search(description);
+    if (matches.isEmpty()) {
+      event.reply("Could not find any known riddle with the input provided.").queue();
+      return;
+    } else if (matches.size() > 1) {
+      event.reply("Found more than one match, include more words from the riddle.").queue();
+      return;
+    }
+
+    var riddle = matches.getFirst();
+    String itemName =
+        wikiService.getNameIndex().values().stream()
+            .filter(entry -> entry.itemId() == riddle.itemId())
+            .map(ItemCatalogue::itemName)
+            .findFirst()
+            .orElse("Item #%d".formatted(riddle.itemId()));
+
+    var container =
+        ContainerUtil.createGenericContainer(
+            Section.of(
+                Thumbnail.fromUrl(ItemUtils.getItemSpriteUrl(riddle.itemId())),
+                TextDisplay.of("## %dx %s".formatted(riddle.count(), itemName)),
+                TextDisplay.of("*%s*".formatted(riddle.description()))));
     event.replyComponents(container).useComponentsV2().queue();
   }
 
