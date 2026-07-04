@@ -15,6 +15,7 @@ import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
+import dev.skullition.lockium.service.WorldRenderService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ContainerUtil;
 import dev.skullition.lockium.util.GrowtopiaTimeUtil;
@@ -26,12 +27,15 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import io.github.freya022.botcommands.api.modals.Modals;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Pattern;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.label.Label;
@@ -68,6 +72,7 @@ public class GtCommands {
   private final GrowtopiaDetailService detailService;
   private final LockiumProperties lockiumProperties;
   private final TreeFruitService fruitService;
+  private final WorldRenderService worldRenderService;
 
   /**
    * Creates the command handler.
@@ -77,18 +82,21 @@ public class GtCommands {
    * @param detailService client for live Growtopia data (WOTD)
    * @param lockiumProperties application configuration, including render URLs
    * @param fruitService service used to determine an item is farmable
+   * @param worldRenderService service used to look up world renders
    */
   public GtCommands(
       Modals modals,
       WikiService wikiService,
       GrowtopiaDetailService detailService,
       LockiumProperties lockiumProperties,
-      TreeFruitService fruitService) {
+      TreeFruitService fruitService,
+      WorldRenderService worldRenderService) {
     this.modals = modals;
     this.wikiService = wikiService;
     this.detailService = detailService;
     this.lockiumProperties = lockiumProperties;
     this.fruitService = fruitService;
+    this.worldRenderService = worldRenderService;
   }
 
   /**
@@ -885,6 +893,67 @@ public class GtCommands {
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
                 "%s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /** Valid Growtopia world names: 1-25 letters, digits, or underscores. */
+  private static final Pattern WORLD_NAME_PATTERN = Pattern.compile("[A-Za-z0-9_]{1,25}");
+
+  /** Worlds rendered before this date have no reliable {@code Last-Modified} header. */
+  private static final Instant INITIAL_RENDER_TIME =
+      LocalDate.of(2018, 7, 27).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE).toInstant();
+
+  /**
+   * Handles {@code /gt world}.
+   *
+   * <p>Looks up a world render on the official S3 bucket via {@link WorldRenderService} and shows
+   * it with the time it was last rendered. Worlds only have renders after their owner runs {@code
+   * /renderworld} in-game.
+   *
+   * @param event the slash interaction
+   * @param worldName the world to look up; letters, digits, and underscores only
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "world",
+      description = "Search a Growtopia world render from growtopiagame.com.")
+  public void onSlashWorld(
+      GlobalSlashEvent event,
+      @SlashOption(name = "world_name", description = "World name to find a render for.")
+          String worldName) {
+    if (!WORLD_NAME_PATTERN.matcher(worldName).matches()) {
+      event.reply("World names can only contain letters/numbers/underscores.").queue();
+      return;
+    }
+
+    var render = worldRenderService.fetchWorldRender(worldName);
+    if (render.isEmpty()) {
+      event
+          .reply(
+              "That world does not seem to be rendered. "
+                  + "If you own that world, do `/renderworld` in-game!")
+          .queue();
+      return;
+    }
+
+    String renderedText;
+    Instant lastModified = render.get().lastModified();
+    if (lastModified == null || lastModified.isBefore(INITIAL_RENDER_TIME)) {
+      renderedText = "-# Unknown render date (before 27/07/2018).";
+    } else {
+      renderedText = "-# Last rendered: <t:%d:F>.".formatted(lastModified.getEpochSecond());
+    }
+
+    // Cache-buster so Discord always fetches the latest render.
+    String imageUrl =
+        "%s?at=%d".formatted(render.get().url(), ThreadLocalRandom.current().nextInt(1_000_000));
+    var container =
+        ContainerUtil.createGenericContainer(
+            TextDisplay.of(
+                "## %s World | %s"
+                    .formatted(AppEmojis.EARTH, worldName.toUpperCase(Locale.US))),
+            MediaGallery.of(MediaGalleryItem.fromUrl(imageUrl)),
+            TextDisplay.of(renderedText));
     event.replyComponents(container).useComponentsV2().queue();
   }
 
