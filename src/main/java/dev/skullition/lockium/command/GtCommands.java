@@ -17,6 +17,7 @@ import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ContainerUtil;
+import dev.skullition.lockium.util.GrowtopiaTimeUtil;
 import dev.skullition.lockium.util.ItemUtils;
 import dev.skullition.lockium.util.RecycleUtil;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
@@ -539,6 +540,25 @@ public class GtCommands {
 
   private static String formatNumber(long value) {
     return String.format(Locale.US, "%,d", value);
+  }
+
+  /**
+   * Handles {@code /gt time}.
+   *
+   * <p>Replies with the current Growtopia (US Eastern) time from {@link GrowtopiaTimeUtil}.
+   *
+   * @param event the slash interaction
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "time",
+      description = "Check the current Growtopia time.")
+  public void onSlashTime(GlobalSlashEvent event) {
+    var container =
+        ContainerUtil.createGenericContainer(
+            TextDisplay.of(
+                "%s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+    event.replyComponents(container).useComponentsV2().queue();
   }
 
   /**
