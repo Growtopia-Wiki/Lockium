@@ -9,8 +9,9 @@ import org.jspecify.annotations.Nullable;
  * The chi (element) of a Growtopia item, as used by pet battles and surgery.
  *
  * <p>Loaded from {@code data/ChiList.txt} by {@link
- * dev.skullition.lockium.service.ChiService}. The dataset also contains {@link #AIR} (an alias of
- * wind, rendered with the same emoji) and {@link #NONE} for items explicitly known to have no chi.
+ * dev.skullition.lockium.service.ChiService}. The dataset contains both {@link #AIR} and its older
+ * alias {@link #WIND} (rendered with the same emoji), plus {@link #NONE} for items explicitly
+ * known to have no chi.
  */
 public enum Chi {
   EARTH,
@@ -32,7 +33,7 @@ public enum Chi {
   public ApplicationEmoji getEmoji() {
     return switch (this) {
       case EARTH -> AppEmojis.EARTH;
-      case WIND, AIR -> AppEmojis.WIND;
+      case WIND, AIR -> AppEmojis.AIR;
       case FIRE -> AppEmojis.FIRE;
       case WATER -> AppEmojis.WATER;
       case NONE -> null;
