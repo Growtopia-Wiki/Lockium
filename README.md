@@ -3,7 +3,7 @@
 > The official Discord companion for the Growtopia Wiki.
 
 [![Java](https://img.shields.io/badge/Java-25%2B-orange)](https://www.java.com/en/download/manual.jsp)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F)](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.x-6DB33F)](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Discord](https://discord.com/api/guilds/1483908386348208223/widget.png)](https://discord.gg/VYK9tuQQQE)
 
@@ -11,28 +11,37 @@ Lockium connects Discord directly to the Growtopia Wiki's internal API. Instead 
 
 ---
 
-## Features
+## Commands
+
+All commands work in servers, DMs, and as a user-install app.
 
 - `/ping` – shows Discord gateway latency and Wiki API latency
-- `/item <name>` – fetch wiki data for an item 
-- `/sprite <name>` – fetch wiki data for an item's sprite
-- `/wotd` – display today's WOTD
-- `/farm <name>` – Check how many items would drop from farming item, whether it's farmable etc.
-- etc!
+- `/gt item <name>` – look up an item: properties, category, rarity, hardness, colors, grow time, and gem drops
+- `/gt sprite <name>` – show an item's block, seed, and tree sprites
+- `/gt break <name> <count>` – calculate drops from breaking blocks, with modifiers (Lucky! mod, Buddy's Block, Ancestral Tesseract)
+- `/gt harvest <name> <count>` – calculate block/seed/gem drops from harvesting trees, with and without a Harvester
+- `/gt recycle <name> <count>` – calculate gems received for recycling an item
+- `/gt role <role>` – show XP requirements per level and daily quest gem costs for a role
+- `/gt wotd` – render today's World of the Day
 
-Early alpha – expect breaking changes.
+Item name options support autocomplete backed by the cached Wiki item index.
+
+There are also owner-only text commands (`activity`, `reload`), invoked by mentioning the bot.
 
 ## Tech Stack
 
 - **Java 25** (project is built on the latest JDK)
-- Spring Boot 3
-- JDA 5 + [BotCommands 3.1](https://github.com/freya022/BotCommands) – annotation-driven slash commands
+- Spring Boot 4
+- JDA 6 + [BotCommands 3.2](https://github.com/freya022/BotCommands) – annotation-driven slash commands
+- Caffeine – in-memory caching of Wiki API data
 - Maven
+
+Code follows the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
 
 ## Requirements
 
 - JDK 25+
-- Maven 3.9+
+- Maven 3.9+ (or use the included Maven wrapper)
 - A Discord bot token
 - A Growtopia Wiki API key (public API, key required)
 
@@ -43,19 +52,39 @@ Early alpha – expect breaking changes.
    git clone https://github.com/Growtopia-Wiki/Lockium.git
    cd Lockium
    ```
-2. Create secrets.properties in the project root (this file is gitignored):
+2. Create `src/main/resources/config/secrets.properties` (this file is gitignored):
    ```properties
    # Discord
    discord.token=YOUR_DISCORD_BOT_TOKEN
 
    # Growtopia Wiki API
-   growtopia.api.key=YOUR_WIKI_API_KEY
-   growtopia.api.url=https://api.growtopiawiki.com
+   wiki.api.key=YOUR_WIKI_API_KEY
    ```
 3. Run locally
    ```bash
    ./mvnw spring-boot:run
    ```
+
+## Docker
+
+Build and run the container image:
+
+```bash
+docker build -t lockium .
+docker run -e DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN -e WIKI_API_KEY=YOUR_WIKI_API_KEY lockium
+```
+
+Secrets are passed as environment variables; Spring Boot's relaxed binding maps `DISCORD_TOKEN` → `discord.token` and `WIKI_API_KEY` → `wiki.api.key`.
+
+## Configuration
+
+Defaults live in `src/main/resources/application.properties` and can be overridden per environment:
+
+| Property                       | Default                         | Description                       |
+| ------------------------------ | ------------------------------- | --------------------------------- |
+| `lockium.status`               | `Enjoy your day!`               | Custom Discord activity status    |
+| `lockium.items-cache-duration` | `1h`                            | TTL for the cached Wiki item list |
+| `wiki.api.url`                 | `https://api.growtopiawiki.com` | Wiki API base URL                 |
 
 ## Support
 Join the Growtopia Wiki server: https://discord.gg/VYK9tuQQQE
