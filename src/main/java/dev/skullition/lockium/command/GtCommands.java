@@ -897,6 +897,60 @@ public class GtCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
+  /** Maximum amount of matches shown by {@code /gt search}. */
+  private static final int MAX_SEARCH_RESULTS = 20;
+
+  /**
+   * Handles {@code /gt search}.
+   *
+   * <p>Performs a case-insensitive contains-search over all cached item and seed names from the
+   * wiki index, listing up to {@value #MAX_SEARCH_RESULTS} matches alphabetically.
+   *
+   * @param event the slash interaction
+   * @param query partial item name; must be at least 3 characters
+   */
+  @JDASlashCommand(name = "gt", subcommand = "search", description = "Search items by name.")
+  public void onSlashSearch(
+      GlobalSlashEvent event,
+      @SlashOption(description = "Partial item name to search for.") String query) {
+    String needle = ItemUtils.norm(query);
+    if (needle.length() < 3) {
+      event.reply("Search query must be at least 3 characters.").queue();
+      return;
+    }
+
+    List<String> matches =
+        wikiService.getNameIndex().keySet().stream()
+            .filter(name -> ItemUtils.norm(name).contains(needle))
+            .sorted(String.CASE_INSENSITIVE_ORDER)
+            .toList();
+    if (matches.isEmpty()) {
+      event.reply("No items found matching `%s`.".formatted(query)).queue();
+      return;
+    }
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        TextDisplay.of("### 🔍 %d result(s) for \"%s\"".formatted(matches.size(), query)));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+
+    StringBuilder names = new StringBuilder();
+    matches.stream()
+        .limit(MAX_SEARCH_RESULTS)
+        .forEach(name -> names.append("▫ ").append(name).append('\n'));
+    components.add(TextDisplay.of(names.toString()));
+
+    if (matches.size() > MAX_SEARCH_RESULTS) {
+      components.add(
+          TextDisplay.of(
+              "-# Showing the first %d matches, refine your search to see the rest."
+                  .formatted(MAX_SEARCH_RESULTS)));
+    }
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
   /** Valid Growtopia world names: 1-25 letters, digits, or underscores. */
   private static final Pattern WORLD_NAME_PATTERN = Pattern.compile("[A-Za-z0-9_]{1,25}");
 
