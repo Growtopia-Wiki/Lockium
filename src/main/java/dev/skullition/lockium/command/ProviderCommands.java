@@ -28,6 +28,32 @@ import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 public class ProviderCommands {
   /** In-game item ID of the ATM Machine, used for the sprite thumbnail. */
   private static final int ATM_MACHINE_ID = 1008;
+  /** In-game item ID of the Tackle Box, used for the sprite thumbnail. */
+  private static final int TACKLE_BOX_ID = 3044;
+  /** Tackle Box drop pool with in-game weights. */
+  private static final List<TackleDrop> TACKLE_DROPS =
+      List.of(
+          new TackleDrop("Wiggly Worms", 500),
+          new TackleDrop("Shiny Flashy Worms", 400),
+          new TackleDrop("Salmon Eggs", 300),
+          new TackleDrop("Fishing Fly", 200),
+          new TackleDrop("Shrimp Lure", 100),
+          new TackleDrop("Uranium Glowing Lure", 50),
+          new TackleDrop("Mega-Pellet Bait", 50));
+  /** In-game item ID of the Science Station, used for the sprite thumbnail. */
+  private static final int SCIENCE_STATION_ID = 928;
+  /** Science Station chemical drop chances, in percent. */
+  private static final List<ChemicalDrop> CHEMICAL_DROPS =
+      List.of(
+          new ChemicalDrop("Chemical G", 40.0),
+          new ChemicalDrop("Chemical R", 25.0),
+          new ChemicalDrop("Chemical B", 16.0),
+          new ChemicalDrop("Chemical Y", 13.0),
+          new ChemicalDrop("Chemical P", 7.0));
+
+  private static String formatNumber(long value) {
+    return String.format(Locale.US, "%,d", value);
+  }
 
   /**
    * Handles {@code /gt provider atm}.
@@ -92,28 +118,6 @@ public class ProviderCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
-  /** In-game item ID of the Tackle Box, used for the sprite thumbnail. */
-  private static final int TACKLE_BOX_ID = 3044;
-
-  /**
-   * A weighted entry of the Tackle Box drop pool.
-   *
-   * @param name display name of the dropped item
-   * @param weight relative weight within the pool
-   */
-  private record TackleDrop(String name, int weight) {}
-
-  /** Tackle Box drop pool with in-game weights. */
-  private static final List<TackleDrop> TACKLE_DROPS =
-      List.of(
-          new TackleDrop("Wiggly Worms", 500),
-          new TackleDrop("Shiny Flashy Worms", 400),
-          new TackleDrop("Salmon Eggs", 300),
-          new TackleDrop("Fishing Fly", 200),
-          new TackleDrop("Shrimp Lure", 100),
-          new TackleDrop("Uranium Glowing Lure", 50),
-          new TackleDrop("Mega-Pellet Bait", 50));
-
   /**
    * Handles {@code /gt provider tackle}.
    *
@@ -169,26 +173,6 @@ public class ProviderCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
-  /** In-game item ID of the Science Station, used for the sprite thumbnail. */
-  private static final int SCIENCE_STATION_ID = 928;
-
-  /**
-   * A chemical produced by Science Stations with its drop chance.
-   *
-   * @param name display name of the chemical
-   * @param chance drop chance in percent
-   */
-  private record ChemicalDrop(String name, double chance) {}
-
-  /** Science Station chemical drop chances, in percent. */
-  private static final List<ChemicalDrop> CHEMICAL_DROPS =
-      List.of(
-          new ChemicalDrop("Chemical G", 40.0),
-          new ChemicalDrop("Chemical R", 25.0),
-          new ChemicalDrop("Chemical B", 16.0),
-          new ChemicalDrop("Chemical Y", 13.0),
-          new ChemicalDrop("Chemical P", 7.0));
-
   /**
    * Handles {@code /gt provider science}.
    *
@@ -231,7 +215,19 @@ public class ProviderCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
-  private static String formatNumber(long value) {
-    return String.format(Locale.US, "%,d", value);
-  }
+  /**
+   * A weighted entry of the Tackle Box drop pool.
+   *
+   * @param name display name of the dropped item
+   * @param weight relative weight within the pool
+   */
+  private record TackleDrop(String name, int weight) {}
+
+  /**
+   * A chemical produced by Science Stations with its drop chance.
+   *
+   * @param name display name of the chemical
+   * @param chance drop chance in percent
+   */
+  private record ChemicalDrop(String name, double chance) {}
 }

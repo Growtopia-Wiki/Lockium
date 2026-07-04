@@ -67,7 +67,17 @@ public class GtCommands {
   private static final LocalDate GROWTOPIA_RELEASE_DATE = LocalDate.of(2012, 11, 30);
   /** The maximum level reachable in-game. */
   private static final int MAX_GT_LEVEL = 125;
-
+  /** Daily block drop rotation, indexed by day of week (Sunday = 0). */
+  private static final String[] DAILY_BLOCKS = {
+    "Anemone", "Aurora", "Obsidian", "Lava Lamp", "Fissure", "Waterfall", "Hidden Door"
+  };
+  /** Maximum amount of matches shown by {@code /gt search}. */
+  private static final int MAX_SEARCH_RESULTS = 20;
+  /** Valid Growtopia world names: 1-25 letters, digits, or underscores. */
+  private static final Pattern WORLD_NAME_PATTERN = Pattern.compile("[A-Za-z0-9_]{1,25}");
+  /** Worlds rendered before this date have no reliable {@code Last-Modified} header. */
+  private static final Instant INITIAL_RENDER_TIME =
+      LocalDate.of(2018, 7, 27).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE).toInstant();
   private final Modals modals;
   private final WikiService wikiService;
   private final GrowtopiaDetailService detailService;
@@ -98,6 +108,76 @@ public class GtCommands {
     this.lockiumProperties = lockiumProperties;
     this.fruitService = fruitService;
     this.worldRenderService = worldRenderService;
+  }
+
+  private static String formatNumber(long value) {
+    return String.format(Locale.US, "%,d", value);
+  }
+
+  /**
+   * Builds the Daily Challenge status line.
+   *
+   * <p>The challenge runs on a 25-hour cycle - it starts one hour later every day - and lasts 2
+   * hours.
+   *
+   * @param now the current Growtopia time
+   * @return {@code "Ends <t:..:R>"} while running, otherwise {@code "Starts <t:..:F>"}
+   */
+  private static String dailyChallengeText(ZonedDateTime now) {
+    final long msInHour = 3_600_000L;
+    long nowMs = now.toInstant().toEpochMilli();
+    long offsetHours = now.getOffset().getTotalSeconds() / 3600;
+    long startMs =
+        nowMs + 25 * msInHour - ((nowMs + 7 * msInHour) % (25 * msInHour)) + offsetHours * msInHour;
+    if (startMs - nowMs > 23 * msInHour) {
+      startMs -= 25 * msInHour;
+    }
+    if (startMs < nowMs) {
+      return "Ends <t:%d:R>".formatted((startMs + 2 * msInHour) / 1000);
+    }
+    return "Starts <t:%d:F>".formatted(startMs / 1000);
+  }
+
+  /**
+   * Builds the status line of an event that starts on a fixed day of every month.
+   *
+   * @param now the current Growtopia time
+   * @param dayOfMonth day of the month the event starts on
+   * @param durationDays how many days the event lasts
+   * @param startStyle Discord timestamp style used for the start time (e.g. {@code 'F'}, {@code
+   *     'R'})
+   * @return {@code "Ends <t:..:R>"} while running, otherwise {@code "Starts <t:..:style>"}
+   */
+  private static String monthlyEventText(
+      ZonedDateTime now, int dayOfMonth, int durationDays, char startStyle) {
+    ZonedDateTime start =
+        now.toLocalDate().withDayOfMonth(dayOfMonth).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+    if (now.isAfter(start.plusDays(durationDays))) {
+      start = start.plusMonths(1);
+    }
+    if (!now.isBefore(start) && now.isBefore(start.plusDays(durationDays))) {
+      return "Ends <t:%d:R>".formatted(start.plusDays(durationDays).toEpochSecond());
+    }
+    return "Starts <t:%d:%c>".formatted(start.toEpochSecond(), startStyle);
+  }
+
+  private static void appendXpBlock(
+      StringBuilder sb, String hits, long totalXp, int xpPerBreak, String blockName) {
+    long breaks = (long) Math.ceil((double) totalXp / xpPerBreak);
+    sb.append("[%s] **%s** %s.\n".formatted(hits, formatNumber(breaks), blockName));
+  }
+
+  /**
+   * Extracts the upper-cased World of the Day name from a detail payload.
+   *
+   * <p>The API returns a relative image path such as {@code worlds/thedragonattacks.png}.
+   *
+   * @param detail the detail payload
+   * @return the world name, e.g. {@code THEDRAGONATTACKS}
+   */
+  private static String wotdName(GrowtopiaDetail detail) {
+    String wotd = detail.wotd().fullSize().substring(7);
+    return wotd.substring(0, wotd.indexOf(".")).toUpperCase(Locale.US);
   }
 
   /**
@@ -629,15 +709,6 @@ public class GtCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
-  private static String formatNumber(long value) {
-    return String.format(Locale.US, "%,d", value);
-  }
-
-  /** Daily block drop rotation, indexed by day of week (Sunday = 0). */
-  private static final String[] DAILY_BLOCKS = {
-    "Anemone", "Aurora", "Obsidian", "Lava Lamp", "Fissure", "Waterfall", "Hidden Door"
-  };
-
   /**
    * Handles {@code /gt events}.
    *
@@ -691,53 +762,6 @@ public class GtCommands {
 
     Container container = ContainerUtil.createGenericContainer(components);
     event.replyComponents(container).useComponentsV2().queue();
-  }
-
-  /**
-   * Builds the Daily Challenge status line.
-   *
-   * <p>The challenge runs on a 25-hour cycle - it starts one hour later every day - and lasts 2
-   * hours.
-   *
-   * @param now the current Growtopia time
-   * @return {@code "Ends <t:..:R>"} while running, otherwise {@code "Starts <t:..:F>"}
-   */
-  private static String dailyChallengeText(ZonedDateTime now) {
-    final long msInHour = 3_600_000L;
-    long nowMs = now.toInstant().toEpochMilli();
-    long offsetHours = now.getOffset().getTotalSeconds() / 3600;
-    long startMs =
-        nowMs + 25 * msInHour - ((nowMs + 7 * msInHour) % (25 * msInHour)) + offsetHours * msInHour;
-    if (startMs - nowMs > 23 * msInHour) {
-      startMs -= 25 * msInHour;
-    }
-    if (startMs < nowMs) {
-      return "Ends <t:%d:R>".formatted((startMs + 2 * msInHour) / 1000);
-    }
-    return "Starts <t:%d:F>".formatted(startMs / 1000);
-  }
-
-  /**
-   * Builds the status line of an event that starts on a fixed day of every month.
-   *
-   * @param now the current Growtopia time
-   * @param dayOfMonth day of the month the event starts on
-   * @param durationDays how many days the event lasts
-   * @param startStyle Discord timestamp style used for the start time (e.g. {@code 'F'}, {@code
-   *     'R'})
-   * @return {@code "Ends <t:..:R>"} while running, otherwise {@code "Starts <t:..:style>"}
-   */
-  private static String monthlyEventText(
-      ZonedDateTime now, int dayOfMonth, int durationDays, char startStyle) {
-    ZonedDateTime start =
-        now.toLocalDate().withDayOfMonth(dayOfMonth).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
-    if (now.isAfter(start.plusDays(durationDays))) {
-      start = start.plusMonths(1);
-    }
-    if (!now.isBefore(start) && now.isBefore(start.plusDays(durationDays))) {
-      return "Ends <t:%d:R>".formatted(start.plusDays(durationDays).toEpochSecond());
-    }
-    return "Starts <t:%d:%c>".formatted(start.toEpochSecond(), startStyle);
   }
 
   /**
@@ -839,12 +863,6 @@ public class GtCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
-  private static void appendXpBlock(
-      StringBuilder sb, String hits, long totalXp, int xpPerBreak, String blockName) {
-    long breaks = (long) Math.ceil((double) totalXp / xpPerBreak);
-    sb.append("[%s] **%s** %s.\n".formatted(hits, formatNumber(breaks), blockName));
-  }
-
   /**
    * Handles {@code /gt startdate}.
    *
@@ -906,9 +924,6 @@ public class GtCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
-  /** Maximum amount of matches shown by {@code /gt search}. */
-  private static final int MAX_SEARCH_RESULTS = 20;
-
   /**
    * Handles {@code /gt search}.
    *
@@ -959,13 +974,6 @@ public class GtCommands {
     Container container = ContainerUtil.createGenericContainer(components);
     event.replyComponents(container).useComponentsV2().queue();
   }
-
-  /** Valid Growtopia world names: 1-25 letters, digits, or underscores. */
-  private static final Pattern WORLD_NAME_PATTERN = Pattern.compile("[A-Za-z0-9_]{1,25}");
-
-  /** Worlds rendered before this date have no reliable {@code Last-Modified} header. */
-  private static final Instant INITIAL_RENDER_TIME =
-      LocalDate.of(2018, 7, 27).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE).toInstant();
 
   /**
    * Handles {@code /gt world}.
@@ -1051,19 +1059,6 @@ public class GtCommands {
             MediaGallery.of(MediaGalleryItem.fromUrl(renderUrl + wotd.toLowerCase())));
 
     event.replyComponents(container).useComponentsV2().queue();
-  }
-
-  /**
-   * Extracts the upper-cased World of the Day name from a detail payload.
-   *
-   * <p>The API returns a relative image path such as {@code worlds/thedragonattacks.png}.
-   *
-   * @param detail the detail payload
-   * @return the world name, e.g. {@code THEDRAGONATTACKS}
-   */
-  private static String wotdName(GrowtopiaDetail detail) {
-    String wotd = detail.wotd().fullSize().substring(7);
-    return wotd.substring(0, wotd.indexOf(".")).toUpperCase(Locale.US);
   }
 
   /**

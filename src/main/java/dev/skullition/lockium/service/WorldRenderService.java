@@ -27,15 +27,6 @@ public class WorldRenderService {
   private final String renderUrl;
 
   /**
-   * Result of a successful render lookup.
-   *
-   * @param url absolute URL of the render image
-   * @param lastModified when the world was last rendered, or {@code null} if the header was
-   *     missing or unparseable
-   */
-  public record WorldRender(String url, @Nullable Instant lastModified) {}
-
-  /**
    * Creates the service.
    *
    * @param builder the autoconfigured {@link RestClient.Builder} from Spring Boot
@@ -67,4 +58,13 @@ public class WorldRenderService {
       return Optional.empty();
     }
   }
+
+  /**
+   * Result of a successful render lookup.
+   *
+   * @param url absolute URL of the render image
+   * @param lastModified when the world was last rendered, or {@code null} if the header was
+   *     missing or unparseable
+   */
+  public record WorldRender(String url, @Nullable Instant lastModified) {}
 }
