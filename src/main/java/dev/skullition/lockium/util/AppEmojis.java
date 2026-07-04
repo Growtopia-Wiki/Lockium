@@ -54,6 +54,8 @@ public class AppEmojis {
   public static final ApplicationEmoji LUCKY_CLOVER = get("LUCKY_CLOVER");
   public static final ApplicationEmoji ANCES_TESSERACT = get("ANCES_TESSERACT");
   public static final ApplicationEmoji BBH = get("BBH");
+  public static final ApplicationEmoji GALAXY_SKIN = get("GALAXY_SKIN");
+  public static final ApplicationEmoji WWS = get("WWS");
   public static final ApplicationEmoji EXCLAMATION = get("EXCLAMATION");
   public static final ApplicationEmoji FUEL = get("FUEL");
   public static final ApplicationEmoji DIRT_BLOCK = get("DIRT_BLOCK");
