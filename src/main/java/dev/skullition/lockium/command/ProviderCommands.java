@@ -166,6 +166,68 @@ public class ProviderCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
+  /** In-game item ID of the Science Station, used for the sprite thumbnail. */
+  private static final int SCIENCE_STATION_ID = 928;
+
+  /**
+   * A chemical produced by Science Stations with its drop chance.
+   *
+   * @param name display name of the chemical
+   * @param chance drop chance in percent
+   */
+  private record ChemicalDrop(String name, double chance) {}
+
+  /** Science Station chemical drop chances, in percent. */
+  private static final List<ChemicalDrop> CHEMICAL_DROPS =
+      List.of(
+          new ChemicalDrop("Chemical G", 40.0),
+          new ChemicalDrop("Chemical R", 25.0),
+          new ChemicalDrop("Chemical B", 16.0),
+          new ChemicalDrop("Chemical Y", 13.0),
+          new ChemicalDrop("Chemical P", 7.0));
+
+  /**
+   * Handles {@code /gt provider science}.
+   *
+   * <p>Estimates chemical drops from harvesting Science Stations, using the in-game drop chances
+   * per chemical color.
+   *
+   * @param event the slash interaction
+   * @param scienceCount number of Science Stations harvested per day; must be between 50 and
+   *     500,000 (inclusive)
+   */
+  @JDASlashCommand(
+      name = "gt",
+      group = "provider",
+      subcommand = "science",
+      description = "Estimates Science Station earnings.")
+  public void onSlashScience(
+      GlobalSlashEvent event,
+      @SlashOption(description = "How many Science Stations?") int scienceCount) {
+    if (scienceCount < 50 || scienceCount > 500_000) {
+      event.reply("Must be between 50 and 500,000 Science Stations.").queue();
+      return;
+    }
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        Section.of(
+            Thumbnail.fromUrl(ItemUtils.getItemSpriteUrl(SCIENCE_STATION_ID)),
+            TextDisplay.of(
+                "### Harvesting %s Science Stations".formatted(formatNumber(scienceCount)))));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+
+    StringBuilder drops = new StringBuilder();
+    for (ChemicalDrop drop : CHEMICAL_DROPS) {
+      long total = (long) (scienceCount * (drop.chance() / 100));
+      drops.append("▫ %s: `~%s`\n".formatted(drop.name(), formatNumber(total)));
+    }
+    components.add(TextDisplay.of(drops.toString()));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
   private static String formatNumber(long value) {
     return String.format(Locale.US, "%,d", value);
   }
