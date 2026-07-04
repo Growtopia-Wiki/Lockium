@@ -27,6 +27,7 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import io.github.freya022.botcommands.api.modals.Modals;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -548,6 +549,104 @@ public class GtCommands {
 
   private static String formatNumber(long value) {
     return String.format(Locale.US, "%,d", value);
+  }
+
+  /** Daily block drop rotation, indexed by day of week (Sunday = 0). */
+  private static final String[] DAILY_BLOCKS = {
+    "Anemone", "Aurora", "Obsidian", "Lava Lamp", "Fissure", "Waterfall", "Hidden Door"
+  };
+
+  /**
+   * Handles {@code /gt events}.
+   *
+   * <p>Shows when the recurring in-game events start or end, as localized Discord timestamps:
+   *
+   * <ul>
+   *   <li><b>Daily Challenge</b> – runs on a 25-hour cycle (shifts one hour later every day) and
+   *       lasts 2 hours
+   *   <li><b>Night of the Comet</b> – the 28th of every month, for one day
+   *   <li><b>Pet Battle Tournament</b> – the 7th of every month, for five days
+   *   <li><b>Daily Block Drop</b> – rotation of the block dropped by breaking any block that day
+   * </ul>
+   *
+   * @param event the slash interaction
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "events",
+      description = "Check when the Growtopia events will occur.")
+  public void onSlashEvents(GlobalSlashEvent event) {
+    ZonedDateTime now = GrowtopiaTimeUtil.now();
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        TextDisplay.of(
+            "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+
+    // Daily Challenge: every 25 hours, so the start shifts one hour later each day.
+    final long msInHour = 3_600_000L;
+    long nowMs = now.toInstant().toEpochMilli();
+    long offsetHours = now.getOffset().getTotalSeconds() / 3600;
+    long challengeStartMs =
+        nowMs + 25 * msInHour - ((nowMs + 7 * msInHour) % (25 * msInHour)) + offsetHours * msInHour;
+    if (challengeStartMs - nowMs > 23 * msInHour) {
+      challengeStartMs -= 25 * msInHour;
+    }
+    String challengeText;
+    if (challengeStartMs < nowMs) {
+      challengeText =
+          "Ends <t:%d:R>".formatted((challengeStartMs + 2 * msInHour) / 1000);
+    } else {
+      challengeText = "Starts <t:%d:F>".formatted(challengeStartMs / 1000);
+    }
+    components.add(
+        TextDisplay.of(
+            "%s **Daily Challenge**: %s".formatted(AppEmojis.CHALLENGE_BOARD, challengeText)));
+
+    // Night of the Comet: the 28th of every month, for one day.
+    ZonedDateTime comet =
+        now.toLocalDate().withDayOfMonth(28).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+    if (now.isAfter(comet.plusDays(1))) {
+      comet = comet.plusMonths(1);
+    }
+    String cometText;
+    if (!now.isBefore(comet) && now.isBefore(comet.plusDays(1))) {
+      cometText = "Ends <t:%d:R>".formatted(comet.plusDays(1).toEpochSecond());
+    } else {
+      cometText = "Starts <t:%d:R>".formatted(comet.toEpochSecond());
+    }
+    components.add(TextDisplay.of("☄️ **Night Of The Comet**: %s".formatted(cometText)));
+
+    // Pet Battle Tournament: the 7th of every month, for five days.
+    ZonedDateTime tourney =
+        now.toLocalDate().withDayOfMonth(7).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+    if (now.isAfter(tourney.plusDays(5))) {
+      tourney = tourney.plusMonths(1);
+    }
+    String tourneyText;
+    if (!now.isBefore(tourney) && now.isBefore(tourney.plusDays(5))) {
+      tourneyText = "Ends <t:%d:R>".formatted(tourney.plusDays(5).toEpochSecond());
+    } else {
+      tourneyText = "Starts <t:%d:F>".formatted(tourney.toEpochSecond());
+    }
+    components.add(
+        TextDisplay.of(
+            "%s **Pet Battle Tournament**: %s".formatted(AppEmojis.BATTLE_LEASH, tourneyText)));
+
+    // Daily Block Drop rotation: yesterday > today > tomorrow.
+    StringBuilder rotation = new StringBuilder();
+    for (int i = -1; i <= 1; i++) {
+      String block = DAILY_BLOCKS[now.plusDays(i).getDayOfWeek().getValue() % 7];
+      rotation.append(i == 0 ? "**" + block + "**" : block);
+      if (i < 1) {
+        rotation.append(" > ");
+      }
+    }
+    components.add(
+        TextDisplay.of("%s **Daily Block Drop**: %s".formatted(AppEmojis.FIST, rotation)));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event.replyComponents(container).useComponentsV2().queue();
   }
 
   /**
