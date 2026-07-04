@@ -1,0 +1,10407 @@
+// Blank
+0|EARTH
+
+// Dirt
+2|EARTH
+
+// Lava
+4|FIRE
+
+// Main Door
+6|EARTH
+
+// Bedrock
+8|EARTH
+
+// Rock
+10|EARTH
+
+// Door
+12|EARTH
+
+// Cave Background
+14|EARTH
+
+// Grass
+16|EARTH
+
+// Fist
+18|EARTH
+
+// Sign
+20|EARTH
+
+// Daisy
+22|EARTH
+
+// Pointy Sign
+24|EARTH
+
+// Crappy Sign
+26|EARTH
+
+// Danger Sign
+28|FIRE
+
+// Dungeon Door
+30|EARTH
+
+// Wrench
+32|EARTH
+
+// Wooden Background
+52|EARTH
+
+// Window
+54|WIND
+
+// Glass Pane
+56|WIND
+
+// Wooden Window
+58|WIND
+
+// Portcullis
+60|EARTH
+
+// Boombox
+62|WATER
+
+// Olde Timey Radio
+64|WATER
+
+// Wood Block
+100|EARTH
+
+// Wooden Platform
+102|EARTH
+
+// Rock Background
+104|EARTH
+
+// Toilet
+106|WATER
+
+// Painting: Yerfdog
+108|EARTH
+
+// Painting: Dink Duck
+110|WATER
+
+// Gems
+112|FIRE
+
+// Disco Ball
+114|WIND
+
+// Bricks
+116|EARTH
+
+// Brick Background
+118|EARTH
+
+// Mystery Block
+120|WATER
+
+// Devil Horns
+126|FIRE
+
+// Golden Halo
+128|WIND
+
+// Death Spikes
+162|FIRE
+
+// Grey Block
+164|EARTH
+
+// Black Block
+166|FIRE
+
+// White Block
+168|WIND
+
+// Red Block
+170|FIRE
+
+// Orange Block
+172|FIRE
+
+// Yellow Block
+174|FIRE
+
+// Green Block
+176|WATER
+
+// Aqua Block
+178|WATER
+
+// Blue Block
+180|WATER
+
+// Purple Block
+182|WIND
+
+// Brown Block
+184|EARTH
+
+// Steel Block
+186|EARTH
+
+// Poppy
+188|EARTH
+
+// Rose
+190|EARTH
+
+// Bush
+192|EARTH
+
+// Mushroom
+194|EARTH
+
+// Blueberry
+196|WATER
+
+// Flowery Wallpaper
+198|EARTH
+
+// Stripey Wallpaper
+200|WIND
+
+// Small Lock
+202|WATER
+
+// Big Lock
+204|WATER
+
+// Huge Lock
+206|WATER
+
+// Wooden Chair
+218|EARTH
+
+// Note Block
+220|WIND
+
+// Wooden Table
+222|EARTH
+
+// House Entrance
+224|EARTH
+
+// Signal Jammer
+226|WIND
+
+// Grow Spray Fertilizer
+228|EARTH
+
+// Bathtub
+230|WATER
+
+// World Lock
+242|WATER
+
+// UPDATE_STORE
+244|WIND
+
+// Music Box
+246|WIND
+
+// Evil Bricks
+248|FIRE
+
+// Cuzco Wall Mount
+252|EARTH
+
+// Robot Wants Dubstep
+254|WIND
+
+// Golden Block
+260|EARTH
+
+// Crystal Block
+262|WIND
+
+// Picket Fence
+264|EARTH
+
+// Freeze Wand
+274|WATER
+
+// Fire Wand
+276|FIRE
+
+// Curse Wand
+278|EARTH
+
+// Bed
+280|WATER
+
+// Polka Dot Block
+282|WIND
+
+// Checker Wallpaper
+284|EARTH
+
+// Fireplace
+286|FIRE
+
+// The Darkness
+298|WIND
+
+// Rubber Ducky
+300|WATER
+
+// Rainbow Block
+308|WIND
+
+// Cannon
+320|FIRE
+
+// High Tech Wall
+322|WATER
+
+// High Tech Block
+324|WATER
+
+// Magic Bacon Wallpaper
+326|EARTH
+
+// Bubble Wrap
+328|WIND
+
+// Cactus
+330|EARTH
+
+// Sandstone
+332|EARTH
+
+// Art Wall
+334|WIND
+
+// Stone Wall
+336|EARTH
+
+// Das Red Balloon
+338|WIND
+
+// Chandelier
+340|FIRE
+
+// Cloudstone Block
+358|WIND
+
+// Dreamstone Block
+360|WIND
+
+// Mud Glob
+368|EARTH
+
+// Super Crate Box
+376|EARTH
+
+// Amber Glass
+378|WIND
+
+// Lava Rock
+380|FIRE
+
+// Time-Space Rupture
+382|WIND
+
+// Valentine
+384|FIRE
+
+// Candy Heart
+386|EARTH
+
+// Perfume
+388|WIND
+
+// Heartstone Block
+390|FIRE
+
+// Heartstone
+392|FIRE
+
+// Ultra Trophy 3000
+394|EARTH
+
+// Ultra Trophy 3001
+396|EARTH
+
+// Stove
+398|FIRE
+
+// Blueberry Pie
+406|EARTH
+
+// Duct Tape
+408|EARTH
+
+// Checkpoint
+410|WATER
+
+// Sheet Music: Blank
+412|WIND
+
+// Sheet Music: Bass Note
+414|WIND
+
+// Sheet Music: Sharp Bass
+416|WIND
+
+// Sheet Music: Flat Bass
+418|WIND
+
+// Sheet Music: Piano Note
+420|WIND
+
+// Sheet Music: Sharp Piano
+422|WIND
+
+// Sheet Music: Flat Piano
+424|WIND
+
+// Sheet Music: Drums
+426|WIND
+
+// Race Start Flag
+428|WATER
+
+// Race End Flag
+430|WATER
+
+// Blue Star Wallpaper
+432|WIND
+
+// Sandstone Wall
+434|EARTH
+
+// Wall Like An Egyptian
+436|EARTH
+
+// Plumbing
+438|WATER
+
+// Ice
+440|WATER
+
+// Sand
+442|EARTH
+
+// Fishbowl
+444|WATER
+
+// Venus Guytrap
+454|EARTH
+
+// Dice Block
+456|EARTH
+
+// Dresser
+458|EARTH
+
+// Table Lamp
+460|FIRE
+
+// Art Deco Block
+478|WIND
+
+// Victrola
+480|WIND
+
+// Big Old Sideways Arrow
+482|FIRE
+
+// Big Old Up Arrow
+484|FIRE
+
+// Big Old Down Arrow
+486|FIRE
+
+// Pastel Pink Block
+510|FIRE
+
+// Pastel Orange Block
+512|FIRE
+
+// Pastel Yellow Block
+514|FIRE
+
+// Pastel Green Block
+516|WATER
+
+// Pastel Aqua Block
+518|WATER
+
+// Pastel Blue Block
+520|WATER
+
+// Pastel Purple Block
+522|WIND
+
+// Pinball Bumper
+526|WIND
+
+// Lucky Clover
+528|EARTH
+
+// Green Beer
+540|WATER
+
+// Pot O' Gold
+542|FIRE
+
+// Orange Portal
+544|FIRE
+
+// Blue Portal
+546|WATER
+
+// Glass Block
+548|WIND
+
+// Bookcase
+550|EARTH
+
+// Secret Passage
+552|WIND
+
+// Ladder
+554|WIND
+
+// Grey Wallpaper
+556|EARTH
+
+// Red Wallpaper
+558|FIRE
+
+// Orange Wallpaper
+560|FIRE
+
+// Yellow Wallpaper
+562|FIRE
+
+// Green Wallpaper
+564|WATER
+
+// Aqua Wallpaper
+566|WATER
+
+// Blue Wallpaper
+568|WATER
+
+// Purple Wallpaper
+570|WIND
+
+// Rollback Plaque
+578|EARTH
+
+// Happy Joy Plaque
+580|WIND
+
+// Treasure Chest
+596|EARTH
+
+// Dragon Gate
+598|FIRE
+
+// Barrel
+606|WATER
+
+// Tavern Sign
+608|WATER
+
+// Bunny Egg
+610|EARTH
+
+// Lattice Background
+612|EARTH
+
+// Rotten Egg
+614|WIND
+
+// Cuddly Bunny
+616|EARTH
+
+// Psychotic Bunny
+618|FIRE
+
+// Copper Plumbing
+620|WATER
+
+// Steel Girder
+622|WIND
+
+// Pinball Sproinger
+624|WIND
+
+// Tangram Block A
+626|EARTH
+
+// Tangram Block B
+628|EARTH
+
+// Tangram Block C
+630|EARTH
+
+// Tangram Block D
+632|EARTH
+
+// Tangram Block E
+634|EARTH
+
+// Tangram Block F
+636|EARTH
+
+// Tangram Block G
+638|EARTH
+
+// Tangram Block H
+640|EARTH
+
+// Tangram Block I
+642|EARTH
+
+// Tangram Block J
+644|EARTH
+
+// Tangram Block K
+646|EARTH
+
+// Tangram Block L
+648|EARTH
+
+// Chalkboard
+650|EARTH
+
+// School Desk
+652|EARTH
+
+// Red Bricks
+654|EARTH
+
+// Mailbox
+656|WIND
+
+// Bulletin Board
+658|EARTH
+
+// Letter
+660|EARTH
+
+// Swiss Cheese Block
+664|EARTH
+
+// Granite Block
+666|EARTH
+
+// Marble Block
+668|EARTH
+
+// Pencil
+670|EARTH
+
+// Apple
+676|EARTH
+
+// Grimstone
+680|EARTH
+
+// Blackrock Wall
+682|EARTH
+
+// Iron Bars
+684|EARTH
+
+// Jail Door
+686|EARTH
+
+// Skeleton
+688|EARTH
+
+// Torch
+696|FIRE
+
+// Habanero Pepper
+712|FIRE
+
+// Olmec Head
+714|WIND
+
+// Adobe Block
+716|EARTH
+
+// Ultra Pinata
+718|WIND
+
+// Pinata
+720|WIND
+
+// Pinata Whistle
+722|WIND
+
+// Acid
+726|WATER
+
+// Clouds
+728|WIND
+
+// Ban Wand
+732|WIND
+
+// Neon Lights
+740|WIND
+
+// Card Block - Spade
+742|EARTH
+
+// Card Block - Club
+744|WATER
+
+// Card Block - Heart
+746|FIRE
+
+// Card Block - Diamond
+748|WIND
+
+// Rabbit's Foot
+750|EARTH
+
+// Flipping Coin
+752|WIND
+
+// Slot Machine
+756|WATER
+
+// Roulette Wheel
+758|WATER
+
+// Password Door
+762|WATER
+
+// g-Virus
+764|WATER
+
+// Traffic Barricade
+774|EARTH
+
+// Toxic Waste Barrel
+776|WATER
+
+// Toxic Waste
+778|WATER
+
+// Biohazard Sign
+780|WIND
+
+// Antidote
+782|WATER
+
+// Tombstone
+784|EARTH
+
+// Military Radio
+786|WATER
+
+// Water Bucket
+822|WATER
+
+// Refrigerator
+824|WATER
+
+// Emerald Block
+826|WATER
+
+// Ruby Block
+828|FIRE
+
+// Beach Blast
+830|WATER
+
+// Coral
+832|WATER
+
+// Fireworks
+834|FIRE
+
+// Summer Surprise
+836|FIRE
+
+// Hula Bobblehead
+842|WATER
+
+// Seaweed
+846|WATER
+
+// Beach Umbrella
+848|WIND
+
+// Ocean Rock
+850|WATER
+
+// Palm Tree
+854|EARTH
+
+// Garbage
+856|EARTH
+
+// Screen Door
+858|WIND
+
+// Wrought-Iron Fence
+860|EARTH
+
+// Velvet Rope
+862|WIND
+
+// Cow
+866|EARTH
+
+// Milk
+868|WATER
+
+// Chicken
+872|WIND
+
+// Egg
+874|EARTH
+
+// Wheat
+880|EARTH
+
+// Barn Block
+884|EARTH
+
+// Barn Door
+886|EARTH
+
+// Red Wood Wall
+888|FIRE
+
+// Shockinator
+902|WIND
+
+// Laboratory
+912|WATER
+
+// Chemical G
+914|WATER
+
+// Chemical R
+916|WATER
+
+// Chemical P
+918|WATER
+
+// Chemical B
+920|WATER
+
+// Mysterious Chemical
+922|WATER
+
+// Chemical Y
+924|WATER
+
+// Steel Table
+926|EARTH
+
+// Science Station
+928|WATER
+
+// Weather Machine - Sunny
+932|WIND
+
+// Weather Machine - Night
+934|WIND
+
+// Desert Blast
+942|WIND
+
+// Boulder
+944|EARTH
+
+// Weather Machine - Arid
+946|WIND
+
+// Scoreboard
+948|WIND
+
+// Bread
+950|EARTH
+
+// E-Z Cook Oven
+952|FIRE
+
+// Sugar Cane
+954|EARTH
+
+// Dough
+956|EARTH
+
+// Blueberry Muffin
+958|EARTH
+
+// Habanero Cheese Bread
+960|FIRE
+
+// Tomato
+962|WATER
+
+// Pizza
+964|EARTH
+
+// Apple Pie
+966|EARTH
+
+// Cheeseburger
+968|FIRE
+
+// Silver Idol
+970|WIND
+
+// Ancient Stone Gate
+972|EARTH
+
+// Obelisk
+974|FIRE
+
+// Sungate
+976|WIND
+
+// Slime
+978|WATER
+
+// Profile
+980|EARTH
+
+// Achievement Block
+982|WIND
+
+// Weather Machine - Rainy City
+984|WATER
+
+// Street Sign
+986|EARTH
+
+// Gargoyle
+988|WIND
+
+// Gothic Building
+990|EARTH
+
+// Streetlamp
+992|FIRE
+
+// Sidewalk
+994|EARTH
+
+// Tenement Building
+996|EARTH
+
+// Fire Escape
+998|FIRE
+
+// Public Lava
+1000|FIRE
+
+// Fire Hydrant
+1002|WATER
+
+// Hedge
+1004|EARTH
+
+// Blue Mailbox
+1006|WATER
+
+// ATM Machine
+1008|WIND
+
+// Western Building
+1038|EARTH
+
+// Saloon Doors
+1040|WIND
+
+// Western Banner
+1042|EARTH
+
+// Buffalo
+1044|EARTH
+
+// Rustic Fence
+1046|EARTH
+
+// Campfire
+1048|FIRE
+
+// Secret Of Growtopia
+1050|FIRE
+
+// Transmog Crystal
+1052|WATER
+
+// Chinese Lantern
+1054|FIRE
+
+// Songpyeon
+1056|FIRE
+
+// Harmony Mooncake
+1058|WATER
+
+// Harvest Moon Blast
+1060|WIND
+
+// Ultra Grow Spray
+1062|EARTH
+
+// Scarecrow
+1064|WIND
+
+// Sky Lantern
+1066|FIRE
+
+// Peace Mooncake
+1094|WIND
+
+// Longevity Mooncake
+1096|EARTH
+
+// Prosperity Mooncake
+1098|WATER
+
+// Pillar
+1100|EARTH
+
+// Sequoia Tree
+1102|EARTH
+
+// Foliage
+1104|EARTH
+
+// Amphora
+1106|WATER
+
+// Potted Daisy
+1108|EARTH
+
+// Innie Block
+1110|WATER
+
+// Outie Block
+1112|WATER
+
+// Rocket Thruster
+1128|FIRE
+
+// Solar Panel
+1130|FIRE
+
+// Martian Soil
+1132|EARTH
+
+// Mars Rock
+1134|EARTH
+
+// Mars Blast
+1136|EARTH
+
+// Martian Tree
+1138|EARTH
+
+// Zorbnik DNA
+1152|WIND
+
+// Space Connector
+1154|WIND
+
+// White Wallpaper
+1156|WIND
+
+// Black Wallpaper
+1158|EARTH
+
+// Porthole
+1160|WIND
+
+// Forcefield
+1162|WIND
+
+// Compu Panel
+1164|WATER
+
+// Rollback Plaque II
+1174|EARTH
+
+// Haunted House
+1194|WATER
+
+// Jack O' Lantern
+1196|FIRE
+
+// Pumpkin Block
+1198|EARTH
+
+// Jack O' Block
+1200|EARTH
+
+// Lit Jack O' Block
+1202|FIRE
+
+// Candy Corn
+1208|EARTH
+
+// Weather Machine - Spooky
+1210|WIND
+
+// Lock of Black Fur
+1212|EARTH
+
+// Sigil Of K'Tesh
+1220|WIND
+
+// Creepstone Platform
+1222|WIND
+
+// Disabled Platform
+1224|WIND
+
+// Evil Eye
+1226|WIND
+
+// Devil Wing Fragment
+1234|FIRE
+
+// Boney Block
+1236|EARTH
+
+// Cobweb
+1238|WIND
+
+// Heart Monitor
+1240|WATER
+
+// Hospital Bed
+1256|WATER
+
+// Surgical Sponge
+1258|WATER
+
+// Surgical Scalpel
+1260|FIRE
+
+// Surgical Anesthetic
+1262|WIND
+
+// Surgical Antiseptic
+1264|WATER
+
+// Surgical Antibiotics
+1266|WATER
+
+// Surgical Splint
+1268|EARTH
+
+// Surgical Stitches
+1270|WIND
+
+// Punch Jammer
+1276|EARTH
+
+// Zombie Jammer
+1278|EARTH
+
+// Birth Certificate
+1280|WIND
+
+// Hospital Curtain
+1288|WIND
+
+// Hospital Wall
+1290|EARTH
+
+// Hospital Window
+1292|WIND
+
+// Hospital Door
+1294|EARTH
+
+// Surgical Gloves
+1296|WIND
+
+// Cutaway Building
+1298|EARTH
+
+// Roshambo Block
+1300|FIRE
+
+// Cow Cube
+1302|EARTH
+
+// Staircase
+1304|WIND
+
+// Terracotta Pot
+1306|EARTH
+
+// Climbing Vine
+1308|WIND
+
+// Thingamajig
+1310|WATER
+
+// Cliffside
+1322|EARTH
+
+// Rock Platform
+1324|EARTH
+
+// Cave Entrance
+1326|EARTH
+
+// Prehistoric Palm
+1328|EARTH
+
+// Ice Cube
+1344|WATER
+
+// Frozen DNA Fragment A
+1346|WATER
+
+// Frozen DNA Fragment B
+1348|WATER
+
+// Whatchamacallit
+1352|WATER
+
+// Kerjigger
+1354|WATER
+
+// Snowy Rocks
+1356|EARTH
+
+// Candy Cane Block
+1358|WATER
+
+// Winter Gift
+1360|WIND
+
+// Candy Cane Fence
+1362|WATER
+
+// Weather Machine - Snowy
+1364|WATER
+
+// Dumb Friend
+1366|EARTH
+
+// Snowball
+1368|WATER
+
+// Festivus Pole
+1370|EARTH
+
+// Giant Candle
+1372|FIRE
+
+// Tangyuan
+1374|WATER
+
+// Holiday Gift Box
+1390|EARTH
+
+// Doohickey
+1396|WATER
+
+// Inviso-Block
+1398|WIND
+
+// Thermonuclear Blast
+1402|FIRE
+
+// Door Mover
+1404|FIRE
+
+// Skyrocket
+1406|FIRE
+
+// Mannequin
+1420|EARTH
+
+// Display Box
+1422|WIND
+
+// World Key
+1424|EARTH
+
+// For Sale Sign
+1426|EARTH
+
+// Gem Sign
+1428|WIND
+
+// Shop Sign
+1430|WATER
+
+// Exclamation Sign
+1432|FIRE
+
+// Cash Register
+1434|WATER
+
+// Security Camera
+1436|WATER
+
+// Open Sign
+1446|WIND
+
+// Television
+1448|WIND
+
+// Couch
+1450|EARTH
+
+// Donation Box
+1452|EARTH
+
+// Golden Heart Crystal
+1458|WIND
+
+// Microwave
+1472|FIRE
+
+// Eggs Benedict
+1474|FIRE
+
+// Window Curtains
+1480|WIND
+
+// Wall Clock
+1482|WIND
+
+// Growtoken
+1486|WIND
+
+// Experience Potion
+1488|WATER
+
+// Weather Machine - Nothingness
+1490|EARTH
+
+// Doodad
+1492|WATER
+
+// Thingamabob
+1494|WATER
+
+// Purple Stuff
+1498|WATER
+
+// Orange Stuff
+1500|FIRE
+
+// Blarney Stone
+1508|EARTH
+
+// Blarney Pebble
+1510|EARTH
+
+// Celtic Block
+1514|EARTH
+
+// Great White Shark
+1520|WATER
+
+// Jellyfish
+1522|WATER
+
+// Sunken Anchor
+1528|WATER
+
+// Giant Clam
+1530|WATER
+
+// Undersea Blast
+1532|WATER
+
+// Deep Sand
+1536|EARTH
+
+// Deep Rock
+1538|EARTH
+
+// Pastel Pink Flower Block
+1554|FIRE
+
+// Pastel Orange Flower Block
+1556|FIRE
+
+// Pastel Yellow Flower Block
+1558|FIRE
+
+// Pastel Green Flower Block
+1560|WATER
+
+// Pastel Aqua Flower Block
+1562|WATER
+
+// Pastel Blue Flower Block
+1564|WATER
+
+// Pastel Purple Flower Block
+1566|WIND
+
+// Churro Block
+1572|EARTH
+
+// Party Cactus
+1578|EARTH
+
+// Burrito
+1580|EARTH
+
+// Mystery Pinata
+1584|WIND
+
+// Theater Curtain
+1594|EARTH
+
+// GHX Speaker
+1596|WIND
+
+// Marquee Block
+1598|WIND
+
+// Director's Chair
+1600|EARTH
+
+// Mint Julep
+1602|WATER
+
+// Theater Seat
+1604|EARTH
+
+// Movie Screen
+1606|WIND
+
+// Movie Camera
+1608|WATER
+
+// Red Glass Block
+1610|FIRE
+
+// Blue Glass Block
+1612|WATER
+
+// Growie Award
+1614|WATER
+
+// Staging Platform
+1616|EARTH
+
+// Game Block
+1618|EARTH
+
+// Busted Game Block
+1620|EARTH
+
+// Game Flag
+1622|WIND
+
+// Missing Game Flag
+1624|WIND
+
+// Carried Game Flag
+1626|WIND
+
+// Derpy Star Block
+1628|WIND
+
+// Lava Cube
+1630|FIRE
+
+// Coffee Maker
+1632|FIRE
+
+// Coffee
+1634|FIRE
+
+// Awkward Friendly Unicorn
+1636|WIND
+
+// Very Bad Unicorn
+1640|FIRE
+
+// Happy Unicorn Block
+1646|WIND
+
+// Evil Brick Background
+1654|FIRE
+
+// Game Grave
+1656|EARTH
+
+// Game Goal
+1658|WIND
+
+// Game Generator
+1660|WATER
+
+// Spike Juice
+1662|WATER
+
+// Barbecue Grill
+1664|FIRE
+
+// Sandcastle
+1678|EARTH
+
+// Super Fireworks
+1680|FIRE
+
+// Gateway To Adventure
+1682|FIRE
+
+// Path Marker
+1684|EARTH
+
+// Adventure Item - Rope
+1694|EARTH
+
+// Adventure Item - Key
+1696|EARTH
+
+// Adventure Item - Golden Idol
+1698|EARTH
+
+// Adventure Item - Banana
+1700|WATER
+
+// Adventure Item - Torch
+1702|FIRE
+
+// Lazy Cobra
+1706|EARTH
+
+// Drumkit
+1724|WIND
+
+// Rock N' Roll Wallpaper
+1726|FIRE
+
+// Stage Support
+1728|WIND
+
+// Mega Rock Speaker
+1730|WIND
+
+// Brown Wallpaper
+1744|EARTH
+
+// Weather Machine - Warp Speed
+1750|WIND
+
+// Guestbook
+1752|EARTH
+
+// Flatscreen TV
+1754|WIND
+
+// Tiger Block
+1756|FIRE
+
+// Seagull
+1766|WIND
+
+// Flower Checkpoint
+1770|EARTH
+
+// Bubble Gum
+1772|WIND
+
+// Diving Board
+1774|WATER
+
+// Diving Board Support
+1776|WATER
+
+// Deluxe Grow Spray
+1778|EARTH
+
+// Legen
+1786|WIND
+
+// Dary
+1788|WATER
+
+// Legendary Wizard
+1790|FIRE
+
+// Great Legendary Orb
+1792|FIRE
+
+// Legendary Orb
+1794|FIRE
+
+// Diamond Lock
+1796|WATER
+
+// Puzzle Brick
+1802|EARTH
+
+// Autumn Bomb
+1826|WIND
+
+// Balance Mooncake
+1828|WATER
+
+// Sunflower Checkpoint
+1832|EARTH
+
+// Moon Block
+1834|WIND
+
+// Block Glue
+1866|WATER
+
+// Hanging Guytrap
+1870|WIND
+
+// Funhouse Mirror
+1872|WIND
+
+// Carnival Wallpaper
+1878|WATER
+
+// Carnival Awning
+1880|WIND
+
+// Carnival Block
+1882|EARTH
+
+// Red Pennant
+1884|FIRE
+
+// Blue Pennant
+1886|WATER
+
+// Green Pennant
+1888|EARTH
+
+// Yellow Pennant
+1890|WIND
+
+// Lion Block
+1894|FIRE
+
+// Elephant Block
+1896|WATER
+
+// Golden Ticket
+1898|WIND
+
+// The Ringmaster
+1900|EARTH
+
+// Golden Ticket Booth
+1902|EARTH
+
+// Carnival Sign
+1906|WIND
+
+// Bullseye
+1908|WIND
+
+// Carnival Tent
+1910|EARTH
+
+// Carnival Landing
+1912|EARTH
+
+// Carnival Platform
+1914|WIND
+
+// Card Block - Back
+1916|EARTH
+
+// Card Block - Pentagon
+1918|EARTH
+
+// Card Block - Star
+1920|WIND
+
+// Card Block - Sizzle
+1922|FIRE
+
+// Card Block - Plus
+1924|WATER
+
+// Mirror Maze Block
+1926|WIND
+
+// Calliope
+1942|WIND
+
+// Haunted Chemical
+1962|WATER
+
+// Devilfruit
+1964|FIRE
+
+// Teeny Tiny Skull
+1976|EARTH
+
+// Creepy Wallpaper
+1982|WIND
+
+// Haunted Mausoleum
+1984|EARTH
+
+// Doppelganger Potion
+1988|WATER
+
+// Deadly Spider
+1990|FIRE
+
+// Hanging Thread
+1992|WIND
+
+// Dragon Bone
+2000|FIRE
+
+// Golden Apple
+2002|EARTH
+
+// Twisted Spikes
+2008|FIRE
+
+// Glowy Block
+2010|FIRE
+
+// Dark Grey Block
+2012|EARTH
+
+// Dark Red Block
+2014|FIRE
+
+// Dark Orange Block
+2016|FIRE
+
+// Dark Yellow Block
+2018|FIRE
+
+// Dark Green Block
+2020|WATER
+
+// Dark Aqua Block
+2022|WATER
+
+// Dark Blue Block
+2024|WATER
+
+// Dark Purple Block
+2026|WIND
+
+// Dark Brown Block
+2028|EARTH
+
+// Comet Dust
+2034|WIND
+
+// Antimatter Dust
+2036|WIND
+
+// Unearthly Chemical
+2038|WATER
+
+// Weather Machine - Comet
+2046|WIND
+
+// Alien Block
+2056|WIND
+
+// Xenoid Block
+2058|WIND
+
+// Space Command Seat
+2068|EARTH
+
+// Ion Conduit
+2070|WATER
+
+// Xenonite Crystal
+2072|FIRE
+
+// Radioactive Chemical
+2206|WATER
+
+// Phone Booth
+2208|WIND
+
+// Icicles
+2226|WATER
+
+// Siberian Tiger Block
+2228|WATER
+
+// Candy Cane Platform
+2232|WATER
+
+// Holiday Cheer Bomb
+2236|FIRE
+
+// Carnival Pipe
+2238|WATER
+
+// Red Crystal
+2242|FIRE
+
+// Green Crystal
+2244|EARTH
+
+// Blue Crystal
+2246|WATER
+
+// White Crystal
+2248|WIND
+
+// Black Crystal
+2250|EARTH
+
+// Crystal Clock
+2252|WATER
+
+// Stained Glass
+2270|WIND
+
+// Crystal Tree
+2272|WIND
+
+// Crystal Gate
+2274|FIRE
+
+// Crystal Spikes
+2276|FIRE
+
+// Party Block
+2280|FIRE
+
+// Party Boombox
+2282|WATER
+
+// Weather Machine - Party
+2284|FIRE
+
+// Party Confetti
+2288|FIRE
+
+// Party Tunes
+2290|WIND
+
+// Superpower - Heat Vision
+2292|FIRE
+
+// Superpower - Incinerate
+2294|FIRE
+
+// Superpower - Flame On!
+2296|FIRE
+
+// Superpower - Liquify
+2298|FIRE
+
+// Superpower - Overheat
+2300|FIRE
+
+// Crime In Progress
+2302|FIRE
+
+// Superpower - Death Ray
+2304|FIRE
+
+// Party-In-A-Box
+2306|FIRE
+
+// Superpower - Ice Shards
+2308|WATER
+
+// Superpower - Frost Breath
+2310|WATER
+
+// Superpower - Ice Barrier
+2312|WATER
+
+// Superpower - Puddle
+2314|WATER
+
+// Superpower - Frozen Mirror
+2316|WATER
+
+// Superpower - Ban Hammer
+2318|WATER
+
+// Superpower - Super Strength
+2320|EARTH
+
+// Superpower - Super Speed
+2322|EARTH
+
+// Superpower - Enrage
+2324|EARTH
+
+// Superpower - Crush
+2326|EARTH
+
+// Superpower - Regeneration
+2328|EARTH
+
+// Superpower - g-Virus
+2330|EARTH
+
+// Superpower - Shocking Fist
+2332|WIND
+
+// Superpower - Thunderstorm
+2334|WIND
+
+// Superpower - Overcharge
+2336|WIND
+
+// Superpower - Megawatt Pulse
+2338|WIND
+
+// Superpower - Resuscitate
+2340|WIND
+
+// Superpower - Duct Tape
+2342|WIND
+
+// Villain Portrait - The Firebug
+2344|FIRE
+
+// Villain Portrait - Jimmy Snow
+2346|WATER
+
+// Villain Portrait - Big Bertha
+2348|EARTH
+
+// Villain Portrait - Shockinator
+2350|WIND
+
+// Villain Portrait - Generic Thug #17
+2352|EARTH
+
+// Villain Portrait - Kat 5
+2354|WATER
+
+// Villain Portrait - Professor Pummel
+2356|FIRE
+
+// Villain Portrait - Dragon Hand
+2358|WIND
+
+// Villain Portrait - Dr. Destructo
+2360|FIRE
+
+// Villain Portrait - Ms. Terry
+2362|FIRE
+
+// Villain Portrait - Z. Everett Koop
+2364|EARTH
+
+// Villain Portrait - Almighty Seth
+2366|WIND
+
+// Villain Portrait - Devil Ham
+2368|WATER
+
+// Henchman
+2380|FIRE
+
+// Crime Wave
+2382|FIRE
+
+// Valensign
+2396|FIRE
+
+// Locke The Salesman
+2398|EARTH
+
+// Lucky Horseshoe
+2400|EARTH
+
+// Emerald Lock
+2408|EARTH
+
+// Emerald Shard
+2410|EARTH
+
+// Cloverleaf
+2412|EARTH
+
+// Shamrock Sign
+2414|EARTH
+
+// Superpower - Lucky Shot
+2446|EARTH
+
+// Villain Portrait - Paddy O'Malice
+2448|EARTH
+
+// Clothing Compactor
+2452|WATER
+
+// Patchwork Quilt
+2462|EARTH
+
+// Locke's Mystery Box
+2478|WIND
+
+// Megaphone
+2480|WIND
+
+// Transmatter Field
+2488|WATER
+
+// Asteroid
+2492|WIND
+
+// Pastel Pink Wallpaper
+2496|FIRE
+
+// Pastel Orange Wallpaper
+2498|FIRE
+
+// Pastel Yellow Wallpaper
+2500|FIRE
+
+// Pastel Green Wallpaper
+2502|WATER
+
+// Pastel Aqua Wallpaper
+2504|WATER
+
+// Pastel Blue Wallpaper
+2506|WATER
+
+// Pastel Purple Wallpaper
+2508|WIND
+
+// Happy Flower Grass
+2514|EARTH
+
+// Bouncy Bunny
+2516|WIND
+
+// Superpower - Egg Shield
+2518|WATER
+
+// Villain Portrait - Bunny Barko
+2520|WATER
+
+// Easter Egg - Striped
+2544|EARTH
+
+// Easter Egg - Polka Dots
+2546|EARTH
+
+// Easter Egg - Jagged
+2548|EARTH
+
+// Easter Egg - Wavey
+2550|EARTH
+
+// Easter Egg - Checkered
+2552|EARTH
+
+// Easter Egg - Rainbow
+2554|EARTH
+
+// Cursed Jet Engine
+2556|WIND
+
+// Chocolate Block
+2564|EARTH
+
+// Dark Chocolate Block
+2566|EARTH
+
+// Carnival Spikeball
+2568|FIRE
+
+// Change of Address
+2580|WIND
+
+// Holographic Sign
+2586|WIND
+
+// Shifty Block
+2590|WATER
+
+// Nacho Block
+2596|FIRE
+
+// Villain Portrait - El Peligro
+2626|EARTH
+
+// Superpower - Atomic Backbreaker
+2628|FIRE
+
+// Wrestling Ring
+2630|WIND
+
+// Pinata Block
+2632|WIND
+
+// Spotlight
+2646|WIND
+
+// Jade Block
+2708|WATER
+
+// Filigreed Jade Block
+2710|WATER
+
+// Draped Filigreed Jade Block
+2712|WIND
+
+// Diamond-Encrusted Draped Filigreed Jade Block
+2714|FIRE
+
+// Googly-Eyed Diamond-Encrusted Draped Filigreed Jade Block
+2716|EARTH
+
+// Basic Blue Block
+2724|WATER
+
+// Superpower - Pineapple Spear
+2726|WIND
+
+// Villain Portrait - Pine-Fresh
+2728|WIND
+
+// Pineapple Air Freshener
+2730|WIND
+
+// Pineapple Block
+2732|WATER
+
+// Pineapple
+2734|WATER
+
+// Weather Machine - Pineapples
+2744|WIND
+
+// Sugarloaf Pineapple Block
+2746|WATER
+
+// Roasted Pineapple Block
+2748|FIRE
+
+// Frozen Pineapple Block
+2750|WATER
+
+// Viney Block
+2786|EARTH
+
+// Viney Wallpaper
+2788|EARTH
+
+// Leaf Block
+2790|EARTH
+
+// Mission Block
+2792|EARTH
+
+// Air Conditioner
+2794|WIND
+
+// Air Duct
+2796|WIND
+
+// Well
+2798|WATER
+
+// Green Stuff
+2804|EARTH
+
+// Blue Stuff
+2806|WIND
+
+// Texas Limestone
+2808|EARTH
+
+// Air Vent
+2810|WIND
+
+// Sapphire Block
+2812|WATER
+
+// Number Block 0
+2814|WATER
+
+// Number Block 1
+2816|EARTH
+
+// Number Block 2
+2818|FIRE
+
+// Number Block 3
+2820|WIND
+
+// Number Block 4
+2822|WATER
+
+// Number Block 5
+2824|EARTH
+
+// Number Block 6
+2826|FIRE
+
+// Number Block 7
+2828|WIND
+
+// Number Block 8
+2830|WATER
+
+// Number Block 9
+2832|EARTH
+
+// Number 0
+2834|FIRE
+
+// Number 1
+2836|WIND
+
+// Number 2
+2838|WATER
+
+// Number 3
+2840|EARTH
+
+// Number 4
+2842|FIRE
+
+// Number 5
+2844|WIND
+
+// Number 6
+2846|WATER
+
+// Number 7
+2848|EARTH
+
+// Number 8
+2850|FIRE
+
+// Number 9
+2852|WIND
+
+// Sun Block
+2856|FIRE
+
+// Tiki Torch
+2858|FIRE
+
+// Cow Skull
+2860|WIND
+
+// Flamingo
+2862|WATER
+
+// Summer Breeze
+2864|WIND
+
+// Stadium
+2892|WIND
+
+// Crowded Stadium
+2894|FIRE
+
+// Basketball Hoop
+2896|WIND
+
+// Sporty Goal
+2898|EARTH
+
+// Wiggly Worm
+2914|EARTH
+
+// Shifting Scroll
+2916|FIRE
+
+// Cryptic Scroll
+2918|EARTH
+
+// Really Cryptic Scroll
+2920|WIND
+
+// Exceedingly Cryptic Scroll
+2922|FIRE
+
+// Needlessly Cryptic Scroll
+2924|WATER
+
+// Display Block
+2946|WATER
+
+// Ruined Sign
+2948|EARTH
+
+// Robotic Lock
+2950|WIND
+
+// Dark Red Wallpaper
+2962|FIRE
+
+// Fountain
+2964|WATER
+
+// Enchanted Spatula
+2966|WIND
+
+// Sink
+2968|WATER
+
+// Vending Machine
+2978|WIND
+
+// Red Royal Wallpaper
+2988|FIRE
+
+// Blue Royal Wallpaper
+2990|WATER
+
+// Wolf Whistle
+2992|WIND
+
+// Great Wolf Totem
+2994|FIRE
+
+// Wolf Totem
+2996|EARTH
+
+// Goldfish
+3000|WATER
+
+// Fish Tank Port
+3002|WATER
+
+// Fish Tank
+3004|WATER
+
+// Rollback Plaque III
+3006|FIRE
+
+// Shiny Flashy Thing
+3012|WIND
+
+// Salmon Eggs
+3014|WATER
+
+// Fishing Fly
+3016|WIND
+
+// Shrimp Lure
+3018|WATER
+
+// Whizmo Gizmo
+3020|FIRE
+
+// Electric Eel
+3022|WIND
+
+// Whale
+3024|WATER
+
+// Catfish
+3026|WATER
+
+// Perch
+3028|WIND
+
+// Dogfish
+3030|WATER
+
+// Gar
+3032|WATER
+
+// Mahi Mahi
+3034|WATER
+
+// Sunfish
+3036|WATER
+
+// Bass
+3038|WATER
+
+// Tackle Box
+3044|WATER
+
+// Pocket Lighter
+3062|FIRE
+
+// Water Balloon
+3064|WATER
+
+// Firehouse
+3072|FIRE
+
+// Solar Collector
+3078|EARTH
+
+// Autumn Viney Block
+3080|EARTH
+
+// Autumn Viney Wallpaper
+3082|EARTH
+
+// Autumn Leaf Block
+3084|EARTH
+
+// Musical Gong
+3088|WATER
+
+// Highly Combustible Box
+3090|FIRE
+
+// Skeletal Shark
+3092|WATER
+
+// Ghost Fish
+3094|WATER
+
+// Demon Angler
+3096|WATER
+
+// Otherworldly Bait
+3098|WIND
+
+// Eldritch Flame
+3102|FIRE
+
+// Cape Tatters
+3110|WIND
+
+// Hellgate
+3116|FIRE
+
+// Teeny Wing Fragment
+3122|FIRE
+
+// Dark Magic Barrier
+3126|WIND
+
+// Combusted Box
+3128|EARTH
+
+// Wolfy Block
+3136|WIND
+
+// Challenge Board
+3142|EARTH
+
+// Rainbow Crystal Block
+3146|WIND
+
+// Cosmic Power - Comet Strike
+3148|WIND
+
+// Cosmic Power - Star Burst
+3150|FIRE
+
+// Cosmic Power - Lunar Barrier
+3152|EARTH
+
+// Cosmic Power - Nebula Gas
+3154|WATER
+
+// Transdimensional Vaporizer Ray
+3156|WATER
+
+// Carnival Pinwheel
+3158|WIND
+
+// Angry Unicorn Block
+3170|FIRE
+
+// Anvil
+3176|EARTH
+
+// Crystal Smithing Tools
+3180|WIND
+
+// Blade Fragment
+3182|EARTH
+
+// Shield Fragment
+3184|WATER
+
+// Tempered Steel Fragment
+3186|WATER
+
+// Sword Pommel
+3188|WATER
+
+// Sword Blade
+3190|WIND
+
+// Warrior's Shield
+3192|EARTH
+
+// Forge
+3194|FIRE
+
+// Nuclear Fuel
+3196|FIRE
+
+// Gift of the Unicorn
+3198|WIND
+
+// Giving Tree
+3200|EARTH
+
+// Giving Tree Stump
+3202|EARTH
+
+// Tree Decorations
+3204|FIRE
+
+// Axe Fragment
+3208|EARTH
+
+// Icy Heart Of Winter
+3210|WATER
+
+// Icy Heart Pickup
+3212|WATER
+
+// Candy Cane Bait
+3218|WATER
+
+// Neon Squid
+3220|WATER
+
+// Antarctic Icefish
+3222|WATER
+
+// Gingerbread Fish
+3224|WATER
+
+// Swedish Fish
+3226|WATER
+
+// Snowcone
+3228|WATER
+
+// Winter Wind
+3232|WIND
+
+// Snowflake Block
+3234|WATER
+
+// Hot Chocolate
+3240|FIRE
+
+// Tempered Axe Fragment
+3242|WIND
+
+// Icy Axe Blade
+3244|WATER
+
+// Steel Axe Handle
+3246|EARTH
+
+// Grip Tape
+3248|FIRE
+
+// Weather Machine - Snowy Night
+3252|WATER
+
+// Sock On The Wall
+3256|FIRE
+
+// Steams
+3258|WIND
+3260|WIND
+3262|WIND
+3264|WIND
+3266|WIND
+3268|WIND
+3270|WIND
+3280|WIND
+3282|WIND
+3284|WATER
+3286|WATER
+
+// Tempered Party Tunes
+3302|WIND
+
+// 80's Tape Deck
+3304|WATER
+
+// D Battery
+3306|WATER
+
+// Steampunk Sprocket
+3310|WIND
+
+// Steampunk Gearbox
+3312|WIND
+
+// Stretched Canvas
+3314|WIND
+
+// Silkworm
+3316|EARTH
+
+// Silk Thread - Red
+3318|FIRE
+
+// Silk Thread - Green
+3320|EARTH
+
+// Silk Thread - Blue
+3322|WATER
+
+// Silk Thread - Black
+3324|EARTH
+
+// Silk Thread - White
+3326|WIND
+
+// Silk Thread - Grey
+3328|EARTH
+
+// Silk Thread - Yellow
+3330|FIRE
+
+// Silk Thread - Purple
+3332|WIND
+
+// Silk Thread - Aqua
+3334|WATER
+
+// Silk Bolt - Red
+3336|FIRE
+
+// Silk Bolt - Green
+3338|EARTH
+
+// Silk Bolt - Blue
+3340|WATER
+
+// Silk Bolt - Black
+3342|EARTH
+
+// Silk Bolt - White
+3344|WIND
+
+// Silk Bolt - Grey
+3346|EARTH
+
+// Silk Bolt - Yellow
+3348|FIRE
+
+// Silk Bolt - Purple
+3350|WIND
+
+// Silk Bolt - Aqua
+3352|WATER
+
+// Sewing Machine
+3354|WIND
+
+// Country Flag
+3394|EARTH
+
+// Booty Chest
+3398|FIRE
+
+// Love Potion #8
+3400|FIRE
+
+// Golden Booty Chest
+3402|FIRE
+
+// Sour Lollipop
+3404|WATER
+
+// Sweet Lollipop
+3406|WATER
+
+// Pink Marble Arch
+3408|FIRE
+
+// Silkworm Toy
+3410|WIND
+
+// Steam Collector
+3412|WIND
+
+// Steam Scrambler
+3414|WIND
+
+// Roasted Cobra
+3420|FIRE
+
+// Cobra Statuette
+3422|EARTH
+
+// Yellow Diamond
+3424|WIND
+
+// Potato Couch
+3426|EARTH
+
+// Potato
+3428|EARTH
+
+// Catch-of-the-Day Bait
+3432|WATER
+
+// Rainbowfish
+3434|WATER
+
+// Totally Legit Bunnyfish
+3436|WATER
+
+// Seahorse
+3438|WATER
+
+// Mutant Fish
+3440|WATER
+
+// Weather Machine - Spring
+3446|WIND
+
+// Lobster Trap
+3448|WATER
+
+// Lobster
+3450|WATER
+
+// Purple Shore Crab
+3452|WATER
+
+// Alaskan King Crab
+3454|WATER
+
+// Dungeonist Crab
+3456|WATER
+
+// Crawdad
+3458|WATER
+
+// Hermit Crab
+3460|WATER
+
+// Fish Chunk
+3468|WATER
+
+// Cutting Board
+3470|EARTH
+
+// Rice
+3472|EARTH
+
+// Maki Roll
+3474|EARTH
+
+// Paint Bucket - Red
+3478|FIRE
+
+// Paint Bucket - Yellow
+3480|FIRE
+
+// Paint Bucket - Green
+3482|EARTH
+
+// Paint Bucket - Aqua
+3484|WATER
+
+// Paint Bucket - Blue
+3486|WATER
+
+// Paint Bucket - Purple
+3488|WIND
+
+// Paint Bucket - Charcoal
+3490|EARTH
+
+// Paint Bucket - Varnish
+3492|WIND
+
+// Steam Revolver
+3496|WIND
+
+// Steam Launcher
+3498|WIND
+
+// Red Crayon
+3500|FIRE
+
+// Yellow Crayon
+3502|FIRE
+
+// Green Crayon
+3504|EARTH
+
+// Aqua Crayon
+3506|WATER
+
+// Blue Crayon
+3508|WATER
+
+// Purple Crayon
+3510|WIND
+
+// Writing Desk
+3520|EARTH
+
+// Arrow Placard
+3522|WIND
+
+// Scroll Bulletin
+3524|WIND
+
+// Gilded Frame
+3526|EARTH
+
+// Painting Easel
+3528|WATER
+
+// Funtime Block
+3532|FIRE
+
+// Weather Machine - Howling Sky
+3534|WIND
+
+// Homeopathic Medicine
+3536|WATER
+
+// Howling Wolf Emblem
+3538|WIND
+
+// Charbroiled Wolf Emblem
+3540|FIRE
+
+// Hero Portrait - Buddy
+3542|EARTH
+
+// Picasso Triggerfish
+3544|WATER
+
+// Fish And Chips
+3546|FIRE
+
+// Battle Pet Cage
+3548|EARTH
+
+// Axolotl
+3550|WATER
+
+// Pet Trainer
+3554|EARTH
+
+// Dark Cave Background
+3556|EARTH
+
+// Steam Engine
+3558|WIND
+
+// Lock Mover
+3560|FIRE
+
+// Cave Blast
+3562|EARTH
+
+// Cave Dirt
+3564|EARTH
+
+// Cave Column
+3566|EARTH
+
+// Stalagmite
+3568|EARTH
+
+// Stalactite
+3570|EARTH
+
+// Cave Platform
+3572|EARTH
+
+// Purple Cave Crystal
+3580|FIRE
+
+// Golden Cave Crystal
+3582|FIRE
+
+// Aqua Cave Crystal
+3584|WATER
+
+// Climbing Wall
+3586|EARTH
+
+// Steam Pipe
+3592|WIND
+
+// Festive Banner
+3598|FIRE
+
+// Fish Taco
+3600|WATER
+
+// Golden Treasure Hoard
+3604|WATER
+
+// Topaz Block
+3606|FIRE
+
+// Deep Iron
+3608|EARTH
+
+// Deep Iron Ore
+3610|EARTH
+
+// Deep Iron Ingot
+3612|EARTH
+
+// Pick Blade
+3614|EARTH
+
+// Guardian Pineapple
+3616|WATER
+
+// Pineapple Ring
+3618|WATER
+
+// Pineapple Fish
+3620|WATER
+
+// Pineapple Daiquiri
+3622|WATER
+
+// Silkworm Leash
+3628|EARTH
+
+// Silkworm Saddle
+3630|EARTH
+
+// CRISPR Technology
+3668|WATER
+
+// Genetic Resequencer
+3670|WIND
+
+// Whale Block
+3674|WATER
+
+// Pet Trainer Whistle
+3676|WIND
+
+// Lock-Bot
+3682|WATER
+
+// Lock-Bot Remote
+3684|FIRE
+
+// Burnt Leather
+3688|FIRE
+
+// Buckle Design
+3690|EARTH
+
+// Iron Buckle
+3692|EARTH
+
+// Weather Machine - Heatwave
+3694|FIRE
+
+// Paper Airplane
+3704|WIND
+
+// Ghost Jar
+3720|WIND
+
+// Ghost-In-A-Jar
+3722|WIND
+
+// Spirit Storage Unit
+3724|WIND
+
+// Destroyed Spirit Storage Unit
+3726|WIND
+
+// Ectoplasm Sample
+3728|WATER
+
+// Crystallized Ghost
+3730|WATER
+
+// Warning Block
+3732|EARTH
+
+// Warning Background
+3734|EARTH
+
+// Root Beer
+3740|WATER
+
+// Spray Tan
+3742|FIRE
+
+// Firefin
+3746|FIRE
+
+// Bone Spikes
+3748|WIND
+
+// Ghost Charm
+3750|WIND
+
+// Steam Funnel
+3752|WIND
+3754|WIND
+3756|WIND
+
+// B.O.O. Sign
+3758|WIND
+
+// Data Bedrock
+3760|EARTH
+
+// Shark Tooth
+3762|FIRE
+
+// Atomic Fireball
+3764|FIRE
+
+// Steam Crossover
+3766|WIND
+
+// Steam Crank
+3768|WIND
+
+// Steam Lamp
+3770|FIRE
+
+// Steam Spikes
+3772|WIND
+
+// Mini Blocks
+3782|EARTH
+
+// Teeny Blocks
+3784|EARTH
+
+// Jigsaw Wallpaper
+3786|WATER
+
+// Display Shelf
+3794|EARTH
+
+// One-Way Block
+3796|WIND
+
+// VIP Entrance
+3798|EARTH
+
+// Globe
+3802|EARTH
+
+// Challenge Timer
+3804|EARTH
+
+// Challenge Start Flag
+3806|WATER
+
+// Challenge End Flag
+3808|FIRE
+
+// Fish Wall Mount
+3810|WATER
+
+// Stonefish
+3814|WATER
+
+// Tamago Sushi
+3816|EARTH
+
+// Portrait
+3818|WATER
+
+// Orca
+3820|WATER
+
+// Red Hair Dye
+3822|FIRE
+
+// Green Hair Dye
+3824|EARTH
+
+// Blue Hair Dye
+3826|WATER
+
+// Black Hair Dye
+3828|WIND
+
+// Shampoo
+3830|WATER
+
+// Weather Machine - Stuff
+3832|WIND
+
+// Beehive
+3834|WIND
+
+// Honey
+3836|WATER
+
+// Sorcerer Stone
+3838|EARTH
+
+// Villain Portrait - The Harvester
+3840|EARTH
+
+// Cosmic Power - Life Harvest
+3842|WIND
+
+// Harvest Horn
+3868|WIND
+
+// Ancestor Mooncake
+3870|WIND
+
+// Sheep
+3888|EARTH
+
+// Wool
+3890|EARTH
+
+// Wool Bolt
+3892|EARTH
+
+// Silkworm Soul
+3896|WIND
+
+// Telephone
+3898|WIND
+
+// Crazy Jim
+3902|WIND
+
+// Code Block: Kappa
+3904|WIND
+
+// Code Block: Charlie
+3906|WIND
+
+// Code Block: Ouroboros
+3908|WIND
+
+// Code Block: Edamame
+3910|WIND
+
+// Illuminati Stone
+3916|NONE
+
+// Fossil Rock
+3918|EARTH
+
+// Fossil Boulder
+3920|EARTH
+
+// Deep Fossil Rock
+3922|EARTH
+
+// Fossilroid
+3924|WIND
+
+// Alien Fossil Rock
+3926|EARTH
+
+// Igneous Fossil Rock
+3928|EARTH
+
+// Igneous Rock
+3930|EARTH
+
+// Fossil
+3936|EARTH
+
+// Fossil Prep Station
+3938|WATER
+
+// Ammonite Block
+3940|EARTH
+
+// Dino Ribcage
+3942|EARTH
+
+// Ancient Plant Seed
+3946|EARTH
+
+// Amber Block
+3948|FIRE
+
+// T-Rex Skull
+3950|EARTH
+
+// DNA Processor
+4080|WATER
+
+// Dino DNA Strand A-273
+4082|FIRE
+
+// Dino DNA Strand C-904
+4084|WATER
+
+// Dino DNA Strand G-137
+4086|EARTH
+
+// Dino DNA Strand T-658
+4088|WIND
+
+// Plant DNA Strand X-277
+4090|EARTH
+
+// Plant DNA Strand Y-985
+4092|WATER
+
+// Prehistoric Flowering Fern
+4094|EARTH
+
+// Prehistoric Red Fern
+4096|EARTH
+
+// Prehistoric Fern
+4098|EARTH
+
+// Purple Devourer Plant
+4100|EARTH
+
+// Blue Devourer Plant
+4102|EARTH
+
+// Prehistoric Vines
+4104|EARTH
+
+// Prehistoric Candy Vines
+4106|EARTH
+
+// Seussian Tree
+4108|WIND
+
+// Raptor DNA Strand Alpha
+4120|FIRE
+
+// Raptor DNA Strand Omega
+4122|WATER
+
+// DNA Extractor
+4124|WATER
+
+// Fossil Brush
+4132|WIND
+
+// Polished Fossil
+4134|EARTH
+
+// Buzzsaw
+4158|WATER
+
+// Rickety Wallpaper
+4160|EARTH
+
+// Rickety Window
+4162|EARTH
+
+// Rickety Door
+4164|EARTH
+
+// Demonic Skull
+4172|FIRE
+
+// Death Metal Block
+4174|FIRE
+
+// Steel Spike
+4176|EARTH
+
+// Tempered Steel Spike
+4178|FIRE
+
+// Haunted Darkness
+4186|EARTH
+
+// Haunted Window
+4188|EARTH
+
+// Haunted Door
+4190|WATER
+
+// Sheet Music: Spooky
+4192|WIND
+
+// Stone Pagoda
+4194|EARTH
+
+// Master Peng Stonework
+4196|EARTH
+
+// Paper Wall
+4198|EARTH
+
+// Stone Pagoda Roof Element
+4200|EARTH
+
+// Decorative Roof Dragon
+4202|EARTH
+
+// Grand Jade Platform
+4204|WIND
+
+// Stone Pagoda Base
+4206|EARTH
+
+// Master Peng
+4210|WATER
+
+// Tourney Token
+4212|FIRE
+
+// Wooden Pagoda Wall
+4214|EARTH
+
+// Wooden Pagoda Window
+4216|WIND
+
+// Wooden Pagoda Door
+4218|EARTH
+
+// Wooden Pagoda Roof
+4220|WIND
+
+// Prize Ladder
+4222|FIRE
+
+// Tournament Ticket
+4224|FIRE
+
+// Punched Tournament Ticket
+4226|FIRE
+
+// Snack Fu
+4228|WATER
+
+// Ramune
+4230|WATER
+
+// Pow Stones
+4232|WIND
+
+// Extractium Ore
+4234|FIRE
+
+// Extractium Shard
+4236|FIRE
+
+// Tournament Banner
+4238|FIRE
+
+// Jade Portcullis
+4240|EARTH
+
+// Weather Machine - Pagoda
+4242|WIND
+
+// Minor Otherworldly Bait
+4246|WIND
+
+// Lesser Otherworldly Bait
+4248|WIND
+
+// Popcorn
+4256|WIND
+
+// Wasabi Peas
+4258|FIRE
+
+// Stuff-4-Toys Box
+4264|WATER
+
+// Letter Block - Zerp
+4266|EARTH
+
+// Letter Block - Forg
+4268|EARTH
+
+// Letter Block - Wump
+4270|EARTH
+
+// Letter Block - Doozle
+4272|EARTH
+
+// Rubber Band Airplane
+4284|WIND
+
+// Surg-E
+4296|WATER
+
+// Caduceus
+4298|WATER
+
+// Golden Caduceus
+4300|WATER
+
+// Golden Dragon Statue
+4302|FIRE
+
+// Silver Dragon Statue
+4304|FIRE
+
+// Jade Dragon Statue
+4306|FIRE
+
+// Surgical Pins
+4308|EARTH
+
+// Surgical Transfusion
+4310|WATER
+
+// Surgical Defibrillator
+4312|WIND
+
+// Surgical Clamp
+4314|FIRE
+
+// Surgical Ultrasound
+4316|WIND
+
+// Surgical Lab Kit
+4318|WATER
+
+// Empty Surgery Tray
+4320|WATER
+
+// Autoclave
+4322|FIRE
+
+// Biotronic Brain Enhancer
+4324|WATER
+
+// Spare Body Part
+4334|WATER
+
+// Spare Body
+4336|WATER
+
+// Limb Connector
+4338|FIRE
+
+// Massive Fang
+4342|FIRE
+
+// Howler
+4344|FIRE
+
+// Gemmin' Juice
+4348|WATER
+
+// Wolf Gate
+4352|EARTH
+
+// Wolf Ticket
+4354|WATER
+
+// Enchanted Wolf Ticket
+4356|WATER
+
+// Sales-Man Standee
+4358|WIND
+
+// Challenge of Fenrir
+4364|FIRE
+
+// Party Screamer
+4366|WIND
+
+// Valhowla Treasure
+4368|FIRE
+
+// Party Popper
+4370|WIND
+
+// Party Bunting
+4372|WIND
+
+// IIII Block
+4376|WATER
+
+// Party Cake
+4378|EARTH
+
+// Head Bangin' Steel Wolf
+4380|FIRE
+
+// Pink Bunting
+4382|WIND
+
+// Blue Bunting
+4384|WIND
+
+// White Bunting
+4386|WIND
+
+// Green Bunting
+4388|WIND
+
+// Yellow Bunting
+4390|WIND
+
+// Red & White Awning
+4392|WIND
+
+// Green & Yellow Awning
+4394|WIND
+
+// Blue Awning
+4396|WIND
+
+// Black Awning
+4398|WIND
+
+// Heart Awning
+4400|WIND
+
+// Gruel
+4410|WATER
+
+// Loveseat
+4418|FIRE
+
+// Chocolate Heart
+4422|WATER
+
+// Ruby Shard
+4426|FIRE
+
+// Ruby Lock
+4428|FIRE
+
+// Chemsynth Processor
+4430|WIND
+
+// Chemsynth Tank
+4432|WIND
+
+// Chemsynth Centrifuge
+4434|WATER
+
+// Chemsynth Replicator
+4436|WATER
+
+// Chemsynth Catalyst
+4438|WATER
+
+// Chemsynth Solvent
+4440|WATER
+
+// Chemsynth Stirrer
+4442|WATER
+
+// Synthetic Chemical
+4444|WATER
+
+// Gruesome Marker
+4446|EARTH
+
+// Skeletal Throne
+4448|EARTH
+
+// Zombie Brain
+4450|WATER
+
+// Pile of Zombie Brains
+4452|WATER
+
+// Mutated Seed Core
+4454|EARTH
+
+// Barricaded Door
+4466|EARTH
+
+// Infected Door
+4468|EARTH
+
+// Zombie Sign
+4470|EARTH
+
+// Retinal Scan Data Repository
+4472|WIND
+
+// Objective Marker
+4482|WATER
+
+// Infected Block
+4484|EARTH
+
+// Weather Machine - Apocalypse
+4486|FIRE
+
+// g-Virus Info Sign
+4488|WIND
+
+// Mutated Cell
+4490|EARTH
+
+// Chainlink Fence
+4492|EARTH
+
+// Z.D.F. Fence
+4494|EARTH
+
+// Rusted Chainlink Fence
+4496|WATER
+
+// Commercial Oven
+4498|FIRE
+
+// Untrade-a-Box
+4516|EARTH
+
+// Lucky Portal
+4520|EARTH
+
+// Lucky Kitty
+4522|FIRE
+
+// Unlucky Kitty
+4524|WATER
+
+// Bamboo
+4526|EARTH
+
+// Cosmic Rain
+4530|WIND
+
+// Bridle Design
+4538|WIND
+
+// Star Iron
+4540|WIND
+
+// Star Iron Ingot
+4542|WIND
+
+// Cosmic Bridle
+4544|WIND
+
+// Hover Platform
+4546|WIND
+
+// Cardboard Egg
+4558|EARTH
+
+// Salsa
+4560|WIND
+
+// Flour
+4562|EARTH
+
+// Lettuce
+4564|WATER
+
+// Salt Block
+4566|EARTH
+
+// Salt
+4568|EARTH
+
+// Pepper
+4570|EARTH
+
+// Sugar
+4572|EARTH
+
+// Disgusting Mess
+4574|WATER
+
+// Bland Mush
+4576|WATER
+
+// Beef
+4578|EARTH
+
+// Ground Beef
+4580|EARTH
+
+// Food Grinder
+4582|WIND
+
+// Pepper Tree
+4584|EARTH
+
+// Bacon
+4586|FIRE
+
+// Chicken Meat
+4588|WIND
+
+// Homemade Fish Taco
+4592|WATER
+
+// Apple Strudel
+4594|EARTH
+
+// Berry Crepes
+4596|WIND
+
+// BBQ Bacon Burger
+4598|FIRE
+
+// Beer-Battered Fish And Chips
+4600|WATER
+
+// Onion
+4602|EARTH
+
+// Arroz Con Pollo
+4604|FIRE
+
+// Egg Wallpaper
+4606|EARTH
+
+// Baking Chocolate
+4610|EARTH
+
+// Mac n' Cheese Star
+4612|FIRE
+
+// Plethora Of Mac n' Cheese Stars
+4614|FIRE
+
+// Mac n' Cheese Star Block
+4616|WIND
+
+// Home Oven
+4618|FIRE
+
+// Master Chef's Oven
+4620|FIRE
+
+// Marshmallow
+4624|EARTH
+
+// Audio Gear
+4630|WIND
+
+// Audio Rack
+4632|WIND
+
+// Sheet Music: Sax Note
+4634|WIND
+
+// Sheet Music: Sharp Sax
+4636|WIND
+
+// Sheet Music: Flat Sax
+4638|WIND
+
+// Sheet Music: Repeat Begin
+4640|WIND
+
+// Sheet Music: Repeat End
+4642|WIND
+
+// Geiger Charger
+4654|WIND
+
+// Uranium Block
+4658|EARTH
+
+// Lemon
+4666|EARTH
+
+// Corn
+4668|EARTH
+
+// Corn Meal
+4670|EARTH
+
+// Avocado
+4672|EARTH
+
+// Chips And Guacamole
+4674|WATER
+
+// Villain Portrait - H.R. Geiger
+4694|WIND
+
+// Superpower - Alien Egg
+4696|WATER
+
+// Locked Adventure Door
+4698|EARTH
+
+// Adventure Rope Piton
+4700|WIND
+
+// Ancient Block
+4702|EARTH
+
+// Adventure Brazier
+4704|FIRE
+
+// Adventure Barrier
+4706|EARTH
+
+// Adventure Pedestal
+4708|WATER
+
+// Adventure Idol Gate
+4710|WATER
+
+// Angry Adventure Gorilla
+4712|EARTH
+
+// Adventure Item - Pineapple
+4716|EARTH
+
+// Mystery Door
+4718|FIRE
+
+// Adventure Checkpoint
+4720|WATER
+
+// The Adventure Begins
+4722|FIRE
+
+// Luchador Announcer
+4736|WIND
+
+// Adventure Item - Crystal Goblet
+4738|EARTH
+
+// Adventure's End
+4740|WATER
+
+// Tomb Robber
+4742|WATER
+
+// Adventure Tomb Gate
+4744|EARTH
+
+// Super Pineapple
+4752|WATER
+
+// Super Exploding Pineapple
+4754|FIRE
+
+// Can Of Beans
+4756|WIND
+
+// Mini-Mod
+4758|WATER
+
+// Amethyst Block
+4762|EARTH
+
+// Pineapple Slice
+4764|EARTH
+
+// Cherry
+4766|EARTH
+
+// Pineapple Turnover
+4768|FIRE
+
+// Jungle Blast
+4774|WIND
+
+// Weather Machine - Jungle
+4776|WIND
+
+// Jungle Fern
+4782|EARTH
+
+// Statue Block
+4784|EARTH
+
+// Statue Eye
+4786|EARTH
+
+// Statue Headdress
+4788|EARTH
+
+// Statue Nose
+4790|EARTH
+
+// Statue Mouth
+4792|EARTH
+
+// Rubble
+4794|EARTH
+
+// Jungle Pillar
+4796|EARTH
+
+// Overgrown Vines
+4798|EARTH
+
+// Hanging Snake
+4800|EARTH
+
+// Royal Lock
+4802|WIND
+
+// Silk Bolt - Floral
+4804|FIRE
+
+// Balloon-O-Matic
+4830|WATER
+
+// Destroyed Balloon-O-Matic
+4832|WATER
+
+// Team Entrance - Punch
+4834|FIRE
+
+// Team Entrance - Grow
+4836|EARTH
+
+// Team Entrance - Build
+4838|WATER
+
+// Balloon Repellent
+4842|WATER
+
+// Small War Balloon
+4844|WATER
+
+// Medium War Balloon
+4846|WATER
+
+// Large War Balloon
+4848|WATER
+
+// Bucket of Small War Balloons
+4850|WATER
+
+// Bucket of Medium War Balloons
+4852|WATER
+
+// Bucket of Large War Balloons
+4854|WATER
+
+// Balloon Warz Leaderboard
+4856|EARTH
+
+// Balloon Filling Station
+4858|WATER
+
+// Team Pennant - Punch
+4872|FIRE
+
+// Team Pennant - Grow
+4874|EARTH
+
+// Team Pennant - Build
+4876|WATER
+
+// Bouncy Balloon
+4878|EARTH
+
+// Towel Rack Checkpoint
+4882|EARTH
+
+// Balloon Jammer
+4884|EARTH
+
+// Team Bunting - Punch
+4886|FIRE
+
+// Team Bunting - Grow
+4888|EARTH
+
+// Team Bunting - Build
+4890|WATER
+
+// Weather Machine - Balloon Warz
+4892|WIND
+
+// Balloon Fragment
+4894|WATER
+
+// Balloon Warz Gold Trophy - Punch
+4896|EARTH
+
+// Balloon Warz Silver Trophy - Punch
+4898|EARTH
+
+// Balloon Warz Bronze Trophy - Punch
+4900|EARTH
+
+// Balloon Warz Gold Trophy - Grow
+4902|EARTH
+
+// Balloon Warz Silver Trophy - Grow
+4904|EARTH
+
+// Balloon Warz Bronze Trophy - Grow
+4906|EARTH
+
+// Balloon Warz Gold Trophy - Build
+4908|EARTH
+
+// Balloon Warz Silver Trophy - Build
+4910|EARTH
+
+// Balloon Warz Bronze Trophy - Build
+4912|EARTH
+
+// Balloon Warz MVP Trophy - Punch
+4914|EARTH
+
+// Balloon Warz MVP Trophy - Grow
+4916|EARTH
+
+// Balloon Warz MVP Trophy - Build
+4918|EARTH
+
+// Balloon Throwing Stand
+4920|EARTH
+
+// Target
+4922|EARTH
+
+// Dark Green Wallpaper
+4942|FIRE
+
+// Dark Blue Wallpaper
+4944|FIRE
+
+// Sand Shark
+4958|WATER
+
+// Beanbag
+4962|EARTH
+
+// Orange
+4982|EARTH
+
+// Orange Juice
+4984|EARTH
+
+// Antigravity Generator
+4992|WATER
+
+// Builder's Lock
+4994|EARTH
+
+// Weather Machine - Background
+5000|WIND
+
+// Flaming Horse Chunk
+5014|FIRE
+
+// Fire Essence
+5024|FIRE
+
+// Water Essence
+5026|WATER
+
+// Earth Essence
+5028|EARTH
+
+// Wind Essence
+5030|WIND
+
+// Fissure
+5032|EARTH
+
+// Waterfall
+5034|WATER
+
+// Hidden Door
+5036|EARTH
+
+// Anemone
+5038|WATER
+
+// Aurora
+5040|WIND
+
+// Obsidian
+5042|FIRE
+
+// Lava Lamp
+5044|FIRE
+
+// Fire Asteroid
+5046|FIRE
+
+// Water Asteroid
+5048|WATER
+
+// Earth Asteroid
+5050|EARTH
+
+// Wind Asteroid
+5052|WIND
+
+// Inferno Gate
+5054|FIRE
+
+// Tidal Gate
+5056|WATER
+
+// Typhoon Gate
+5058|WIND
+
+// Verdant Gate
+5060|EARTH
+
+// Ancient Hinge
+5062|FIRE
+
+// Ancient Pin
+5064|WIND
+
+// Ancient Bracket
+5066|WATER
+
+// Ancient Lens
+5068|EARTH
+
+// Crystallized Reality
+5070|FIRE
+
+// Crystallized Wealth
+5072|FIRE
+
+// Crystallized Brilliance
+5074|WIND
+
+// Crystallized Nature
+5076|EARTH
+
+// Ancient Altar
+5086|EARTH
+
+// Bonsai
+5090|EARTH
+
+// Acorn
+5092|EARTH
+
+// Centerpiece
+5094|FIRE
+
+// Maple Leaf
+5096|EARTH
+
+// Dragon Scales
+5098|FIRE
+
+// Koi Fish
+5100|WATER
+
+// Leaves
+5102|EARTH
+
+// Celestial Kaleidoscope
+5104|WIND
+
+// Harmonic Chimes
+5106|WIND
+
+// Hay
+5108|EARTH
+
+// Pinecone
+5110|EARTH
+
+// Weather Machine - Autumn
+5112|WIND
+
+// Tea
+5114|WATER
+
+// Tea Set
+5116|WATER
+
+// Zen Garden
+5198|EARTH
+
+// Soul Stone
+5202|WIND
+
+// Plasma Globe
+5204|FIRE
+
+// Iron Maiden
+5236|FIRE
+
+// Looming Shadows
+5238|WIND
+
+// Hanging Bats
+5240|WIND
+
+// Death Metal Radio
+5242|FIRE
+
+// Plastic Ghost
+5244|WIND
+
+// Totally Harmless Doll
+5246|FIRE
+
+// Doll Head Part
+5250|WIND
+
+// Doll Torso Part
+5252|FIRE
+
+// Doll Legs Part
+5254|EARTH
+
+// Pumpkin Candy
+5256|EARTH
+
+// Chi Harmonizer
+5258|FIRE
+
+// Harmonic Lock
+5260|WATER
+
+// Neon Gum
+5262|WIND
+
+// Opal Block
+5270|EARTH
+
+// Kaleidoscopic Wallpaper
+5272|WIND
+
+// Demon Crystal
+5274|FIRE
+
+// Celestial Frame
+5280|WIND
+
+// Celestial Dust
+5282|WIND
+
+// Celestial Blade
+5284|WIND
+
+// Thanksgiving Turkey Dinner - Bronze
+5300|FIRE
+
+// Thanksgiving Turkey Dinner - Silver
+5302|FIRE
+
+// Thanksgiving Turkey Dinner - Gold
+5304|FIRE
+
+// Black Friday Cart - Bronze
+5306|WIND
+
+// Black Friday Cart - Silver
+5308|WIND
+
+// Black Friday Cart - Gold
+5310|WIND
+
+// Cyber Monday Tablet - Bronze
+5312|EARTH
+
+// Cyber Monday Tablet - Silver
+5314|EARTH
+
+// Cyber Monday Tablet - Gold
+5316|EARTH
+
+// Winterfest Calendar - 2017
+5318|EARTH
+
+// Used Winterfest Calendar - 2017
+5320|EARTH
+
+// Balloon Warz Winter 2017 Gold Trophy - Punch
+5324|EARTH
+
+// Balloon Warz Winter 2017 Silver Trophy - Punch
+5326|EARTH
+
+// Balloon Warz Winter 2017 Bronze Trophy - Punch
+5328|EARTH
+
+// Balloon Warz Winter 2017 Gold Trophy - Grow
+5330|EARTH
+
+// Balloon Warz Winter 2017 Silver Trophy - Grow
+5332|EARTH
+
+// Balloon Warz Winter 2017 Bronze Trophy - Grow
+5334|EARTH
+
+// Balloon Warz Winter 2017 Gold Trophy - Build
+5336|EARTH
+
+// Balloon Warz Winter 2017 Silver Trophy - Build
+5338|EARTH
+
+// Balloon Warz Winter 2017 Bronze Trophy - Build
+5340|EARTH
+
+// Balloon Warz Winter 2017 MVP Trophy - Punch
+5342|EARTH
+
+// Balloon Warz Winter 2017 MVP Trophy - Grow
+5344|EARTH
+
+// Balloon Warz Winter 2017 MVP Trophy - Build
+5346|EARTH
+
+// Gingerbread Block
+5348|FIRE
+
+// Gingerbread House
+5350|FIRE
+
+// Gingerbread Roof
+5352|FIRE
+
+// Gingerbread Door
+5354|FIRE
+
+// Holly
+5356|EARTH
+
+// Log Cabin
+5358|EARTH
+
+// Log Cabin Roof
+5360|FIRE
+
+// Log Cabin Door
+5362|FIRE
+
+// Jack-in-the-Box
+5364|WIND
+
+// Twinkling Lights
+5366|WATER
+
+// Small Icicles
+5368|WATER
+
+// Sheet Music: Winterfest
+5370|WIND
+
+// White Chocolate Block
+5372|EARTH
+
+// Chocolate Swirl Block
+5374|EARTH
+
+// Chocolate Sprinkles Block
+5376|EARTH
+
+// Chocolate Orange Block
+5378|EARTH
+
+// Chocolate Cherry Block
+5380|EARTH
+
+// Smores Block
+5382|FIRE
+
+// Cherry Jelly Block
+5384|WATER
+
+// Lime Jelly Block
+5386|WATER
+
+// Blueberry Jelly Block
+5388|WATER
+
+// Orange Jelly Block
+5390|WATER
+
+// Lemon Jelly Block
+5392|WATER
+
+// A Row of Winterfest Socks
+5394|WIND
+
+// Snow Block
+5396|WATER
+
+// Winterfest Dancefloor
+5398|FIRE
+
+// Mistletoe
+5400|EARTH
+
+// Winterfest Cracker
+5402|FIRE
+
+// Deluxe Winterfest Cracker
+5404|FIRE
+
+// Winterfest Red Paper Crown
+5406|EARTH
+
+// Winterfest Green Paper Crown
+5408|EARTH
+
+// Winterfest Silver Paper Crown
+5410|EARTH
+
+// Winterfest Gold Paper Crown
+5412|EARTH
+
+// Gingerbread Dough
+5416|FIRE
+
+// Mr. Narwhal
+5448|WATER
+
+// Glass Piglet Squid
+5450|WATER
+
+// Gingerbread Cookie
+5452|FIRE
+
+// Red Eye Drops
+5458|FIRE
+
+// Green Eye Drops
+5460|EARTH
+
+// Blue Eye Drops
+5462|WATER
+
+// Black Eye Drops
+5464|WIND
+
+// Eye Cleaning Solution
+5466|WATER
+
+// Bathroom Mirror
+5468|WIND
+
+// Sun Yellow Dancefloor
+5470|FIRE
+
+// Hot Pink Dancefloor
+5472|WIND
+
+// Bodacious Blue Dancefloor
+5474|WATER
+
+// Groovy Green Dancefloor
+5476|EARTH
+
+// Raving Red Dancefloor
+5478|FIRE
+
+// Rollback Plaque IV
+5494|FIRE
+
+// Megawatt Bass Speaker
+5518|WIND
+
+// 5th Anniversary Block
+5520|WIND
+
+// Hand Drill
+5522|EARTH
+
+// Nuclear Detonator
+5524|FIRE
+
+// Uranium Glowing Lure
+5526|WATER
+
+// Mega-Pellet Bait
+5528|FIRE
+
+// Training Port
+5530|WATER
+
+// Fish Medicine
+5532|WATER
+
+// Fish Reviver
+5534|EARTH
+
+// Fish Flakes
+5536|WATER
+
+// Maidmare Fish
+5538|WATER
+
+// Double-Headed Angel-Devil Fish
+5542|WATER
+
+// Absolutely Real Elephant Fish
+5548|WATER
+
+// Cuttlefish
+5552|WATER
+
+// Alpha Great White Shark
+5574|WATER
+
+// Weird Manta Ray
+5580|WATER
+
+// Ice Crust Block
+5602|WATER
+
+// Puffer Fish Block
+5614|WATER
+
+// Queen Conch Shell
+5616|WATER
+
+// Davy Jones' Chest
+5618|WATER
+
+// Radiation Block
+5620|FIRE
+
+// Radiation Sign
+5622|FIRE
+
+// Fancy Fish Wall Mount
+5624|WATER
+
+// Tiny Frozen Chunk
+5626|WATER
+
+// Small Frozen Chunk
+5628|WATER
+
+// Large Frozen Chunk
+5630|WATER
+
+// Tiny Radioactive Bit
+5632|FIRE
+
+// Small Radioactive Bit
+5634|FIRE
+
+// Large Radioactive Bit
+5636|FIRE
+
+// MAGPLANT 5000
+5638|EARTH
+
+// MAGPLANT 5000 Remote
+5640|EARTH
+
+// Weather Machine - Valentine's
+5654|WIND
+
+// Teddy Bear Block
+5656|EARTH
+
+// Love Birds
+5658|EARTH
+
+// Love Curtain
+5660|EARTH
+
+// Valentine's Dust
+5662|EARTH
+
+// Valentine's Card
+5664|EARTH
+
+// Laser Grid
+5666|EARTH
+
+// ShockBot - Level 1
+5668|EARTH
+
+// SpikeBot - Level 1
+5670|EARTH
+
+// Command - Move Left
+5672|FIRE
+
+// Command - Move Right
+5674|FIRE
+
+// Command - Move Up
+5676|FIRE
+
+// Command - Move Down
+5678|FIRE
+
+// Command - Pause
+5680|FIRE
+
+// Command - Basic Shot Left
+5682|FIRE
+
+// Command - Basic Shot Right
+5684|FIRE
+
+// Command - Basic Shot Up
+5686|FIRE
+
+// Command - Basic Shot Down
+5688|FIRE
+
+// Command - Improved Shot Left
+5690|FIRE
+
+// Command - Improved Shot Right
+5692|FIRE
+
+// Command - Improved Shot Up
+5694|FIRE
+
+// Command - Improved Shot Down
+5696|FIRE
+
+// Command - Long Shot Left
+5698|FIRE
+
+// Command - Long Shot Right
+5700|FIRE
+
+// Command - Long Shot Up
+5702|FIRE
+
+// Command - Long Shot Down
+5704|FIRE
+
+// Small Seed Pack
+5706|EARTH
+
+// ShooterBot - Level 1
+5708|EARTH
+
+// FlameBot - Level 1
+5710|EARTH
+
+// St Pats Weather
+5716|WIND
+
+// Lucky Clover Background
+5724|WIND
+
+// Flute Notes
+5726|WIND
+5728|WIND
+5730|WIND
+
+// Harp
+5732|WIND
+
+// Giant Causeway Block
+5734|EARTH
+
+// Paper Dividing Wall
+5742|EARTH
+
+// Decorative Paper Wall
+5744|EARTH
+
+// Chinese Arch
+5746|EARTH
+
+// Coin Door
+5748|EARTH
+
+// Fortune Cookie
+5750|EARTH
+
+// Lucky Token
+5752|EARTH
+
+// Oriental Spice Spray
+5764|EARTH
+
+// Chinese Fireworks
+5766|FIRE
+
+// Chinese Crackers
+5768|FIRE
+
+// Growmoji World Lock
+5770|EARTH
+
+// Growmoji Grow
+5772|EARTH
+
+// Growmoji Gems
+5774|EARTH
+
+// Growmoji Growtoken
+5776|EARTH
+
+// Growmoji Vend
+5778|EARTH
+
+// ShooterBot - Level 2
+5780|EARTH
+
+// ShooterBot - Level 3
+5782|EARTH
+
+// ShooterBot - Level 4
+5784|EARTH
+
+// FlameBot - Level 2
+5786|EARTH
+
+// FlameBot - Level 3
+5788|EARTH
+
+// FlameBot - Level 4
+5790|EARTH
+
+// ShockBot - Level 2
+5792|EARTH
+
+// ShockBot - Level 3
+5794|EARTH
+
+// ShockBot - Level 4
+5796|EARTH
+
+// SpikeBot - Level 2
+5798|EARTH
+
+// SpikeBot - Level 3
+5800|EARTH
+
+// SpikeBot - Level 4
+5802|EARTH
+
+// Growmoji Oops
+5804|EARTH
+
+// Growmoji Sleep
+5806|EARTH
+
+// Growmoji Punch
+5808|EARTH
+
+// Growmoji Broken Heart
+5810|EARTH
+
+// Growmoji Cry
+5812|EARTH
+
+// Guild Key
+5816|FIRE
+
+// Guild Entrances
+5818|EARTH
+5820|EARTH
+
+// Guild Banners & Pole
+5822|WIND
+5824|WIND
+5826|WIND
+5828|WIND
+5830|WIND
+5832|WIND
+
+// Guild Flag Tatters
+5834|WIND
+5836|WIND
+5838|WIND
+5840|WIND
+5842|WIND
+5844|WIND
+5846|WIND
+5848|WIND
+5850|WIND
+5852|WIND
+
+// Guild Flag Arrow
+5854|WIND
+5856|WIND
+5858|WIND
+5860|WIND
+5862|WIND
+5864|WIND
+5866|WIND
+5868|WIND
+5870|WIND
+5872|WIND
+
+// Guild Flag Wave
+5874|WATER
+5876|WATER
+5878|WATER
+5880|WATER
+5882|WATER
+5884|WATER
+5886|WATER
+5888|WATER
+5890|WATER
+5892|WATER
+
+// Guild Flag Peak
+5894|EARTH
+5896|EARTH
+5898|EARTH
+5900|EARTH
+5902|EARTH
+5904|EARTH
+5906|EARTH
+5908|EARTH
+5910|EARTH
+5912|EARTH
+
+// Guild Flag Peak
+5914|FIRE
+5916|FIRE
+5918|FIRE
+5920|FIRE
+5922|FIRE
+5924|FIRE
+5926|FIRE
+5928|FIRE
+5930|FIRE
+5932|FIRE
+
+// Potions
+5934|FIRE
+5936|EARTH
+5938|EARTH
+5940|WATER
+5942|EARTH
+5944|FIRE
+
+// Guild Chests
+5948|FIRE
+5950|FIRE
+5952|FIRE
+5954|FIRE
+
+// Epoch
+5958|WIND
+
+// Easter Stuff
+5978|FIRE
+5980|WATER
+5982|EARTH
+5984|WATER
+5990|FIRE
+6002|EARTH
+6010|EARTH
+
+// WOTD 2018
+6014|EARTH
+
+// Growscan 9000
+6016|EARTH
+
+// Elements
+6018|EARTH
+6020|FIRE
+6022|WIND
+6024|WATER
+
+// Whip of Truth
+// Ring of Shrinking
+
+// Guitar Notes
+6030|WIND
+6032|WIND
+6034|WIND
+
+// Riding Axolotl
+// Riding Fiesta Axolotl
+// Feather Headdress
+// Fiesta Mariachi Guitar
+
+// CDM Stuff - Guacamoles
+6046|FIRE
+6048|FIRE
+6050|FIRE
+6052|FIRE
+6054|FIRE
+
+// Dark Spirit Board
+6060|EARTH
+
+// Spirit Board
+6062|EARTH
+
+// Spirit Guide
+6064|NONE
+
+// Ghost-Be-Gone
+6066|WIND
+
+// Dumpster
+6068|EARTH
+
+// White Brick Wall
+6070|EARTH
+
+// Fuse Box
+6072|EARTH
+
+// Otherworldly Block
+6074|EARTH
+
+// Otherworldly Warning Light
+6076|WIND
+
+// Boss Goo
+6078|WIND
+
+// Mind-Ghost-In-A-Jar
+6080|WIND
+
+// Ghost Trap
+6082|WIND
+
+// Containment Field Power Node
+6084|WIND
+
+// Neutron Power Glove
+6086|NONE
+
+// White Brick Pilla
+6088|EARTH
+
+// Neutron Focus Core
+6090|WIND
+
+6094|WIND
+
+// Ectojuicer
+6096|WIND
+
+// Bamboo Frame
+6098|EARTH
+
+6100|FIRE
+6102|EARTH
+6104|EARTH
+6114|WIND
+6116|EARTH
+
+// Pineapple Plating
+6118|EARTH
+
+// Growmoji Super Pineapple
+
+6130|WIND
+6132|WIND
+6134|FIRE
+6136|FIRE
+6138|FIRE
+
+// Extract-O-Snap
+6140|WIND
+
+// Extractor Dynamo
+6142|EARTH
+
+// SearBot
+6146|EARTH
+6148|EARTH
+6150|EARTH
+6152|EARTH
+
+// Deathtrap Wall
+6154|EARTH
+
+// Dimension Block
+6156|WIND
+
+// Royal Glit Bathtub
+6158|WATER
+
+// Royal Canopy Bed
+6160|WIND
+
+// Throne
+6162|EARTH
+
+// Banquet Dining Chair
+6164|EARTH
+
+// Banquet Table
+6166|EARTH
+
+// Castle Chandelier
+6168|FIRE
+
+// Iron Torch
+6170|FIRE
+
+// Suit of Armor
+6172|EARTH
+
+// Bear Wall Mount
+6174|EARTH
+
+// Gibbet 
+6176|EARTH
+
+// Castle Door
+6178|EARTH
+
+// Castle Stone
+6180|EARTH
+
+// Castle Stone Background
+6182|EARTH
+
+// Castle Turret
+6184|EARTH
+
+// Castle Sewage Pipe
+6186|EARTH
+
+// Royal Tunics
+6188|NONE
+6190|NONE
+6192|NONE
+
+// Guild Steed
+6194|NONE
+
+// Guild Night Stallion
+6196|NONE
+
+// Summer Token
+// Gold Architect Chest
+// Silver Architect Chest
+// Silver Architect Chest
+
+// Overstuffed Vintage Leather Armchair
+6206|EARTH
+
+// Articulated Reading Lamp
+6208|FIRE
+
+// Castle Moat 
+6210|EARTH
+
+// Surgical Tool Bag
+6212|EARTH
+
+// Holographic Mannequin
+6214|WIND
+
+// Architect Set
+6216|NONE
+6218|NONE
+6220|NONE
+6222|NONE
+
+// Architectural Diagrams
+6224|EARTH
+6226|EARTH
+6228|EARTH
+
+// Flora
+6230|EARTH
+
+// Drafting Table
+6232|EARTH
+
+// Loaded Bookshelf
+6234|EARTH
+
+// Delicate/Pristines/Exquisites
+6236|NONE
+6236|NONE
+6238|NONE
+6240|NONE
+6242|NONE
+6244|NONE
+6246|NONE
+6248|NONE
+6250|NONE
+6252|NONE
+6254|NONE
+6256|NONE
+6258|NONE
+
+// Amulet of Force
+// Glove of the Giants
+
+// Summer Blaster Shirt
+6264|NONE
+
+// ULTRA Summer Blaster Shirt
+6266|NONE
+
+// Summer Blaster Pants
+6268|NONE
+
+// ULTRA Summer Blaster Pants
+6270|NONE
+
+// Growmoji Peace
+6272|EARTH
+6274|EARTH
+6276|EARTH
+6278|EARTH
+
+// Weather Machine - Guild
+6280|WIND
+
+// World Architect
+6282|WATER
+
+// Storage Box Xtreme - Level 1
+6286|EARTH
+
+// Storage Box Xtreme - Level 2
+6288|EARTH
+
+// Storage Box Xtreme - Level 3
+6290|EARTH
+
+// Dumb Checkmark
+// Raptor Legs
+
+// Mirage Platform
+6296|WIND
+
+// Smoog
+6298|NONE
+
+// Dancemaster's Crown
+6300|NONE
+
+// Summer Blaster Glasses
+6302|NONE
+
+// ULTRA Summer Blaster Glasses
+6304|NONE
+
+// Bubble Machine
+6306|WATER
+
+// Beach Ball
+6308|NONE
+
+// Watermelon
+6310|NONE
+
+// Phoenix Sword
+6312|NONE
+
+// Crushed Ice
+6314|WATER
+
+// Deep fried tropical ice cream
+6316|WATER
+
+// Firefin Leash
+6318|NONE
+
+// Flaming floaties
+6320|NONE
+
+// Growmoji Fireworks
+6322|EARTH
+
+// Deck Chair
+6324|EARTH
+
+// Flying disc
+6326|WIND
+
+// Crab Wall Mount
+6328|WATER
+
+// Embers
+6330|FIRE
+
+// Flaming Feathers
+6332|FIRE
+
+// DD Chimera Wings
+6334|NONE
+
+// Growpedia
+6336|EARTH
+
+// Yellow Shirt
+6344|NONE
+
+// Red Shirt
+6346|NONE
+
+// Green Shirt
+6348|NONE
+
+// Phase Blaster
+6350|NONE
+
+// Startopian
+6352|NONE
+6354|NONE
+6356|NONE
+
+// Combat Rifle
+6358|NONE
+
+// Greezak Helmet
+6360|NONE
+
+6362|NONE
+
+// Greezak Horde - Warrior Armor
+6364|NONE
+
+// Greezak Necklace
+6366|NONE
+
+// Shoulder Cannon
+6368|NONE
+
+// Thruster Boots
+6372|NONE
+
+// Startopian shield-blaster
+6382|NONE
+
+// Robot Legs
+6384|NONE
+
+// Starship Floor Tile
+6386|WIND
+
+// Starship Wall
+6388|WIND
+
+// Starship Door
+6390|WIND
+
+// Starship Transporter
+6392|WIND
+
+// Starship Console Panel
+6394|FIRE
+
+// Starship Porthole
+6396|WIND
+
+// Airlock
+6398|WIND
+
+// Starship Deck Ladders
+6400|FIRE
+
+// Looming Triffid
+6402|EARTH
+
+// Xenoid Floor
+6404|FIRE
+
+// Greezak Hive Floor
+6406|EARTH
+
+// Greezak Hive Wall
+6408|EARTH
+
+// Replicator
+6412|FIRE
+
+// Star Tool Droid
+6414|WATER
+
+// Star Fuel
+6416|FIRE
+
+// The Varlaak
+6410|EARTH
+
+// Buckazoid
+6418|WIND
+
+// Imperial Starship Blast
+6420|FIRE
+
+// Stellarix Starship Blast
+6422|FIRE
+
+// Greezak Starship Blast
+6424|FIRE
+
+// Starship Sickbay Bed
+6426|WIND
+
+//Helm/Reactor/Viewscreens
+6428|WIND
+6430|WIND
+6432|WIND
+6434|FIRE
+6436|FIRE
+6438|FIRE
+6440|EARTH
+6442|EARTH
+6444|EARTH
+
+6446|WIND
+6448|WIND
+6450|WIND
+6452|FIRE
+6454|FIRE
+6456|FIRE
+6458|EARTH
+6460|EARTH
+6462|EARTH
+
+6464|WIND
+6466|WIND
+6468|WIND
+6470|FIRE
+6472|FIRE
+6474|FIRE
+6476|EARTH
+6478|EARTH
+6480|EARTH
+
+6482|WIND
+6484|WIND
+6486|WIND
+6488|FIRE
+6490|FIRE
+6492|FIRE
+6494|EARTH
+6496|EARTH
+6498|EARTH
+
+// Bastion
+6500|FIRE
+6502|FIRE
+6504|FIRE
+
+// Vitahope 
+6512|WIND
+6514|WIND
+6516|WIND
+
+// Oracle
+6506|WATER
+6508|WATER
+6510|WATER
+
+// Galactic Goodies
+6518|WIND
+6520|WIND
+6522|WIND
+6524|WIND
+6526|WIND
+6528|WIND
+6530|WIND
+6532|WIND
+6534|WIND
+6536|WIND
+6538|WIND
+6540|WIND
+
+// Starship Floor Grill
+6542|WIND
+
+// Starship Light Wall
+6544|FIRE
+
+// HyperTech Starship Blast
+6666|FIRE
+
+// Field Grass
+6668|EARTH
+
+// World Cup Winner's Jersey
+6676|EARTH
+
+// Megabuckazoid
+6734|WIND
+
+// Hypertech Field
+6748|WIND
+
+// Contact Lenses
+6760|FIRE
+6762|EARTH
+6764|WATER
+6766|WIND
+6768|WATER
+
+// G Well
+6772|WIND
+
+// Hoodies
+6774|NONE
+6776|NONE
+6778|NONE
+
+6780|NONE
+
+6782|NONE
+6784|NONE
+6786|NONE
+
+// Mega Growtoken
+6802|WIND
+
+// Violin
+6808|WIND
+6810|WIND
+6812|WIND
+
+// Gmojis
+6822|EARTH
+6844|EARTH
+
+// Amber Resin
+6838|FIRE
+
+// Amber Necklace
+6844|NONE
+
+// Ring of Nature
+6846|NONE
+
+// Weather Machine - Digital Rain
+6854|WIND
+
+// 3-D Sub
+6856|EARTH
+
+// 14-D Sub
+6858|EARTH
+
+// 35-D Sub
+6860|EARTH
+
+// 365-D Sub
+6862|EARTH
+
+// Gauntlets
+6866|NONE
+6868|NONE
+6870|NONE
+6872|NONE
+6874|NONE
+6876|NONE
+6878|NONE
+
+// Stones
+6880|EARTH
+6882|WIND
+6884|FIRE
+6886|FIRE
+6888|WATER
+6890|EARTH
+
+// Gmoji
+6894|EARTH
+
+// Composer's Cookie
+//6906|
+
+// Skill Spice
+6910|FIRE
+6912|FIRE
+6914|FIRE
+6916|FIRE
+
+// Machines
+6950|EARTH
+6952|EARTH
+6954|EARTH
+
+// Farmer Drops
+6956|EARTH
+6958|EARTH
+6960|EARTH
+6962|EARTH
+6964|EARTH
+6968|EARTH
+
+// Bio-Waste
+6970|EARTH
+6972|FIRE
+6974|EARTH
+6976|FIRE
+6978|FIRE
+6980|EARTH
+6984|WATER
+
+// Primordial
+6986|WATER
+6988|EARTH
+6990|EARTH
+
+// Sea Sponge
+6992|WATER
+
+// Mint
+6998|EARTH
+
+// Sprig of Mint
+7000|EARTH
+
+// Quantum Starfish
+7002|WATER
+
+// Liquid
+7004|WATER
+
+// Space Rock
+7006|FIRE
+
+// Nanoforge
+7008|FIRE
+
+// Starship Crate
+7010|WIND
+
+// Encapsulated Galaxy
+7012|WIND
+
+// Cosmic Spice
+7014|EARTH
+
+// Energy Capsule
+7016|FIRE
+
+// Starship Turbo Fan
+7018|WIND
+
+// Cherry Blossom
+7046|EARTH
+
+// Jade Spikes
+7048|EARTH
+
+// Coconut
+7050|EARTH
+
+// Coconut Water
+7052|WATER
+
+// Coconut Milk
+7054|EARTH
+
+// Coconut Tart
+7056|EARTH
+
+// Purity Mooncake
+7058|WIND
+
+// Growmoji Songpyeon
+7062|EARTH
+
+// Hay Cart
+7096|EARTH
+
+// Vapor Vent
+7116|EARTH
+
+// Tentacle
+7140|EARTH
+
+// Triffid
+7142|NONE
+
+// Tiled Hospital Wall
+7154|FIRE
+
+// Fallen Pillar
+7156|EARTH
+
+// Oil Slick
+7158|FIRE
+
+// Multi-Jet Energy
+7160|WIND
+
+// Hour Glass
+7162|WIND
+
+// Red House Entrance
+7164|EARTH
+
+// Dragon Block
+7176|FIRE
+
+// Carni Ladder
+7178|WIND
+
+// Atomic Gate
+7184|EARTH
+
+// C Time
+7186|EARTH
+
+// Blue Gem Lock
+7188|EARTH
+
+// Storm Cloud
+7202|WIND
+
+// Lunar Crater
+7212|EARTH
+
+// Lyre Notes
+7218|WIND
+
+// Oak Tree
+7224|EARTH
+
+// Winter Foilage
+7226|EARTH
+
+// Galleon's Mast
+7228|WATER
+
+// Winter Hedge
+7230|EARTH
+
+// Sunset Cloud
+7236|WIND
+
+// Sunset Cloud BG
+7238|WIND
+
+// Ratlines
+7240|WATER
+
+// G Hull
+7242|WATER
+
+// G Crow Nest
+7244|WATER
+
+// Weapon Rack
+7248|FIRE
+
+// Tapestry
+7268|WIND
+
+// Peasent Fence
+7270|EARTH
+
+// Nobleman's House
+7272|EARTH
+
+// Rotten Woodland
+7274|EARTH
+
+// Weather Vane
+7282|WIND
+
+// Stables
+7284|EARTH
+
+// Murder Hole
+7286|FIRE
+
+// Siege Barrier
+7288|FIRE
+
+// Royal Carpet
+7290|FIRE
+
+// Guard Tower
+7292|FIRE
+
+// Throne
+7294|WATER
+
+// House Roof
+7320|WIND
+
+// Nobleman House Door
+7322|EARTH
+
+// Stable Roof
+7324|FIRE
+
+// Stable BG
+7326|FIRE
+
+// Medals
+7330|WIND
+7332|WIND
+7334|WIND
+7336|FIRE
+7338|FIRE
+7340|FIRE
+
+// Wagon Base
+7362|EARTH
+7364|EARTH
+7366|WIND
+
+// Monochromatic
+7374|EARTH
+7376|FIRE
+7378|EARTH
+7380|WIND
+
+// Onyx Block
+7382|EARTH
+
+// Stone Slab
+7394|WIND
+
+// Tree Log
+7436|EARTH
+7438|EARTH
+
+// Jelly Blocks
+7440|WATER
+
+// Snow Crust Block
+7444|WATER
+
+// Winterfest Tree
+7446|EARTH
+
+// Winterfest Foliage
+7448|EARTH
+
+// Snowy Rock Platform
+7452|WATER
+
+// Icy Igloo
+7454|WATER
+
+// Winterfest Sign
+7456|EARTH
+
+// Dark Snowy Cave BG
+7458|EARTH
+
+// Nutmeg Block
+7460|EARTH
+
+
+// Eggnog/Pie
+7466|FIRE
+7468|FIRE
+
+// 2018 Calendars
+7476|EARTH
+7478|EARTH
+
+// Galleon's Mast - Crossbeam
+7486|WATER
+
+// Waterslides
+7520|WATER
+7522|WATER
+7524|WATER
+7526|WATER
+7528|WATER
+
+// Balloon Warz Winter Trophies 2018
+7534|EARTH
+7536|EARTH
+7538|EARTH
+7540|EARTH
+7542|EARTH
+7544|EARTH
+7546|EARTH
+7548|EARTH
+7550|EARTH
+7552|EARTH
+7554|EARTH
+7556|EARTH
+
+// Doppel Proj
+7580|EARTH
+
+// Treasure Blast
+7588|EARTH
+
+// Map Frag
+7590|EARTH
+
+// Maps
+7592|NONE
+7594|NONE
+7596|NONE
+7598|NONE
+7600|NONE
+7602|NONE
+7604|NONE
+7606|NONE
+7608|NONE
+7610|NONE
+7612|NONE
+7614|NONE
+7616|NONE
+7618|NONE
+
+// Treasure Primary Blocks
+7620|EARTH
+7622|EARTH
+7624|EARTH
+7626|EARTH
+7628|EARTH
+7630|EARTH
+
+// Treasure Map Rewards
+7632|EARTH
+7638|WATER
+7644|WATER
+
+// Party Update
+7656|WIND
+7658|WIND
+//7662|?
+7664|WATER
+7666|WIND
+7672|FIRE
+
+// Chinese
+7686|WIND
+7688|WIND
+7690|EARTH
+7692|WIND
+7694|FIRE
+
+// Gmoji Token
+7698|WIND
+
+// Dragon Glass
+7702|FIRE
+
+//Toasted Village
+7704|FIRE
+7706|FIRE
+7708|FIRE
+7710|FIRE
+7712|FIRE
+7714|FIRE
+
+// Dragon Blocks
+7738|EARTH
+7740|WIND
+7742|FIRE
+
+// Eggs
+7764|FIRE
+7766|FIRE
+7768|FIRE
+7770|FIRE
+7772|FIRE
+7774|FIRE
+7776|FIRE
+7768|FIRE
+7780|FIRE
+
+// Apprentice
+7786|FIRE
+7788|EARTH
+7790|EARTH
+7792|EARTH
+7794|EARTH
+7796|EARTH
+7798|EARTH
+7800|EARTH
+7802|EARTH
+7804|EARTH
+7806|EARTH
+
+// Heartcastle
+7808|EARTH
+7810|EARTH
+7812|EARTH
+7814|EARTH
+7816|EARTH
+
+//7844|
+
+// Spring Clash
+7846|EARTH
+7848|EARTH
+7850|EARTH
+7852|EARTH
+7854|WIND
+7856|FIRE
+7858|FIRE
+7860|FIRE
+7862|FIRE
+7864|WIND
+7866|EARTH
+7868|EARTH
+7870|FIRE
+7872|WIND
+7874|EARTH
+7876|EARTH
+7878|EARTH
+7880|WIND
+7882|WATER
+7884|WATER
+7886|WIND
+7888|EARTH
+7932|WIND
+7942|WIND
+7948|WIND
+7952|WIND
+
+// Spring Medals
+7964|FIRE
+7966|FIRE
+7968|FIRE
+7970|FIRE
+7972|FIRE
+7974|FIRE
+
+// St Pats 2019
+7978|EARTH
+7980|EARTH
+7982|EARTH
+7984|EARTH
+7986|EARTH
+7988|EARTH
+7990|EARTH
+7992|EARTH
+
+// RB5
+8004|FIRE
+8020|WIND
+8028|WIND
+
+// WOTD 2019
+8034|EARTH
+
+// Easter 2019
+8048|FIRE
+8058|EARTH
+8060|WIND
+8062|EARTH
+8064|EARTH
+8066|EARTH
+8068|EARTH
+
+// Creator Stuff
+8076|WIND
+8078|FIRE
+8080|WATER
+8082|WATER
+8084|FIRE
+8086|FIRE
+8088|WIND
+8090|FIRE
+8092|WATER
+8094|WATER
+8096|FIRE
+8098|FIRE
+8100|WIND
+8102|FIRE
+8104|WATER
+8106|WATER
+8108|FIRE
+8110|FIRE
+8112|WIND
+8114|FIRE
+8116|WATER
+8118|WATER
+8120|FIRE
+8122|FIRE
+8124|WIND
+8126|FIRE
+8128|WATER
+8130|WATER
+8132|FIRE
+8134|FIRE
+8136|WIND
+8138|FIRE
+8140|WATER
+8142|WATER
+8144|FIRE
+8146|FIRE
+8148|WIND
+8150|FIRE
+8152|WATER
+8154|WATER
+8156|FIRE
+8158|FIRE
+8160|WIND
+8162|FIRE
+8164|WATER
+8166|WATER
+8168|FIRE
+8170|FIRE
+8172|WIND
+8174|FIRE
+8176|WATER
+8178|WATER
+8180|FIRE
+8182|FIRE
+
+// April Update
+8196|EARTH
+8198|EARTH
+8200|FIRE
+8202|EARTH
+8204|EARTH
+8206|WIND
+8208|FIRE
+8210|FIRE
+8212|FIRE
+8214|WIND
+8216|EARTH
+8218|EARTH
+8220|WIND
+8222|WIND
+8224|EARTH
+8226|EARTH
+8228|FIRE
+8230|FIRE
+8232|FIRE
+8234|FIRE
+8236|FIRE
+8238|FIRE
+8240|WATER
+8242|WIND
+8244|WIND
+8246|WIND
+8248|WIND
+8250|WIND
+8252|WATER
+8254|EARTH
+8256|WATER
+8258|WATER
+8260|WATER
+8262|FIRE
+8264|FIRE
+8266|FIRE
+8268|FIRE
+8270|EARTH
+8272|WIND
+8274|FIRE
+8276|FIRE
+8278|EARTH
+8280|WATER
+8284|WATER
+
+8300|WATER
+
+// CDM 2019
+8316|EARTH
+8318|EARTH
+8320|EARTH
+8322|EARTH
+8324|EARTH
+8326|EARTH
+8328|EARTH
+
+// Gross-Out
+8330|EARTH
+8332|EARTH
+8334|EARTH
+8336|FIRE
+8338|WIND
+8340|WIND
+8342|EARTH
+8344|FIRE
+8346|FIRE
+8348|WIND
+8376|WATER
+8378|FIRE
+8380|FIRE
+8382|EARTH
+8384|WATER
+8386|WATER
+8388|WATER
+8390|WATER
+8392|WATER
+8394|WIND
+8396|WATER
+8398|WIND
+8400|WATER
+8402|WIND
+8404|WIND
+8406|FIRE
+8408|WATER
+8410|WIND
+8412|WATER
+8414|WIND
+
+// Blocktors
+8466|FIRE
+8470|WIND
+8472|WIND
+8478|EARTH
+8490|WATER
+8500|EARTH
+
+// Pineapple 2019
+8508|EARTH
+8520|EARTH
+8522|FIRE
+8524|FIRE
+8526|EARTH
+8528|EARTH
+
+// Blocktors
+8534|WATER
+8538|WATER
+8540|WATER
+8542|WATER
+8544|WATER
+8546|WATER
+8548|WATER
+8558|WATER
+8560|EARTH
+8562|EARTH
+8564|FIRE
+8566|EARTH
+
+// More Pine
+8568|EARTH
+8570|WIND
+8572|FIRE
+
+// Roots Update (11/07/2019)
+8622|EARTH
+8224|EARTH
+8226|EARTH
+8628|EARTH
+8230|EARTH
+8232|EARTH
+8634|EARTH
+8236|EARTH
+8238|EARTH
+8640|EARTH
+8242|EARTH
+8244|EARTH
+8646|EARTH
+8248|EARTH
+8250|EARTH
+8652|EARTH
+8254|EARTH
+8256|EARTH
+8658|EARTH
+8260|EARTH
+8262|EARTH
+8664|EARTH
+8266|EARTH
+8268|EARTH
+8670|EARTH
+8272|EARTH
+8274|EARTH
+8676|EARTH
+8278|EARTH
+8280|EARTH
+8682|WIND
+8284|EARTH
+8286|EARTH
+8688|EARTH
+8290|EARTH
+8292|EARTH
+8694|EARTH
+8296|EARTH
+8298|EARTH
+8700|EARTH
+8702|EARTH
+8704|EARTH
+8706|EARTH
+8708|EARTH
+8710|EARTH
+8712|EARTH
+8714|EARTH
+8716|EARTH
+8738|WIND
+8740|EARTH
+8742|EARTH
+8744|EARTH
+8746|EARTH
+8748|EARTH
+8750|EARTH
+8752|EARTH
+8754|EARTH
+8756|EARTH
+8758|EARTH
+8760|EARTH
+8762|EARTH
+8764|EARTH
+8766|EARTH
+8768|EARTH
+8770|EARTH
+8772|EARTH
+
+// Mutant Kitchen
+8794|FIRE
+8796|FIRE
+8798|FIRE
+8800|WATER
+8802|WATER
+8004|EARTH
+8806|EARTH
+8808|EARTH
+8810|FIRE
+
+// PAW 2019
+8824|FIRE
+8826|FIRE
+8828|FIRE
+8832|WATER
+8836|FIRE
+8878|EARTH
+8896|FIRE
+
+// Harvest Fest
+8926|EARTH
+8928|EARTH
+8930|EARTH
+8932|EARTH
+8934|EARTH
+8936|EARTH
+8938|EARTH
+
+// Time Tossed
+8964|WATER
+8966|WATER
+8968|EARTH
+8970|EARTH
+8980|EARTH
+8882|EARTH
+8940|EARTH
+8984|FIRE
+8986|FIRE
+8988|WIND
+8990|EARTH
+8992|EARTH
+8994|EARTH
+
+// Anubis Mask
+8996|NONE
+
+// Anubis Seal
+8998|NONE
+
+// Anubis Mail
+9000|NONE
+
+// Anubis Greaves
+9002|NONE
+
+// Anubis Boots
+9004|NONE
+
+// Spirit of Anubis
+9006|NONE
+
+// Cursed Spirit Pendant - Red
+9008|NONE
+
+// Cursed Spirit Pendant - Green
+9010|NONE
+
+// Cursed Spirit Pendant - Purple
+9012|NONE
+
+// Cursed Spirit Pendant - Blue
+9014|NONE
+
+// Superfly Hat
+9016|NONE
+
+// Dark Ticket
+9018|AIR
+
+// Sacrificial Well
+9020|WATER
+
+// Ultimate Corruption Altar
+9022|FIRE
+
+// Bone Fence
+9024|EARTH
+
+// Bone Checkpoint
+9026|AIR
+
+// Bone Platform
+9028|EARTH
+
+// Spooky Bunting
+9030|EARTH
+
+// Scythe of the Underworld
+9032|NONE
+
+// Tarantula Legs
+9034|NONE
+
+// Horns of Growganoth
+9036|NONE
+
+// Supernaturally Speedy Black High Heels
+9038|NONE
+
+// Spooky Bed
+9040|AIR
+
+// Creepy Caged Doll
+9042|AIR
+
+// Demon Cow Cube
+9044|FIRE
+
+// Eldritch Flame Wall Torch
+9046|FIRE
+
+// Dark Fairy Pendant
+9048|NONE
+
+// Totally Harmless Doll Head
+9050|NONE
+
+// Totally Harmless Doll Shirt
+9052|NONE
+
+// Totally Harmless Doll Pants
+9054|NONE
+
+// Demon Night Stallion
+9056|NONE
+
+// Cursed Katana
+9058|NONE
+
+// Hilarious Honker
+9060|NONE
+
+// Chimera's Call
+9062|NONE
+
+// Rainbow Crystal Cloak
+9064|NONE
+
+// Claw Of Growganoth
+9066|NONE
+
+// Nano Nurse Bot
+9068|NONE
+
+// Battle Boots
+9070|NONE
+
+// Alpha's Shawl
+9072|NONE
+
+// Mega-Hooky Vest
+9074|NONE
+
+// Superb Chef's Super Spatula
+9076|NONE
+
+// Slippery Chemical Coat
+9078|NONE
+
+// Uranium Chair
+9080|EARTH
+
+// Rocket-Powered Warhammer
+9082|NONE
+
+// Tainted Cheese
+9084|NONE
+
+// Friendship Dragon Claw
+9086|NONE
+
+// Spectral Mantle
+9088|NONE
+
+// Challenge Ledger
+9090|EARTH
+
+// Captain's Log
+9092|NONE
+
+// Dark Doctor's Cloak
+9094|NONE
+
+// Loot Detector
+9096|NONE
+
+// Ghostking's Command
+9098|NONE
+
+// Guild Challenge Crown
+9100|NONE
+
+// Cooking Recipe - Putrid Gas Filled Blood Maggot Crepes
+9102|AIR
+
+// Cooking Recipe - Alien Bloodied Brains Strudel
+9104|AIR
+
+// Cooking Recipe - Rotting Fish Guts Club Sandwich
+9106|AIR
+
+// Cooking Recipe - Festering Urchin & Poop Pie
+9108|AIR
+
+// Dumb Tomb of Growganoth
+9110|FIRE
+
+// Dumb Tomb of Growganoth Claimed
+9112|FIRE
+
+// Nightmare Teeny Devil Wings
+9114|NONE
+
+// Red Laser Scimitar
+9116|NONE
+
+// Green Laser Scimitar
+9118|NONE
+
+// Blue Laser Scimitar
+9120|NONE
+
+// Purple Laser Scimitar
+9122|NONE
+
+// Wolfy Tank Top
+9124|NONE
+
+// Dinner Bell
+9126|FIRE
+
+// Hay Chair
+9128|EARTH
+
+// Thanksgiving Frame
+9130|EARTH
+
+// Turkey Hat
+9132|NONE
+
+// Riding Bell
+9134|NONE
+
+// Dueling Star Fighter - Rebel Raider
+9136|NONE
+
+// Dueling Star Fighter - Imperial Enforcer
+9138|NONE
+
+// Rebel Raider Droid
+9140|AIR
+
+// Imperial Enforcer Droid
+9142|AIR
+
+// Defiant Jester's Mask
+9144|NONE
+
+// Transmutabooth
+9170|AIR
+
+// Armored WinterBot - Back
+9172|NONE
+
+// Armored WinterBot - Feet
+9174|NONE
+
+// Armored WinterBot - Fists
+9176|NONE
+
+// Armored WinterBot - Mail
+9178|NONE
+
+// Armored WinterBot - Greaves
+9180|NONE
+
+// Frosty Wings
+9182|NONE
+
+// Riding Eagle Owl
+9184|NONE
+
+// Royal Winter Seal
+9186|AIR
+
+// Elf Hoodie
+9188|NONE
+
+// Cloak of Fire and Ice
+9190|NONE
+
+// Yeti Leash
+9192|NONE
+
+// Hammer Of Winter
+9194|NONE
+
+// Ice Throne of Winter
+9196|EARTH
+
+// Winterfest Checkpoint
+9198|AIR
+
+// Ice Sculptures
+9200|EARTH
+
+// Snowtopian
+9202|EARTH
+
+// Decorative Propane
+9204|FIRE
+
+// Tacky Holiday Hair
+9206|NONE
+
+// Cute Riding Polar Bear
+9208|NONE
+
+// Winter Radiance Aura
+9210|NONE
+
+// Ancestral Orb of Time : Level 6
+9212|NONE
+
+// Legendary Clash Key & Finale Ticket
+9214|EARTH
+
+// Winter Clash Finale Ticket
+9216|AIR
+
+// Legendary Clash Key & Finale Ticket
+9218|EARTH
+
+// Spring Clash Finale Ticket
+9220|AIR
+
+// Dumb Pass Icon
+9222|AIR
+
+// Winterfest Calendar - 2019
+9224|EARTH
+
+// Used Winterfest Calendar - 2019
+9226|EARTH
+
+// Dummy Item for VIP Effect
+9228|FIRE
+
+// Dummy Transmutation Icon
+9230|FIRE
+
+// Dummy Transmutation Temp Icon
+9232|FIRE
+
+// Balloon Target
+9234|AIR
+
+// Ancient Shards
+9236|NONE
+
+// Flower Pot
+9238|NONE
+
+// Coin: 7th Anniversary Block
+9240|AIR
+
+// Rave Haze Light
+9242|FIRE
+
+// Rave Hall Wall
+9244|FIRE
+
+// Rave Hall Floor
+9246|FIRE
+
+// Rave Stage
+9248|FIRE
+
+// Superstar Shades
+9250|NONE
+
+// Confetti Rocket Shoes
+9252|NONE
+
+// Euphoric Dragon
+9254|NONE
+
+// Party Bubble Blaster
+9256|NONE
+
+// Raver Hoodie
+9258|NONE
+
+// Raver Pants
+9260|NONE
+
+// Raver Hair
+9262|NONE
+
+// Anniversary Skyrocket
+9264|FIRE
+
+// 1-Day Free Subscription Token
+9266|EARTH
+
+// DigiVend Machine
+9268|AIR
+
+// Vending Hub - Checkout Counter
+9270|AIR
+
+// Draconic Claw
+9272|NONE
+
+// Black Friday 2019 Cart - Bronze
+9274|AIR
+
+// Black Friday 2019 Cart - Silver
+9276|AIR
+
+// Black Friday 2019 Cart - Gold
+9278|AIR
+
+// Jin Chan Leash
+9280|NONE
+
+// Huli Jing Scarf
+9282|NONE
+
+// Year of The Rat Statue
+9284|FIRE
+
+// Lucky Fortune Cookie
+9286|EARTH
+
+// Year of the Rat Lucky Token
+9288|EARTH
+
+// Red Coin Wallpaper
+9290|EARTH
+
+// Year of the Rat Mask
+9292|NONE
+
+// Emperor's Jacket
+9294|NONE
+
+// Dummy Item for Checkout Counter Dialog
+9296|FIRE
+
+// WOTD Trophy 2020
+9298|EARTH
+
+// Euphoric Dragon Egg
+9300|FIRE
+
+// Hatching Euphoric Dragon Egg
+9302|FIRE
+
+// Brutal Hand Fans
+9304|NONE
+
+// Lovewillow
+9306|EARTH
+
+// Lovewillow's Lace
+9308|EARTH
+
+// Surgical Love Mallet
+9310|FIRE
+
+// Love Lips
+9312|NONE
+
+// Charmer Smile
+9314|NONE
+
+// Beefy Biceps
+9316|NONE
+
+// Snuggly Kitty Scarf
+9318|NONE
+
+// Cloud Nine Cape
+9320|NONE
+
+// Golden Sunset Cape
+9322|NONE
+
+// Heartthrob Helm
+9324|NONE
+
+// Golden Heartthrob Helm
+9326|NONE
+
+// Lovely Dinner Light
+9328|FIRE
+
+// Romantic Bushes
+9330|EARTH
+
+// Dating Dandy's Suit
+9332|NONE
+
+// Dating Dandy's Hair
+9334|NONE
+
+// Dating Vixen's Dress
+9336|NONE
+
+// Dating Vixen's Hair
+9338|NONE
+
+// Datemaster's Rose
+9340|NONE
+
+// Datemaster's Bling
+9342|NONE
+
+// Datemaster's Heart Locket
+9344|NONE
+
+// Angelic Counting Cloud
+9346|AIR
+
+// Medusa's Crown
+9348|NONE
+
+// Super Golden Booty Chest
+9350|FIRE
+
+// Pink Teeny Angel Wings
+9352|NONE
+
+// Walking Cane
+9354|NONE
+
+// Magic Stones
+9356|NONE
+
+// Rune Carved Door
+9358|EARTH
+
+// Armored Riding Troll
+9360|NONE
+
+// Dwarven Beard
+9362|NONE
+
+// Dwarven Mining Helm
+9364|NONE
+
+// Shield of Mining
+9366|NONE
+
+// Mining Explosives
+9368|WATER
+
+// Strange Eyes
+9370|NONE
+
+// Mining Pauldrons
+9372|NONE
+
+// Mining Chestplate
+9374|NONE
+
+// Mining Mech
+9376|NONE
+
+// Lightning Gauntlets
+9378|NONE
+
+// Magic Infused Stone
+9380|EARTH
+
+// Magic Infused Stone Background
+9382|EARTH
+
+// Magic Infused Vein
+9384|EARTH
+
+// Pure Magic Ore
+9386|EARTH
+
+// Dwarven Wall
+9388|EARTH
+
+// Dwarven Background
+9390|EARTH
+
+// Dwarven Column
+9392|EARTH
+
+// Balrog Wings
+9394|NONE
+
+// Balrog's Tail
+9396|NONE
+
+// Angelic Heart Cloud
+9398|AIR
+
+// Magic Ore
+9400|EARTH
+
+// Magic Ingot
+9402|EARTH
+
+// Magic Armor Plate
+9404|EARTH
+
+// Magic Armor Plate Design
+9406|AIR
+
+// Galaxy Aura
+9408|NONE
+
+// Radiant Doom Staff
+9410|NONE
+
+// Increase Backpack
+9412|WATER
+
+// Shamrock Shades
+9414|NONE
+
+// Irish Top Hat
+9416|NONE
+
+// Green Trenchcoat
+9418|NONE
+
+// Slithering Slippers
+9420|NONE
+
+// Shamrock Wings
+9422|NONE
+
+// Giant Falling Shamrock
+9424|NONE
+
+// Dala Horsie
+9426|NONE
+
+// Money Aura
+9428|NONE
+
+// Pooka Hood
+9430|NONE
+
+// King Cobra Chair
+9432|EARTH
+
+// Mobility Scooter
+9434|NONE
+
+// Dumb Glory
+9436|WATER
+
+// Dumb Gem
+9438|WATER
+
+// Basket Chair
+9440|EARTH
+
+// Chick Tricycle
+9442|NONE
+
+// Nest Hat
+9444|NONE
+
+// Egg Champion Cape
+9446|NONE
+
+// Egg Ammo Belt
+9448|NONE
+
+// Hot Cross Bun Launcher
+9450|NONE
+
+// Loafers
+9452|NONE
+
+// Carrot on a Stick
+9454|NONE
+
+// Chocolate Easter Bilby
+9456|FIRE
+
+// Egg Wreath
+9458|EARTH
+
+// Easter Egg - Dark
+9460|EARTH
+
+// Boastful Brawler Hair
+9462|NONE
+
+// Powerful Ponytail Hair
+9464|NONE
+
+// GrowShow TV
+9466|AIR
+
+// Cooking Recipe - Chocolate Easter Bilby
+9468|NONE
+
+// Wacky Rocket Sled
+9470|NONE
+
+// Dumb Mentor Title
+9472|EARTH
+
+// Dumb Player Tribute
+9474|EARTH
+
+// Dumb Meet the DEVS
+9476|EARTH
+
+// Chilled Smile Mask
+9478|NONE
+
+// Pastel Checkered Wallpaper
+9480|FIRE
+
+// Pastel Bunny Block
+9482|FIRE
+
+// Pastel Mondrian Block
+9484|FIRE
+
+// Pastel Bricks
+9486|FIRE
+
+// Doomsday Warhammer
+9606|NONE
+
+// Chip-and-Dip
+9608|NONE
+
+// Mexican Hot Sauce Rocket Pack
+9610|NONE
+
+// Mexican Pointy Boots
+9612|NONE
+
+// Burrito Broncho Chair
+9614|EARTH
+
+// Block De Mayo Block
+9616|AIR
+
+// Bongo Drum
+9618|NONE
+
+// Trumpet
+9620|NONE
+
+// Llama Lights
+9622|EARTH
+
+// Fiesta Block
+9624|FIRE
+
+// Fiesta Wallpaper
+9626|EARTH
+
+// Mariachi Bobble Head
+9628|FIRE
+
+// Mexican Spinning Top
+9630|AIR
+
+// Chichen-Itza Shirt
+9632|NONE
+
+// Chichen-Itza Hat
+9634|NONE
+
+// My First World Lock
+9640|WATER
+
+// Rose Hairpin
+9642|NONE
+
+// Surgery Gatcha
+9644|EARTH
+
+// Locked and Loaded Gatcha
+9646|EARTH
+
+// Go Anywhere Surfboard
+9648|NONE
+
+// Pineapple Plough
+9650|NONE
+
+// Pineapple Robes
+9652|NONE
+
+// Pineapple Superhero
+9654|NONE
+
+// Pineapple Coronet
+9656|NONE
+
+// Stone Pineapple
+9658|EARTH
+
+// Pineapple Headphones
+9660|NONE
+
+// Pineapple Door
+9662|EARTH
+
+// Pineapple Pennant
+9664|EARTH
+
+// Pineapple Lamp
+9666|FIRE
+
+// Pineapple Wallpaper
+9668|EARTH
+
+// Pineapple Boardshorts
+9670|NONE
+
+// Pineapple Trooper Helmet
+9672|NONE
+
+// Mature Pineapple Roots
+9674|EARTH
+
+// Mature Super Pineapple Roots
+9676|EARTH
+
+// Mature Rotten Pineapple Roots
+9678|EARTH
+
+// Pineapple Gift Box
+9680|EARTH
+
+// Pineapple Root Cutting
+9682|EARTH
+
+// Super Pineapple Root Cutting
+9684|EARTH
+
+// Dangerous Pineapple Root Cutting
+9686|EARTH
+
+// Moon Lamp
+9688|FIRE
+
+// Crystalized Star Fragment Block
+9690|EARTH
+
+// Exo Suit Helmet
+9692|NONE
+
+// Exo Suit Body
+9694|NONE
+
+// Exo Suit Pants
+9696|NONE
+
+// Arm Blaster
+9698|NONE
+
+// Decayed Statue Block
+9700|EARTH
+
+// Escapee's Collar
+9702|NONE
+
+// Hikers Dressing Gown
+9704|NONE
+
+// Space Opera Mask
+9706|NONE
+
+// Space Junk Block
+9708|EARTH
+
+// Space Tattoo
+9710|NONE
+
+// Crystal Aura
+9712|NONE
+
+// My Pet Sputnik
+9714|NONE
+
+// Crystal Infused Sword
+9716|NONE
+
+// Space Dirt
+9718|EARTH
+
+// Space Junk Dirt
+9720|EARTH
+
+// Space Dirt Background
+9722|EARTH
+
+// Space Junk Background
+9724|EARTH
+
+// Dark Watcher's Mask
+9728|NONE
+
+// Phoenix Scarf
+9730|NONE
+
+// Greg, The Octopus
+9732|NONE
+
+// Starfish Leash
+9734|NONE
+
+// Floatie Crown
+9736|NONE
+
+// Staff of the Deep
+9738|NONE
+
+// Summer Checkpoint
+9740|AIR
+
+// Flamingo Wings
+9742|NONE
+
+// Fruity Trousers
+9744|NONE
+
+// Clownfish Shirt
+9746|NONE
+
+// Life Ring
+9748|AIR
+
+// Friendly Coconut
+9750|AIR
+
+// Message in a Bottle
+9752|WATER
+
+// Inflatable Dolphin
+9754|EARTH
+
+// Hammock
+9756|AIR
+
+// Neptune's Trident
+9758|NONE
+
+// Pegasus Wings
+9760|NONE
+
+// Silver 100K Milestone Plaque
+9762|FIRE
+
+// Golden 100K Milestone Plaque
+9764|FIRE
+
+// Super Summer Surprise
+10004|FIRE
+
+// Cow Mask
+10006|NONE
+
+// Legendary Clash Key - Series 3
+10008|EARTH
+
+// Rollback Plaque VI
+10010|FIRE
+
+// Rollback Plaque VII
+10022|WATER
+
+// Troll Mask
+10024|NONE
+
+// Axolotl Scarf
+10026|NONE
+
+// Axolotl Hood
+10028|NONE
+
+// Axolotl Onesie
+10030|NONE
+
+// Axolotl Slippers
+10032|NONE
+
+// Axolotl Hoodie
+10034|NONE
+
+// Waist Tied Sweater - Green
+10036|NONE
+
+// Waist Tied Sweater - Red
+10038|NONE
+
+// Waist Tied Sweater - Blue
+10040|NONE
+
+// Waist Tied Sweater - Yellow
+10042|NONE
+
+// Golem's Gift
+10044|NONE
+
+// Growboy
+10046|NONE
+
+// Tactical Stealth Espionage Device
+10048|NONE
+
+// Really Dangerous Pet Llama
+10050|NONE
+
+// Eldritch Crossbow
+10052|NONE
+
+// Zodiac Wings
+10054|NONE
+
+// Ghost Block
+10056|AIR
+
+// Infinity Weather Machine
+10058|AIR
+
+// Creepy Baby Gate
+10060|FIRE
+
+// Console Appreciation Plaque
+10062|FIRE
+
+// Capuchin Leash
+10064|NONE
+
+// Riding Gorilla
+10066|NONE
+
+// Pet Sock
+10068|NONE
+
+// Buffalo Leash
+10070|NONE
+
+// OMG Mannequin
+10072|EARTH
+
+// SAD Mannequin
+10074|EARTH
+
+// LOL Mannequin
+10076|EARTH
+
+// TROLL Mannequin
+10078|EARTH
+
+// Tied-up Buns
+10080|NONE
+
+// Tousled Hair
+10082|NONE
+
+// Anime Male Hair
+10084|NONE
+
+// Anime Female Hair
+10086|NONE
+
+// Long Nose
+10088|NONE
+
+// Handlebar Mustache
+10090|NONE
+
+// Big Chin
+10092|NONE
+
+// Puppy Dog Eyes
+10094|NONE
+
+// Rosy Cheeks
+10096|NONE
+
+// Walrus Mustache
+10098|NONE
+
+// Showman's Mustache
+10100|NONE
+
+// Golden Cuff Beard
+10102|NONE
+
+// Omegalul
+10104|NONE
+
+// Growmoji Wow Mask
+10106|NONE
+
+// Growmoji Lol Mask
+10108|NONE
+
+// Growmoji Cool Shades Mask
+10110|NONE
+
+// Growmoji Sick Mask
+10112|NONE
+
+// Growmoji Eyes
+10114|EARTH
+
+// Growmoji Weary
+10116|EARTH
+
+// Mechanical Butler
+10128|NONE
+
+// Sun Shooter Bow
+10130|NONE
+
+// Yin Yang Pendant
+10132|NONE
+
+// Peace Mooncake Hat
+10134|NONE
+
+// Longevity Mooncake Hat
+10136|NONE
+
+// Prosperity Mooncake Hat
+10138|NONE
+
+// Balance Mooncake Hat
+10140|NONE
+
+// Mooncake Shoes
+10142|NONE
+
+// Moon Watcher Mask
+10144|NONE
+
+// Harmony Mooncake Hat
+10146|NONE
+
+// Harvest Shawl
+10148|NONE
+
+// Purity Mooncake Hat
+10150|NONE
+
+// Mystic Record Player
+10152|WATER
+
+// Lotus Lamp
+10154|FIRE
+
+// Jade Brick Background
+10156|FIRE
+
+// Mooncake Magnificence
+10158|NONE
+
+// Owl Mask
+10160|NONE
+
+// Owl Suit
+10162|NONE
+
+// Ancestor Mooncake Hat
+10164|NONE
+
+// Haunted Jack O' Lantern
+10166|NONE
+
+// Bling Wings
+10168|NONE
+
+// Aqua Wings
+10170|NONE
+
+// Neon Wings
+10172|NONE
+
+// Raccoon Hat
+10174|NONE
+
+// Growtopia Fried Wings
+10178|NONE
+
+// Party Plume Wings
+10180|NONE
+
+// Musical Wings
+10182|NONE
+
+// Dark Sunset Cape
+10184|NONE
+
+// Darkest Skull Parasol
+10186|NONE
+
+// Ghoulish Wings
+10188|NONE
+
+// Spooky Display Shelf
+10190|EARTH
+
+// Haunted Portrait
+10192|WATER
+
+// Shady Sales Shades
+10194|NONE
+
+// Twisted Windows
+10196|AIR
+
+// Twisted Roof
+10198|AIR
+
+// Twisted Wood Planks
+10200|EARTH
+
+// Twisted Mansion Door
+10202|EARTH
+
+// Creepy Baby Suit
+10204|NONE
+
+// Demogorgon Mask
+10206|NONE
+
+// Morbid Hand
+10208|AIR
+
+// Cloak of Equilibrium
+10210|NONE
+
+// Infested Hair
+10212|NONE
+
+// Lost Startopian Helmet
+10214|NONE
+
+// Frankenstein's Monster Mask
+10216|NONE
+
+// Trawlerman's Friend
+10218|WATER
+
+// Fossilized Spirit Block
+10220|AIR
+
+// Druid's Crown
+10222|NONE
+
+// Druid's Mask
+10224|NONE
+
+// Druid's Robes
+10226|NONE
+
+// Mooncake Bundle
+10228|EARTH
+
+// Cyber Punk Mask
+10230|NONE
+
+// Reanimated Howly Hat
+10232|NONE
+
+// Twisted Wooden Block
+10234|AIR
+
+// Zombie Horse
+10236|NONE
+
+// Superpower - Defeated
+10238|FIRE
+
+// Fluff
+10240|EARTH
+
+// Brim
+10242|EARTH
+
+// Frosting
+10244|EARTH
+
+// Celestial Dragon Charm
+10246|NONE
+
+// Riding RV
+10248|NONE
+
+// Ultra Sportsball Bat
+10250|NONE
+
+// American Sports Ball Jersey
+10252|NONE
+
+// Dining Table
+10254|AIR
+
+// Presidential Beard
+10256|NONE
+
+// Pigeon
+10258|AIR
+
+// All You Can Eat Bib
+10260|NONE
+
+// Thanksgiving Dinner Fishing Rod
+10262|NONE
+
+// Turkey Fish
+10264|WATER
+
+// Sweet Potato
+10268|EARTH
+
+// Sweet Potato Tots
+10270|EARTH
+
+// Sweet Potato Mash
+10272|FIRE
+
+// Crown of Enlightenment
+10274|NONE
+
+// Dress of Enlightenment
+10276|NONE
+
+// Torch of Enlightenment
+10278|NONE
+
+// Eagle Statue
+10280|FIRE
+
+// Presidential Wig
+10282|NONE
+
+// Burger Suit
+10284|NONE
+
+// Weather Machine - Celebrity Hills
+10286|FIRE
+
+// JackBowe's Koala
+10288|NONE
+
+// Turkey Sucker
+10292|NONE
+
+// Organic Turkey
+10294|FIRE
+
+// Neon Oni Mask
+10296|NONE
+
+// Thanksgiving Turkey Dinner - Bronze
+10298|FIRE
+
+// Thanksgiving Turkey Dinner - Silver
+10300|FIRE
+
+// Thanksgiving Turkey Dinner - Gold
+10302|FIRE
+
+// Black Friday Cart - Bronze
+10304|AIR
+
+// Black Friday Cart - Silver
+10306|AIR
+
+// Black Friday Cart - Gold
+10308|AIR
+
+// Cyber Monday Tablet - Bronze
+10310|EARTH
+
+// Cyber Monday Tablet - Silver
+10312|EARTH
+
+// Cyber Monday Tablet - Gold
+10314|EARTH
+
+// Spooky Window
+10316|AIR
+
+// Turkey Feather
+10318|EARTH
+
+// Organic Turkey Feather
+10320|EARTH
+
+// Spooky Rags
+10322|EARTH
+
+// Spooky Box
+10324|EARTH
+
+// Spooky Gift
+10326|EARTH
+
+// Dark King's Offering
+10328|EARTH
+
+// Shadow Crown
+10330|NONE
+
+// Matrix Aura
+10332|NONE
+
+// Black Balrog's Tail
+10334|NONE
+
+// Black Burning Eyes
+10336|NONE
+
+// Black Egg Champion Cape
+10338|NONE
+
+// Tie Dye Hoodie
+10340|NONE
+
+// Black Neon Hightops
+10342|NONE
+
+// Vortex Shirt
+10344|NONE
+
+// Slouch Beanie
+10346|NONE
+
+// Gradient Trenchcoat
+10348|NONE
+
+// Gift of Growganoth
+10386|EARTH
+
+// Swordfish Sword
+10388|NONE
+
+// Jet Ski Chariot
+10390|NONE
+
+// Water Gun Hat
+10392|NONE
+
+// Cashback Coupon
+10394|EARTH
+
+// Black Friday Black Box
+10396|EARTH
+
+// Christmas Tree Sword
+10402|NONE
+
+// Sledding Penguin
+10404|NONE
+
+// Staff of Deepest Winter
+10406|NONE
+
+// Krampus Crampons
+10408|NONE
+
+// Legendary Lock
+10410|AIR
+
+// Diamond Dust
+10412|NONE
+
+// Sleepy Santa Hat
+10414|NONE
+
+// Light Up Antlers
+10416|NONE
+
+// Growch's Nose
+10418|NONE
+
+// Light Up Pants
+10420|NONE
+
+// Nick's Belly
+10422|NONE
+
+// Rift Cape
+10424|NONE
+
+// Mystic Snow Fox
+10426|NONE
+
+// Water Balloon Bandolier
+10428|NONE
+
+// Team Tied Jersey - Punch
+10430|NONE
+
+// Team Tied Jersey - Grow
+10432|NONE
+
+// Team Tied Jersey - Build
+10434|NONE
+
+// Dungarees
+10436|NONE
+
+// Snow Leopard Shawl
+10438|NONE
+
+// Winter Swept Hair
+10440|NONE
+
+// Winter Light Launcher
+10442|NONE
+
+// Gavle Goat
+10444|FIRE
+
+// Winterfest Calendar - 2020
+10446|EARTH
+
+// Used Winterfest Calendar - 2020
+10448|EARTH
+
+// Diamond Builders Bonanza
+10450|EARTH
+
+// Used Diamond Builders Bonanza
+10452|EARTH
+
+// Diamond Dog
+10454|NONE
+
+// Mystic Transform Crystal
+10456|FIRE
+
+// Diamond Brick Background
+10458|EARTH
+
+// Message in a Diamond Bottle
+10460|WATER
+
+// Diamond Pineapple
+10462|EARTH
+
+// Diamond Life Ring
+10464|AIR
+
+// Diamond Castle Stone
+10466|EARTH
+
+// Diamond Castle Stone Background
+10468|EARTH
+
+// Diamond Castle Turret
+10470|EARTH
+
+// Diamond Manor House
+10472|EARTH
+
+// Diamond Manor House Background
+10474|EARTH
+
+// Diamond Regal Stairs
+10476|FIRE
+
+// Diamond Regal Bannister
+10478|FIRE
+
+// Diamond Fiesta Block
+10480|FIRE
+
+// Diamond Dolphin
+10482|EARTH
+
+// Diamond Mondrian Block
+10484|FIRE
+
+// Snowy Tree Block
+10486|FIRE
+
+// Snowy Fence
+10488|EARTH
+
+// Ultra Performance Enhancing Hot Cocoa
+10490|AIR
+
+// Radical Rollers
+10492|NONE
+
+// Walktopian
+10494|NONE
+
+// Crown of the Cosmos
+10496|NONE
+
+// Candy Cane Scythe
+10498|NONE
+
+// Snow Aura
+10500|NONE
+
+// Neon Tree Aura
+10502|NONE
+
+// Zamgrowni
+10504|NONE
+
+// Spruce Goose
+10506|NONE
+
+// Winterfest Lantern
+10508|FIRE
+
+// Gingerbread Sweater
+10510|NONE
+
+// Giant Red Bow
+10512|FIRE
+
+// Open Present Block
+10514|FIRE
+
+// Giant Festival Lantern
+10516|FIRE
+
+// Windup Musical Box
+10518|WATER
+
+// Gingerbread Man Onesie
+10520|NONE
+
+// Gingerbread Man Mask
+10522|NONE
+
+// Winter Colonel Beard
+10524|NONE
+
+// Electric Guitar
+10526|NONE
+
+// Sheet Music: Electric Guitar
+10528|AIR
+
+// Sheet Music: Sharp Electric Guitar
+10530|AIR
+
+// Sheet Music: Flat Electric Guitar
+10532|AIR
+
+// Confetti Jump Pack
+10534|NONE
+
+// Special Winter Wish
+10536|EARTH
+
+// Winter Wish
+10538|EARTH
+
+// Winter Wish Wand
+10540|EARTH
+
+// Playful Pitchfork
+10542|NONE
+
+// 8th Anniversary Block
+10544|AIR
+
+// Roobux Cube
+10546|AIR
+
+// Retro Jacket
+10548|NONE
+
+// Retro Leg Warmers
+10550|NONE
+
+// Black Display Shelf
+10552|EARTH
+
+// Retro Tape Block
+10554|EARTH
+
+// Retro Record Block
+10556|EARTH
+
+// Retro Pattern Block
+10558|EARTH
+
+// Retro Pattern Background
+10560|EARTH
+
+// Rainbow Tutu
+10562|NONE
+
+// White Suit Jacket
+10564|NONE
+
+// Tetra T-Shirt
+10566|NONE
+
+// Retro Computer
+10568|AIR
+
+// Rave Safe Mask
+10570|NONE
+
+// Rollback Plaque VIII
+10572|WATER
+
+// WOTD Trophy 2021
+10574|EARTH
+
+// Draconic Soul Aura
+10576|NONE
+
+// Mystic Battle Lance
+10578|NONE
+
+// Year of the Ox Mask
+10580|NONE
+
+// Year of The Ox Statue
+10582|FIRE
+
+// Dynasty Vase
+10584|EARTH
+
+// Oxen Battle Helm
+10586|NONE
+
+// Oxen Battle Shirt
+10588|NONE
+
+// Oxen Battle Pants
+10590|NONE
+
+// Oxen Battle Boots
+10592|NONE
+
+// Golden Ox Pendant
+10594|NONE
+
+// Great Wall of Growtopia
+10596|WATER
+
+// Terracotta Growtopian
+10598|EARTH
+
+// 2014 - Zodiac Year of the Horse
+10600|NONE
+
+// 2015 - Zodiac Year of the Goat
+10602|NONE
+
+// 2016 - Zodiac Year of the Monkey
+10604|NONE
+
+// 2017 - Zodiac Year of the Rooster
+10606|NONE
+
+// 2018 - Zodiac Year of the Dog
+10608|NONE
+
+// 2019 - Zodiac Year of the Pig
+10610|NONE
+
+// 2020 - Zodiac Year of the Rat
+10612|NONE
+
+// 2021 - Zodiac Year of the Ox
+10614|NONE
+
+// Year of the Ox Lucky Token
+10616|EARTH
+
+// Perilous Pirate Ship
+10618|NONE
+
+// Magical Captain's Compass
+10620|FIRE
+
+// Stylish Draped Trench Coat
+10622|NONE
+
+// King of Hearts
+10624|NONE
+
+// Rose Rifle
+10626|NONE
+
+// Date
+10628|WATER
+
+// Love Lawn
+10630|EARTH
+
+// Silk Scarf
+10632|NONE
+
+// Golden Silk Scarf
+10634|NONE
+
+// Heart Wallpaper
+10636|AIR
+
+// Love Eyes
+10638|NONE
+
+// Heart Antennae Headband
+10640|NONE
+
+// Eternal Rose
+10642|EARTH
+
+// Golden Heart Aura
+10644|NONE
+
+// Love Ladder
+10646|AIR
+
+// Pink Teddy Suit
+10648|NONE
+
+// Pink Teddy Mask
+10650|NONE
+
+// Love Charged Hands
+10652|NONE
+
+// Love Portal
+10654|EARTH
+
+// Well of Love
+10656|EARTH
+
+// Dry Well of Love
+10658|EARTH
+
+// Pure Love Essence
+10660|EARTH
+
+// Tattooed Muscles
+10662|NONE
+
+// Great Turret of Growtopia
+10664|EARTH
+
+// Grow Air Balloon
+10666|NONE
+
+// Bow of the Rainbow
+10670|NONE
+
+// My First Grow Spray Fertilizer
+10672|EARTH
+
+// Crown of Seasons
+10674|NONE
+
+// Shamrock Shuriken
+10676|NONE
+
+// Hooves of Cernunnos
+10678|NONE
+
+// Finias' Red Javelin
+10680|NONE
+
+// Green Fountain
+10682|FIRE
+
+// Mothman Wings
+10684|NONE
+
+// Shady Agent Shades
+10686|NONE
+
+// Cardboard Nessie
+10688|NONE
+
+// Swamp Monster Onesie
+10690|NONE
+
+// Swamp Monster Head
+10692|NONE
+
+// Mini Minokawa
+10694|NONE
+
+// Shamrock Bouncing Buddy
+10696|EARTH
+
+// Shamrock Lights
+10698|EARTH
+
+// Green Curtains
+10700|FIRE
+
+// Cottage Doorway
+10702|FIRE
+
+// Clover Fan
+10704|AIR
+
+// Wax Jacket
+10706|NONE
+
+// St Patrick's Celebration Wallpaper White
+10708|AIR
+
+// St Patrick's Celebration Wallpaper Green
+10710|AIR
+
+// Feathered Pauldrons
+10712|NONE
+
+// Steampunk Arm
+10714|NONE
+
+// Easter Mission Item
+10716|FIRE
+
+// Grow X Rocket Wings
+10718|NONE
+
+// Easter Jeepney
+10720|NONE
+
+// Bunny Ear Magnifying Glass
+10722|NONE
+
+// Lil Growpeep's Baaaa Blaster
+10724|NONE
+
+// Bloom Aura
+10726|NONE
+
+// Home Made Butter Lamb
+10728|NONE
+
+// Halfling House
+10730|EARTH
+
+// Halfling House Roof
+10732|AIR
+
+// Halfling House Door
+10734|FIRE
+
+// Fancy Birdbath
+10736|FIRE
+
+// Sheep Hood
+10738|NONE
+
+// Sheep Onesie
+10740|NONE
+
+// Easter Spring
+10742|EARTH
+
+// Detective Butter Lamb
+10744|WATER
+
+// Failed Butter Lamb
+10746|EARTH
+
+// One Winged Angel
+10748|NONE
+
+// Golden Leprechaun Hat
+10750|NONE
+
+// Golden Leprechaun Suit
+10752|NONE
+
+// Helping Hand
+10754|NONE
+
+// Golden Egg Carton
+10756|EARTH
+
+// Waving Inflatable Arm Guy
+10758|AIR
+
+// Easter Egg - Wooly
+10760|EARTH
+
+// Easter Egg - Golden
+10762|EARTH
+
+// Golden Egg Shard - Top
+10764|EARTH
+
+// Golden Egg Shard - Middle
+10766|EARTH
+
+// Golden Egg Shard - Bottom
+10768|EARTH
+
+// Easter Witches Hood
+10770|NONE
+
+// Easter Witches Cape
+10772|NONE
+
+// Field Medics Mecha Med Scarf
+10774|NONE
+
+// Hand Chair
+10776|EARTH
+
+// Care Pear
+10778|NONE
+
+// Giving Growaxe
+10780|NONE
+
+// Backwards Ballcap
+10782|NONE
+
+// Donut Donation Box
+10784|EARTH
+
+// Floating Hand
+10786|AIR
+
+// Grow4Good Badge Bronze
+10788|EARTH
+
+// Grow4Good Badge Silver
+10790|EARTH
+
+// Grow4Good Badge Gold
+10792|EARTH
+
+// Grow4Good Badge Diamond
+10794|EARTH
+
+// Grow4Good Ambassador's Sash of Honor
+10796|NONE
+
+// Dashing Dolphin Hat
+10798|NONE
+
+// Cactus Cannon
+10800|NONE
+
+// Sombrero Assault
+10802|NONE
+
+// Waay Chivo Mask
+10804|NONE
+
+// Volcanic Cape
+10806|NONE
+
+// Siesta Sombrero Bed
+10808|AIR
+
+// Plasma Heart
+10810|NONE
+
+// Cactus Onesie
+10812|NONE
+
+// Mysterious Color TV
+10814|EARTH
+
+// Pan Flute
+10816|NONE
+
+// Giant Taco House
+10818|WATER
+
+// Taco Truck Oven
+10820|FIRE
+
+// Cactus Hat
+10822|NONE
+
+// Pink Platforms
+10824|NONE
+
+// Lava Pinata
+10826|FIRE
+
+// Sheet Music: Mexican Trumpet
+10828|AIR
+
+// Sheet Music: Sharp Mexican Trumpet
+10830|AIR
+
+// Sheet Music: Flat Mexican Trumpet
+10832|AIR
+
+// Startopia Supply Crate
+10834|EARTH
+
+// Surgery Supply Crate
+10836|EARTH
+
+// Fishing Supply Crate
+10838|EARTH
+
+// Cooking Supply Crate
+10840|EARTH
+
+// Superhero Supply Crate
+10842|EARTH
+
+// Cooking Recipe - Homemade Fish Taco
+10844|NONE
+
+// Cooking Recipe - Apple Strudel
+10846|NONE
+
+// Cooking Recipe - Berry Crepes
+10848|NONE
+
+// Cooking Recipe - BBQ Bacon Burger
+10850|NONE
+
+// Cooking Recipe - Beer-Battered Fish And Chips
+10852|NONE
+
+// Cooking Recipe - Arroz Con Pollo
+10854|NONE
+
+// G4G Access Dummy Icon
+10856|FIRE
+
+// Grow Voucher
+10858|FIRE
+
+// DUMB G4G Bronze
+10860|FIRE
+
+// DUMB G4G Silver
+10862|FIRE
+
+// DUMB G4G Gold
+10864|FIRE
+
+// DUMB G4G Diamond
+10866|FIRE
+
+// DUMB G4G Crate Pack
+10868|FIRE
+
+// Ad Block 4x3
+10870|EARTH
+
+// Ad Block 3x2
+10872|EARTH
+
+// Ad Block 7x1
+10874|EARTH
+
+// Ad Control Block
+10876|EARTH
+
+// Radical Rider
+10878|NONE
+
+// Taco Window
+10880|EARTH
+
+// Taco Door
+10882|FIRE
+
+// Voucher Dayz Surgery Supply Crate
+10884|EARTH
+
+// Pineapple Chakram
+10886|NONE
+
+// Giant Pineapple Pizza Paddle
+10888|NONE
+
+// Rocket Powered Pineapple Vacuum
+10890|NONE
+
+// Pineapple Aura
+10892|NONE
+
+// Pineapple Shoulder Cannon
+10894|NONE
+
+// The Pine Throne
+10896|EARTH
+
+// Pure Pineapple A+ Shirt
+10898|NONE
+
+// Pure Pineapple A+ Scarf
+10900|NONE
+
+// Pure Pineapple A+ Pants
+10902|NONE
+
+// Pineapple Face Mask
+10904|NONE
+
+// Petite Pineapple Hair Pin
+10906|NONE
+
+// Pineapple Table
+10908|EARTH
+
+// Stained Glass Pineapple
+10910|AIR
+
+// Pineapple Record Player
+10912|WATER
+
+// Pure Being of Light and Shadow
+10914|NONE
+
+// Voucher Dayz Startopia Supply Crate
+10916|EARTH
+
+// Voucher Dayz Cooking Crate
+10918|EARTH
+
+// Voucher Dayz Super Hero Crate
+10920|EARTH
+
+// Pegasus Lance
+10922|NONE
+
+// Pineapple Guzzler
+10924|EARTH
+
+// Horn Headband
+10926|NONE
+
+// Space Badger
+10952|NONE
+
+// Space Mouse
+10954|NONE
+
+// Space Dog
+10956|NONE
+
+// Space Pig
+10958|NONE
+
+// Space Rabbit
+10960|NONE
+
+// Kranken's Galactic Block
+10962|EARTH
+
+// Krankens Pattern 1
+10964|EARTH
+
+// Krankens Pattern 2
+10966|EARTH
+
+// Krankens Pattern 3
+10968|EARTH
+
+// Krankens Pattern 4
+10970|EARTH
+
+// Krankens Pattern 5
+10972|EARTH
+
+// Krankens Pattern 6
+10974|EARTH
+
+// Krankens Pattern 7
+10976|EARTH
+
+// Krankens Pattern 8
+10978|EARTH
+
+// Krankens Pattern 9
+10980|EARTH
+
+// Krankens Pattern 10
+10982|EARTH
+
+// Krankens Pattern 11
+10984|EARTH
+
+// Krankens Pattern 12
+10986|EARTH
+
+// Pineapple Pizza Slice
+10988|EARTH
+
+// Alien Recon Wagon
+10990|NONE
+
+// Unknown Space Pet
+10994|NONE
+
+// Space Rover
+10996|NONE
+
+// Suspicious Weather Balloon
+10998|NONE
+
+// Channel G News Van
+11000|NONE
+
+// Super Pineapple Time Warp Device
+11002|FIRE
+
+// Brass Staff
+11004|NONE
+
+// Soul Scythe
+11006|NONE
+
+// Phoenix Armor
+11008|NONE
+
+// War Seahorse
+11010|NONE
+
+// Neptune's Chariot
+11012|NONE
+
+// Dark Assassin's Vest
+11014|NONE
+
+// Dark Assassin's Cape
+11016|NONE
+
+// Dark Assassin's Trousers
+11018|NONE
+
+// Dark Assassin's Armguards
+11020|NONE
+
+// Pegasus Shirt
+11022|NONE
+
+// Pegasus Pants
+11024|NONE
+
+// Pegasus Pauldrons
+11026|NONE
+
+// Pegasus Shoes
+11028|NONE
+
+// Pegasus Crown
+11030|NONE
+
+// Pegasus Block
+11032|EARTH
+
+// Pegasus Block BG
+11034|EARTH
+
+// Pegasus Chest
+11036|EARTH
+
+// Summer Artifact Chest
+11038|FIRE
+
+// Ultra Red Phoenix Fragment
+11040|FIRE
+
+// Ultra Blue Neptune Fragment
+11042|WATER
+
+// Ultra White Fragment
+11044|WATER
+
+// Hydro Cannon
+11046|NONE
+
+// Summer Glider
+11048|NONE
+
+// Ultraviolet Aura
+11050|NONE
+
+// Super Duper Ice Cream Scooper
+11052|NONE
+
+// Tropical Bar
+11054|WATER
+
+// Tropical Bar Stool
+11056|AIR
+
+// Thermometer
+11058|EARTH
+
+// Kiss the Cook Apron
+11060|NONE
+
+// Lobster Onesie Hood
+11062|NONE
+
+// Lobster Onesie Suit
+11064|NONE
+
+// Lobster Onesie Claws
+11066|NONE
+
+// Coconut Mocktail
+11068|WATER
+
+// Dark Assassin's Boots
+11070|NONE
+
+// Legendary Clash Key - Series 4
+11074|EARTH
+
+// Ambu-Lance
+11076|NONE
+
+// Cute Mutant Wonky
+11078|NONE
+
+// Cute Mutant Plonky
+11080|NONE
+
+// Cute Mutant Boogle
+11082|NONE
+
+// Beowulf's Blade
+11084|NONE
+
+// Mecha Med Shirt
+11086|NONE
+
+// Mecha Med Pants
+11088|NONE
+
+// Mecha Med Shoes
+11090|NONE
+
+// Mecha Med Helmet
+11092|NONE
+
+// Ring of Range
+11094|NONE
+
+// Beowulf's Beard
+11096|NONE
+
+// Beowulf's Helm
+11098|NONE
+
+// Beowulf's Pants
+11100|NONE
+
+// Beowulf's Shirt
+11102|NONE
+
+// Cute Mutant Wonky Onesie Suit
+11104|NONE
+
+// Cute Mutant Wonky Onesie Hood
+11106|NONE
+
+// Cute Mutant Plonky Onesie Suit
+11108|NONE
+
+// Cute Mutant Plonky Onesie Hood
+11110|NONE
+
+// Cute Mutant Boogle Onesie Suit
+11112|NONE
+
+// Cute Mutant Boogle Onesie Hood
+11114|NONE
+
+// Crystal Crown
+11116|NONE
+
+// Sonic Buster Katana
+11118|NONE
+
+// Primordial Jade Lance
+11120|NONE
+
+// Purple Shore Crab Leash
+11122|NONE
+
+// Crawdad Leash
+11124|NONE
+
+// Lobster Leash
+11126|NONE
+
+// Hermit Crab Leash
+11128|NONE
+
+// Alaskan King Crab Leash
+11130|NONE
+
+// Noodle Bowl Hat
+11132|NONE
+
+// Samille's Soul Abductor
+11134|NONE
+
+// Mystery Portal
+11136|EARTH
+
+// Friends Entrance
+11138|EARTH
+
+// Legendary Destroyer
+11140|NONE
+
+// Legendary Owl
+11142|NONE
+
+// Purple Shore Crab Headband
+11144|NONE
+
+// Crawdad Shoes
+11146|NONE
+
+// Lobster Shoes
+11148|NONE
+
+// Hermit Crab Helmet
+11150|NONE
+
+// Alaskan King Crab Crown
+11152|NONE
+
+// Anime Action Hair
+11154|NONE
+
+// Growmoji Chest
+11156|FIRE
+
+// Zodiac Ring
+11158|NONE
+
+// Gem Mask
+11160|NONE
+
+// Finger Gun
+11162|NONE
+
+// Rainbow Shoes
+11164|NONE
+
+// Seafoam Scarf
+11166|NONE
+
+// Riding Cloud
+11168|NONE
+
+// Smoke Machine
+11170|WATER
+
+// Buzz Cut Hair
+11172|NONE
+
+// Undercut Hair
+11174|NONE
+
+// Neat Bun Hair
+11176|NONE
+
+// Curly Hair
+11178|NONE
+
+// Buddy Balloon
+11180|NONE
+
+// Cartoon Glove Hat Red
+11182|NONE
+
+// Cartoon Glove Hat Blue
+11184|NONE
+
+// Digital Sign
+11186|AIR
+
+// Wearable Ostrich
+11188|NONE
+
+// I love Dirt Shirt
+11190|NONE
+
+// Conveyor Block
+11192|AIR
+
+// Happy Block
+11194|EARTH
+
+// Posh Portrait
+11196|WATER
+
+// Growsec Mask
+11198|NONE
+
+// Pet Sock Hood
+11200|NONE
+
+// Futuristic Sunglasses
+11202|NONE
+
+// Ophthalmologist Glasses
+11204|NONE
+
+// Silver-framed Sunglasses
+11206|NONE
+
+// Green Leaf Crown
+11208|NONE
+
+// Quicksand Block
+11210|WATER
+
+// Indonesian Skirt
+11212|NONE
+
+// Indonesian Blouse
+11214|NONE
+
+// Indonesian Headdress
+11216|NONE
+
+// Moyaimorph
+11218|NONE
+
+// Moyaimorph Mask
+11220|NONE
+
+// Fade Hair
+11222|NONE
+
+// Safety First Hair
+11224|NONE
+
+// Weekend Raver Hair
+11226|NONE
+
+// Old Rocker Hair
+11228|NONE
+
+// Locke's Megaphone
+11230|AIR
+
+// Ouroboros Charm
+11232|NONE
+
+// Magic Infused Blade Design
+11234|AIR
+
+// Magic Infused Blade
+11236|AIR
+
+// Fall Wings
+11238|NONE
+
+// Seed Gatling Gun
+11240|NONE
+
+// Harvest Hood-ini
+11242|NONE
+
+// Crystal of Hoa
+11244|NONE
+
+// Poppin' Corn Hat
+11246|NONE
+
+// Staff of S'mores
+11248|NONE
+
+// Harvest Jade Hat
+11250|NONE
+
+// Firewood Cradle
+11252|FIRE
+
+// Masculine Sunflower Hair
+11254|NONE
+
+// Feminine Sunflower Hair
+11256|NONE
+
+// Masculine Sunflower Shirt
+11258|NONE
+
+// Feminine Sunflower Shirt
+11260|NONE
+
+// Sunflower Pants
+11262|NONE
+
+// Sunflower Dress
+11264|NONE
+
+// Sunflower Ladder
+11266|FIRE
+
+// Whoopie Pie Block
+11268|WATER
+
+// Sunflower Pinwheel
+11270|AIR
+
+// Sleepy Bear Suit
+11272|NONE
+
+// Sleepy Bear Hood
+11274|NONE
+
+// Rice Crop Block
+11276|EARTH
+
+// Rice Crop Wallpaper
+11278|EARTH
+
+// Dewi Sri Statue
+11280|FIRE
+
+// Stingray Hat
+11282|NONE
+
+// Paper Wasp Pet
+11284|NONE
+
+// Unity Mooncake
+11286|WATER
+
+// Wyvern Wings
+11288|NONE
+
+// Robot Lord Cape
+11290|NONE
+
+// Lightning Umbrella
+11292|NONE
+
+// Lucid Wings
+11294|NONE
+
+// Purple Scarf
+11296|NONE
+
+// Sakura's Revenge
+11298|NONE
+
+// Neon Party Cape
+11300|NONE
+
+// Sacred Scarf
+11302|NONE
+
+// Royal Grow Pass Token
+11304|EARTH
+
+// Clam Cruiser
+11306|NONE
+
+// Royal Clam Cruiser
+11308|NONE
+
+// Trick or Treat Troll
+11310|NONE
+
+// Spider Sniper
+11312|NONE
+
+// Cauldron Cannon
+11314|NONE
+
+// Skull of Burning Horrors
+11316|NONE
+
+// Possessing Scarf
+11318|NONE
+
+// Waay Chivo Skull
+11320|NONE
+
+// Demonic Soul Aura
+11322|NONE
+
+// Pharaoh's Pendant
+11324|NONE
+
+// Ferryman of the Underworld
+11326|NONE
+
+// Familiar Hat
+11328|NONE
+
+// Zombie Hand Chair
+11330|EARTH
+
+// Corrupted Castle
+11332|EARTH
+
+// Corrupted Castle Roof
+11334|AIR
+
+// Corrupted Castle Door
+11336|FIRE
+
+// Shady Bangs
+11338|NONE
+
+// Emo Hair
+11340|NONE
+
+// Halloween Lantern
+11342|FIRE
+
+// Gargoyle Mask
+11344|NONE
+
+// Organ Piano
+11346|AIR
+
+// Angry Block
+11348|EARTH
+
+// American Eagle Wings
+11350|NONE
+
+// Star Aura
+11352|NONE
+
+// Turkey Float
+11354|NONE
+
+// Ameri-car
+11356|NONE
+
+// Super Slapshot Stick
+11358|NONE
+
+// Barbershop Quartet Hat
+11360|NONE
+
+// Barbershop Quartet Shirt
+11362|NONE
+
+// Barbershop Quartet Pants
+11364|NONE
+
+// Marty Jacket
+11366|NONE
+
+// Grow-Cola Block
+11368|WATER
+
+// Thanksgiving Trifle Block
+11370|WATER
+
+// Vintage Jukebox
+11372|AIR
+
+// Flag Frock
+11374|NONE
+
+// Presidential Throne
+11376|EARTH
+
+// Black Harvest Shawl
+11378|NONE
+
+// Black Bow of the Rainbow
+11380|NONE
+
+// Black Radical Rollers
+11382|NONE
+
+// Matrix Visor
+11384|NONE
+
+// Shadow Cubes Aura
+11386|NONE
+
+// Vortex Sunglasses
+11388|NONE
+
+// Black Neon Hoodie
+11390|NONE
+
+// Vortex Block
+11392|AIR
+
+// Growtopian Bean
+11394|NONE
+
+// Varsity Jacket
+11396|NONE
+
+// Alien Landing Pod
+11398|EARTH
+
+// Alien Scanner
+11406|NONE
+
+// Space Station Sign
+11408|AIR
+
+// Geometric Bench
+11410|EARTH
+
+// Subway Sign
+11412|AIR
+
+// Subway Stairs
+11414|FIRE
+
+// Subway Wall
+11416|FIRE
+
+// Street Sidewalk
+11418|EARTH
+
+// Storm Drain Cover
+11420|WATER
+
+// Techno Grass
+11422|EARTH
+
+// Space Conveyor Block
+11424|AIR
+
+// Greetings Earthlings Sign
+11426|AIR
+
+// Takeaway Joint
+11428|EARTH
+
+// Takeaway Joint Roof
+11430|AIR
+
+// Street Clock
+11434|EARTH
+
+// Smiling Mask
+11436|NONE
+
+// Digital Bow
+11438|NONE
+
+// Mystic Bow
+11440|NONE
+
+// Royal Mystic Bow
+11442|NONE
+
+// Pizza Sign
+11444|AIR
+
+// City Bench
+11446|EARTH
+
+// Space Stowaway Mask
+11448|NONE
+
+// Space Stowaway Shirt
+11450|NONE
+
+// Space Stowaway Pants
+11452|NONE
+
+// Freezing Skull Mask
+11454|NONE
+
+// Diamond Dog Sledge
+11456|NONE
+
+// Santa's Super Sack
+11458|NONE
+
+// Snow Cone Pet
+11460|NONE
+
+// Wings of Deepest Winter
+11462|NONE
+
+// Ice Dragon Scythe
+11464|NONE
+
+// Aura Antlers
+11466|NONE
+
+// Candy Cane Cruiser
+11468|NONE
+
+// Diamond Warrior Pauldrons
+11470|NONE
+
+// Winterfest Calendar - 2021
+11472|EARTH
+
+// Used Winterfest Calendar - 2021
+11474|EARTH
+
+// Black Friday Black Box Xtreme
+11476|EARTH
+
+// Rift Wings
+11478|NONE
+
+// Northern Lights Aura
+11480|NONE
+
+// Cloak of S'mores
+11482|NONE
+
+// Growch's Hat
+11484|NONE
+
+// Penguin Onesie
+11486|NONE
+
+// Ice Shard Hair
+11488|NONE
+
+// Dinosaur in Ice Block
+11490|WATER
+
+// Candy Cane Horns
+11492|NONE
+
+// Festive Socks
+11494|NONE
+
+// Polar Bear Hood
+11496|NONE
+
+// Polar Bear Suit
+11498|NONE
+
+// Sad Snowfrost's Mask
+11500|NONE
+
+// Candy Cane Shades
+11502|NONE
+
+// Fairy Light Wings
+11504|NONE
+
+// Mask of The Dragon
+11506|NONE
+
+// Royal Mask of The Dragon
+11508|NONE
+
+// Warbler Wings
+11510|NONE
+
+// Dancing Snow Globe
+11512|EARTH
+
+// Christmas Pudding Block
+11514|FIRE
+
+// Santa's Chair
+11516|EARTH
+
+// Partridge in a Pear Tree
+11518|EARTH
+
+// Frozen Fountain
+11520|FIRE
+
+// Diamond Retro Tape Block
+11522|EARTH
+
+// Diamond Shamrock Lights
+11524|EARTH
+
+// Diamond Eternal Rose
+11526|EARTH
+
+// Diamond Pine Throne
+11528|EARTH
+
+// Diamond Lotus Lamp
+11530|FIRE
+
+// Radical Stage
+11532|NONE
+
+// Growby
+11534|NONE
+
+// Beat Box Mask
+11536|NONE
+
+// Royal Wishing Star
+11538|EARTH
+
+// Jingling Jolly Jumper
+11540|NONE
+
+// Neon Party Yo-Yo
+11542|NONE
+
+// Partydactyl Wings
+11544|NONE
+
+// Mood Mask
+11546|NONE
+
+// Guardian Armor
+11548|NONE
+
+// Blood Dragon Lock
+11550|AIR
+
+// Royal Guardian Armor
+11552|NONE
+
+// Bodvar
+11554|NONE
+
+// Val
+11556|NONE
+
+// Sam Fisher
+11558|NONE
+
+// Ezio
+11560|NONE
+
+// Pet Blood Dragon
+11562|NONE
+
+// 9th Anniversary Block
+11564|AIR
+
+// Party Pager Block
+11566|EARTH
+
+// Polka-Dot Ball
+11568|AIR
+
+// That 90's Hair
+11570|NONE
+
+// Party Couch
+11572|EARTH
+
+// Digital Pet Block
+11574|AIR
+
+// Unagi Hair
+11576|NONE
+
+// Party Polka Shirt
+11578|NONE
+
+// Dotted Dress
+11580|NONE
+
+// Fireflies In A Jar
+11582|FIRE
+
+// Confetti Crown
+11584|NONE
+
+// Prince of Persia Lock
+11586|AIR
+
+// Wings of Daidalos
+11588|NONE
+
+// Rollback Plaque IX
+11590|WATER
+
+// WOTD Trophy 2022
+11592|EARTH
+
+// Riding Rabbid
+11594|NONE
+
+// Earth Suit
+11596|NONE
+
+// Prince of Persia: Cave Column
+11598|EARTH
+
+// Prince of Persia: Cave Spikes
+11600|FIRE
+
+// Prince of Persia: Cave Torch
+11602|FIRE
+
+// Prince of Persia: Cave Background
+11604|EARTH
+
+// Prince of Persia: Palace Spikes
+11606|FIRE
+
+// Prince of Persia: Palace Turret
+11608|EARTH
+
+// Prince of Persia: Palace Background
+11610|EARTH
+
+// Prince of Persia: Palace Arch
+11612|FIRE
+
+// Prince of Persia: Palace Wall
+11614|EARTH
+
+// Prince of Persia: Palace Dome
+11616|AIR
+
+// Prince of Persia: Hourglass of Time
+11618|AIR
+
+// 2022 - Zodiac Year of the Tiger
+11620|NONE
+
+// Draconic Soul Cannon
+11622|NONE
+
+// Tiger Pauldrons
+11624|NONE
+
+// Mythic Tiger Crown
+11626|NONE
+
+// Fireworks Feet
+11628|NONE
+
+// Monkey Warrior's Staff
+11630|NONE
+
+// Year of The Tiger Statue
+11632|FIRE
+
+// Year of the Tiger Mask
+11634|NONE
+
+// Pagoda Tower Block
+11636|FIRE
+
+// Dumplings Hat
+11638|NONE
+
+// Guardian Lion Statue
+11640|EARTH
+
+// Bamboo Boba Block
+11642|WATER
+
+// Monkey Warrior's Circlet
+11644|NONE
+
+// Monkey Mask
+11646|NONE
+
+// Monkey Warrior's Shirt
+11648|NONE
+
+// Monkey Warrior's Pants
+11650|NONE
+
+// Prince of Persia Crate
+11652|FIRE
+
+// Baby Seal Hat
+11654|NONE
+
+// Lucky Golden Ingot
+11656|EARTH
+
+// Lucky Golden Crest
+11658|EARTH
+
+// Shattered Wings
+11660|NONE
+
+// Royal Shattered Wings
+11662|NONE
+
+// Heartbreak Wings
+11664|NONE
+
+// Golden Heartbreak Wings
+11666|NONE
+
+// Heart Balloons
+11668|NONE
+
+// Swan Boat
+11670|NONE
+
+// Stained Glass Crown
+11672|NONE
+
+// Fancy Flute
+11674|NONE
+
+// Year of the Tiger Lucky Token
+11676|EARTH
+
+// Formal Rose Shoulders
+11678|NONE
+
+// Formal Rose Necktie
+11680|NONE
+
+// Formal Rose Jacket
+11682|NONE
+
+// Formal Rose Skirt
+11684|NONE
+
+// Formal Rose Pants
+11686|NONE
+
+// Strawbeanie
+11688|NONE
+
+// Cupid's Statue
+11690|FIRE
+
+// Dancing Candle
+11692|FIRE
+
+// Tunnel of Love
+11694|AIR
+
+// Cotton Candy Clouds
+11696|AIR
+
+// Towering Hair
+11698|FIRE
+
+// Enchanted Broomstick
+11700|NONE
+
+// Heart Antennae Hat
+11702|NONE
+
+// Alpha Wolf
+11704|NONE
+
+// Royal Alpha Wolf
+11706|NONE
+
+// Superstar Sneakers
+11708|NONE
+
+// Mr. Grownopoly's Suitcase
+11710|NONE
+
+// Irish Wolfhound
+11712|NONE
+
+// Shamrock Shields
+11714|NONE
+
+// Mallet of Sucelles
+11716|NONE
+
+// Harp of Aibell
+11718|NONE
+
+// Eye of Balor
+11720|NONE
+
+// Rainbow Cloud Rider
+11722|NONE
+
+// Cauldron of the Dagda
+11724|NONE
+
+// Joyful Bun Hair
+11726|NONE
+
+// Shamrock Seat
+11728|EARTH
+
+// Salmon of Knowledge
+11730|EARTH
+
+// Shepard's Pie Block
+11732|WATER
+
+// Lucky Lizard Hat
+11734|NONE
+
+// Money Hair
+11736|NONE
+
+// Shamrock Checkpoint
+11738|AIR
+
+// Lavish Shades
+11740|NONE
+
+// Ye Olde Tavern
+11742|EARTH
+
+// Ye Olde Tavern Roof
+11744|AIR
+
+// Ye Olde Tavern Door
+11746|FIRE
+
+// Banner Bandolier
+11748|NONE
+
+// Crescent Charm
+11750|NONE
+
+// Royal Crescent Charm
+11752|NONE
+
+// Yokai Mask
+11754|NONE
+
+// Grow4Good Gift Hamper
+11756|AIR
+
+// Grow4Good Special Gift Hamper
+11758|AIR
+
+// Growing Guardian Armor
+11760|NONE
+
+// Growing Guardian Gauntlets
+11762|NONE
+
+// Edison, The Lightbulb
+11764|NONE
+
+// Other Winged Angel
+11766|NONE
+
+// Fish Tank Head
+11768|NONE
+
+// Mechanical Assistance
+11770|NONE
+
+// Cardboard Road Racer
+11772|NONE
+
+// Peas in a Pod Hat
+11774|NONE
+
+// Bouncy Castle Block
+11776|WATER
+
+// Gummy Bear Block - Red
+11778|WATER
+
+// Gummy Bear Block - Yellow
+11780|WATER
+
+// Gummy Bear Block - Green
+11782|WATER
+
+// Hip Hops
+11784|NONE
+
+// Soft-boiled Scepter
+11786|NONE
+
+// Easter Creature
+11788|NONE
+
+// Mechanical Dove Wings
+11790|NONE
+
+// Easter Kite Aura
+11792|NONE
+
+// Cracked Egg Hat
+11794|NONE
+
+// Cracked Egg Onesie
+11796|NONE
+
+// Freaky Fried Egg Eyes
+11798|NONE
+
+// Hot Cross Bun Beret
+11800|NONE
+
+// Easter Egg Arch
+11802|AIR
+
+// Bunny Boba Block
+11804|WATER
+
+// Salmon Suit
+11806|NONE
+
+// Lollipop Garden
+11808|EARTH
+
+// Osterbrunnen
+11810|FIRE
+
+// Gaekkebrev
+11812|EARTH
+
+// Rabbit Top Hat
+11814|NONE
+
+// Grow4Good Title
+11816|AIR
+
+// Equinox Scarf
+11818|NONE
+
+// Crown of Spring
+11820|NONE
+
+// Crown of Summer
+11822|NONE
+
+// Crown of Autumn
+11824|NONE
+
+// Crown of Winter
+11826|NONE
+
+// Boots of Spring
+11828|NONE
+
+// Boots of Summer
+11830|NONE
+
+// Boots of Autumn
+11832|NONE
+
+// Boots of Winter
+11834|NONE
+
+// Shirt of Spring
+11836|NONE
+
+// Shirt of Summer
+11838|NONE
+
+// Shirt of Autumn
+11840|NONE
+
+// Shirt of Winter
+11842|NONE
+
+// Spring Block
+11844|EARTH
+
+// Summer Block
+11846|EARTH
+
+// Autumn Block
+11848|EARTH
+
+// Winter Block
+11850|EARTH
+
+// Spring Background
+11852|EARTH
+
+// Summer Background
+11854|EARTH
+
+// Autumn Background
+11856|EARTH
+
+// Winter Background
+11858|EARTH
+
+// Equinox Box
+11860|EARTH
+
+// Pants of Spring
+11862|NONE
+
+// Pants of Summer
+11864|NONE
+
+// Pants of Autumn
+11866|NONE
+
+// Pants of Winter
+11868|NONE
+
+// Volcanic Wings
+11870|NONE
+
+// Comida Crusher
+11872|NONE
+
+// Pet Alebrije
+11874|NONE
+
+// Serpent Shoulders
+11876|NONE
+
+// Artist's Hair
+11878|NONE
+
+// Weather Machine - Plaza
+11880|FIRE
+
+// Neurovision
+11882|NONE
+
+// Royal Neurovision
+11884|NONE
+
+// Koala Ears
+11886|NONE
+
+// China Poblano Dress
+11888|NONE
+
+// Papel Picado Banner
+11890|EARTH
+
+// Marigold Flowers
+11892|EARTH
+
+// Calavera Skull
+11894|EARTH
+
+// Angel of Independence Statue
+11896|EARTH
+
+// Corn Field Ladder
+11898|FIRE
+
+// Harmonipan
+11900|AIR
+
+// Radical City Lock
+11902|AIR
+
+// Golden Radical Rider
+11904|NONE
+
+// Nocturnal Crown
+11906|NONE
+
+// Royal Nocturnal Crown
+11908|NONE
+
+// Sock Mask
+11910|NONE
+
+// Federation Starship Hull - 1
+11912|EARTH
+
+// Federation Starship Hull - 2
+11914|EARTH
+
+// Federation Starship Hull - 3
+11916|EARTH
+
+// Federation Starship Hull - 4
+11918|EARTH
+
+// Federation Starship Hull - 5
+11920|EARTH
+
+// Federation Starship Hull - 6
+11922|EARTH
+
+// Federation Starship Hull - 7
+11924|EARTH
+
+// Federation Starship Hull - 8
+11926|EARTH
+
+// Federation Starship Hull - 9
+11928|EARTH
+
+// Federation Starship Hull - 10
+11930|EARTH
+
+// Federation Starship Hull - 11
+11932|EARTH
+
+// Federation Starship Hull - 12
+11934|EARTH
+
+// Federation Starship Hull - 13
+11936|EARTH
+
+// Federation Starship Hull - 14
+11938|EARTH
+
+// Federation Starship Hull - 15
+11940|EARTH
+
+// Federation Starship Hull - 16
+11942|EARTH
+
+// Federation Starship Hull - 17
+11944|EARTH
+
+// Federation Starship Hull - 18
+11946|EARTH
+
+// Federation Starship Hull - 19
+11948|EARTH
+
+// Federation Starship Hull - 20
+11950|EARTH
+
+// Federation Starship Hull - 21
+11952|EARTH
+
+// Federation Starship Hull - 22
+11954|EARTH
+
+// Federation Starship Hull - 23
+11956|EARTH
+
+// Federation Starship Hull - 24
+11958|EARTH
+
+// Federation Starship Hull - 25
+11960|EARTH
+
+// Federation Starship Hull - 26
+11962|EARTH
+
+// Federation Starship Hull - 27
+11964|EARTH
+
+// Federation Starship Hull - 28
+11966|EARTH
+
+// Federation Starship Hull - 29
+11968|EARTH
+
+// Federation Starship Hull - 30
+11970|EARTH
+
+// Federation Starship Hull - 31
+11972|EARTH
+
+// Federation Starship Hull - 32
+11974|FIRE
+
+// Federation Starship Hull - 33
+11976|EARTH
+
+// Federation Starship Hull - 34
+11978|EARTH
+
+// Federation Starship Hull - 35
+11980|EARTH
+
+// Federation Starship Hull - 36
+11982|EARTH
+
+// Federation Starship Hull - 37
+11984|EARTH
+
+// Dummy Puzzle Icon
+11986|FIRE
+
+// Pineapple Parasol
+11988|NONE
+
+// Baby Guzzler
+11990|NONE
+
+// Pineapple Wings
+11992|NONE
+
+// Pineapple of Locksley
+11994|NONE
+
+// Pineapple Pyramid Hat
+11996|NONE
+
+// Pineapple Pyramid Shirt
+11998|NONE
+
+// Pineapple Warrior Charm
+12000|NONE
+
+// Super Pineapple House
+12002|WATER
+
+// Super Pineapple Window
+12004|EARTH
+
+// Super Pineapple Door
+12006|FIRE
+
+// Pineapple Disco Ball
+12008|AIR
+
+// Pineapple Mohawk
+12010|NONE
+
+// Pineapple Fountain
+12012|FIRE
+
+// Dal's Phasers
+12014|NONE
+
+// Gwyn's Heirloom
+12016|NONE
+
+// Rok's Fists
+12018|NONE
+
+// Jankom Pog's Multi-Mitt
+12020|NONE
+
+// Mek'leth
+12022|NONE
+
+// Mine Laser Drill
+12024|NONE
+
+// Walter, The Manager
+12026|EARTH
+
+// Alien Computer
+12028|AIR
+
+// Box of Supplies
+12030|AIR
+
+// Federation Starship Hull - 3 - Damaged
+12032|EARTH
+
+// Federation Starship Hull - 4 - Damaged
+12034|EARTH
+
+// Federation Starship Hull - 11 - Damaged
+12036|EARTH
+
+// Federation Starship Hull - 12 - Damaged
+12038|EARTH
+
+// Federation Starship Hull - 17 - Damaged
+12040|EARTH
+
+// The Runaway
+12042|NONE
+
+// Starfleet Cadet's Supply Box
+12044|EARTH
+
+// Starfleet Officer's Supply Box
+12046|EARTH
+
+// Protostar Starship Blast
+12048|FIRE
+
+// Class D Loader
+12050|NONE
+
+// Drednok's Chestplate
+12052|NONE
+
+// Weather Machine - Nebula
+12054|FIRE
+
+// Weather Machine - Protostar Landing
+12056|FIRE
+
+// Protostar Captain's Seat
+12058|EARTH
+
+// Protostar Officer's Seat
+12060|AIR
+
+// Dal's Hair
+12062|NONE
+
+// Dal's Goggles
+12064|NONE
+
+// Dal's Shirt
+12066|NONE
+
+// Dal's Pants
+12068|NONE
+
+// Dal's Shoes
+12070|NONE
+
+// Gwyn's Hair
+12072|NONE
+
+// Gwyn's Shirt
+12074|NONE
+
+// Gwyn's Pants
+12076|NONE
+
+// Gwyn's Shoes
+12078|NONE
+
+// Rok's Hair
+12080|NONE
+
+// Rok's Shirt
+12082|NONE
+
+// Rok's Overalls
+12084|NONE
+
+// Rok's Shoes
+12086|NONE
+
+// Jankom Pog's Hair
+12088|NONE
+
+// Jankom Pog's Goggles
+12090|NONE
+
+// Jankom Pog's Shirt
+12092|NONE
+
+// Jankom Pog's Pants
+12094|NONE
+
+// Jankom Pog's Shoes
+12096|NONE
+
+// Zero's Containment Hood
+12098|NONE
+
+// Zero's Medusan Mask
+12100|NONE
+
+// Zero's Arms
+12102|NONE
+
+// Zero's Legs
+12104|NONE
+
+// Zero's Shoes
+12106|NONE
+
+// Murf Hood
+12108|NONE
+
+// Murf Onesie
+12110|NONE
+
+// Janeway's Hair
+12112|NONE
+
+// Janeway's Shirt
+12114|NONE
+
+// Janeway's Pants
+12116|NONE
+
+// Janeway's Shoes
+12118|NONE
+
+// Starfleet Uniform Shirt
+12120|NONE
+
+// Starfleet Uniform Pants
+12122|NONE
+
+// The Diviner's Hair
+12124|NONE
+
+// The Diviner Face Paint
+12126|NONE
+
+// The Diviner's Shirt
+12128|NONE
+
+// The Diviner's Pants
+12130|NONE
+
+// The Diviner's Shoes
+12132|NONE
+
+// Drednok's Helmet
+12134|NONE
+
+// Drednok's Robe
+12136|NONE
+
+// Tars Lamora Miner Helmet
+12138|NONE
+
+// Tars Lamora Miner Shirt
+12140|NONE
+
+// Tars Lamora Miner Pants
+12142|NONE
+
+// Tars Lamora Miner Shoes
+12144|NONE
+
+// Battery Block
+12146|AIR
+
+// Vehicle Replicator
+12148|WATER
+
+// Tars Lamora Drill
+12150|FIRE
+
+// Janeway's Coffee
+12152|EARTH
+
+// Nutri-goop
+12154|WATER
+
+// Blood Truffle Biscuits with Sweet Radish Pie
+12156|EARTH
+
+// Hologram Janeway UI Icon
+12158|FIRE
+
+// Safari Hat
+12160|NONE
+
+// Repair Ship Hull Icon
+12162|FIRE
+
+// Collect Resources Icon
+12164|FIRE
+
+// Repair Protostar Containment Icon
+12166|FIRE
+
+// Repair Vehicle Replicator Icon
+12168|FIRE
+
+// Plot a Course Icon
+12170|FIRE
+
+// Ethereal Chains
+12172|NONE
+
+// Pearl Butterfly Wings
+12174|NONE
+
+// Pearl Tiki Crown
+12182|NONE
+
+// Pearl Bracelet
+12184|NONE
+
+// Blender Pop
+12196|WIND
+
+// Picnic Table
+12198|WIND
+
+// Banana Caution Cone
+12202|FIRE
+
+// Buddy's Sign
+12204|WIND
+
+// Pearl Pointdexters
+12208|NONE
+
+// Pearl Polo
+12210|NONE
+
+// Pearl Pants
+12212|NONE
+
+// Pearl Pumps
+12214|NONE
+
+// Pearl Arch
+12216|AIR
+
+// Pearl Lamp
+12218|FIRE
+
+// Pearl Wallpaper
+12220|EARTH
+
+// Mother of Pearl
+12222|EARTH
+
+// Dummy Alien Computer
+12226|AIR
+
+// Startopia NPC Character Bad
+12244|EARTH
+
+// Staff of Gale
+12246|NONE
+
+// Royal Staff of Gale
+12248|NONE
+
+// Pearls Currency
+12250|FIRE
+
+// BP Sand
+12252|WATER
+
+// BP Water
+12254|WATER
+
+// The Bartender
+12256|EARTH
+
+// The Bouncer
+12258|EARTH
+
+// Clam Chest
+12260|FIRE
+
+// Pearl Chest
+12262|FIRE
+
+// Golden Pearl Chest
+12264|FIRE
+
+// Beach Party Ticket
+12266|EARTH
+
+// Founder of the Fancy Gentleman Club
+12270|EARTH
+
+// Robert, The Robot
+12272|EARTH
+
+// Alien Menace
+12274|EARTH
+
+// Criminal Mastermind
+12276|EARTH
+
+// Mark, The Mechanic
+12278|EARTH
+
+// Alien Ship
+12310|EARTH
+
+// Lincoln, The Leprechaun
+12312|EARTH
+
+// Alan, The Alien
+12314|EARTH
+
+// Geoff, The Guard
+12316|EARTH
+
+// U.S.S. Protostar Platform
+12318|AIR
+
+// U.S.S. Protostar Wall
+12320|AIR
+
+// U.S.S. Protostar Bulkhead
+12322|AIR
+
+// U.S.S. Protostar Window
+12324|AIR
+
+// U.S.S. Protostar Wall Panel
+12326|AIR
+
+// U.S.S. Protostar Wall Vent
+12328|AIR
+
+// U.S.S. Protostar Wall Console
+12330|AIR
+
+// Federation Starship Hull - 32_1
+12332|EARTH
+
+// Federation Starship Hull - 32_2
+12334|FIRE
+
+// Starship Hull - 32_3
+12336|FIRE
+
+// Federation Starship Hull - Ramp 1
+12338|FIRE
+
+// Federation Starship Hull - Ramp 2
+12340|FIRE
+
+// Legendary Clash Key - Series 5
+12348|EARTH
+
+// Music Amplifier
+12358|FIRE
+
+// Cobblestone
+12522|EARTH
+12524|EARTH
+
+// Diagonal arrows
+12526|FIRE
+12528|FIRE
+
+// Awnings
+12536|WIND
+12538|WIND
+
+// Growmoji Plead
+12542|EARTH
+
+// Growmoji Moyai
+12544|EARTH
+
+// Garuda
+12566|EARTH
+12568|EARTH
+12570|EARTH
+12572|EARTH
+12574|FIRE
+12588|WATER
+12590|EARTH
+12592|EARTH
+12594|WATER

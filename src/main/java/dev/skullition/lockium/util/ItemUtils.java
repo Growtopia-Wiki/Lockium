@@ -1,5 +1,6 @@
 package dev.skullition.lockium.util;
 
+import dev.skullition.lockium.model.Chi;
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
@@ -7,6 +8,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
@@ -25,6 +27,21 @@ public class ItemUtils {
   private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
   private static final String TREE_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s-tree.png";
   private static final String GROWTOPIA_WIKI_URL = "https://growtopiawiki.com/w/%s";
+
+  /** Item ID → chi map, populated by {@link dev.skullition.lockium.service.ChiService}. */
+  private static volatile Map<Integer, Chi> chiMap = Map.of();
+
+  /**
+   * Publishes the chi dataset used by {@link #createItemContainer}.
+   *
+   * <p>Called by {@link dev.skullition.lockium.service.ChiService} at startup and on reload; not
+   * intended for other callers.
+   *
+   * @param map immutable map of in-game item ID to chi
+   */
+  public static void setChiMap(Map<Integer, Chi> map) {
+    chiMap = map;
+  }
 
   /**
    * Builds the CDN URL for an item sprite.
@@ -135,10 +152,12 @@ public class ItemUtils {
     String itemName =
         itemCatalogue.seedName() == null ? item.item().name() : itemCatalogue.seedName();
     String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(itemName));
+    var chiEmoji = chiMap.getOrDefault(item.item().id(), Chi.NONE).getEmoji();
+    String chiPrefix = chiEmoji == null ? "" : chiEmoji + " ";
     Section header =
         Section.of(
             Thumbnail.fromUrl(getItemSpriteUrl(item.item().id())),
-            TextDisplay.of(String.format("## [%s](%s)", itemName, itemUrl)),
+            TextDisplay.of(String.format("## %s[%s](%s)", chiPrefix, itemName, itemUrl)),
             TextDisplay.of(item.item().description()));
     container.add(header);
     container.add(Separator.create(true, Separator.Spacing.LARGE));

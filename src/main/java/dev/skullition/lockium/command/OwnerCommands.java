@@ -1,5 +1,6 @@
 package dev.skullition.lockium.command;
 
+import dev.skullition.lockium.service.ChiService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiCacheService;
 import dev.skullition.lockium.util.AppEmojis;
@@ -26,16 +27,20 @@ import net.dv8tion.jda.api.entities.Activity;
 public class OwnerCommands {
   private final TreeFruitService fruitService;
   private final WikiCacheService cacheService;
+  private final ChiService chiService;
 
   /**
    * Creates the owner command handler.
    *
    * @param fruitService service that holds the tree-fruit max-drop map
    * @param cacheService service that manages wiki API caches
+   * @param chiService service that holds the item chi map
    */
-  public OwnerCommands(TreeFruitService fruitService, WikiCacheService cacheService) {
+  public OwnerCommands(
+      TreeFruitService fruitService, WikiCacheService cacheService, ChiService chiService) {
     this.fruitService = fruitService;
     this.cacheService = cacheService;
+    this.chiService = chiService;
   }
 
   /**
@@ -73,6 +78,7 @@ public class OwnerCommands {
   public void onTextReload(CommandEvent event) {
     cacheService.refreshCaches();
     fruitService.reload();
+    chiService.reload();
     event.reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING)).queue();
   }
 }
