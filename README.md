@@ -23,6 +23,18 @@ All commands work in servers, DMs, and as a user-install app.
 - `/gt recycle <name> <count>` – calculate gems received for recycling an item
 - `/gt role <role>` – show XP requirements per level and daily quest gem costs for a role
 - `/gt wotd` – render today's World of the Day
+- `/gt world <name>` – show a world's render from growtopiagame.com, with its last render date
+- `/gt stats` – game server stats: server status, online users, and today's WOTD
+- `/gt events` – timers for the Daily Challenge, Night of the Comet, Pet Battle Tournament, and the daily block drop rotation
+- `/gt time` – current Growtopia (US Eastern) time
+- `/gt startdate <days>` – convert your account's age in days to the date you started playing
+- `/gt xp [min] [max]` – XP needed between two levels, with block-breaking equivalents and multipliers
+- `/gt mooncakes <name> <count>` – expected mooncake drops from harvesting trees
+- `/gt search <query>` – search items by name
+- `/gt telephone` – all dialable telephone numbers
+- `/gt provider atm <count>` – estimated ATM gem earnings
+- `/gt provider tackle <count>` – estimated Tackle Box bait drops
+- `/gt provider science <count>` – estimated Science Station chemical drops
 
 Item name options support autocomplete backed by the cached Wiki item index.
 
