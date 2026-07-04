@@ -1,5 +1,7 @@
 package dev.skullition.lockium.command;
 
+import static dev.skullition.lockium.util.FormatUtil.formatNumber;
+
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ContainerUtil;
 import dev.skullition.lockium.util.ItemUtils;
@@ -9,7 +11,6 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.section.Section;
@@ -50,10 +51,6 @@ public class ProviderCommands {
           new ChemicalDrop("Chemical B", 16.0),
           new ChemicalDrop("Chemical Y", 13.0),
           new ChemicalDrop("Chemical P", 7.0));
-
-  private static String formatNumber(long value) {
-    return String.format(Locale.US, "%,d", value);
-  }
 
   /**
    * Handles {@code /gt provider atm}.

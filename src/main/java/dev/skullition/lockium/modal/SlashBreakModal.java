@@ -1,5 +1,7 @@
 package dev.skullition.lockium.modal;
 
+import static dev.skullition.lockium.util.FormatUtil.formatNumber;
+
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
@@ -15,7 +17,6 @@ import io.github.freya022.botcommands.api.modals.annotations.ModalHandler;
 import io.github.freya022.botcommands.api.modals.annotations.ModalInput;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
@@ -221,16 +222,16 @@ public class SlashBreakModal {
           TextDisplay.of("%s Block does not drop gems.".formatted(AppEmojis.EXCLAMATION)));
     }
 
-    String countFormatted = String.format(Locale.US, "%,d", blockCount);
+    String countFormatted = formatNumber(blockCount);
     components.add(TextDisplay.of("### Results for %s blocks:".formatted(countFormatted)));
 
     int seedsFromDroppedBlocks = (int) (baseBlockDrop * 0.25f);
 
-    String baseBlockDropFormatted = String.format(Locale.US, "%,.0f", baseBlockDrop);
-    String baseBlockSeedDropFormatted = String.format(Locale.US, "%,.0f", baseSeedDrop);
+    String baseBlockDropFormatted = formatNumber(baseBlockDrop);
+    String baseBlockSeedDropFormatted = formatNumber(baseSeedDrop);
     String totalBlocksAndSeedsFormatted =
-        String.format(Locale.US, "%,.0f", baseSeedDrop + seedsFromDroppedBlocks);
-    String gemDropsFormatted = String.format(Locale.US, "%,.0f", gemDrops);
+        formatNumber(baseSeedDrop + seedsFromDroppedBlocks);
+    String gemDropsFormatted = formatNumber(gemDrops);
     components.add(
         TextDisplay.of(
             """

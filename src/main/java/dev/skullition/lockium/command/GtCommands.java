@@ -1,6 +1,8 @@
 package dev.skullition.lockium.command;
 
 import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AUTOCOMPLETE_NAME;
+import static dev.skullition.lockium.util.FormatUtil.formatDecimal;
+import static dev.skullition.lockium.util.FormatUtil.formatNumber;
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
 import dev.skullition.lockium.modal.SlashBreakModal;
@@ -109,10 +111,6 @@ public class GtCommands {
     this.lockiumProperties = lockiumProperties;
     this.fruitService = fruitService;
     this.worldRenderService = worldRenderService;
-  }
-
-  private static String formatNumber(long value) {
-    return String.format(Locale.US, "%,d", value);
   }
 
   /**
@@ -424,7 +422,7 @@ public class GtCommands {
     }
 
     List<ContainerChildComponent> components = new ArrayList<>();
-    String treeCountFormatted = String.format(Locale.US, "%,d", treeCount);
+    String treeCountFormatted = formatNumber(treeCount);
     components.add(
         TextDisplay.of("### Harvesting %s %s Trees.".formatted(treeCountFormatted, item.name())));
 
@@ -436,17 +434,17 @@ public class GtCommands {
     }
 
     double treeDropCount = isFarmable ? treeCount * 3.75 : treeCount * 2.5;
-    String treeDropCountFormatted = String.format(Locale.US, "%,.0f", treeDropCount);
+    String treeDropCountFormatted = formatNumber(treeDropCount);
     components.add(
         TextDisplay.of(
             "%s Block drops: ~**%s**".formatted(AppEmojis.DIRT_BLOCK, treeDropCountFormatted)));
 
     double fuelTotal = treeDropCount * 1.1;
-    String fuelTotalFormatted = String.format(Locale.US, "%,.0f", fuelTotal);
+    String fuelTotalFormatted = formatNumber(fuelTotal);
     var extraBlocksHarvesterAvg = Math.floor(treeDropCount * 1.10) - treeDropCount;
     String extraBlocksHarvesterAvgFormatted =
-        String.format(Locale.US, "%,.0f", extraBlocksHarvesterAvg);
-    String consumedFuelPacksFormatted = String.format(Locale.US, "%,d", treeCount / 10);
+        formatNumber(extraBlocksHarvesterAvg);
+    String consumedFuelPacksFormatted = formatNumber(treeCount / 10);
     components.add(
         TextDisplay.of(
             "%s Extra block drops with harvester: `~%s` (Total `~%s`) (**%s fuel packs consumed**)"
@@ -461,8 +459,8 @@ public class GtCommands {
       components.add(TextDisplay.of("%s No gem drops.".formatted(AppEmojis.GEM)));
     } else {
       double totalGemDrop = treeCount * gemDropAvg;
-      String totalGemFormatted = String.format(Locale.US, "%,.0f", totalGemDrop);
-      String gemDropAvgFormatted = String.format(Locale.US, "%,.0f", gemDropAvg);
+      String totalGemFormatted = formatNumber(totalGemDrop);
+      String gemDropAvgFormatted = formatNumber(gemDropAvg);
       components.add(
           TextDisplay.of(
               "%s Gem drops: `~%s` (`~%s` per tree)"
@@ -477,8 +475,8 @@ public class GtCommands {
       double chanceSeedDrop = ItemUtils.getChanceToDropSeedOnTreeSmash(item.rarity());
       int totalSeedDrop = (int) (treeCount / (100 / chanceSeedDrop));
 
-      String chanceSeedDropFormatted = String.format(Locale.US, "%,.0f", chanceSeedDrop);
-      String totalSeedDropFormatted = String.format(Locale.US, "%,d", totalSeedDrop);
+      String chanceSeedDropFormatted = formatNumber(chanceSeedDrop);
+      String totalSeedDropFormatted = formatNumber(totalSeedDrop);
       components.add(
           TextDisplay.of(
               "%s Seed drops: `%s` seeds. (`~%s`%% chance.)"
@@ -489,16 +487,16 @@ public class GtCommands {
       double blockBlockDrop = treeDropCount / 12;
       double blockBlockDropHarvester = blockBlockDrop * 1.10;
 
-      String totalSeedsEarnedFormatted = String.format(Locale.US, "%,d", totalSeedsEarned);
-      String blockBlockDropFormatted = String.format(Locale.US, "%,.0f", blockBlockDrop);
+      String totalSeedsEarnedFormatted = formatNumber(totalSeedsEarned);
+      String blockBlockDropFormatted = formatNumber(blockBlockDrop);
       components.add(
           TextDisplay.of(
               ("`~%s` seeds after harvesting and breaking blocks from trees, "
                       + "`%s` block drop from blocks.")
                   .formatted(totalSeedsEarnedFormatted, blockBlockDropFormatted)));
-      String harvesterFuelTotalFormatted = String.format(Locale.US, "%,.0f", fuelTotal / 4);
+      String harvesterFuelTotalFormatted = formatNumber(fuelTotal / 4);
       String blockBlockDropHarvesterFormatted =
-          String.format(Locale.US, "%,.0f", blockBlockDropHarvester);
+          formatNumber(blockBlockDropHarvester);
       components.add(
           TextDisplay.of(
               "%s Harvester: `~%s` seeds + `%s` blocks after breaking, using harvester."
@@ -515,10 +513,9 @@ public class GtCommands {
                   .formatted(AppEmojis.TICKING_CLOCK, timeToHarvest)));
 
       String finalNoHarvesterFormatted =
-          String.format(Locale.US, "%,.0f", totalSeedsEarned + (blockBlockDrop / 4));
+          formatNumber(totalSeedsEarned + (blockBlockDrop / 4));
       String finalHarvesterFormatted =
-          String.format(
-              Locale.US, "%,.0f", (totalSeedsEarned * 1.10) + (blockBlockDropHarvester / 4));
+          formatNumber((totalSeedsEarned * 1.10) + (blockBlockDropHarvester / 4));
       components.add(
           TextDisplay.of(
               "### %s TOTAL: %s seeds after one cycle, ~%s with harvester."
@@ -566,7 +563,7 @@ public class GtCommands {
 
     List<ContainerChildComponent> components = new ArrayList<>();
 
-    String itemCountFormatted = String.format(Locale.US, "%,d", itemCount);
+    String itemCountFormatted = formatNumber(itemCount);
     components.add(
         TextDisplay.of("### Recycling %s %s".formatted(itemCountFormatted, item.name())));
     // Could also check for !ItemProperties.NO_SEED
@@ -582,7 +579,7 @@ public class GtCommands {
         TextDisplay.of(
             "%s Gems per item: %s - %s"
                 .formatted(AppEmojis.GEM, recycleResult.rangeMin(), recycleResult.rangeMax())));
-    String gemCountFormatted = String.format(Locale.US, "%,d", recycleResult.gemCount());
+    String gemCountFormatted = formatNumber(recycleResult.gemCount());
     components.add(
         TextDisplay.of(
             "### %s Total gems: `~%s`".formatted(AppEmojis.CHECKBOX_ENABLED, gemCountFormatted)));
@@ -630,7 +627,7 @@ public class GtCommands {
     long normalMooncakes = totalMooncakes - balanceMooncakes;
 
     List<ContainerChildComponent> components = new ArrayList<>();
-    String treeCountFormatted = String.format(Locale.US, "%,d", treeCount);
+    String treeCountFormatted = formatNumber(treeCount);
     components.add(
         TextDisplay.of(
             "### Harvesting %s %s Trees (Rarity %d)"
@@ -655,10 +652,13 @@ public class GtCommands {
             """
             **ℹ Additional Info**
             ▫ Tree takes `%s` to grow.
-            ▫ Roughly `%.2f` farms. (2,500 trees/farm)
-            ▫ A tree has `%.1f%%` chance to drop a cake.\
+            ▫ Roughly `%s` farms. (2,500 trees/farm)
+            ▫ A tree has `%s%%` chance to drop a cake.\
             """
-                .formatted(growTime, treeCount / 2500.0, dropChance * 100)));
+                .formatted(
+                    growTime,
+                    formatDecimal(treeCount / 2500.0, 2),
+                    formatDecimal(dropChance * 100, 1))));
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
@@ -1118,7 +1118,7 @@ public class GtCommands {
                 """
                     .formatted(
                         status,
-                        String.format(Locale.US, "%,d", onlineUsers),
+                        formatNumber(onlineUsers),
                         AppEmojis.WOTD,
                         wotdName(detail))));
     event.replyComponents(container).useComponentsV2().queue();
