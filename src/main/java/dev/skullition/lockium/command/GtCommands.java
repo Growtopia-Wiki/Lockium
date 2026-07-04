@@ -26,6 +26,8 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import io.github.freya022.botcommands.api.modals.Modals;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -54,6 +56,9 @@ import org.slf4j.LoggerFactory;
 @Command
 public class GtCommands {
   private static final Logger logger = LoggerFactory.getLogger(GtCommands.class);
+  /** The day Growtopia was released. */
+  private static final LocalDate GROWTOPIA_RELEASE_DATE = LocalDate.of(2012, 11, 30);
+
   private final Modals modals;
   private final WikiService wikiService;
   private final GrowtopiaDetailService detailService;
@@ -540,6 +545,48 @@ public class GtCommands {
 
   private static String formatNumber(long value) {
     return String.format(Locale.US, "%,d", value);
+  }
+
+  /**
+   * Handles {@code /gt startdate}.
+   *
+   * <p>Converts an account's age in days (visible when wrenching yourself in-game) to the calendar
+   * date the account was created, rendered as a localized Discord timestamp.
+   *
+   * @param event the slash interaction
+   * @param days days since the account was created; must not exceed the game's age
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "startdate",
+      description = "Tells you when you started playing based on account days.")
+  public void onSlashStartDate(
+      GlobalSlashEvent event,
+      @SlashOption(description = "Days since the account was created (wrench yourself in-game).")
+          int days) {
+    long daysSinceRelease =
+        ChronoUnit.DAYS.between(
+            GROWTOPIA_RELEASE_DATE, LocalDate.now(GrowtopiaTimeUtil.GROWTOPIA_ZONE));
+    if (days < 0 || days > daysSinceRelease) {
+      event
+          .reply(
+              "Can't be more days than the game has been online for! (%d)"
+                  .formatted(daysSinceRelease))
+          .queue();
+      return;
+    }
+
+    long startDateEpochSeconds =
+        LocalDate.now(GrowtopiaTimeUtil.GROWTOPIA_ZONE)
+            .minusDays(days)
+            .atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE)
+            .toEpochSecond();
+    var container =
+        ContainerUtil.createGenericContainer(
+            TextDisplay.of(
+                "%s Start Date: <t:%d:D>"
+                    .formatted(AppEmojis.TICKING_CLOCK, startDateEpochSeconds)));
+    event.replyComponents(container).useComponentsV2().queue();
   }
 
   /**
