@@ -551,6 +551,35 @@ public class GtCommands {
   }
 
   /**
+   * Handles {@code /gt telephone}.
+   *
+   * <p>Lists all telephone numbers that can be dialed on an in-game Telephone.
+   *
+   * @param event the slash interaction
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "telephone",
+      description = "Get all the available telephone numbers.")
+  public void onSlashTelephone(GlobalSlashEvent event) {
+    var container =
+        ContainerUtil.createGenericContainer(
+            TextDisplay.of("### ☎️ All Telephone Numbers"),
+            Separator.create(true, Separator.Spacing.LARGE),
+            TextDisplay.of(
+                """
+                ▫ `00000` - Operator
+                ▫ `02893` - Growtech Pharma
+                ▫ `12345` - Crazy Jim
+                ▫ `30912` - Growtopizza
+                ▫ `41100`-`41199` - Warehouse
+                ▫ `53785` - Sales-Man
+                ▫ `77777` - Nobody
+                ▫ `90210` - Beverly Hill"""));
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
    * Handles {@code /gt xp}.
    *
    * <p>Sums the XP required between two levels using the in-game formula {@code 50 * (level² + 2)}
