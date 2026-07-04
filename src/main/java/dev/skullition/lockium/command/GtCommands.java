@@ -43,6 +43,7 @@ import net.dv8tion.jda.api.components.label.Label;
 import net.dv8tion.jda.api.components.mediagallery.MediaGallery;
 import net.dv8tion.jda.api.components.mediagallery.MediaGalleryItem;
 import net.dv8tion.jda.api.components.radiogroup.RadioGroup;
+import net.dv8tion.jda.api.components.selections.StringSelectMenu;
 import net.dv8tion.jda.api.components.separator.Separator;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.components.textinput.TextInput;
@@ -317,8 +318,8 @@ public class GtCommands {
    * Handles {@code /gt break}.
    *
    * <p>Validates the item category and block count, then opens a modal to collect modifiers (Lucky
-   * mod, Buddy's Block, Ancestral Tesseract level). The calculation itself is performed in {@link
-   * SlashBreakModal}.
+   * mod, clothing bonuses like Buddy's Block Head / Galaxy Skin / Winter Wishing Star, and the
+   * Ancestral Tesseract level). The calculation itself is performed in {@link SlashBreakModal}.
    *
    * @param event the slash interaction
    * @param itemQuery the block to break
@@ -358,10 +359,14 @@ public class GtCommands {
                         .addOption("No", "False")
                         .build()),
                 Label.of(
-                    "Buddy's Block Head?",
-                    RadioGroup.create(SlashBreakModal.INPUT_BUDDY)
-                        .addOption("Yes", "True")
-                        .addOption("No", "False")
+                    "Clothing bonuses?",
+                    StringSelectMenu.create(SlashBreakModal.INPUT_CLOTHING)
+                        .addOption("Buddy's Block Head (+2% blocks)", SlashBreakModal.CLOTHING_BBH)
+                        .addOption("Galaxy Skin (+10% blocks)", SlashBreakModal.CLOTHING_GALAXY)
+                        .addOption(
+                            "Winter Wishing Star (+2% blocks)", SlashBreakModal.CLOTHING_STAR)
+                        .setMinValues(0)
+                        .setMaxValues(3)
                         .build()),
                 Label.of(
                     "Ancestral Tesseract level?",

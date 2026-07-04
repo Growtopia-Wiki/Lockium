@@ -28,10 +28,17 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
  * {@link ItemProperty#NO_DROP}, {@link ItemProperty2#GEMLESS}) and optional player buffs:
  *
  * <ul>
- *   <li>Lucky! – 10% chance, 5× gems, guaranteed block return
- *   <li>Buddy's Block – +2% blocks
+ *   <li>Lucky! – 10% chance, 5× gems, guaranteed block return; not clothing, never capped
+ *   <li>Buddy's Block Head – +2% blocks
+ *   <li>Galaxy Skin – +10% blocks
+ *   <li>Winter Wishing Star – +2% blocks
  *   <li>Ancestral Tesseract – +5% to +10% blocks depending on level
  * </ul>
+ *
+ * <p>Clothing block bonuses (all of the above except Lucky!) are capped at {@value
+ * #CLOTHING_BONUS_CAP}% in-game. Due to an in-game oversight, the Winter Wishing Star's 2% is
+ * added <em>after</em> the cap check, so the actual observed maximum is 17%. This handler
+ * replicates that behavior.
  *
  * <p>Data is passed from the slash command via {@code @ModalData} to avoid re-fetching the Wiki
  * API. Results are rendered using Discord Components V2.
@@ -40,8 +47,21 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 public class SlashBreakModal {
   public static final String MODAL_NAME = "SlashBreak: break";
   public static final String INPUT_LUCKY = "SlashBreak: lucky";
-  public static final String INPUT_BUDDY = "SlashBreak: buddy";
+  public static final String INPUT_CLOTHING = "SlashBreak: clothing";
   public static final String INPUT_ANCES = "SlashBreak: ances";
+
+  /** Select-menu value for Buddy's Block Head (+2% blocks). */
+  public static final String CLOTHING_BBH = "BBH";
+
+  /** Select-menu value for Galaxy Skin (+10% blocks). */
+  public static final String CLOTHING_GALAXY = "GALAXY";
+
+  /** Select-menu value for Winter Wishing Star (+2% blocks). */
+  public static final String CLOTHING_STAR = "STAR";
+
+  /** In-game cap on clothing block bonuses, in percent. The Winter Wishing Star bypasses it. */
+  private static final int CLOTHING_BONUS_CAP = 15;
+
   private final TreeFruitService fruitService;
 
   /**
@@ -62,7 +82,8 @@ public class SlashBreakModal {
    * @param itemCatalogue the catalogue entry for display purposes, supplied via modal data
    * @param blockCount the number of blocks the user intends to break, supplied via modal data
    * @param luckyString "True" if Lucky! is active, otherwise "False"
-   * @param buddyString "True" if Buddy's Block is active, otherwise "False"
+   * @param clothing selected clothing bonus values ({@link #CLOTHING_BBH}, {@link
+   *     #CLOTHING_GALAXY}, {@link #CLOTHING_STAR}); empty if none are worn
    * @param ancesString the Ancestral Tesseract level as a string (0–6)
    */
   @ModalHandler(MODAL_NAME)
@@ -72,10 +93,12 @@ public class SlashBreakModal {
       @ModalData ItemCatalogue itemCatalogue,
       @ModalData int blockCount,
       @ModalInput(INPUT_LUCKY) String luckyString,
-      @ModalInput(INPUT_BUDDY) String buddyString,
+      @ModalInput(INPUT_CLOTHING) List<String> clothing,
       @ModalInput(INPUT_ANCES) String ancesString) {
     final boolean lucky = parseBoolean(luckyString);
-    final boolean buddy = parseBoolean(buddyString);
+    final boolean buddy = clothing.contains(CLOTHING_BBH);
+    final boolean galaxy = clothing.contains(CLOTHING_GALAXY);
+    final boolean star = clothing.contains(CLOTHING_STAR);
     int ances = tryParseInt(ancesString, event);
     if (ances == -1) {
       return;
@@ -110,7 +133,7 @@ public class SlashBreakModal {
     }
     float baseBlockDrop = 0;
     double gemDrops;
-    if (lucky || buddy || ances != 0) {
+    if (lucky || buddy || galaxy || star || ances != 0) {
       components.add(TextDisplay.of("### Optional Items Used:"));
     }
 
@@ -146,27 +169,44 @@ public class SlashBreakModal {
       gemDrops = (blockCount * 0.66f) * gemAvg;
     }
 
+    // Clothing block bonuses share an in-game cap; the Winter Wishing Star bypasses it.
+    int cappableBonus = 0;
     if (ances != 0) {
-      float increase;
-      if (ances == 1) {
-        increase = 0.05f;
-      } else {
-        increase = 0.05f + (((float) ances - 1f) / 100);
-      }
+      int tesseractBonus = ances == 1 ? 5 : 5 + (ances - 1);
       components.add(
           TextDisplay.of(
               "%s Ancestral Tesseract of Dimensions Lv.%s (%s%% extra blocks)."
-                  .formatted(AppEmojis.ANCES_TESSERACT, ances, (int) (increase * 100))));
-
-      baseBlockDrop += blockCount * increase;
+                  .formatted(AppEmojis.ANCES_TESSERACT, ances, tesseractBonus)));
+      cappableBonus += tesseractBonus;
     }
-
     if (buddy) {
       components.add(
           TextDisplay.of(
               "%s Using Buddy's Block Head (2%% extra blocks).".formatted(AppEmojis.BBH)));
-      baseBlockDrop += (blockCount * 1.02f) - blockCount;
+      cappableBonus += 2;
     }
+    if (galaxy) {
+      components.add(
+          TextDisplay.of(
+              "%s Using Galaxy Skin (10%% extra blocks).".formatted(AppEmojis.GALAXY_SKIN)));
+      cappableBonus += 10;
+    }
+
+    int clothingBonus = Math.min(cappableBonus, CLOTHING_BONUS_CAP);
+    if (star) {
+      components.add(
+          TextDisplay.of(
+              "%s Using Winter Wishing Star (2%% extra blocks, ignores the cap)."
+                  .formatted(AppEmojis.WWS)));
+      clothingBonus += 2;
+    }
+    if (cappableBonus > CLOTHING_BONUS_CAP) {
+      components.add(
+          TextDisplay.of(
+              "%s Clothing block bonuses are capped at %d%% in-game — effective bonus is +%d%%."
+                  .formatted(AppEmojis.EXCLAMATION, CLOTHING_BONUS_CAP, clothingBonus)));
+    }
+    baseBlockDrop += blockCount * (clothingBonus / 100f);
 
     if (!dropsSeeds) {
       components.add(
