@@ -90,6 +90,82 @@ public class ProviderCommands {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
+  /** In-game item ID of the Tackle Box, used for the sprite thumbnail. */
+  private static final int TACKLE_BOX_ID = 3044;
+
+  /**
+   * A weighted entry of the Tackle Box drop pool.
+   *
+   * @param name display name of the dropped item
+   * @param weight relative weight within the pool
+   */
+  private record TackleDrop(String name, int weight) {}
+
+  /** Tackle Box drop pool with in-game weights. */
+  private static final List<TackleDrop> TACKLE_DROPS =
+      List.of(
+          new TackleDrop("Wiggly Worms", 500),
+          new TackleDrop("Shiny Flashy Worms", 400),
+          new TackleDrop("Salmon Eggs", 300),
+          new TackleDrop("Fishing Fly", 200),
+          new TackleDrop("Shrimp Lure", 100),
+          new TackleDrop("Uranium Glowing Lure", 50),
+          new TackleDrop("Mega-Pellet Bait", 50));
+
+  /**
+   * Handles {@code /gt provider tackle}.
+   *
+   * <p>Estimates bait drops from harvesting Tackle Boxes. Each drop is picked from a weighted
+   * pool, and every harvest yields 1.5 items on average.
+   *
+   * @param event the slash interaction
+   * @param tackleCount number of Tackle Boxes harvested per day; must be between 50 and 500,000
+   *     (inclusive)
+   */
+  @JDASlashCommand(
+      name = "gt",
+      group = "provider",
+      subcommand = "tackle",
+      description = "Estimates Tackle Box earnings.")
+  public void onSlashTackle(
+      GlobalSlashEvent event, @SlashOption(description = "How many Tackle Boxes?") int tackleCount) {
+    if (tackleCount < 50 || tackleCount > 500_000) {
+      event.reply("Must be between 50 and 500,000 Tackle Boxes.").queue();
+      return;
+    }
+
+    int poolTotal = TACKLE_DROPS.stream().mapToInt(TackleDrop::weight).sum();
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        Section.of(
+            Thumbnail.fromUrl(ItemUtils.getItemSpriteUrl(TACKLE_BOX_ID)),
+            TextDisplay.of("### Harvesting %s Tackle Boxes".formatted(formatNumber(tackleCount))),
+            TextDisplay.of("-# Tackle Boxes cost 10,000 Gems from the Fishin' Pack.")));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+
+    StringBuilder drops = new StringBuilder();
+    for (TackleDrop drop : TACKLE_DROPS) {
+      long total = (long) (tackleCount * ((double) drop.weight() / poolTotal) * 1.5);
+      drops.append("▫ %s: `~%s`\n".formatted(drop.name(), formatNumber(total)));
+    }
+    components.add(TextDisplay.of(drops.toString()));
+    components.add(Separator.create(true, Separator.Spacing.SMALL));
+    components.add(
+        TextDisplay.of(
+            """
+            ▫ Tackle Box Cost (3/3.5 WLs each) -> `%s-%s` %s
+            ▫ Cost from Store: `%s` gems"""
+                .formatted(
+                    formatNumber(tackleCount * 3L),
+                    formatNumber((long) (tackleCount * 3.5)),
+                    AppEmojis.WORLD_LOCK,
+                    formatNumber(tackleCount * 10_000L))));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
   private static String formatNumber(long value) {
     return String.format(Locale.US, "%,d", value);
   }
