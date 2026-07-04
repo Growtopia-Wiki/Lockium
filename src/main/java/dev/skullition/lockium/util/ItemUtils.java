@@ -153,7 +153,7 @@ public class ItemUtils {
         itemCatalogue.seedName() == null ? item.item().name() : itemCatalogue.seedName();
     String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(itemName));
     var chiEmoji = chiMap.getOrDefault(item.item().id(), Chi.NONE).getEmoji();
-    String chiPrefix = chiEmoji == null ? "" : chiEmoji + " ";
+    String chiPrefix = chiEmoji == null ? "" : chiEmoji.getFormatted() + " ";
     Section header =
         Section.of(
             Thumbnail.fromUrl(getItemSpriteUrl(item.item().id())),
