@@ -4,6 +4,7 @@ import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AU
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
 import dev.skullition.lockium.modal.SlashBreakModal;
+import dev.skullition.lockium.model.GrowtopiaDetail;
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemCategory;
@@ -977,18 +978,85 @@ public class GtCommands {
           .queue();
       return;
     }
-    
+
     String wotd = detail.wotd().fullSize().substring(7);
-    int dotIndex = wotd.indexOf(".");
 
     String renderUrl = lockiumProperties.renderUrl();
     var container =
         ContainerUtil.createGenericContainer(
-            TextDisplay.of(
-                "## %s WOTD: %s"
-                    .formatted(AppEmojis.WOTD, wotd.substring(0, dotIndex).toUpperCase())),
+            TextDisplay.of("## %s WOTD: %s".formatted(AppEmojis.WOTD, wotdName(detail))),
             MediaGallery.of(MediaGalleryItem.fromUrl(renderUrl + wotd.toLowerCase())));
 
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
+   * Extracts the upper-cased World of the Day name from a detail payload.
+   *
+   * <p>The API returns a relative image path such as {@code worlds/thedragonattacks.png}.
+   *
+   * @param detail the detail payload
+   * @return the world name, e.g. {@code THEDRAGONATTACKS}
+   */
+  private static String wotdName(GrowtopiaDetail detail) {
+    String wotd = detail.wotd().fullSize().substring(7);
+    return wotd.substring(0, wotd.indexOf(".")).toUpperCase(Locale.US);
+  }
+
+  /**
+   * Handles {@code /gt gtstats}.
+   *
+   * <p>Shows the current Growtopia time, a server status derived from the online user count, the
+   * amount of online users, and today's World of the Day.
+   *
+   * @param event the slash interaction
+   */
+  @JDASlashCommand(name = "gt", subcommand = "gtstats", description = "Game server stats.")
+  public void onSlashGtStats(GlobalSlashEvent event) {
+    var detail = detailService.getDetail();
+    if (detail == null) {
+      event
+          .reply("Failed to fetch data from the Growtopia servers. Please try again later.")
+          .queue();
+      return;
+    }
+
+    int onlineUsers;
+    try {
+      onlineUsers = Integer.parseInt(detail.onlineUsers());
+    } catch (NumberFormatException e) {
+      logger.warn("gtstats: invalid online_user value: {}", detail.onlineUsers());
+      event.reply("Server API sent invalid data, in maintenance?").queue();
+      return;
+    }
+
+    String status;
+    if (onlineUsers <= 0) {
+      status = "❌ (Server is down.)";
+    } else if (onlineUsers < 15) {
+      status = "🚫 (Maintenance mode - unable to enter.)";
+    } else if (onlineUsers < 1000) {
+      status = "⚠️ (Server is initializing.)";
+    } else {
+      status = "🆙";
+    }
+
+    var container =
+        ContainerUtil.createGenericContainer(
+            TextDisplay.of(
+                "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())),
+            Separator.create(true, Separator.Spacing.LARGE),
+            TextDisplay.of(
+                """
+                🖥️ **Server Status:** %s
+                👤 **Online Users:** `%s`
+                %s **WOTD:** %s\
+                """
+                    .formatted(
+                        status,
+                        String.format(Locale.US, "%,d", onlineUsers),
+                        AppEmojis.WOTD,
+                        wotdName(detail))));
     event.replyComponents(container).useComponentsV2().queue();
   }
 }
