@@ -367,6 +367,7 @@ public class GtCommands {
                             "Winter Wishing Star (+2% blocks)", SlashBreakModal.CLOTHING_STAR)
                         .setMinValues(0)
                         .setMaxValues(3)
+                        .setRequired(false)
                         .build()),
                 Label.of(
                     "Ancestral Tesseract level?",
