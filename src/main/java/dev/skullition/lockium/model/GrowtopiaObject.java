@@ -1,6 +1,7 @@
 package dev.skullition.lockium.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.skullition.lockium.util.ItemUtils;
 import java.util.EnumSet;
 import java.util.List;
 import org.jspecify.annotations.Nullable;
@@ -57,6 +58,12 @@ public record GrowtopiaObject(
     ColorInfo overColor,
     @Nullable RecipeInfo recipe1,
     @Nullable RecipeInfo recipe2) {
+
+  /** Strips Growtopia color codes (e.g. {@code `6}) from the name. */
+  public GrowtopiaObject {
+    name = ItemUtils.stripColorCodes(name);
+  }
+
   /**
    * Returns a human-readable description of the primary flags.
    *

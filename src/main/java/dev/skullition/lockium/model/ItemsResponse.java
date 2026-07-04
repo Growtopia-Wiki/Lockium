@@ -2,6 +2,7 @@ package dev.skullition.lockium.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.skullition.lockium.util.ItemUtils;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import tools.jackson.databind.JsonNode;
@@ -32,7 +33,7 @@ public record ItemsResponse(@JsonProperty Map<Integer, ItemCatalogue> items) {
    *
    * <p>This method is invoked automatically during deserialization. It parses each entry's key to
    * {@code int} and extracts {@code itemId}, {@code seedId}, {@code itemName}, and optional {@code
-   * seedName}.
+   * seedName}. Growtopia color codes (e.g. {@code `6}) are stripped from both names.
    *
    * @param rawItems the raw {@code items} node from JSON, keyed by String
    * @return a new {@code ItemsResponse} with integer keys
@@ -50,8 +51,10 @@ public record ItemsResponse(@JsonProperty Map<Integer, ItemCatalogue> items) {
                   catalogueId,
                   node.get("itemId").asInt(),
                   node.get("seedId").asInt(),
-                  node.get("itemName").asString(),
-                  node.get("seedName") != null ? node.get("seedName").asString() : null);
+                  ItemUtils.stripColorCodes(node.get("itemName").asString()),
+                  node.get("seedName") != null
+                      ? ItemUtils.stripColorCodes(node.get("seedName").asString())
+                      : null);
           items.put(catalogueId, item);
         });
 

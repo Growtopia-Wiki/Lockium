@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.section.Section;
@@ -43,6 +44,24 @@ public class ItemUtils {
    */
   public static String getTreeSpriteUrl(int id) {
     return String.format(TREE_SPRITE_URL, id);
+  }
+
+  private static final Pattern COLOR_CODE = Pattern.compile("`.?");
+
+  /**
+   * Removes Growtopia color codes from an item name.
+   *
+   * <p>The game encodes text colors as a backtick followed by one character (e.g. {@code
+   * `6Immortal Dirt}, {@code ``} to reset). A dangling trailing backtick is also removed.
+   *
+   * @param itemName raw name from the API; may contain color codes
+   * @return the name without color codes
+   */
+  public static String stripColorCodes(String itemName) {
+    if (itemName.indexOf('`') < 0) {
+      return itemName;
+    }
+    return COLOR_CODE.matcher(itemName).replaceAll("");
   }
 
   /**
