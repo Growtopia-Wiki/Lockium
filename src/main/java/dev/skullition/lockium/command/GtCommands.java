@@ -1058,15 +1058,15 @@ public class GtCommands {
   }
 
   /**
-   * Handles {@code /gt gtstats}.
+   * Handles {@code /gt stats}.
    *
    * <p>Shows the current Growtopia time, a server status derived from the online user count, the
    * amount of online users, and today's World of the Day.
    *
    * @param event the slash interaction
    */
-  @JDASlashCommand(name = "gt", subcommand = "gtstats", description = "Game server stats.")
-  public void onSlashGtStats(GlobalSlashEvent event) {
+  @JDASlashCommand(name = "gt", subcommand = "stats", description = "Game server stats.")
+  public void onSlashStats(GlobalSlashEvent event) {
     var detail = detailService.getDetail();
     if (detail == null) {
       event
@@ -1079,7 +1079,7 @@ public class GtCommands {
     try {
       onlineUsers = Integer.parseInt(detail.onlineUsers());
     } catch (NumberFormatException e) {
-      logger.warn("gtstats: invalid online_user value: {}", detail.onlineUsers());
+      logger.warn("stats: invalid online_user value: {}", detail.onlineUsers());
       event.reply("Server API sent invalid data, in maintenance?").queue();
       return;
     }
