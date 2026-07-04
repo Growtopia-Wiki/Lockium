@@ -665,55 +665,17 @@ public class GtCommands {
             "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
 
-    // Daily Challenge: every 25 hours, so the start shifts one hour later each day.
-    final long msInHour = 3_600_000L;
-    long nowMs = now.toInstant().toEpochMilli();
-    long offsetHours = now.getOffset().getTotalSeconds() / 3600;
-    long challengeStartMs =
-        nowMs + 25 * msInHour - ((nowMs + 7 * msInHour) % (25 * msInHour)) + offsetHours * msInHour;
-    if (challengeStartMs - nowMs > 23 * msInHour) {
-      challengeStartMs -= 25 * msInHour;
-    }
-    String challengeText;
-    if (challengeStartMs < nowMs) {
-      challengeText =
-          "Ends <t:%d:R>".formatted((challengeStartMs + 2 * msInHour) / 1000);
-    } else {
-      challengeText = "Starts <t:%d:F>".formatted(challengeStartMs / 1000);
-    }
     components.add(
         TextDisplay.of(
-            "%s **Daily Challenge**: %s".formatted(AppEmojis.CHALLENGE_BOARD, challengeText)));
-
-    // Night of the Comet: the 28th of every month, for one day.
-    ZonedDateTime comet =
-        now.toLocalDate().withDayOfMonth(28).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
-    if (now.isAfter(comet.plusDays(1))) {
-      comet = comet.plusMonths(1);
-    }
-    String cometText;
-    if (!now.isBefore(comet) && now.isBefore(comet.plusDays(1))) {
-      cometText = "Ends <t:%d:R>".formatted(comet.plusDays(1).toEpochSecond());
-    } else {
-      cometText = "Starts <t:%d:R>".formatted(comet.toEpochSecond());
-    }
-    components.add(TextDisplay.of("☄️ **Night Of The Comet**: %s".formatted(cometText)));
-
-    // Pet Battle Tournament: the 7th of every month, for five days.
-    ZonedDateTime tourney =
-        now.toLocalDate().withDayOfMonth(7).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
-    if (now.isAfter(tourney.plusDays(5))) {
-      tourney = tourney.plusMonths(1);
-    }
-    String tourneyText;
-    if (!now.isBefore(tourney) && now.isBefore(tourney.plusDays(5))) {
-      tourneyText = "Ends <t:%d:R>".formatted(tourney.plusDays(5).toEpochSecond());
-    } else {
-      tourneyText = "Starts <t:%d:F>".formatted(tourney.toEpochSecond());
-    }
+            "%s **Daily Challenge**: %s"
+                .formatted(AppEmojis.CHALLENGE_BOARD, dailyChallengeText(now))));
     components.add(
         TextDisplay.of(
-            "%s **Pet Battle Tournament**: %s".formatted(AppEmojis.BATTLE_LEASH, tourneyText)));
+            "☄️ **Night Of The Comet**: %s".formatted(monthlyEventText(now, 28, 1, 'R'))));
+    components.add(
+        TextDisplay.of(
+            "%s **Pet Battle Tournament**: %s"
+                .formatted(AppEmojis.BATTLE_LEASH, monthlyEventText(now, 7, 5, 'F'))));
 
     // Daily Block Drop rotation: yesterday > today > tomorrow.
     StringBuilder rotation = new StringBuilder();
@@ -729,6 +691,53 @@ public class GtCommands {
 
     Container container = ContainerUtil.createGenericContainer(components);
     event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
+   * Builds the Daily Challenge status line.
+   *
+   * <p>The challenge runs on a 25-hour cycle - it starts one hour later every day - and lasts 2
+   * hours.
+   *
+   * @param now the current Growtopia time
+   * @return {@code "Ends <t:..:R>"} while running, otherwise {@code "Starts <t:..:F>"}
+   */
+  private static String dailyChallengeText(ZonedDateTime now) {
+    final long msInHour = 3_600_000L;
+    long nowMs = now.toInstant().toEpochMilli();
+    long offsetHours = now.getOffset().getTotalSeconds() / 3600;
+    long startMs =
+        nowMs + 25 * msInHour - ((nowMs + 7 * msInHour) % (25 * msInHour)) + offsetHours * msInHour;
+    if (startMs - nowMs > 23 * msInHour) {
+      startMs -= 25 * msInHour;
+    }
+    if (startMs < nowMs) {
+      return "Ends <t:%d:R>".formatted((startMs + 2 * msInHour) / 1000);
+    }
+    return "Starts <t:%d:F>".formatted(startMs / 1000);
+  }
+
+  /**
+   * Builds the status line of an event that starts on a fixed day of every month.
+   *
+   * @param now the current Growtopia time
+   * @param dayOfMonth day of the month the event starts on
+   * @param durationDays how many days the event lasts
+   * @param startStyle Discord timestamp style used for the start time (e.g. {@code 'F'}, {@code
+   *     'R'})
+   * @return {@code "Ends <t:..:R>"} while running, otherwise {@code "Starts <t:..:style>"}
+   */
+  private static String monthlyEventText(
+      ZonedDateTime now, int dayOfMonth, int durationDays, char startStyle) {
+    ZonedDateTime start =
+        now.toLocalDate().withDayOfMonth(dayOfMonth).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+    if (now.isAfter(start.plusDays(durationDays))) {
+      start = start.plusMonths(1);
+    }
+    if (!now.isBefore(start) && now.isBefore(start.plusDays(durationDays))) {
+      return "Ends <t:%d:R>".formatted(start.plusDays(durationDays).toEpochSecond());
+    }
+    return "Starts <t:%d:%c>".formatted(start.toEpochSecond(), startStyle);
   }
 
   /**
