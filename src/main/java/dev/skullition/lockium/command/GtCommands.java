@@ -497,6 +497,77 @@ public class GtCommands {
   }
 
   /**
+   * Handles {@code /gt mooncakes}.
+   *
+   * <p>Calculates the expected mooncake drops from harvesting trees during the Lunar New Year
+   * event. A tree's chance to drop a mooncake is {@code rarity / 150}, and roughly one in a
+   * hundred drops is a balance mooncake.
+   *
+   * @param event the slash interaction
+   * @param itemQuery the tree's item
+   * @param treeCount number of trees; must be between 1 and 500,000 (inclusive)
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "mooncakes",
+      description = "Calculate the chance to get mooncakes.")
+  public void onSlashMooncakes(
+      GlobalSlashEvent event,
+      @SlashOption(
+              description = "The item name of the trees you'd like to harvest.",
+              autocomplete = ITEM_AUTOCOMPLETE_NAME)
+          ItemCatalogue itemQuery,
+      @SlashOption(description = "How many trees?") int treeCount) {
+    if (treeCount < 1 || treeCount > 500_000) {
+      event.reply("Tree count must be between 1 and 500,000.").queue();
+      return;
+    }
+    var itemDetail = wikiService.getItemDetail(itemQuery);
+    var item = itemDetail.item();
+    if (item.rarity() == 999) {
+      event.reply("Trees with no rarity do not drop any cakes.").queue();
+      return;
+    }
+
+    double dropChance = item.rarity() / 150.0;
+    long totalMooncakes = (long) (treeCount * dropChance);
+    long balanceMooncakes = totalMooncakes / 100;
+    long normalMooncakes = totalMooncakes - balanceMooncakes;
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    String treeCountFormatted = String.format(Locale.US, "%,d", treeCount);
+    components.add(
+        TextDisplay.of(
+            "### Harvesting %s %s Trees (Rarity %d)"
+                .formatted(treeCountFormatted, item.name(), item.rarity())));
+    components.add(
+        TextDisplay.of(
+            """
+            Total: `~%s` mooncakes
+            ▫ Of which `~%s` should be colored mooncakes (`~%s` of each color)
+            ▫ And `~%s` are balance mooncakes"""
+                .formatted(
+                    formatNumber(totalMooncakes),
+                    formatNumber(normalMooncakes),
+                    formatNumber(normalMooncakes / 4),
+                    formatNumber(balanceMooncakes))));
+    components.add(Separator.create(true, Separator.Spacing.SMALL));
+
+    String growTime = ItemUtils.toDayHourMinutesSeconds(itemDetail.seed().growTime());
+    components.add(
+        TextDisplay.of(
+            """
+            **ℹ Additional Info**
+            ▫ Tree takes `%s` to grow.
+            ▫ Roughly `%.2f` farms. (2,500 trees/farm)
+            ▫ A tree has `%.1f%%` chance to drop a cake."""
+                .formatted(growTime, treeCount / 2500.0, dropChance * 100)));
+
+    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
+    event.replyComponents(container).useComponentsV2().queue();
+  }
+
+  /**
    * Handles {@code /gt role}. Shows the XP curve (per level) and gem-cost curve (per daily quest
    * count) for the chosen role.
    *
