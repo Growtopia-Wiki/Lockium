@@ -32,7 +32,7 @@ public class ProviderCommands {
   /**
    * Handles {@code /gt provider atm}.
    *
-   * <p>Estimates gem earnings from harvesting ATM Machines. Every ATM drops 1-19 gems (average
+   * <p>Estimates gem earnings from harvesting ATMs. Every ATM drops 1-19 gems (average
    * 10), and one in a hundred harvests is a jackpot of 100 gems.
    *
    * @param event the slash interaction
@@ -44,7 +44,7 @@ public class ProviderCommands {
       subcommand = "atm",
       description = "Estimates ATM Machine earnings.")
   public void onSlashAtm(
-      GlobalSlashEvent event, @SlashOption(description = "How many ATM Machines?") int atmCount) {
+      GlobalSlashEvent event, @SlashOption(description = "How many ATMs?") int atmCount) {
     if (atmCount < 1 || atmCount > 500_000) {
       event.reply("Must be between 1 and 500,000 ATMs.").queue();
       return;
@@ -60,8 +60,8 @@ public class ProviderCommands {
     components.add(
         Section.of(
             Thumbnail.fromUrl(ItemUtils.getItemSpriteUrl(ATM_MACHINE_ID)),
-            TextDisplay.of("### Harvesting %s ATM Machines".formatted(formatNumber(atmCount))),
-            TextDisplay.of("-# ATM Machines cost 8,000 Gems from the City Pack.")));
+            TextDisplay.of("### Harvesting %s ATMs".formatted(formatNumber(atmCount))),
+            TextDisplay.of("-# ATMs cost 8,000 Gems from the City Pack.")));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
     components.add(
         TextDisplay.of(
