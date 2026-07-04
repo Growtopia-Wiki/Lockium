@@ -31,6 +31,7 @@ All commands work in servers, DMs, and as a user-install app.
 - `/gt xp [min] [max]` – XP needed between two levels, with block-breaking equivalents and multipliers
 - `/gt mooncakes <name> <count>` – expected mooncake drops from harvesting trees
 - `/gt search <query>` – search items by name
+- `/gt riddle <description>` – find which block an ancestral riddle requires
 - `/gt telephone` – all dialable telephone numbers
 - `/gt provider atm <count>` – estimated ATM gem earnings
 - `/gt provider tackle <count>` – estimated Tackle Box bait drops
