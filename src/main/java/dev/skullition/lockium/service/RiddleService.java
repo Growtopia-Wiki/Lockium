@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * {@code description|itemId|count}). The file is static reference data used by {@code /gt riddle}
  * to find which block an in-game ancestral riddle requires.
  *
- * <p>Lines starting with {@code /} or blank lines are ignored. Malformed lines are logged and
+ * <p>Lines starting with {@code //} or blank lines are ignored. Malformed lines are logged and
  * skipped.
  */
 @Service
@@ -53,7 +53,7 @@ public class RiddleService {
       reader
           .lines()
           .map(String::trim)
-          .filter(l -> !l.isEmpty() && !l.startsWith("/"))
+          .filter(l -> !l.isEmpty() && !l.startsWith("//"))
           .forEach(
               line -> {
                 String[] parts = line.split("\\|");
