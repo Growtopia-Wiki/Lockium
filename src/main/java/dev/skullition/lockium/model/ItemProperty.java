@@ -119,10 +119,7 @@ public enum ItemProperty {
     // Classic SethHam spaghetti
     if (permanent) {
       if (autoPickup) {
-        lines.add(
-            ("%s This item can't be destroyed - "
-                    + "smashing it will return it to your backpack if you have room!")
-                .formatted(AppEmojis.FIST));
+        lines.add(AUTO_PICKUP.description());
       } else {
         lines.add(
             ("%s This item can't be destroyed - " + "smashing it will always yield a new one.")
