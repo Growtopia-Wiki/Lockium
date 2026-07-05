@@ -21,13 +21,13 @@ import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 /**
  * Slash commands under {@code /gt provider} for provider-block earning estimates.
  *
- * <p>Providers are blocks that produce items over time (ATM Machines, Tackle Boxes, Science
+ * <p>Providers are blocks that produce items over time (ATMs, Tackle Boxes, Science
  * Stations). All commands are pure calculations over hardcoded in-game drop rates - no external
  * API calls are made.
  */
 @Command
 public class ProviderCommands {
-  /** In-game item ID of the ATM Machine, used for the sprite thumbnail. */
+  /** In-game item ID of the ATM, used for the sprite thumbnail. */
   private static final int ATM_MACHINE_ID = 1008;
   /** In-game item ID of the Tackle Box, used for the sprite thumbnail. */
   private static final int TACKLE_BOX_ID = 3044;
