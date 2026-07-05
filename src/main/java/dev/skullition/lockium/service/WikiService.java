@@ -6,6 +6,8 @@ import dev.skullition.lockium.model.ItemsResponse;
 import dev.skullition.lockium.util.ItemUtils;
 import java.util.Map;
 import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WikiService {
+  private static final Logger logger = LoggerFactory.getLogger(WikiService.class);
   private final WikiDataService wiki;
 
   /**
@@ -35,10 +38,9 @@ public class WikiService {
    *
    * <p>1. Exact (case-sensitive) match against the index.<br>
    * 2. If not found, performs an O(N) scan comparing each name normalized with {@link
-   * ItemUtils#norm(String)} against the given input, returning the first prefix match.
+   * ItemUtils#norm(String)} against the normalized input, returning the first prefix match.
    *
-   * @param itemName user input; the fallback scan only matches when the input is already normalized
-   *     (trimmed, lower-case)
+   * @param itemName user input; matched case-insensitively by the fallback scan
    * @return matching catalogue entry, or {@code null} if not found
    */
   @Nullable
@@ -50,12 +52,20 @@ public class WikiService {
       return exactMatch;
     }
 
+    logger.debug("findByName: no exact match for '{}', falling back to prefix scan", itemName);
+
     // Fallback O(N) lookup - Might remove if laggy.
-    return index.entrySet().stream()
-        .filter(entry -> ItemUtils.norm(entry.getKey()).startsWith(itemName))
-        .map(Map.Entry::getValue)
-        .findFirst()
-        .orElse(null);
+    String normalized = ItemUtils.norm(itemName);
+    ItemCatalogue prefixMatch =
+        index.entrySet().stream()
+            .filter(entry -> ItemUtils.norm(entry.getKey()).startsWith(normalized))
+            .map(Map.Entry::getValue)
+            .findFirst()
+            .orElse(null);
+    if (prefixMatch == null) {
+      logger.debug("findByName: no prefix match for '{}'", normalized);
+    }
+    return prefixMatch;
   }
 
   /**
