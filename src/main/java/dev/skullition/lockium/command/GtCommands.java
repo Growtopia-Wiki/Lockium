@@ -573,7 +573,7 @@ public class GtCommands {
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many items?") int itemCount) {
     if (itemCount < 1 || itemCount > 100_000) {
-      event.reply("Must be between 1 and 100.000 items.").queue();
+      event.reply("Must be between 1 and 100,000 items.").queue();
       return;
     }
     var itemDetail = wikiService.getItemDetail(itemQuery);
