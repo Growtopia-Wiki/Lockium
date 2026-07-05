@@ -694,12 +694,12 @@ public class GtCommands {
    * @param role the chosen role; never {@code null} since it comes from predefined enum choices
    */
   @JDASlashCommand(
-          name = "gt",
-          subcommand = "role",
-          description = "Check role XP / gems needed for roles.")
+      name = "gt",
+      subcommand = "role",
+      description = "Check role XP / gems needed for roles.")
   public void onSlashRole(
-          GlobalSlashEvent event,
-          @SlashOption(description = "Which role to choose.", usePredefinedChoices = true)
+      GlobalSlashEvent event,
+      @SlashOption(description = "Which role to choose.", usePredefinedChoices = true)
           RoleType role) {
     final String roleName = role.getRoleName();
     final int baseXp = role.getBaseXp();
@@ -715,8 +715,8 @@ public class GtCommands {
       long levelXp = (long) baseXp * level * level;
       totalXp += levelXp;
       xp.append(
-              "▫ Lv.**%d**: `%s` xp required (Total `%s`)\n"
-                      .formatted(level, formatNumber(levelXp), formatNumber(totalXp)));
+          "▫ Lv.**%d**: `%s` xp required (Total `%s`)\n"
+              .formatted(level, formatNumber(levelXp), formatNumber(totalXp)));
     }
     components.add(TextDisplay.of(xp.toString()));
     components.add(Separator.create(true, Separator.Spacing.SMALL));
@@ -728,8 +728,8 @@ public class GtCommands {
       long gemCost = (long) baseGem * (quests - 1) * (quests - 1);
       totalGem += gemCost;
       gems.append(
-              "▫ **%d** quest(s): `%s` gems (Total `%s`)\n"
-                      .formatted(quests, formatNumber(gemCost), formatNumber(totalGem)));
+          "▫ **%d** quest(s): `%s` gems (Total `%s`)\n"
+              .formatted(quests, formatNumber(gemCost), formatNumber(totalGem)));
     }
     components.add(TextDisplay.of(gems.toString()));
 
