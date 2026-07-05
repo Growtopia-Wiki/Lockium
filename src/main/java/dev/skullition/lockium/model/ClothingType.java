@@ -1,6 +1,9 @@
 package dev.skullition.lockium.model;
 
 import dev.skullition.lockium.util.AppEmojis;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import net.dv8tion.jda.api.entities.emoji.ApplicationEmoji;
 import org.jspecify.annotations.Nullable;
 
@@ -10,9 +13,9 @@ import org.jspecify.annotations.Nullable;
  * <p>Used when {@code category.id == 20} (Clothes). Each constant maps the in-game slot index to a
  * Discord {@link ApplicationEmoji} for bot replies and a human-readable name.
  *
- * <p>The enum is intentionally dense – IDs are 0-8 and sequential, so lookup is a simple array
- * access. Unknown IDs return {@code null} rather than throwing, allowing callers to fall back
- * gracefully.
+ * <p>Lookup is performed via an immutable {@link Map} keyed by each constant's slot ID, so
+ * declaration order does not matter. Unknown IDs return {@code null} rather than throwing, allowing
+ * callers to fall back gracefully.
  *
  * @see AppEmojis
  */
@@ -27,7 +30,16 @@ public enum ClothingType {
   HAIR(7, AppEmojis.RED_HAIR, "Hair"),
   CHEST(8, AppEmojis.GOLD_CHAIN, "Chest");
 
-  private static final ClothingType[] BY_ID = values();
+  private static final Map<Integer, ClothingType> BY_ID;
+
+  static {
+    Map<Integer, ClothingType> map = new HashMap<>();
+    for (ClothingType type : values()) {
+      map.put(type.id, type);
+    }
+    BY_ID = Collections.unmodifiableMap(map);
+  }
+
   private final int id;
   private final ApplicationEmoji icon;
   private final String itemName;
@@ -46,7 +58,7 @@ public enum ClothingType {
    */
   @Nullable
   public static ClothingType fromId(int id) {
-    return (id >= 0 && id < BY_ID.length) ? BY_ID[id] : null;
+    return BY_ID.get(id);
   }
 
   /** Returns the emoji shown next to this clothing type. */
