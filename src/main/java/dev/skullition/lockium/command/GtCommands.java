@@ -845,9 +845,11 @@ public class GtCommands {
           Integer maxLevel) {
     int min = minLevel == null ? 1 : minLevel;
     int max = maxLevel == null ? MAX_GT_LEVEL : maxLevel;
-    if (min < 0 || max < 0 || max > MAX_GT_LEVEL + 1 || min > max) {
+    if (min < 1 || max > MAX_GT_LEVEL || min >= max) {
+      logger.debug("onSlashXp: rejected level range {}-{}", min, max);
       event
-          .reply("Invalid input. Min level must be above 0, max level below %d!"
+          .reply(
+              "Invalid input. Min must be at least 1, max at most %d, and min below max!"
                   .formatted(MAX_GT_LEVEL))
           .queue();
       return;
