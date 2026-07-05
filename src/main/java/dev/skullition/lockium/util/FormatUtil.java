@@ -14,6 +14,7 @@ import java.util.Locale;
  * {@code Long.toFormattedString()}).
  */
 public class FormatUtil {
+  private FormatUtil() {}
 
   /**
    * Formats a whole number with grouping separators.

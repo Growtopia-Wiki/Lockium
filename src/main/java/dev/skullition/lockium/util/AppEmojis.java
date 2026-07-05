@@ -23,6 +23,8 @@ import net.dv8tion.jda.api.entities.emoji.ApplicationEmoji;
  */
 @AppEmojiContainer
 public class AppEmojis {
+  private AppEmojis() {}
+
   public static final ApplicationEmoji RARITY = get("RARITY");
   public static final ApplicationEmoji WOTD = get("WOTD");
   public static final ApplicationEmoji COLLISION = get("COLLISION");

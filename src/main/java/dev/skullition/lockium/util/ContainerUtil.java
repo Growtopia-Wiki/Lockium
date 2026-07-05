@@ -22,6 +22,7 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
  * @see ItemUtils#createItemContainer
  */
 public class ContainerUtil {
+  private ContainerUtil() {}
 
   /**
    * Creates a generic container with a standard footer.

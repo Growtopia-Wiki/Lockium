@@ -13,6 +13,8 @@ import java.util.Locale;
  * for calculations and {@link #nowString()} for user-facing output.
  */
 public class GrowtopiaTimeUtil {
+  private GrowtopiaTimeUtil() {}
+
   /** The time zone the Growtopia servers run on. */
   public static final ZoneId GROWTOPIA_ZONE = ZoneId.of("America/New_York");
 

@@ -24,6 +24,8 @@ import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
  * layout used by {@code /gt item} and related commands.
  */
 public class ItemUtils {
+  private ItemUtils() {}
+
   private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
   private static final String TREE_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s-tree.png";
   private static final String GROWTOPIA_WIKI_URL = "https://growtopiawiki.com/w/%s";
