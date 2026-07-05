@@ -95,7 +95,7 @@ public class RiddleService {
     load();
   }
 
-  /** Returns number of riddles currently loaded. */
+  /** Returns the number of riddles currently loaded. */
   public int size() {
     return riddles.size();
   }

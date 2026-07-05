@@ -3,10 +3,15 @@ package dev.skullition.lockium.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Record to store response from Growtopia API.
+ * DTO for the official {@code growtopiagame.com/detail} status feed.
  *
- * @param onlineUsers amount of users currently online
- * @param wotd current WOTD render
+ * <p>Maps the fields Lockium consumes from the JSON blob; other fields in the payload are ignored.
+ * Fetched via {@code GrowtopiaDetailClient} and served with a fallback by {@code
+ * GrowtopiaDetailService}.
+ *
+ * @param onlineUsers amount of users currently online, as a numeric string; JSON property {@code
+ *     "online_user"}
+ * @param wotd current World of the Day render images; JSON property {@code "world_day_images"}
  */
 public record GrowtopiaDetail(
     @JsonProperty("online_user") String onlineUsers,

@@ -16,10 +16,11 @@ import org.springframework.stereotype.Service;
 /**
  * Low-level data access layer for the Growtopia Wiki API.
  *
- * <p>Wraps {@link WikiClient} with Spring Cache abstractions:
+ * <p>Wraps {@link WikiClient} with Spring Cache abstractions (TTL configured by {@code
+ * lockium.items-cache-duration}):
  *
  * <ul>
- *   <li>{@code items} – cached for 6h, stores the full {@link ItemsResponse}
+ *   <li>{@code items} – stores the full {@link ItemsResponse}
  *   <li>{@code itemIndex} – cached map {@code name → ItemCatalogue}, key {@code 'byName'}
  * </ul>
  *
@@ -30,7 +31,11 @@ public class WikiDataService {
   private static final Logger logger = LoggerFactory.getLogger(WikiDataService.class);
   private final WikiClient client;
 
-  /** Takes in client for declarative HTTP client. */
+  /**
+   * Creates the data service.
+   *
+   * @param client declarative HTTP client for the Wiki API
+   */
   public WikiDataService(WikiClient client) {
     this.client = client;
   }
@@ -48,6 +53,14 @@ public class WikiDataService {
     return client.getItems();
   }
 
+  /**
+   * Returns the cached name index, building it from {@link #getItems()} on cache miss.
+   *
+   * <p>The index maps both item names and seed names to their {@link ItemCatalogue} entry;
+   * duplicate names keep the first entry encountered.
+   *
+   * @return unmodifiable map of display name to catalogue entry; never {@code null}
+   */
   @Cacheable(value = "itemIndex", key = "'byName'", sync = true)
   public Map<String, ItemCatalogue> getNameIndex() {
     return buildIndex(getItems());
@@ -57,7 +70,7 @@ public class WikiDataService {
    * Fetches detailed data for a single item. Not cached – details change rarely but are requested
    * infrequently.
    *
-   * @param id item ID
+   * @param id the catalogue index ({@link ItemCatalogue#catalogueId()})
    * @return detail response containing item and seed
    */
   public ItemDetailResponse getItemDetail(int id) {
@@ -83,9 +96,10 @@ public class WikiDataService {
   }
 
   /**
-   * Forces a refresh of the {@code items} cache.
+   * Forces a refresh of the {@code itemIndex} cache from an already-fetched items response.
    *
-   * @return fresh items response from the API
+   * @param items the fresh items response to rebuild the index from
+   * @return the rebuilt name index that was stored in the cache
    */
   @CachePut(value = "itemIndex", key = "'byName'")
   public Map<String, ItemCatalogue> refreshNameIndex(ItemsResponse items) {

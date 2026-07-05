@@ -22,7 +22,9 @@ public class WikiService {
   private final WikiDataService wiki;
 
   /**
-   * Takes in a {@code wiki} param to call the cached data service.
+   * Creates the facade.
+   *
+   * @param wiki the cached data service that performs all I/O
    */
   public WikiService(WikiDataService wiki) {
     this.wiki = wiki;
@@ -31,11 +33,12 @@ public class WikiService {
   /**
    * Finds an item by name with fallback to normalized prefix search.
    *
-   * <p>1. Exact match against the index.<br>
-   * 2. If not found, performs an O(N) scan using {@link ItemUtils#norm(String)} and returns the
-   * first prefix match.
+   * <p>1. Exact (case-sensitive) match against the index.<br>
+   * 2. If not found, performs an O(N) scan comparing each name normalized with {@link
+   * ItemUtils#norm(String)} against the given input, returning the first prefix match.
    *
-   * @param itemName user input (case-insensitive)
+   * @param itemName user input; the fallback scan only matches when the input is already normalized
+   *     (trimmed, lower-case)
    * @return matching catalogue entry, or {@code null} if not found
    */
   @Nullable
@@ -55,11 +58,21 @@ public class WikiService {
         .orElse(null);
   }
 
+  /**
+   * Returns the cached full item catalogue.
+   *
+   * @return the complete items response; never {@code null}
+   */
   public ItemsResponse getItems() {
     return wiki.getItems();
   }
 
-  /** Takes in id and returns a {@link ItemDetailResponse}. */
+  /**
+   * Fetches detailed data for a single item by catalogue index.
+   *
+   * @param id the catalogue index ({@link ItemCatalogue#catalogueId()})
+   * @return detail response containing item and seed
+   */
   public ItemDetailResponse getItemDetail(int id) {
     return wiki.getItemDetail(id);
   }
@@ -74,6 +87,11 @@ public class WikiService {
     return wiki.getItemDetail(itemCatalogue.catalogueId());
   }
 
+  /**
+   * Returns the cached name index used for lookups and autocomplete.
+   *
+   * @return unmodifiable map of display name (item and seed) to catalogue entry
+   */
   public Map<String, ItemCatalogue> getNameIndex() {
     return wiki.getNameIndex();
   }

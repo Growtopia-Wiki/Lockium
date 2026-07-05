@@ -22,7 +22,7 @@ import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 
 /**
- * Modal handler for the {@code /break} command.
+ * Modal handler for the {@code /gt break} command.
  *
  * <p>Calculates the expected returns from smashing a farmable block, including base block drops,
  * seed drops, and gem drops. The calculation respects item flags ({@link ItemProperty#NO_SEED},
@@ -46,9 +46,16 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
  */
 @Handler
 public class SlashBreakModal {
+  /** Modal identifier referenced by {@code Modals#create(...).bindTo(...)}. */
   public static final String MODAL_NAME = "SlashBreak: break";
+
+  /** Input identifier of the Lucky! radio group. */
   public static final String INPUT_LUCKY = "SlashBreak: lucky";
+
+  /** Input identifier of the clothing-bonus select menu. */
   public static final String INPUT_CLOTHING = "SlashBreak: clothing";
+
+  /** Input identifier of the Ancestral Tesseract level text input. */
   public static final String INPUT_ANCES = "SlashBreak: ances";
 
   /** Select-menu value for Buddy's Block Head (+2% blocks). */
@@ -252,10 +259,23 @@ public class SlashBreakModal {
     event.replyComponents(container).useComponentsV2().queue();
   }
 
+  /**
+   * Parses the Lucky! radio-group value.
+   *
+   * @param input the raw radio-group value
+   * @return {@code true} only if the value is exactly {@code "True"}
+   */
   private boolean parseBoolean(String input) {
     return input.equals("True");
   }
 
+  /**
+   * Parses a modal text input as an integer, replying with an ephemeral error if invalid.
+   *
+   * @param input the raw text input
+   * @param event the modal interaction to reply to on failure
+   * @return the parsed value, or {@code -1} if the input is not a valid integer
+   */
   private int tryParseInt(String input, ModalEvent event) {
     try {
       return Integer.parseInt(input);

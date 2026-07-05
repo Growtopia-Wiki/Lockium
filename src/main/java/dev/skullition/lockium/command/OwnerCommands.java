@@ -6,23 +6,29 @@ import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiCacheService;
 import dev.skullition.lockium.util.AppEmojis;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
-import io.github.freya022.botcommands.api.commands.text.CommandEvent;
-import io.github.freya022.botcommands.api.commands.text.annotations.JDATextCommandVariation;
-import io.github.freya022.botcommands.api.commands.text.annotations.RequireOwner;
-import io.github.freya022.botcommands.api.commands.text.annotations.TextOption;
+import io.github.freya022.botcommands.api.commands.application.CommandScope;
+import io.github.freya022.botcommands.api.commands.application.annotations.Test;
+import io.github.freya022.botcommands.api.commands.application.slash.GuildSlashEvent;
+import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
+import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
+import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
+import io.github.freya022.botcommands.api.core.BotOwners;
 import net.dv8tion.jda.api.entities.Activity;
 
 /**
- * Owner-only text commands for runtime administration.
+ * Owner-only slash commands for runtime administration.
  *
  * <p>Provides privileged utilities that are not exposed to normal users:
  *
  * <ul>
- *   <li>{@code activity} – update the bot's Discord presence
- *   <li>{@code reload} – force a full refresh of all in-memory caches
+ *   <li>{@code /owner activity} – update the bot's Discord presence
+ *   <li>{@code /owner reload} – force a full refresh of all in-memory caches
  * </ul>
  *
- * <p>All commands are guarded by {@link RequireOwner}.
+ * <p>The {@code /owner} command is annotated with {@link Test}, so it is only pushed to the test
+ * guilds configured by {@code botcommands.application.testGuildIds}, and is {@code defaultLocked}
+ * so only administrators see it by default. Subcommands additionally reject users that are not
+ * {@linkplain BotOwners bot owners}.
  */
 @Command
 public class OwnerCommands {
@@ -30,6 +36,7 @@ public class OwnerCommands {
   private final WikiCacheService cacheService;
   private final ChiService chiService;
   private final RiddleService riddleService;
+  private final BotOwners botOwners;
 
   /**
    * Creates the owner command handler.
@@ -38,55 +45,83 @@ public class OwnerCommands {
    * @param cacheService service that manages wiki API caches
    * @param chiService service that holds the item chi map
    * @param riddleService service that holds the ancestral riddle dataset
+   * @param botOwners registry of bot owners used to gate slash commands
    */
   public OwnerCommands(
       TreeFruitService fruitService,
       WikiCacheService cacheService,
       ChiService chiService,
-      RiddleService riddleService) {
+      RiddleService riddleService,
+      BotOwners botOwners) {
     this.fruitService = fruitService;
     this.cacheService = cacheService;
     this.chiService = chiService;
     this.riddleService = riddleService;
+    this.botOwners = botOwners;
   }
 
   /**
-   * Updates the bot's custom Discord activity.
+   * Handles {@code /owner activity}.
    *
-   * <p>Executes {@code GET /activity <text>}. Sets a custom status via JDA and replies with a
-   * confirmation message.
+   * <p>Sets a custom status via JDA and replies ephemerally with a confirmation message.
    *
-   * @param event the command event containing the JDA instance and reply channel
-   * @param activity the text to display as the bot's status; leading/trailing whitespace is trimmed
-   *     by the command framework
+   * @param event the slash interaction
+   * @param activity the text to display as the bot's status
    */
-  @RequireOwner
-  @JDATextCommandVariation(
-      path = {"activity"},
-      description = "Update bot activity.")
-  public void onTextUpdateStatus(CommandEvent event, @TextOption String activity) {
+  @Test({})
+  @TopLevelSlashCommandData(
+      scope = CommandScope.GUILD,
+      defaultLocked = true,
+      description = "Owner-only administration commands.")
+  @JDASlashCommand(name = "owner", subcommand = "activity", description = "Update bot activity.")
+  public void onSlashActivity(
+      GuildSlashEvent event,
+      @SlashOption(description = "The text to display as the bot's status.") String activity) {
+    if (rejectNonOwner(event)) {
+      return;
+    }
     event.getJDA().getPresence().setActivity(Activity.customStatus(activity));
-    event.reply("Activity updated to %s".formatted(activity)).queue();
+    event.reply("Activity updated to %s".formatted(activity)).setEphemeral(true).queue();
   }
 
   /**
-   * Reloads all bot caches from their sources.
+   * Handles {@code /owner reload}.
    *
-   * <p>Executes {@code GET /reload}. Calls {@link WikiCacheService#refreshCaches()} to evict and
-   * re-fetch wiki data, then {@link TreeFruitService#reload()} to re-read {@code
-   * tree-fruit-max.txt} from disk. Useful after deploying new data files without restarting.
+   * <p>Calls {@link WikiCacheService#refreshCaches()} to evict and re-fetch wiki data, then reloads
+   * the {@link TreeFruitService}, {@link ChiService}, and {@link RiddleService} data files from
+   * disk. Useful after deploying new data files without restarting.
    *
-   * @param event the command event used to acknowledge completion
+   * @param event the slash interaction
    */
-  @RequireOwner
-  @JDATextCommandVariation(
-      path = {"reload"},
-      description = "Reloads all bot cache.")
-  public void onTextReload(CommandEvent event) {
+  @JDASlashCommand(name = "owner", subcommand = "reload", description = "Reloads all bot cache.")
+  public void onSlashReload(GuildSlashEvent event) {
+    if (rejectNonOwner(event)) {
+      return;
+    }
     cacheService.refreshCaches();
     fruitService.reload();
     chiService.reload();
     riddleService.reload();
-    event.reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING)).queue();
+    event
+        .reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING))
+        .setEphemeral(true)
+        .queue();
+  }
+
+  /**
+   * Rejects the interaction if the invoking user is not a bot owner.
+   *
+   * @param event the slash interaction to check and, if rejected, reply to
+   * @return {@code true} if the user is not a bot owner and an ephemeral rejection was sent
+   */
+  private boolean rejectNonOwner(GuildSlashEvent event) {
+    if (botOwners.isOwner(event.getUser())) {
+      return false;
+    }
+    event
+        .reply("%s Only bot owners can use this command.".formatted(AppEmojis.NO))
+        .setEphemeral(true)
+        .queue();
+    return true;
   }
 }

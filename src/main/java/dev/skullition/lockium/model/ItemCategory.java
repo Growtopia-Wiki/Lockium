@@ -9,7 +9,7 @@ import org.jspecify.annotations.Nullable;
  * Canonical mapping of Growtopia category IDs to display information.
  *
  * <p>Each constant corresponds to a {@code category.id} value returned by the Wiki API. The enum is
- * used for UI grouping, embed titles, and fallback text when an API category lacks a proper name.
+ * used for UI grouping, reply titles, and fallback text when an API category lacks a proper name.
  *
  * <p>IDs are <em>not</em> contiguous (30, 48, 121, etc. are unused). Lookup is performed via an
  * immutable {@link Map} to avoid array holes and {@code NullPointerException}s.
@@ -222,7 +222,7 @@ public enum ItemCategory {
    * <p>Prefers {@code itemName}, falls back to {@code icon}, and finally to {@code "Category <id>"}
    * to guarantee a non-null result.
    *
-   * @return display text suitable for embeds and logs; never {@code null}
+   * @return display text suitable for replies and logs; never {@code null}
    */
   public String getDisplayText() {
     if (itemName != null) {

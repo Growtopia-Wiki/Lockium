@@ -17,11 +17,11 @@ import org.slf4j.LoggerFactory;
  * <p>Registered as {@code /ping} globally. The command is available in guilds, DMs, and private
  * channels, and supports both guild and user installs.
  *
- * <p>It performs two checks in parallel:
+ * <p>It performs two checks in sequence:
  *
  * <ol>
  *   <li>Discord REST ping via {@code JDA#getRestPing()}
- *   <li>Wiki API health via {@link WikiService#health()}
+ *   <li>Wiki API health via {@link WikiService#health()}, measured once the Discord ping resolves
  * </ol>
  *
  * <p>The reply is ephemeral and shows both timings, or {@code DOWN} if the Wiki check fails.

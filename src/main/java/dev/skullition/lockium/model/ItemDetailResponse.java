@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Both share the same structure ({@link GrowtopiaObject}); even items without
  * a functional seed return a placeholder seed object.
  *
- * <p>This record is immutable and maps 1:1 to the JSON response. It is intended
- * to be cached by {@code WikiService}, not used directly for rendering.
+ * <p>This record is immutable and maps 1:1 to the JSON response. It is fetched through {@code
+ * WikiService} on demand and is not cached, unlike the item index.
  *
  * @param item the placed item data; never {@code null}
  * @param seed the seed data; never {@code null}

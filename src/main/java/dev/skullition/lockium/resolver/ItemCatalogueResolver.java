@@ -24,7 +24,8 @@ import org.jspecify.annotations.Nullable;
  * <ol>
  *   <li>Discord sends the raw string</li>
  *   <li>Whitespace is trimmed</li>
- *   <li>{@link WikiService#findByName(String)} performs fuzzy lookup</li>
+ *   <li>{@link WikiService#findByName(String)} performs an exact lookup with a normalized-prefix
+ *       fallback</li>
  * </ol>
  *
  * <p>If no match is found, {@code null} is returned and BotCommands replies

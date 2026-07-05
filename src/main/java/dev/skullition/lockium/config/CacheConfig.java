@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Central Spring caching configuration for Lockium.
  *
- * <p>Enables annotation-driven caching ({@code @Cacheable}, {@code @CacheEvict}) and provides a
+ * <p>Enables annotation-driven caching ({@code @Cacheable}, {@code @CachePut}) and provides a
  * single {@link CaffeineCacheManager} with application-specific caches tuned for the Wiki API.
  *
  * <h2>Caches</h2>
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
  *   <li><b>items</b> – holds the full {@code /v1/items} payload ({@link
  *       dev.skullition.lockium.model.ItemsResponse}). Configured with {@code maximumSize=1} because
  *       the response is a single large object. Expires {@code expireAfterWrite} using {@link
- *       LockiumProperties#itemsCacheDuration()}, and records stats for {@code /actuator/caches}.
+ *       LockiumProperties#itemsCacheDuration()}, and records Caffeine stats for diagnostics.
  *   <li><b>itemIndex</b> – holds the lightweight index used for autocomplete and ID lookups. Shares
  *       the same TTL as {@code items} but does not record stats to reduce overhead.
  * </ul>

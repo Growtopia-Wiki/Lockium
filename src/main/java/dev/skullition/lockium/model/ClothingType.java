@@ -8,7 +8,7 @@ import org.jspecify.annotations.Nullable;
  * Clothing slot types for Growtopia wearables.
  *
  * <p>Used when {@code category.id == 20} (Clothes). Each constant maps the in-game slot index to a
- * Discord {@link ApplicationEmoji} for embeds and a human-readable name.
+ * Discord {@link ApplicationEmoji} for bot replies and a human-readable name.
  *
  * <p>The enum is intentionally dense – IDs are 0-8 and sequential, so lookup is a simple array
  * access. Unknown IDs return {@code null} rather than throwing, allowing callers to fall back
@@ -49,10 +49,12 @@ public enum ClothingType {
     return (id >= 0 && id < BY_ID.length) ? BY_ID[id] : null;
   }
 
+  /** Returns the emoji shown next to this clothing type. */
   public ApplicationEmoji getIcon() {
     return icon;
   }
 
+  /** Returns the human-readable slot name, e.g. {@code "Hat"}. */
   public String getItemName() {
     return itemName;
   }

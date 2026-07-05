@@ -11,12 +11,12 @@ import net.dv8tion.jda.api.entities.emoji.ApplicationEmoji;
  * <p>Annotated with {@link AppEmojiContainer}, this class is discovered by BotCommands at startup.
  * Each {@code public static final} field is resolved through {@link
  * io.github.freya022.botcommands.api.emojis.AppEmojisRegistry#get(String)} and provides a type-safe
- * {@link ApplicationEmoji} for use in embeds, components, and formatted strings.
+ * {@link ApplicationEmoji} for use in components and formatted strings.
  *
  * <p><b>Adding a new emoji:</b>
  *
  * <ol>
- *   <li>Upload the emoji to the {@code resources/emoji} directory
+ *   <li>Upload the emoji to the {@code resources/emojis} directory
  *   <li>Add a constant: {@code public static final ApplicationEmoji NAME = get("NAME");}
  *   <li>The string must match the emoji name exactly (case-sensitive)
  * </ol>

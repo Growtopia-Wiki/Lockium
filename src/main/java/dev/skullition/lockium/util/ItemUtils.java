@@ -20,8 +20,8 @@ import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 /**
  * Rendering and calculation helpers for Growtopia items.
  *
- * <p>Centralizes CDN URL formats, wiki linking, gem-drop math, and the standard item embed layout
- * used by {@code /item} and related commands.
+ * <p>Centralizes CDN URL formats, wiki linking, gem-drop math, and the standard item container
+ * layout used by {@code /gt item} and related commands.
  */
 public class ItemUtils {
   private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
@@ -85,7 +85,7 @@ public class ItemUtils {
    * Normalizes an item name for case-insensitive lookups.
    *
    * @param itemName raw name from user input or API
-   * @return trimmed, lower-cased string using {@link Locale#ROOT}
+   * @return trimmed, lower-cased string using {@link Locale#US}
    */
   public static String norm(String itemName) {
     return itemName.trim().toLowerCase(Locale.US);
@@ -118,7 +118,7 @@ public class ItemUtils {
    * Calculates the chance of getting seed as a drop when harvesting a tree.
    *
    * @param rarity the rarity of the item
-   * @return the drop chance
+   * @return the drop chance in percent (0–100); {@code 0} for rarity 999
    */
   public static double getChanceToDropSeedOnTreeSmash(int rarity) {
     if (rarity == 999) {

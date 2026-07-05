@@ -32,19 +32,12 @@ public class LockiumBot extends JDAService {
   private final LockiumProperties lockiumProperties;
 
   /**
-   * JDA lifecycle service for the Lockium Discord bot.
+   * Creates the bot service. Instantiated once by Spring and managed by BotCommands.
    *
-   * <p>Extends BotCommands' {@link JDAService} to provide a centralized place for Gateway Intents,
-   * CacheFlags, and JDA construction. All configuration is sourced from Spring properties:
-   *
-   * <ul>
-   *   <li>{@link DiscordProperties} – bot token
-   *   <li>{@link JDAConfiguration} – intents and cache flags
-   *   <li>{@link LockiumProperties} – custom activity status
-   *   <li>{@link WikiApiProperties} – logged on startup for diagnostics
-   * </ul>
-   *
-   * <p>This service is instantiated once by Spring and managed by BotCommands.
+   * @param jdaConfiguration BotCommands configuration providing intents and cache flags
+   * @param discordProperties properties holding the bot token
+   * @param wikiApiProperties Wiki API properties, logged on startup for diagnostics
+   * @param lockiumProperties properties holding the custom activity status
    */
   public LockiumBot(
       JDAConfiguration jdaConfiguration,

@@ -32,10 +32,10 @@ public class WikiCacheScheduler {
   /**
    * Triggers a cache refresh.
    *
-   * <p>Runs every 30 minutes as defined by {@code fixedRateString = "30m"}. The method is
-   * intentionally void and non-blocking; any exceptions are logged by {@link WikiCacheService}.
+   * <p>Runs every 30 minutes as defined by {@code fixedRateString = "30m"}, blocking the scheduler
+   * thread for the duration of the API call. Exceptions propagate to Spring's scheduler, which logs
+   * them without cancelling future runs.
    */
-  // Refresh, runs every 30 minutes and at startup
   @Scheduled(fixedRateString = "30m")
   public void refreshCaches() {
     cacheService.refreshCaches();

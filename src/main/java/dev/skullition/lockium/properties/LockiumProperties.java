@@ -13,8 +13,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *     dev.skullition.lockium.client.GrowtopiaDetailClient}
  * @param renderUrl base URL for world/item renders used in {@code /gt wotd} and render commands;
  *     must end with a trailing slash
- * @param itemsCacheDuration TTL for the wiki items cache in {@code WikiService}; parsed as a {@link
- *     Duration} (e.g. {@code 6h}, {@code PT30M})
+ * @param itemsCacheDuration TTL of the {@code items} and {@code itemIndex} caches registered in
+ *     {@code CacheConfig}; parsed as a {@link Duration} (e.g. {@code 1h}, {@code PT30M})
  */
 @ConfigurationProperties("lockium")
 public record LockiumProperties(

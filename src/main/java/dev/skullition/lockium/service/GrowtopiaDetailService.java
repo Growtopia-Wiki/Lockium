@@ -67,6 +67,11 @@ public class GrowtopiaDetailService {
     }
   }
 
+  /**
+   * Returns the last good response if it is younger than 24 hours.
+   *
+   * @return the cached detail, or {@code null} if absent or expired
+   */
   @Nullable
   private GrowtopiaDetail fallback() {
     GrowtopiaDetail cached = lastGood.get();

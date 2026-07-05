@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
  *
  * <p>Data is loaded once at startup from {@code classpath:data/TreeFruitMaxDrop.txt} (format {@code
  * itemId|drops}). The file is static reference data – not from the Wiki API – so we keep it in an
- * immutable {@link Map} to avoid disk I/O on every {@code /item} command.
+ * immutable {@link Map} to avoid disk I/O on every command that needs it (e.g. {@code /gt harvest}
+ * and {@code /gt break}).
  *
  * <p>Lines starting with {@code //} or blank lines are ignored. Malformed lines are logged and
  * skipped.
@@ -82,7 +83,7 @@ public class TreeFruitService {
     load();
   }
 
-  /** Returns number of entries currently loaded. */
+  /** Returns the number of entries currently loaded. */
   public int size() {
     return maxDrops.size();
   }

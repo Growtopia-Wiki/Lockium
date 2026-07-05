@@ -22,8 +22,8 @@ import org.springframework.stereotype.Service;
  * every (re)load the map is pushed into {@link ItemUtils#setChiMap(Map)} so the shared item
  * container header can display the chi without the command call sites knowing about this service.
  *
- * <p>Lines starting with {@code //} or blank lines are ignored. Malformed lines are logged and
- * skipped.
+ * <p>Lines starting with {@code //} or blank lines are ignored. Lines with a non-numeric ID are
+ * logged and skipped; lines without exactly one {@code |} separator are skipped silently.
  */
 @Service
 public class ChiService {
@@ -85,7 +85,7 @@ public class ChiService {
     load();
   }
 
-  /** Returns number of entries currently loaded. */
+  /** Returns the number of entries currently loaded. */
   public int size() {
     return chiMap.size();
   }

@@ -7,9 +7,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *
  * <p>Bound from properties prefixed with {@code wiki.api}.
  *
- * <p>Used by {@code WikiClient} to authenticate requests via the {@code X-Api-Key} header.
+ * <p>Used by {@code WikiClient} to authenticate requests via the {@code Authorization: Bearer}
+ * header, configured in {@code ClientConfig}.
  *
- * @param key the API key issued by the Wiki; sent as {@code X-Api-Key}
+ * @param key the API key issued by the Wiki; sent as a bearer token
  * @param url the base URL of the Wiki API (no trailing slash recommended)
  */
 @ConfigurationProperties("wiki.api")

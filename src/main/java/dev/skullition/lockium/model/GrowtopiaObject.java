@@ -16,7 +16,7 @@ import org.jspecify.annotations.Nullable;
  * @param id unique in-game identifier
  * @param name display name shown in-game
  * @param description in-game description text
- * @param rarity rarity
+ * @param rarity item rarity; {@code 999} when the item has no rarity
  * @param categoryInfo primary category; JSON property {@code "category"}
  * @param clothingCategoryInfo clothing sub-category; present only when {@code categoryInfo.id ==
  *     20}, otherwise {@code null}; JSON property {@code "clothingType"}
@@ -75,8 +75,14 @@ public record GrowtopiaObject(
   }
 
   /**
-   * Returns whether this item can have trees based on certain properties or whether its in a
-   * category.
+   * Returns whether this item can have trees.
+   *
+   * <p>An item cannot have trees if it carries a disqualifying flag ({@link ItemProperty#MOD},
+   * {@link ItemProperty#UNTRADABLE}, {@link ItemProperty#BETA}, {@link ItemProperty#AUTO_PICKUP},
+   * {@link ItemProperty#PERMANENT}) or belongs to a non-splicable category (fists, wrenches, locks,
+   * etc.).
+   *
+   * @return {@code true} if a tree of this item can exist in-game
    */
   public boolean canHaveTrees() {
     EnumSet<ItemProperty> properties = ItemProperty.fromInt(propFlag.raw);
@@ -113,8 +119,8 @@ public record GrowtopiaObject(
   /**
    * Returns a human-readable description of the secondary flags.
    *
-   * @return formatted text from {@link ItemProperty2#toDisplay(int)}, or {@code null} if the
-   *     implementation chooses to suppress empty output
+   * @return formatted text from {@link ItemProperty2#toDisplay(int)}, or {@code null} when no
+   *     displayable secondary flags are set
    */
   @Nullable
   public String propFlag2Text() {
@@ -124,11 +130,11 @@ public record GrowtopiaObject(
   /**
    * Maps the primary category to the {@link ItemCategory} enum.
    *
-   * @return the matching enum constant; {@link ItemCategory#UNKNOWN} if the ID is unrecognized
-   *     (e.g., 51 → BUNNY_EGG)
+   * @return the matching enum constant (e.g., ID 51 → {@code BUNNY_EGG}), or {@link
+   *     ItemCategory#UNKNOWN} if the ID is unrecognized
    */
   public ItemCategory getItemCategory() {
-    return ItemCategory.fromId(categoryInfo.id()); // e.g. 51 -> BUNNY_EGG
+    return ItemCategory.fromId(categoryInfo.id());
   }
 
   /**
@@ -235,9 +241,9 @@ public record GrowtopiaObject(
   }
 
   /**
-   * Possibly null representation of item's seed recipe.
+   * Reference to one half of the item's splicing recipe.
    *
-   * @param id the item's id associated with the splicing recipe.
+   * @param id the in-game item ID associated with the splicing recipe
    */
   public record RecipeInfo(int id) {}
 }

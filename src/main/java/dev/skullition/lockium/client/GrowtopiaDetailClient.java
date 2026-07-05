@@ -8,16 +8,17 @@ import org.springframework.web.service.annotation.HttpExchange;
  * Declarative HTTP client for the official Growtopia status feed.
  *
  * <p>Targets the public endpoint at {@code https://growtopiagame.com/detail}. The service returns a
- * small JSON blob with the current server version, maintenance flags, and online player counts. It
+ * small JSON blob with the current online user count and the World of the Day render images. It
  * requires no authentication.
  *
  * <p>This interface is a pure HTTP facade – Spring creates the implementation at runtime via {@code
- * HttpServiceProxyFactory}. The base URL is supplied in {@code application.yml} ({@code
- * growtopia.detail.base-url}); the method itself has no path because the endpoint lives at the
- * root.
+ * HttpServiceProxyFactory}. The base URL is supplied in {@code application.properties} ({@code
+ * lockium.detail-url}); the method itself has no path because the endpoint lives at the root. The
+ * endpoint serves JSON with a {@code text/html} Content-Type, so {@code ClientConfig} wires a
+ * dedicated converter for this client.
  *
- * <p>Because the feed changes at most once per minute, callers should cache the result (see {@code
- * GrowtopiaDetailService}) rather than invoking this client directly on every command.
+ * <p>Callers should go through {@code GrowtopiaDetailService}, which keeps the last good response
+ * as a fallback, rather than invoking this client directly.
  *
  * @see GrowtopiaDetail
  */

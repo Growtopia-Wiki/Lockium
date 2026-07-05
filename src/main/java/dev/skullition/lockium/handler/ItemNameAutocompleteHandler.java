@@ -8,12 +8,12 @@ import java.util.Collection;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 
 /**
- * Autocomplete provider for {@code /item} slash command.
+ * Autocomplete provider for item-name options across the {@code /gt} subcommands.
  *
- * <p>Freya BotCommands calls this handler as the user types the {@code itemQuery} option. It
- * returns the full set of known item names from the cached {@link WikiService#getNameIndex()}.
- * Discord filters the list client-side, so we can safely return all keys (~12k entries) without
- * additional filtering.
+ * <p>BotCommands calls this handler as the user types the {@code itemQuery} option. It returns the
+ * full set of known item names from the cached {@link WikiService#getNameIndex()}; the framework
+ * then filters and ranks the collection and sends Discord the top choices, so we can safely return
+ * all keys (~12k entries) without additional filtering.
  *
  * <p>Uses {@link AutocompleteMode#CONTINUITY} to keep the interaction alive across keystrokes.
  */

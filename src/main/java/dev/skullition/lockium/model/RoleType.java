@@ -26,10 +26,12 @@ public enum RoleType {
   }
 
   /**
-   * Creates the application emoji used as the container icon.
+   * Returns the application emoji used as the container icon.
    *
    * <p>Read on demand; only valid once BotCommands has loaded the app emojis (i.e. during command
    * execution, not during command registration).
+   *
+   * @return the emoji representing this role
    */
   public ApplicationEmoji getEmoji() {
     return switch (this) {
@@ -42,14 +44,17 @@ public enum RoleType {
     };
   }
 
+  /** Returns the display name shown in choices and replies, e.g. {@code "Star Captain"}. */
   public String getRoleName() {
     return roleName;
   }
 
+  /** Returns the base XP used by the level-1 requirement of this role's category. */
   public int getBaseXp() {
     return category.baseXp;
   }
 
+  /** Returns the base gem cost of this role's daily quests. */
   public int getBaseGemCost() {
     return category.baseGemCost;
   }

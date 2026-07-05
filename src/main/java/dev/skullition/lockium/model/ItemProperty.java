@@ -13,7 +13,7 @@ import org.jspecify.annotations.Nullable;
  *
  * <ol>
  *   <li>the bit mask
- *   <li>a pre-formatted, emoji-prefixed description for Discord embeds
+ *   <li>a pre-formatted, emoji-prefixed description for Discord replies
  * </ol>
  *
  * <p>Three flags have no standalone description because their text depends on context or doesn't

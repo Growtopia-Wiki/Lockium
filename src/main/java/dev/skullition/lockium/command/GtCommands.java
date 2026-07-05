@@ -167,6 +167,15 @@ public class GtCommands {
     return "Starts <t:%d:%c>".formatted(start.toEpochSecond(), startStyle);
   }
 
+  /**
+   * Appends one "blocks to break" line to the {@code /gt xp} output.
+   *
+   * @param sb the builder collecting the output lines
+   * @param hits punch-pickaxe hits needed to break the block, e.g. {@code "7-6"}
+   * @param totalXp the total XP the user needs
+   * @param xpPerBreak XP gained per broken block
+   * @param blockName display name of the block(s)
+   */
   private static void appendXpBlock(
       StringBuilder sb, String hits, long totalXp, int xpPerBreak, String blockName) {
     long breaks = (long) Math.ceil((double) totalXp / xpPerBreak);
@@ -385,6 +394,12 @@ public class GtCommands {
     event.replyModal(modal).queue();
   }
 
+  /**
+   * Returns whether an item category is breakable for {@code /gt break} calculations.
+   *
+   * @param category the category decoded from the item's category ID
+   * @return {@code true} if items of this category can be broken as blocks
+   */
   private boolean isValidItemCategory(ItemCategory category) {
     return category != ItemCategory.CLOTHES
         && category != ItemCategory.COMPONENTS
@@ -403,8 +418,8 @@ public class GtCommands {
    * using all modifiers.
    *
    * @param event the slash interaction
-   * @param itemQuery the block to break
-   * @param treeCount number of blocks; must be between 10 and 1,000,000 (inclusive)
+   * @param itemQuery the tree's item to harvest
+   * @param treeCount number of trees; must be between 10 and 1,000,000 (inclusive)
    */
   @JDASlashCommand(
       name = "gt",
@@ -544,7 +559,7 @@ public class GtCommands {
    *
    * @param event the slash interaction
    * @param itemQuery the item to recycle
-   * @param itemCount number of items; must be between 10 and 100,000 (inclusive)
+   * @param itemCount number of items; must be between 1 and 100,000 (inclusive)
    */
   @JDASlashCommand(
       name = "gt",

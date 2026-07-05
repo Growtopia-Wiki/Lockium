@@ -3,16 +3,22 @@ package dev.skullition.lockium.util;
 import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemDetailResponse;
 
-/** Helper util class to get gem value from recycled item. */
+/**
+ * Recycling calculation helpers.
+ *
+ * <p>Ports the game's gem-value logic for recycling items: the per-item gem range is derived from
+ * rarity (with a 25% reduction at rarity ≤30 and a cap of 250), and items without a splicing recipe
+ * or with rarity 999 recycle for nothing.
+ */
 public class RecycleUtil {
   private RecycleUtil() {}
 
   /**
-   * Code to calculate amount of gems received for recycling items.
+   * Calculates the gems received for recycling a stack of items.
    *
-   * @param itemDetail the itemDetail object from the Wiki API
+   * @param itemDetail the item detail from the Wiki API
    * @param itemCount how many of the item you are recycling
-   * @return range and calculated gemCount
+   * @return the per-item gem range and the calculated total gem count
    */
   public static RecycleResult getRecycleValueForItem(
       ItemDetailResponse itemDetail, long itemCount) {
