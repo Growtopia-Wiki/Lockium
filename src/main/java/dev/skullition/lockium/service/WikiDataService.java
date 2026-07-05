@@ -47,7 +47,7 @@ public class WikiDataService {
    *
    * @return full items response; never {@code null}
    */
-  @Cacheable(value = "items")
+  @Cacheable(value = "items", sync = true)
   public ItemsResponse getItems() {
     logger.info("Items cache is empty, fetching...");
     return client.getItems();
