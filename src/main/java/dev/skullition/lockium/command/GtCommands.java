@@ -1129,7 +1129,7 @@ public class GtCommands {
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of("## %s WOTD: %s".formatted(AppEmojis.WOTD, wotdName(detail))),
-            MediaGallery.of(MediaGalleryItem.fromUrl(renderUrl + wotd.toLowerCase())));
+            MediaGallery.of(MediaGalleryItem.fromUrl(renderUrl + wotd.toLowerCase(Locale.US))));
 
     event.replyComponents(container).useComponentsV2().queue();
   }
