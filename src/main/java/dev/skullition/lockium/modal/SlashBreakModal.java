@@ -148,9 +148,8 @@ public class SlashBreakModal {
     if (lucky) {
       components.add(
           TextDisplay.of(
-              """
-                      %s **Lucky! effect** (10%% chance of triggering) - Increased chance of block drops and 5x gems.
-              """
+              ("%s **Lucky! effect** (10%% chance of triggering) - "
+                      + "Increased chance of block drops and 5x gems.")
                   .formatted(AppEmojis.LUCKY_CLOVER)));
       int luckyBlocks = blockCount / 10; // 10%
       int normalBlocks = blockCount - luckyBlocks;
