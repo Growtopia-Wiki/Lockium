@@ -78,20 +78,10 @@ public class WikiService {
   }
 
   /**
-   * Fetches detailed data for a single item by catalogue index.
-   *
-   * @param id the catalogue index ({@link ItemCatalogue#catalogueId()})
-   * @return detail response containing item and seed
-   */
-  public ItemDetailResponse getItemDetail(int id) {
-    return wiki.getItemDetail(id);
-  }
-
-  /**
-   * Convenience overload that extracts the ID from a catalogue entry.
+   * Fetches detailed data for a catalogue entry.
    *
    * @param itemCatalogue catalogue entry from {@link #findByName(String)}
-   * @return detail response
+   * @return detail response containing item and seed
    */
   public ItemDetailResponse getItemDetail(ItemCatalogue itemCatalogue) {
     return wiki.getItemDetail(itemCatalogue.catalogueId());
