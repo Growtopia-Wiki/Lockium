@@ -14,21 +14,21 @@ import org.springframework.web.client.RestClientException;
  * Service for retrieving the official Growtopia server detail with an in-memory fallback.
  *
  * <p>Each call to {@link #getDetail()} attempts a live HTTP request via {@link
- * GrowtopiaDetailClient}. On success the response is stored as the "last good" value. On failure
- * (most commonly an HTTP 400/502 from growtopiagame.com), the service does not propagate the
- * exception – it logs a warning and returns the cached value if it is less than 24 hours old.
+ * GrowtopiaDetailClient}. On success the response is stored as the "last good" value. On any {@link
+ * RestClientException} (bad status, timeout, deserialization failure), the service does not
+ * propagate the exception – it logs a warning and returns the cached value if it is less than 24
+ * hours old.
  *
  * <p>This cache is intentionally separate from Spring's {@code @Cacheable} infrastructure: it is
- * tiny (one object), thread-safe via {@link AtomicReference} and a {@code volatile} timestamp, and
- * survives only for the lifetime of the JVM.
+ * tiny (one object), thread-safe via a single {@link AtomicReference} holding the value together
+ * with its timestamp, and survives only for the lifetime of the JVM.
  */
 @Service
 public class GrowtopiaDetailService {
   private static final Logger log = LoggerFactory.getLogger(GrowtopiaDetailService.class);
 
   private final GrowtopiaDetailClient client;
-  private final AtomicReference<@Nullable GrowtopiaDetail> lastGood = new AtomicReference<>();
-  private volatile long lastGoodAt = 0;
+  private final AtomicReference<@Nullable CachedDetail> lastGood = new AtomicReference<>();
 
   /**
    * Creates the service.
@@ -46,7 +46,7 @@ public class GrowtopiaDetailService {
    *
    * <ol>
    *   <li>Call the upstream API
-   *   <li>On success: update {@link #lastGood} and {@link #lastGoodAt}, return fresh data
+   *   <li>On success: store the response with its timestamp, return fresh data
    *   <li>On {@link RestClientException}: log at WARN and delegate to {@link #fallback()}
    * </ol>
    *
@@ -57,12 +57,10 @@ public class GrowtopiaDetailService {
   public GrowtopiaDetail getDetail() {
     try {
       GrowtopiaDetail fresh = client.getGrowtopiaDetail();
-      lastGood.set(fresh);
-      lastGoodAt = System.currentTimeMillis();
+      lastGood.set(new CachedDetail(fresh, System.currentTimeMillis()));
       return fresh;
     } catch (RestClientException e) {
-      // 400 – don't retry, log and use cache
-      log.warn("detail returned 400: {} – using cached", e.getMessage());
+      log.warn("Failed to fetch detail: {} – using cached", e.getMessage());
       return fallback();
     }
   }
@@ -74,15 +72,22 @@ public class GrowtopiaDetailService {
    */
   @Nullable
   private GrowtopiaDetail fallback() {
-    GrowtopiaDetail cached = lastGood.get();
+    CachedDetail cached = lastGood.get();
     if (cached != null
-        && System.currentTimeMillis() - lastGoodAt < Duration.ofHours(24).toMillis()) {
+        && System.currentTimeMillis() - cached.at() < Duration.ofHours(24).toMillis()) {
       log.info(
-          "Returning cached detail (age {}m) due to {}",
-          (System.currentTimeMillis() - lastGoodAt) / 60000,
-          "Bad request from upstream");
-      return cached;
+          "Returning cached detail (age {}m) after upstream failure",
+          (System.currentTimeMillis() - cached.at()) / 60000);
+      return cached.detail();
     }
     return null;
   }
+
+  /**
+   * A successfully fetched detail paired with the time it was stored.
+   *
+   * @param detail the last good response
+   * @param at epoch milliseconds when the response was stored
+   */
+  private record CachedDetail(GrowtopiaDetail detail, long at) {}
 }
