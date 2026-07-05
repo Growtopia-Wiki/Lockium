@@ -85,7 +85,7 @@ public record GrowtopiaObject(
    * @return {@code true} if a tree of this item can exist in-game
    */
   public boolean canHaveTrees() {
-    EnumSet<ItemProperty> properties = ItemProperty.fromInt(propFlag.raw);
+    EnumSet<ItemProperty> properties = ItemProperty.fromInt(propFlag.raw());
     if (properties.contains(ItemProperty.MOD)
         || properties.contains(ItemProperty.UNTRADABLE)
         || properties.contains(ItemProperty.BETA)
