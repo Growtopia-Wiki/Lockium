@@ -45,7 +45,7 @@ There are also owner-only text commands (`activity`, `reload`), invoked by menti
 
 - **Java 25** (project is built on the latest JDK)
 - Spring Boot 4
-- JDA 6 + [BotCommands 3.2](https://github.com/freya022/BotCommands) – annotation-driven slash commands
+- JDA 6 + [BotCommands 3.3](https://github.com/freya022/BotCommands) – annotation-driven slash commands
 - Caffeine – in-memory caching of Wiki API data
 - Maven
 
