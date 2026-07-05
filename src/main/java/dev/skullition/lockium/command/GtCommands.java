@@ -428,7 +428,7 @@ public class GtCommands {
   public void onSlashHarvest(
       GlobalSlashEvent event,
       @SlashOption(
-              description = "The item name you'd like to break.",
+              description = "The item name of the trees you'd like to harvest.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many trees?") int treeCount) {
@@ -568,7 +568,7 @@ public class GtCommands {
   public void onSlashRecycle(
       GlobalSlashEvent event,
       @SlashOption(
-              description = "The item name you'd like to break.",
+              description = "The item name you'd like to recycle.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many items?") int itemCount) {
