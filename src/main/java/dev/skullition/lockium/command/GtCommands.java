@@ -11,11 +11,13 @@ import dev.skullition.lockium.model.GrowtopiaObject;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemCategory;
 import dev.skullition.lockium.model.ItemDetailResponse;
+import dev.skullition.lockium.model.ItemEffect;
 import dev.skullition.lockium.model.ItemProperty;
 import dev.skullition.lockium.model.ItemProperty2;
 import dev.skullition.lockium.model.RoleType;
 import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
+import dev.skullition.lockium.service.ItemEffectService;
 import dev.skullition.lockium.service.RiddleService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
@@ -91,6 +93,7 @@ public class GtCommands {
   private final TreeFruitService fruitService;
   private final WorldRenderService worldRenderService;
   private final RiddleService riddleService;
+  private final ItemEffectService itemEffectService;
 
   /**
    * Creates the command handler.
@@ -102,6 +105,7 @@ public class GtCommands {
    * @param fruitService service used to determine an item is farmable
    * @param worldRenderService service used to look up world renders
    * @param riddleService service that holds the ancestral riddle dataset
+   * @param itemEffectService service that loads and lazily scrapes item effects
    */
   public GtCommands(
       Modals modals,
@@ -110,7 +114,8 @@ public class GtCommands {
       LockiumProperties lockiumProperties,
       TreeFruitService fruitService,
       WorldRenderService worldRenderService,
-      RiddleService riddleService) {
+      RiddleService riddleService,
+      ItemEffectService itemEffectService) {
     this.modals = modals;
     this.wikiService = wikiService;
     this.detailService = detailService;
@@ -118,6 +123,7 @@ public class GtCommands {
     this.fruitService = fruitService;
     this.worldRenderService = worldRenderService;
     this.riddleService = riddleService;
+    this.itemEffectService = itemEffectService;
   }
 
   /**
@@ -199,8 +205,9 @@ public class GtCommands {
    * Handles {@code /gt item}.
    *
    * <p>Resolves the autocomplete selection to a full {@link ItemDetailResponse}, then builds a
-   * Components V2 container showing properties, category, rarity, hardness, colors, grow time, and
-   * estimated gem drops. Uses {@link ItemProperty} and {@link ItemProperty2} for flag text.
+   * Components V2 container showing properties, category, rarity, hardness, colors, grow time,
+   * estimated gem drops, and known effects. An eligible uncached effect lookup defers the Discord
+   * reply while the public wiki is scraped.
    *
    * @param event the slash interaction
    * @param itemQuery the item chosen via autocomplete; never null
@@ -224,6 +231,11 @@ public class GtCommands {
     final ItemDetailResponse itemResponse = wikiService.getItemDetail(itemQuery);
     final GrowtopiaObject item = itemResponse.item();
     final GrowtopiaObject seed = itemResponse.seed();
+    final boolean scrapeNeeded = itemEffectService.requiresScrape(item);
+    if (scrapeNeeded) {
+      event.deferReply().queue();
+    }
+    final List<ItemEffect> itemEffects = itemEffectService.getEffects(item);
 
     List<ContainerChildComponent> components = new ArrayList<>();
 
@@ -287,9 +299,34 @@ public class GtCommands {
     }
     components.add(TextDisplay.of("%s `%s` gems dropped.".formatted(AppEmojis.GEM, gemDrops)));
 
+    for (ItemEffect effect : itemEffects) {
+      var effectText =
+          new StringBuilder("**%s Effect: %s**".formatted(AppEmojis.MOD, effect.name()));
+      if (!effect.applyMessage().isEmpty()) {
+        effectText.append("\n%s %s".formatted(AppEmojis.CHECKBOX_ENABLED, effect.applyMessage()));
+      }
+      if (!effect.removeMessage().isEmpty()) {
+        effectText.append("\n%s %s".formatted(AppEmojis.CHECKBOX_DISABLED, effect.removeMessage()));
+      }
+      components.add(TextDisplay.of(effectText.toString()));
+    }
+
     Container container = ItemUtils.createItemContainer(itemResponse, itemQuery, components);
 
-    event.replyComponents(container).useComponentsV2().queue();
+    if (scrapeNeeded) {
+      event
+          .getHook()
+          .sendMessageComponents(container)
+          .setAllowedMentions(List.of())
+          .useComponentsV2()
+          .queue();
+    } else {
+      event
+          .replyComponents(container)
+          .setAllowedMentions(List.of())
+          .useComponentsV2()
+          .queue();
+    }
   }
 
   /**
