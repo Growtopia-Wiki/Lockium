@@ -15,7 +15,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *     must end with a trailing slash
  * @param itemsCacheDuration TTL of the {@code items} and {@code itemIndex} caches registered in
  *     {@code CacheConfig}; parsed as a {@link Duration} (e.g. {@code 1h}, {@code PT30M})
+ * @param wikiRawUrl base URL for public raw Growtopia Wiki pages
+ * @param scrapedEffectsPath external additions-only file containing effects scraped at runtime
  */
 @ConfigurationProperties("lockium")
 public record LockiumProperties(
-    String status, String detailUrl, String renderUrl, Duration itemsCacheDuration) {}
+    String status,
+    String detailUrl,
+    String renderUrl,
+    Duration itemsCacheDuration,
+    String wikiRawUrl,
+    String scrapedEffectsPath) {}
