@@ -1,9 +1,12 @@
 package dev.skullition.lockium.config;
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
+import dev.skullition.lockium.client.GrowtopiaWikiClient;
 import dev.skullition.lockium.client.WikiClient;
 import dev.skullition.lockium.properties.LockiumProperties;
 import dev.skullition.lockium.properties.WikiApiProperties;
+import java.net.http.HttpClient;
+import java.time.Duration;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +23,10 @@ import tools.jackson.databind.json.JsonMapper;
 /**
  * Spring configuration that builds the declarative HTTP clients used by Lockium.
  *
- * <p>Two external services are consumed:
+ * <p>Three external services are consumed:
  *
  * <ul>
+ *   <li><b>Growtopia Wiki</b> – public raw wikitext at {@code ${lockium.wiki-raw-url}}
  *   <li><b>Wiki API</b> – authenticated JSON API at {@code ${wiki.api.url}}
  *   <li><b>Growtopia Detail</b> – public endpoint at {@code ${lockium.detail-url}} which returns
  *       JSON but serves it as {@code text/html}
@@ -42,7 +46,7 @@ public class ClientConfig {
    * Creates the configuration with bound properties.
    *
    * @param apiProperties properties for the Wiki API (url and bearer key)
-   * @param lockiumProperties properties for the Growtopia detail endpoint
+   * @param lockiumProperties properties for public Growtopia endpoints
    */
   public ClientConfig(WikiApiProperties apiProperties, LockiumProperties lockiumProperties) {
     this.apiProperties = apiProperties;
@@ -75,6 +79,35 @@ public class ClientConfig {
     RestClientAdapter adapter = RestClientAdapter.create(restClient);
     HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
     return factory.createClient(WikiClient.class);
+  }
+
+  /**
+   * Builds the {@link GrowtopiaWikiClient} used to fetch public raw MediaWiki pages.
+   *
+   * <p>The client uses bounded connect and read timeouts because requests happen while a Discord
+   * interaction is waiting for its deferred response. A descriptive user agent identifies the bot
+   * to the wiki operator.
+   *
+   * @param builder the autoconfigured {@link RestClient.Builder} from Spring Boot
+   * @return a proxy implementing {@link GrowtopiaWikiClient}
+   */
+  @Bean
+  public GrowtopiaWikiClient growtopiaWikiClient(RestClient.Builder builder) {
+    HttpClient httpClient =
+        HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
+    var requestFactory = new JdkClientHttpRequestFactory(httpClient);
+    requestFactory.setReadTimeout(Duration.ofSeconds(10));
+
+    RestClient restClient =
+        builder
+            .baseUrl(lockiumProperties.wikiRawUrl())
+            .defaultHeader(HttpHeaders.USER_AGENT, "Lockium/1.2 (Growtopia Wiki Discord bot)")
+            .requestFactory(requestFactory)
+            .build();
+
+    return HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient))
+        .build()
+        .createClient(GrowtopiaWikiClient.class);
   }
 
   /**
