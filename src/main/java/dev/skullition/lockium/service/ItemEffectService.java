@@ -86,6 +86,63 @@ public class ItemEffectService {
     this.lockiumProperties = lockiumProperties;
   }
 
+  private static boolean qualifiesForScrape(GrowtopiaObject item) {
+    ItemCategory category = item.getItemCategory();
+    return category == ItemCategory.CONSUMABLES || category == ItemCategory.CLOTHES;
+  }
+
+  /** Extracts effect names and their index-paired apply/remove messages from raw wikitext. */
+  static List<ItemEffect> parseWikitext(String wikitext) {
+    List<String> names = findFirstParams(MOD_PATTERN, wikitext);
+    List<String> applyMessages = findFirstParams(ADDED_PATTERN, wikitext);
+    List<String> removeMessages = findFirstParams(REMOVED_PATTERN, wikitext);
+
+    List<ItemEffect> parsed = new ArrayList<>(names.size());
+    for (int i = 0; i < names.size(); i++) {
+      String name = sanitize(names.get(i));
+      if (name.isEmpty()) {
+        continue;
+      }
+      parsed.add(
+          new ItemEffect(
+              name,
+              i < applyMessages.size() ? sanitize(applyMessages.get(i)) : "",
+              i < removeMessages.size() ? sanitize(removeMessages.get(i)) : ""));
+    }
+    return List.copyOf(parsed);
+  }
+
+  private static List<String> findFirstParams(Pattern pattern, String wikitext) {
+    List<String> params = new ArrayList<>();
+    Matcher matcher = pattern.matcher(wikitext);
+    while (matcher.find()) {
+      params.add(matcher.group(1).trim());
+    }
+    return params;
+  }
+
+  private static boolean needsLeadingLineBreak(Path path) throws IOException {
+    if (!Files.exists(path) || Files.size(path) == 0) {
+      return false;
+    }
+    try (var channel = Files.newByteChannel(path, StandardOpenOption.READ)) {
+      channel.position(channel.size() - 1);
+      var buffer = ByteBuffer.allocate(1);
+      channel.read(buffer);
+      byte last = buffer.array()[0];
+      return last != '\n' && last != '\r';
+    }
+  }
+
+  /** Strips delimiters and line breaks and bounds untrusted scraped fields. */
+  private static String sanitize(String field) {
+    String sanitized = field.replace('|', ' ').replace('\r', ' ').replace('\n', ' ').trim();
+    if (sanitized.length() <= MAX_SCRAPED_FIELD_LENGTH) {
+      return sanitized;
+    }
+    return sanitized.substring(0, MAX_SCRAPED_FIELD_LENGTH).trim();
+  }
+
   /**
    * Loads the seed and overlay files into memory. Invoked automatically by Spring after
    * construction.
@@ -101,7 +158,7 @@ public class ItemEffectService {
       int seedCount = loadSeed(map);
       int overlayCount = loadOverlay(map);
 
-      map.replaceAll((id, list) -> List.copyOf(list));
+      map.replaceAll((_, list) -> List.copyOf(list));
       effects = new ConcurrentHashMap<>(map);
       logger.info(
           "Loaded {} item effects for {} items ({} from scrape overlay).",
@@ -149,7 +206,7 @@ public class ItemEffectService {
         return List.of();
       }
 
-      List<ItemEffect> resolved = effects.computeIfAbsent(item.id(), id -> scrape(item));
+      List<ItemEffect> resolved = effects.computeIfAbsent(item.id(), _ -> scrape(item));
       return resolved == null ? List.of() : resolved;
     } finally {
       readLock.unlock();
@@ -226,18 +283,13 @@ public class ItemEffectService {
               parts[1].trim(),
               parts.length > 2 ? parts[2].trim() : "",
               parts.length > 3 ? parts[3].trim() : "");
-      List<ItemEffect> existing = map.computeIfAbsent(id, key -> new ArrayList<>());
+      List<ItemEffect> existing = map.computeIfAbsent(id, _ -> new ArrayList<>());
       if (!existing.contains(effect)) {
         existing.add(effect);
         added++;
       }
     }
     return added;
-  }
-
-  private static boolean qualifiesForScrape(GrowtopiaObject item) {
-    ItemCategory category = item.getItemCategory();
-    return category == ItemCategory.CONSUMABLES || category == ItemCategory.CLOTHES;
   }
 
   /** Returns {@code null} only when a transient failure should not be cached. */
@@ -254,7 +306,7 @@ public class ItemEffectService {
         return List.of();
       }
       logger.warn(
-          "Failed to scrape wiki page for item {} ({}): {}",
+          "Got RestClientResponseException for item {} ({}): {}",
           item.id(),
           item.name(),
           e.getMessage());
@@ -285,36 +337,6 @@ public class ItemEffectService {
           item.name());
     }
     return parsed;
-  }
-
-  /** Extracts effect names and their index-paired apply/remove messages from raw wikitext. */
-  static List<ItemEffect> parseWikitext(String wikitext) {
-    List<String> names = findFirstParams(MOD_PATTERN, wikitext);
-    List<String> applyMessages = findFirstParams(ADDED_PATTERN, wikitext);
-    List<String> removeMessages = findFirstParams(REMOVED_PATTERN, wikitext);
-
-    List<ItemEffect> parsed = new ArrayList<>(names.size());
-    for (int i = 0; i < names.size(); i++) {
-      String name = sanitize(names.get(i));
-      if (name.isEmpty()) {
-        continue;
-      }
-      parsed.add(
-          new ItemEffect(
-              name,
-              i < applyMessages.size() ? sanitize(applyMessages.get(i)) : "",
-              i < removeMessages.size() ? sanitize(removeMessages.get(i)) : ""));
-    }
-    return List.copyOf(parsed);
-  }
-
-  private static List<String> findFirstParams(Pattern pattern, String wikitext) {
-    List<String> params = new ArrayList<>();
-    Matcher matcher = pattern.matcher(wikitext);
-    while (matcher.find()) {
-      params.add(matcher.group(1).trim());
-    }
-    return params;
   }
 
   /** Appends scraped effects to the overlay file so they survive restarts. */
@@ -354,27 +376,5 @@ public class ItemEffectService {
         return false;
       }
     }
-  }
-
-  private static boolean needsLeadingLineBreak(Path path) throws IOException {
-    if (!Files.exists(path) || Files.size(path) == 0) {
-      return false;
-    }
-    try (var channel = Files.newByteChannel(path, StandardOpenOption.READ)) {
-      channel.position(channel.size() - 1);
-      var buffer = ByteBuffer.allocate(1);
-      channel.read(buffer);
-      byte last = buffer.array()[0];
-      return last != '\n' && last != '\r';
-    }
-  }
-
-  /** Strips delimiters and line breaks and bounds untrusted scraped fields. */
-  private static String sanitize(String field) {
-    String sanitized = field.replace('|', ' ').replace('\r', ' ').replace('\n', ' ').trim();
-    if (sanitized.length() <= MAX_SCRAPED_FIELD_LENGTH) {
-      return sanitized;
-    }
-    return sanitized.substring(0, MAX_SCRAPED_FIELD_LENGTH).trim();
   }
 }

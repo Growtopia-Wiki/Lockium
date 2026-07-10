@@ -41,6 +41,14 @@ class ItemEffectServiceTests {
 
   @TempDir Path tempDirectory;
 
+  private static GrowtopiaObject item(int id, String name, ItemCategory category) {
+    GrowtopiaObject item = mock(GrowtopiaObject.class);
+    when(item.id()).thenReturn(id);
+    when(item.name()).thenReturn(name);
+    when(item.getItemCategory()).thenReturn(category);
+    return item;
+  }
+
   @Test
   void parsesEffectTemplatesAndMissingMessages() {
     String wikitext =
@@ -63,8 +71,10 @@ class ItemEffectServiceTests {
     Path overlay = tempDirectory.resolve("ScrapedEffects.txt");
     Files.writeString(
         overlay,
-        "98|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.\n"
-            + "98|Additional Effect|Applied.|Removed.|ignored\n",
+        """
+                    98|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+                    98|Additional Effect|Applied.|Removed.|ignored
+                    """,
         StandardCharsets.UTF_8);
     GrowtopiaWikiClient wikiClient = mock(GrowtopiaWikiClient.class);
     ItemEffectService service = createService(wikiClient, overlay);
@@ -75,17 +85,20 @@ class ItemEffectServiceTests {
     assertEquals(
         List.of(
             new ItemEffect(
-                "Enhanced Digging",
-                "You can smash bricks more quickly.",
-                "Smash time is over."),
+                "Enhanced Digging", "You can smash bricks more quickly.", "Smash time is over."),
             new ItemEffect("Additional Effect", "Applied.", "Removed.")),
         service.getEffects(item(98, "Pickaxe", ItemCategory.CLOTHES)));
     assertEquals(
-        "", service.getEffects(item(3_274, "T-Shirt Cannon", ItemCategory.CLOTHES)).getFirst()
+        "",
+        service
+            .getEffects(item(3_274, "T-Shirt Cannon", ItemCategory.CLOTHES))
+            .getFirst()
             .removeMessage());
     assertEquals(
         "Meee-oww!",
-        service.getEffects(item(6_338, "Eye of the Tiger", ItemCategory.CLOTHES)).getFirst()
+        service
+            .getEffects(item(6_338, "Eye of the Tiger", ItemCategory.CLOTHES))
+            .getFirst()
             .removeMessage());
     verifyNoInteractions(wikiClient);
   }
@@ -106,9 +119,7 @@ class ItemEffectServiceTests {
     assertEquals(
         List.of(
             new ItemEffect(
-                "Enhanced Digging",
-                "You can smash bricks more quickly.",
-                "Smash time is over.")),
+                "Enhanced Digging", "You can smash bricks more quickly.", "Smash time is over.")),
         first);
     assertEquals(first, second);
     assertFalse(service.requiresScrape(item));
@@ -215,7 +226,7 @@ class ItemEffectServiceTests {
     var releaseScrape = new CountDownLatch(1);
     when(wikiClient.getRawPage("Concurrent_Item"))
         .thenAnswer(
-            invocation -> {
+            _ -> {
               scrapeStarted.countDown();
               assertTrue(releaseScrape.await(5, TimeUnit.SECONDS));
               return PICKAXE_WIKITEXT;
@@ -245,13 +256,5 @@ class ItemEffectServiceTests {
             "https://growtopiawiki.com",
             overlay.toString());
     return new ItemEffectService(wikiClient, properties);
-  }
-
-  private static GrowtopiaObject item(int id, String name, ItemCategory category) {
-    GrowtopiaObject item = mock(GrowtopiaObject.class);
-    when(item.id()).thenReturn(id);
-    when(item.name()).thenReturn(name);
-    when(item.getItemCategory()).thenReturn(category);
-    return item;
   }
 }

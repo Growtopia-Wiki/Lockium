@@ -7,10 +7,9 @@ import org.springframework.web.service.annotation.HttpExchange;
 /**
  * Declarative client for the public Growtopia wiki (MediaWiki).
  *
- * <p>This is a thin HTTP facade – it performs no caching, no parsing, and no retry logic. All
- * calls are executed by Spring's {@code HttpServiceProxyFactory} on the {@code RestClient}
- * configured in {@code ClientConfig}. Parsing of the returned wikitext lives in {@code
- * ItemEffectService}.
+ * <p>This is a thin HTTP facade – it performs no caching, no parsing, and no retry logic. All calls
+ * are executed by Spring's {@code HttpServiceProxyFactory} on the {@code RestClient} configured in
+ * {@code ClientConfig}. Parsing of the returned wikitext lives in {@code ItemEffectService}.
  *
  * <p><b>Base URL:</b> {@code ${lockium.wiki-raw-url}}<br>
  * <b>Auth:</b> none (public wiki)
