@@ -1,0 +1,1188 @@
+96|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+98|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+126|Devil Horns|You little devil...|Off the naughty list!
+128|Angelic Halo|You have been good.|You're falling out of favor.
+138|Eye Beam|Blast blocks from farther away! But weaker than punch.|Your vision is normal.
+156|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+160|High Jump|You can fly!! Well, you can jump higher than normal.|Gravity - it's the law.
+196|Feelin' Blue|A blueberry slides down your throat!|The effects of the blueberry have worn off.
+240|Cheerful Giver|You suddenly feel very generous!|Bah, humbug.
+250|Fireproof|Fire walk with me! Fire does 50% damage.|Your feet are no longer safe.
+274|Frozen|Your body has turned to ice. You can't move!|You've thawed out.
+278|Curse|You've been cursed to (the world) hell!|You are no longer bound to the netherworld, you're free to go.
+290|Ninja Stealth|Silent, invisible, deadly.|You are less sneaky now.
+338|Floating!|Whoooooooaaaaaaaa...|Gravity - it's the law.
+362|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+366|Cupid's Firepower|Blast blocks from farther away!  Weaker damage than punch though.|You are disarmed.
+368|Muddy|You've been splattered with mud!|Clean again!
+384|Valentine|You are somebody's valentine!|Yuck!
+388|Stinky|You really really smell.|The air clears.
+408|Duct Tape|Duct tape has covered your mouth!|Duct tape removed.  OUCH!
+472|Armed And Dangerous|You shoot bullets instead of punching!|You are disarmed.
+496|Speedy|You can move faster!|You are slow again.
+528|Lucky!|You're luckier than before!|Your luck has worn off.
+540|Envious|It ain't easy being you.|Healthy color restored.
+590|Black Magic|Ye art accursed by evil magicks.|Thine curse be lifted!
+592|Speedy|You can move faster!|You are slow again.
+594|Bow & Arrow|You fire arrows instead of punching!|You are disarmed.
+614|Stinky|You really really smell.|The air clears.
+
+676|Doctor Repulsion|Doctors won't come near you!|You no longer repel doctors.
+678|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+692|Iron MMMFF|You can't speak through an Iron Mask.|Ahh, sweet oxygen!
+712|ON FIRE!!!|You are burning up!|The fire's out.
+// 724 Stinky Bucket
+732|Ban|Reality flickers as you begin to wake up.|You are no longer banned.  Now be good!
+734|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+750|Lucky!|You're luckier than before!|Your luck has worn off.
+764|Infected|You've been infected by the g-Virus. Punch others to infect them, too!|You've been cured.
+766|Speedy|You can move faster!|You are slow again.
+768|Armed And Dangerous|Blast thsoe zombies!|You are disarmed.
+782|g-Virus Immunity|You are immune to zombie bites! Temporarily...|Your immunity is gone.
+800|Otherworldly|You're out of this world!|You're human again!
+802|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+804|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+806|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+808|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+810|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+812|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+818|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+820|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+874|Egged!|You have egg on your face.|You washed your face!|
+898|Putt Putt Putt|Tractors are not speedy.|You can walk faster than that thing!
+900|Dragonborn|You command a mighty (small) dragon!|Your dragon has abandoned you.
+910|Frankenpunch|It's ALLLIVVVEE!!|It's dead.
+930|Death To Blocks!|You can vaporize bricks more quickly.|Smash time is over.
+960|ON FIRE!!!|You are burning up!|The fire's out.
+962|Saucy!|You're a saucy person.|You got cleaned up.
+1010|Dr. Destructo!|You are a terrible villain.|You're a hero again!
+1012|Speedy|You can move faster!|You are slow again.
+1016|Armed And Dangerous|You shoot bullets instead of punching!|You are disarmed.
+1018|Speedy|You can move faster!|You are slow again.
+1056|Lucky!|You're luckier than before!|Your luck has worn off.
+1140|High Jump|You can fly!! Well, you can jump higher than normal.|Gravity - it's the law.
+1176|Speedy|You can move faster!|You are slow again.
+1178|Speedy|You can move faster!|You are slow again.
+1204|Focused Eyes|Give people the evil eye.|Your vision is normal.
+1206|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1216|Mark of Growganoth|You've got quite a pokerface.|Your face is back!
+1228|Flaming Hot|Your pet has a fiery temper!|Your pet has fled.
+1272|Speedy|You can move faster!|You are slow again.
+1274|Speedy|You can move faster!|You are slow again.
+1280|Recently Name-Changed|You're stuck with this name for a while!|
+1320|Speedy|You can move faster!|You are slow again.
+1330|Fists O' Fury|Float like a butterfly, sting like a punch in the face.|Boxing time over.
+1368|Frozen|Your body has turned to ice. You can't move!|You've thawed out.
+1378|Dragonborn|You command a mighty (cool) dragon!|Your dragon has abandoned you.
+1438|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+1440|Space Commander|You command a starship!|Your fleet has abandoned you.
+1444|Icy Flesh|You are cold as ice.|You're warming up!
+1460|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1464|Cupid's Firepower|Blast blocks from farther away! Weaker damage than punch though.|You are disarmed.
+1474|Food: Extra XP|25% chance of double XP for all actions.|Your stomach's rumbling.
+1484|Black Lightning|You shoot dark lightning!|You are boring again.
+1496|Speedy|You can move faster!|You are slow again.
+1512|Rainbows!|Your friend shoots rainbows!|You are lonely.
+1542|Fishy|You're holding a dead fish.|You're making better life choices now.
+1550|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1574|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1576|Dragonborn|You command a mighty (happenin') dragon!|Your dragon has abandoned you.
+1582|Speedy|You can move faster!|You are slow again.
+1634|Caffeinated|You are full of caffeine!|Ugh, caffeine crash.
+1648|Rainbows!|Your friend shoots rainbows!|You are lonely.
+1672|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1674|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1676|Squirt Gun|Squirt blocks from farther away! But weaker than punching.|You're out of water!
+1708|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+1712|Musical|You're too busy rocking to punch anybody!|The music has stopped.
+1712|Musical|You're too busy rocking to punch anybody!|The music has stopped.
+1714|Musical|You're too busy rocking to punch anybody!|The music has stopped.
+1738|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1740|Speedy|You can move faster!|You are slow again.
+1748|Flamethrowin'|You can torch stuff at the cost of 1 Fuel Pack per shot!|You're disarmed.
+1758|Speedy|You can move faster!|You are slow again.
+1762|High Jump|You can fly!! Well, you can jump higher than normal.|Gravity - it's the law.
+1764|Bunnyesque|You are very pale and fuzzy.|You are human again!
+1772|Floating!|Whoooooooaaaaaaaa...|Gravity - it's the law.
+1780|Legendary!|Youa re piloting a legendary robot suit.|You feel naked.
+1782|Legendary!|You should be very very nice to your pet.|You feel lonely.
+1784|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1804|Fistful Of Thunder|You electrocute things.|The tingling sensation is gone.
+1824|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1830|Putt Putt Putt|Tractors are not speedy.|You can walk faster than that thing!
+1836|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+1868|Drakeborn|You command a mighty (violent) dragon!|Your dragon has abandoned you.
+1874|Ring of Force|Your punches are imbued with force!|If you liked this mod, you should've put a ring on it.
+1934|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1936|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1938|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1940|Speedy|You can move faster!|You are slow again.
+1946|Icy Pet|Your little friend blasts ice beams.|Your friend has flown the coop.
+1950|Speedy|You can move faster!|You are slow again.
+1952|Fiery Pet|You have a pet that spits fire.|Your pet has left you.
+1956|Chaos|You can launch deadly chaos!|Back to punching.
+1958|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1964|Devil Horns|You little devil...|Off the naughty list!
+1966|Putt Putt Putt|Tractors are not speedy.|You can walk faster than that thing!
+1970|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+1974|Fiery Pet|You have a pet that spits fire.|Your pet has left you.
+1978|Speedy|You can move faster!|You are slow again.
+1980|Claws|You slice and dice!|Back to punching.
+1988|Haunted|Something is lurking in the shadows...|Everything's back to normal!
+1998|Dragondead|You command a mighty (expired) dragon!|Your dragon has abandoned you.
+2002|Doctor Repulsion|Doctors won't come near you!|You no longer repel doctors.
+2048|Speedy|You can move faster!|You are slow again.
+2050|High Jump|You can fly!! Well, you can jump higher than normal.|Gravity - it's the law.
+2064|Speedy|You can move faster!|You are slow again.
+2066|Cosmic Pal|Your pet is like, way cosmic, man.|Back to punching.
+2158|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2160|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2162|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2164|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2166|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2168|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2210|Geiger Counting|You are detecting radiation...|Geiger Counter removed.
+2212|Dragonborn|You command a mighty (dark) dragon!|Your dragon has abandoned you.
+2214|Speedy|You can move faster!|You are slow again.
+2216|Fireproof|Fire walk with me! Fire does 50% damage.|Your feet are no longer safe.
+2218|Mystical Ice|You can spew icy blasts.|Your icy power is revoked.
+2220|Tank Driver|You're driving a tank!|Back on foot.
+2230|Speedy|You can move faster!|You are slow again.
+2254|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2256|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2258|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2260|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2262|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2264|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2266|Cool|You're in danger of losing a finger.|You got through with all digits intact!
+2286|Charging Geiger Counter|Your Geiger Counter is charging...|Geiger Counter is no longer charging!
+2384|Speedy|You can move faster!|You are slow again.
+2386|Heavenly|You wield the fury of the heavens.|Back to punching.
+2390|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2392|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2394|Speedy|You can move faster!|You are slow again.
+2402|Speedy|You can move faster!|You are slow again.
+2420|Lightning Shield|Electricity swirls around you.|At least your hair is relaxing now.
+2438|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2450|Dragonborn With A Silver Spoon|You command a mighty (valuable) dragon!|Your dragon has abandoned you.
+2476|Burning Eyes|Your eyes are quite warm.|Everything looks so much cooler!
+2484|Summoned Genie|Your wish is his command!|Back to the lamp.
+2538|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2572|Flame Scythe|You shoot burning lightning!|Cool it, dude.
+2574|Speedy|You can move faster!|You are slow again.
+2592|Legendary Swordsmaster|None can stand against you!|Maybe you should sit down.
+2636|Slasher|You slice and dice!|Back to punching.
+2642|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+// 2646 Spotlight
+2720|Electric Arrows|You have shocking arrows.|Back to punching.
+2722|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+
+// No message for Pine Launcher
+2752|Pineapple Power|You shoot pineapples.|
+
+2754|Demonic Force|You may be possessed.|Out, unclean thing!
+// No message for The Gungnir
+2756|Lightning spear|You have a mythical spear!|
+
+2778|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+2800|Icy Pet|Your little friend blasts ice beams.|Your friend has flown the coop.
+
+// No message for Poseidon's Trident
+2802|Poseidon's Power|You have a mythical trident!|
+
+2864|Speedy|You can move faster!|You are slow again.
+2866|Wizardly Force|You have a staff that simulated legendary power!|That's enough of that.
+2876|Fighting Dirty|Your weapon fires high-velocity armor-piercing dirt.|What a silly weapon.
+2878|Soccer Skills|You have a soccer ball!|You're taking your ball and going home.
+2880|Soccer Skills|You have a soccer ball!|You're taking your ball and going home.
+2886|Ball n' Glove|Let's play catch!|You're taking your ball and going home.
+2888|Pigskin Pro|Tossin' the ol' pigskin.|You're taking your ball and going home.
+2890|Ballin'|Take it to the hoop|You're taking your ball and going home.
+2906|Tennis Ace|Somebody's gonna get served.|You're taking your ball and going home.
+2908|Slasher|You slice and dice!|Back to punching.
+
+// No remove message for Emerald Staff
+2910|Flames of Ajanti|You are armed with deadly flame magic.|
+
+2970|Slightly Damp|You are keeping your cool.|It's getting hot in here!
+2974|Speedy|You can move faster!|You are slow again.
+2976|Eye Beam|Blast blocks from farther away! But weaker than punch.|Your vision is normal.
+2984|Speedy|You can move faster!|You are slow again.
+2992|Howlin' Mad|You are one with the pack.|Your Wolf Whistle crumbles to dust.
+// 2994 Great Wolf Totem
+3052|Fireproof|Fire walk with me! Fire does 50% damage.|Your feet are no longer safe.
+3066|Fire Hose|Where does the water come from?|Guess you finally ran out of water.
+3068|Speedy|You can move faster!|You are slow again.
+3070|Slasher|You slice and dice!|Back to punching.
+3074|Speedy|You can move faster!|You are slow again.
+3104|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3108|Slasher|You slice and dice!|Back to punching.
+3112|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3114|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3118|Speedy|You can move faster!|You are slow again.
+3120|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3124|Devouring Souls|Suck the souls of innocent blocks!|You are disarmed.
+3134|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3144|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3160|Slasher|You slice and dice!|Back to punching.
+3162|Slasher|You slice and dice!|Back to punching.
+3166|Pet Slime|Your pet spits corrosive slime!|You feel empty inside.
+3168|Pet Slime|Your pet spits corrosive slime!|You feel empty inside.
+3214|Icy Axe|Brrr!!|You warmed up.
+3238|Cold As Ice|A snowman seems to be following you.|He melted away!
+3250|Speedy|You can move faster!|You are slow again.
+
+// T-Shirt Cannon has an empty mod remove message
+3274|T-Shirt Cannon|Spread the love!||
+
+3300|Party Blaster|Party on!|Party off!
+3416|Dark Cult|Welcome to the cult!|Wait, you can't leave the cult!
+3418|Snake Mastery|Hssss!!|Boo!
+3430|Lucky Dragon|You command a mighty (lucky) dragon!|Your dragon has abandoned you.
+3442|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3464|A Little Fishy|Swim faster, walk slower!|You are a land mammal.
+3466|Slasher|You slice and dice!|Back to punching.
+3476|Sharing Flowers|Toss flowers to your friends!|You are disarmed.
+3512|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3578|Carrying a Torch|I'm attacking the darkness!|My torch went out.
+3588|Pickin' N' Climbin'|You slice and dice! And climb!|Back to punching.
+3596|Candy Blast|My pal is stuffed with candy!|All outta candy.
+
+// Riding Silkworms
+3650|Speedy|You can move faster!|You are slow again.
+3652|Speedy|You can move faster!|You are slow again.
+3654|Speedy|You can move faster!|You are slow again.
+3656|Speedy|You can move faster!|You are slow again.
+3658|Speedy|You can move faster!|You are slow again.
+3660|Speedy|You can move faster!|You are slow again.
+3662|Speedy|You can move faster!|You are slow again.
+3664|Speedy|You can move faster!|You are slow again.
+3666|Speedy|You can move faster!|You are slow again.
+
+3680|Flame On!|You're fired!|You're cooling off.
+3686|Too Many Locks!|Clearly you have too many world locks.|I guess you ran out!
+3696|Speedy|You can move faster!|You are slow again.
+3716|Hunting Ghosts|You fire Neutron Beams (requires Neutron Pack to work)|You're afraid of a ghost.
+3736|Demon Control|Your pet is highly aggressive!|Punch for yourself.
+3742|Spray Tan|You are orange.|The spray tan wore off.
+3774|Mark of Growganoth|You've got quite a pokerface.|Your face is back!
+3788|Speedy|You can move faster!|You are slow again.
+3858|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+3894|Speedy|You can move faster!|You are slow again.
+3932|Precision Tool|This tool must be used with care.|Go nuts!
+3934|Precision Tool|This tool must be used with care.|Go nuts!
+4112|Speedy|You can move faster!|You are slow again.
+4114|Speedy|You can move faster!|You are slow again.
+4116|Speedy|You can move faster!|You are slow again.
+4118|Speedy|You can move faster!|You are slow again.
+4126|Throwing Spear|You got a spear, so toss it.|Enough of that.
+4136|Flaming Arrows|You fire flaming arrows!|You are disarmed.
+4150|Cosmic Pal|Your pet is like, way cosmic, man.|Back to punching.
+4152|Speedy|You can move faster!|You are slow again.
+4166|Deadly|You wield the blade of death.|Back to punching.
+4168|Speedy|You can move faster!|You are slow again.
+4170|Wheelin' n' Dealin'|I guess.. you throw it?|Enough of that.
+4184|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4208|Burning Eyes|Your eyes are quite warm.|Everything looks so much cooler!|
+4252|Slashing Claws|Your pet is dangerously violent.|Bye!
+4258|ON FIRE!!!|You are burning up!|The fire's out.
+4262|Speedy|You can move faster!|You are slow again.
+4290|Mmm, Baguette!|Feed the birds!|Starve the birds!
+4294|Shocking Pet|Your pet spits electricity!|Let's just put that away.
+4332|Frankenpunch|It's ALLLIVVVEE!!|It's dead.
+4324|Brain Enhanced|Your brain has been enhanced!|You're getting dumber by the second.
+4340|Shelly|A water spirit protects you!|Unspirited.
+4348|Gem Bonus|Chance of bonus gems from breaking blocks!|Just regular old gems.
+4412|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4414|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4464|Musical|You're too busy rocking to punch anybody!|The music has stopped.
+4474|Rainin' Skulls|You're lobbing skulls at people!|That was pretty antisocial.
+4506|Knife Crazy|Time to toss some blades.|The world is now a safer place.
+4508|Laserbeast|Your pet shoots lasers!|You abandoned your pet.
+4510|Laserbeast|Your pet shoots lasers!|You abandoned your pet.
+4512|Laserbeast|Your pet shoots lasers!|You abandoned your pet.
+4514|Laserbeast|Your pet shoots lasers!|You abandoned your pet.
+4534|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4536|Speedy|You can move faster!|You are slow again.
+4590|Dragoscarf|This dragon's got your back!|Your neck feels empty.
+4592|Food: Fishing Gems|Gain 1 gem per 5lbs of fish caught!|Your stomach's rumbling.
+4594|Food: Tree Growth|Trees you plant grow 5% faster!|Your stomach's rumbling.
+4596|Food: Surgery XP|Gain 30% more XP from Surgery!|Your stomach's rumbling.
+4598|Food: Superhero Gems|Get 100 gems from every Villain you defeat.|Your stomach's rumbling.
+4600|Food: Fishing Skill|Catch 5% larger fish!|Your stomach's rumbling.
+4602|Stinky|You really really smell.|The air clears.
+4604|Food: Breaking Gems|10% chance of a gem when you break a block.|Your stomach's rumbling.
+4628|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4656|Irradiated|You are aglow with radiation!|You have recovered.
+4660|Confetti|You're bringing the party whether they like it or not!|Party's over.
+4662|Speedy|You can move faster!|You are slow again.
+4664|Flaming Hot|Your pet has a fiery temper!|Your pet has fled.
+4672|Envious|It ain't easy being you.|Healthy color restored.
+4674|Food: Pet Gems|Get 50 Gems for beating a Pet Trainer.|Your stomach's rumbling.
+4714|Speedy|You can move faster!|You are slow again.
+4746|Energized Horn|You shoot lightning from your horn(s)!|Tired of tooting your own horn?
+4748|Energized Horn|You shoot lightning from your horn(s)!|Tired of tooting your own horn?
+4750|Energized Horn|You shoot lightning from your horn(s)!|Tired of tooting your own horn?
+4766|Blushing Red|Cherry red lips!|The effects of the cherry have worn off.
+4768|Food: Consumable XP|Get triple XP for using consumables.|Your stomach's rumbling.
+4778|Whipped Up|Whip it good!|Cool it with that whip.
+4812|Fireproof|Fire walk with me! Fire does 50% damage.|Your feet are no longer safe.
+
+//Ignore bwars balloons
+4840|Balloon Slinger!|Fling those balloons extra far!|Now you have to throw with your puny arms!
+4842|Balloon Immunity|Balloons can't hit you but you can't throw them either.|You can now throw balloons and be hit by them too.
+4880|High Jump|You can fly!! Well, you can jump higher than normal.|Gravity - it's the law.
+4946|High Jump|You can fly!! Well, you can jump higher than normal.|Gravity - it's the law.
+4948|Speedy|You can move faster!|You are slow again.
+4956|Diggin' It|It's all mine!|I can't dig it anymore.
+4960|I'm On A Shark!|Swim faster!|No shark for you.
+4590|Dragoscarf|This dragon's got your back!|Your neck feels empty.
+4970|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4972|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4986|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+4988|Lightning Trails|You trail lightning as you run!|No more static cling.
+4990|Speedy|You can move faster!|You are slow again.
+4996|Burning Hands|Your hands are quite warm.|Everything feels so much cooler!
+5002|Flaming Hot|Your pet has a fiery temper!|Your pet has fled.
+5004|Flaming Hot|Your pet has a fiery temper!|Your pet has fled.
+5006|Flaming Hot|Your pet has a fiery temper!|Your pet has fled.
+5008|Flaming Hot|Your pet has a fiery temper!|Your pet has fled.
+5012|Speedy|You can move faster!|You are slow again.
+5018|Speedy|You can move faster!|You are slow again.
+5020|Prismatic Aura|Shiny rainbow fashion star growtopian!|
+5088|Ghastly Robe|Whoooaaaa! You're a scary ghooooost! Boo!|You are back among the living.
+5114|Calm nerves.|Steady hands of a surgeon.|Butterfingers again.
+
+5078|Extra XP...|Effortless XP...|Aw, no more bonus XP.
+5126|Extra XP...|Effortless XP...|Aw, no more bonus XP.
+5128|Extra XP...|Effortless XP...|Aw, no more bonus XP.
+5130|Extra XP...|Effortless XP...|Aw, no more bonus XP.
+5132|Extra XP...|Effortless XP...|Aw, no more bonus XP.
+
+5080|Extra Blocks...|Effortless Blocks...|Aw, no more bonus blocks.
+5144|Extra Blocks...|Effortless Blocks...|Aw, no more bonus blocks.
+5146|Extra Blocks...|Effortless Blocks...|Aw, no more bonus blocks.
+5148|Extra Blocks...|Effortless Blocks...|Aw, no more bonus blocks.
+5150|Extra Blocks...|Effortless Blocks...|Aw, no more bonus blocks.
+
+5082|Reduced Growtime...|Effortless Growth...|Aw, no more extra growth.
+5162|Reduced Growtime...|Effortless Growth...|Aw, no more extra growth.
+5164|Reduced Growtime...|Effortless Growth...|Aw, no more extra growth.
+5166|Reduced Growtime...|Effortless Growth...|Aw, no more extra growth.
+5168|Reduced Growtime...|Effortless Growth...|Aw, no more extra growth.
+
+5084|Extra Wealth...|Effortless Gems...|Aw, no more bonus gems.
+5180|Extra Wealth...|Effortless Gems...|Aw, no more bonus gems.
+5182|Extra Wealth...|Effortless Gems...|Aw, no more bonus gems.
+5184|Extra Wealth...|Effortless Gems...|Aw, no more bonus gems.
+5186|Extra Wealth...|Effortless Gems...|Aw, no more bonus gems.
+
+5206|Cloak of Falling Waters|Your back is a raging rapid!|You are a lot more dry, and a lot less cool.
+5208|I'm On A Shark!|Swim faster!|No shark for you.
+5210|Speedy|You can move faster!|You are slow again.
+5262|Neon Gum|Dazzle your friends as super funky neon lines course across your skin.|Party's over.
+5264|Neon Nerves|Let the dazzling commence!|I'm all dazzled out!
+5276|Celestial Lance|You're a demon slayer!|Seriously? Are you joking? You're totally joking!
+5406|Winterfest Crown!|You're in the Winterfest spirit.|Your paper crown dissolved in your forehead sweat!
+5408|Winterfest Crown!|You're in the Winterfest spirit.|Your paper crown dissolved in your forehead sweat!
+5410|Winterfest Crown!|You're in the Winterfest spirit.|Your paper crown dissolved in your forehead sweat!
+5412|Winterfest Crown!|You're in the Winterfest spirit.|Your paper crown dissolved in your forehead sweat!
+5422|Speedy|You can move faster!|You are slow again.
+5424|Winter Frost Bow|That is one cool looking bow, man!|You are no longer cool!
+5426|Cold Embrace!|The cold envelopes you! Fire does 50% less damage.|You're free from the cold.
+5456|Silver Shimmer Bow|Getting ready for the war!|You got bored with war!
+5480|Rayman Fists!|Who needs arms when you have these?|Got your arms back.
+5648|Fleet of foot|Run like the wind!|Your feet are back on the ground!
+5650|Fleet of foot|Run like the wind!|Your feet are back on the ground!
+5738|Rainbow Magic!|You are a rainbow hero!|Nooooo, you're back to normal!
+5754|Draconic Wings|Leap into the sky with Draconic magic!|No more magic for you!
+
+// 36-38-40-42 Guild potions
+5934|Guild Potion: Geiger time reduced!|The Guild Leader released the magic!|The effects of the Guild Potion have ended!
+5938|Guild Potion: Extra Gems|The Guild Leader released the magic! 1% bonus chance of Extra Gems!|The effects of the Guild Potion have ended!
+5942|Guild Potion: Extra Blocks|The Guild Leader released the magic! 1% chance of Extra Blocks!|The effects of the Guild Potion have ended!
+
+5984|Food: High Jump|Your feet spring to life.|Your feet shrink back to normal.
+6004|Spirit Form|You are one with your spirit animal!|Back to the realm of the living!
+6026|Whip of Truth|The truth is yours!|What is true?
+6046|Food: Pet Gems 100|Get 100 Gems for beating a Pet Trainer.|Your stomach's rumbling.
+6048|Food: Pet Gems 150|Get 150 Gems for beating a Pet Trainer.|Your stomach's rumbling.
+6050|Food: Pet Gems 200|Get 200 Gems for beating a Pet Trainer.|Your stomach's rumbling.
+6058|Armed And Dangerous|You shoot bullets instead of punching!|You are disarmed.
+6064|Spirit Guide|You drift from your body guided towards the light!|You return to you own body.
+6080|Mind Control!|This ghost will make you absolutely crazy!|Sanity slowly returns.
+6086|Ghost Puncher|You can hurt ghosts!|You can't hurt ghosts.
+6090|Ghost Double Damage|Power OVERWHELMING!|Now you are a wimp again.
+6096|EctoJuicer|Double goo!|The Juicer explodes.
+6110|Super-Duper Pineapple Power!|You throw pineapple spears!|Your hand feels empty like your stomach.|
+6112|Pine-ch Buggy|Pine-ch Buggy. Beep Beep!|Pine-ch Buggy. no returns!|
+6120|The Pineapple protects you!|The Pineapple presence leaves you!||
+6144|Aurora!|These are some fine looking wings!|Now why would you do that?!
+6196|Saddled Up!|You're a tiny prancer!|No more prancing for you!
+6240|Punch Damage: Exquisite Hammer|Hammer Time!|Oh... someone touched this!
+6246|Exquisite Scythe|Harvester of souls... zombie souls that is!|Not today matey!
+6252|Surgeon Skills: Exquisite Bone Saw|Exquisite surgeon skills.|Not so exquisite surgeon skills anymore.
+6258|Big Fish: Exquisite Anomarod|Exquisite catch.|Not so exquisite fishing skills anymore.
+6260|FEEL THE FORCE|The force is strong!|The Amulet is sad!
+6262|GIANTASTIC!|Phew, back to your normal size!|You suddenly feel a wave of vertigo!
+6284|Flame On!|Aural Flames surround you!|Flames extinguished!
+6294|Raptor Legs|Run like a dinosaur!|Millions of years have aged to your legs!
+6298|Smoog|Bareback Dragon riding!|Smoog is tired, night-night, sweet dreams!
+6308|Beach Ball|Beach party!|Time to go home. I'm taking my ball with me!
+6310|Mouthfull of Seeds|Spit seeds at your enemies.|Your mouth is free again.
+6312|Phoenix Sword|Flaming blades of fury!|The flames subside, but will live again!
+6316|Food: Surgery XP|Gain 50% more XP from Surgery!|Your stomach's rumbling.
+6334|Chimera Wings!|You can double jump! It's like flying but not!|Your feet are back on the ground!
+6338|Eye of the Tiger|Hear me roar!|Meee-oww!|Purrrrrr!
+6350|Phase Blaster|Phaser set to "punch"!|Battery at 0%
+6358|Lock 'n' Load|Come get sum!|Game over man, game over!
+6368|GREEZAK!|Gree-ak-gree-zak!|kaz-eerg-ka-eerg
+6372|Thrusters engaged!|I'm a rocket man!|What a rush!
+6376|MAGnificent!|What pretty lights you have!|Lights... fading!
+6382|Protected|Shield ready and Phaser set to "punch"!|Who needs protection?
+6670|Soccer Skills|You have a soccer ball!|You're taking your ball and going home.
+6694|Super Utility Wings!|Nooooo, you're back to normal!|The flying hero or the fly?
+6754|Acorns!|Nuts overload!|These acorns taste too good to throw away!
+6756|For Honor|Come forth my honor guard!|I return thee to thy realm!
+6758|Hoveration!|This cloak is amazing!|Back in the closet you go!
+6782|Infinite|The horns turned out to be finite!|The darkness and the light!
+6800|Geology Rocks!|Totally heavy, man!|Lighten up!
+6804|Lock 'n' Load|Come get sum!|Game over man, game over!
+6818|Night|Phew, the moonlight is back!|Where did the moonlight go?
+6820|Crystal Magnetism!|Come to me my precious!|You're no longer attractive!
+6830|Build Range: Exquisite Trowel|Exquisite building skills.|Not so exquisite building skills anymore.
+6840|Extra blocks from trees...|Bontiful harvest!|Aw, no more bonus blocks.
+6842|Caw Caw!|Protect the crown jewels!|Where did my wings go?
+6844|Extra Fossils from fossil rocks...|Bontiful harvest!|Aw, no more bonus fossils.
+6846|Reduced Growtime...|Effortless Growth...|Aw, no more extra growth.
+6848|Crystal Vision|Crystals everywhere.|Your eyesight returns to normal.
+6850|Reduced Growtime: Exquisite Cultivator|Exquisite Growth...|Aw, no more extra growth.
+6892|Mysterious|Colour changing sorcery!|Back to a dull boring life!
+6906|Food: Flavorsome Music|View musical notes in the world.|Your stomach's rumbling to the beat
+6098|Food: Buff Duration|Increase the duration of food buffs by 30%.|Your stomach can't take anymore buffs!
+6910|Food: Delectable|25% chance of double Growtokens from Daily Quests.|Your stomach's devasted!
+6912|Food: Spicey Skills|Reduce your skill fails by half in both Surgery and Startopia missions.|Your stomach's to spicey.
+
+
+//    <string enum="PLAY_MOD_DB_TEXT_650" id="15876" value="Food: Purified Scythe" />
+//    <string enum="PLAY_MOD_DB_TEXT_651" id="15877" value="Hand Scythe breaks 5% less!" />
+//    <string enum="PLAY_MOD_DB_TEXT_652" id="15878" value="You no longer feel pure!" />
+
+
+6914|Food: Sparkling Gems|Get extra gems from a variety of actions!|Your stomach has too many bubbles!
+6918|Food: Anomalizers|Gain extra Points from *delicate* anomalizers!|Your stomach's rumbling for more potion goodness!
+6920|Food: Anomalizers|Gain extra Points from *pristine* anomalizers!|Your stomach's rumbling for more potion goodness!
+6922|Food: Anomalizers|Gain extra Points from *elegant* anomalizers!|Your stomach's rumbling for more potion goodness!
+6924|Food: Anomalizers|Gain extra Points from *exquisite* anomalizers!|Your stomach's rumbling for more potion goodness!
+6942|Startopia skills: Exquisite Scanner|Ahoy captain.|We're not reading anything on the scanners.
+6966|Punch Damage: Bull|Bull smash|Bull needs a nap!
+6982|Speedy: Speedster|Burn some dust, eat my rubber!|Time to keep calm!
+6996|Speedy: Cruisin'|Chillin' in ya boat!|Man overboard!
+7044|Punch Damage: AXE!|Nothing will stand in my way!|The axe returns to its velvet case!
+7056|Food: Ghostbusting|Gain 50 XP per Ghost captured.|You crave coconut!
+7088|Punch Range: Blade!|Ezios armguards: Silent Killer!|Blade concealed!
+7098|Punch Damage: AXE!|Nothing will stand in my way!|The scythe returns to its velvet case!
+7100|Speedy: Rider of the Apocalypse|Decay follows in your wake!|Knocked off your high horse!
+7104|Double-Jump: Dark Aurora!|Those are some evil-lookin' wings!|Now why would you do that?!
+7106|Punch Range: Focused Eyes|Give people the evil eye.|Your vision is normal.
+7136|Rainbow Flame!|Flame On!|The fire has died out!
+7138|Item Prevention|No more floating items!|Okay, I want floating items again!
+7142|Punch Range: Tentacle Attack!|Good boy, Triffid!|Back to your nest!
+7144|Slow-Fall: Magic! A magical carpet ride!|Carpet rolled up!||
+7146|Speedy: Dire Wolf|Feel the rush of the wind!|Too sleepy to run!
+7150|Double-Jump: Light as stone!|Those are some evil-lookin' wings!|Time has worn your wings to dust!
+7152|High Jump: Electrifying!|Mad science!|You don't like science?
+7166|Provider Time Reduced...|Effortless time...|Aw, no more time reduction.
+7192|Build Range: Shadow Force|Spirit summoned!|The spirit is banished!
+7196|Double-Jump: Butterfly|How royal!|Commoner!|
+7204|Supplier's Cape|Supplying you with extra Role points!|Argh, no more extra Role points!
+7206|Master of Disguise|No one sees you now...|You are visible again!
+7212|High-Jump, Slow-Fall: Moon Landing|One small step for a man, one giant leap for mankind!|Houston, we have a problem!
+7214|Crafter's Cape|Some crafty extra Role points!|Argh, no more extra Role points!
+7216|We are all mad here!|We are all mad here!|That was just pure madness...
+7246|Musical|You're too busy rocking to punch anybody!|The music has stopped.
+7250|Jack of All Trades!|Giving you extra Role points for Supplier and Crafter roles!|No more a Jack of All Trades!
+7252|Jack of All Trades!|Giving you extra Role points for Supplier and Crafter roles!|No more a Jack of All Trades!
+7254|Jack of All Trades!|Giving you extra Role points for Supplier and Crafter roles!|No more a Jack of All Trades!
+7256|Jack of All Trades!|Giving you extra Role points for Supplier and Crafter roles!|No more a Jack of All Trades!
+7258|Model 101|Neural cortex connection...is active!|Back to normal, non-techy skin!
+7298|Speedy: Lord Scavenger|To the Thunderdome!|Not so menacing now are you!
+7302|Golden Touch|You are glittering in gold!|Back to normal, boring skin!
+7304|Double-Jump: Tiger|Tiger uppercut!|No more tiger powers!
+7310|Cooking skills: Exquisite Rolling Pin|Exquisite cooking skills.|You're not even a sous chef.
+7348|Speedy: Gobble-Gobble|Just as fast as a chicken!|Back to normal feet!
+7350|Double-Jump: Gobble Gobble!|Gobble-Gobble-Gobble|No feathers for you!
+7384|Speedy: Go-Go!|Let's roll out!|Energy cube drained!
+7392|Punch Range & Damage: Fire and Wind|One for the mages!|Stupid puny hands!
+7406|Punch Power: Super Snowball|No yellow snow here!|Melted!
+7412|Double-Jump: Snowflake|To be a snowflake...|Your wings melted!
+7414|Double-Jump: Chimpmunk|What a cheeky chipmunk you have!|Where did he go?
+7424|Candycanes!|Tasty!|No more holiday sugar!|
+// Poseidon Digger Trident
+7432|Speedy: Husky Sledge|Mush Mush!|Whoa, whoa!
+7464|Food: Happy GROWCH|Doubles the points per Winter Gift given to GROWCH.|Your stomach's devastated!
+7466|Food: Tree Decoration|Doubles how much a Tree Decoration decorates a Giving Tree.|Your stomach's devastated!
+7470|Water Power|Feel the pressure!|Why did you do that?
+7480|Missile Strike|Fire in the hole!|Must recharge!
+7488|Punch Range: Slaminator|Slam!|It did not return!|
+7500|Attention!|Present arms!|Dismissed!|
+7502|Double-Jump: OVEROLL|OVEROLL says "rollover!"|Your wings rolled away!|
+7504|Punch Range: Super Squirt|500 gallons per second!|Well, that sucks!|
+7518|Speedy in Water: Jet Ski|Motorbike of the Sea!|No more ski.|
+7568|Drone|Weapons free, fire at will.|Peace initiative in effect.|
+7582|Double-Jump: Robotic!|Fuelled for lift off!|Under maintenance!|
+7584|Jump: Enchantment|You're been enchanted!|The enchantment has worn off!|
+7586|Punch Damage: Sonic Booom!|Weapon unsheathed, ready for battle!|You're busted!|
+7638|Big: Huge Appetite|Your appetite has enlarged your body.|Your tummy rumbles as you return to your normal size.
+7642|Sparkling for battle.|Golden Boar!|Roast boar for dinner!|
+7646|Punch Range: Tyr's Spear|Swift Justice.|Go in peace as you put down your spear.|
+7648|Double Jump: Odin's Ravens|Rise with wings of Thought and Memory!|You are slowly going insane!|
+7650|Punch Damage: Mjolnir|The hammer of kings.|You are no longer worthy.
+7652|Healing: Eir's Rune|Swift recovery and minty fresh!|No more medical might!|
+7654|Speedy: Thor's Chariot|Let's ride!|BITE BITE BITE|
+7660|Punch Range: Confetti|Party on!|Party... off?!|
+7668|Air Horn: Honk!|Loud noises!|No more air!|
+7670|Double-Jump: Speakers|Feel the rhythm, feel the beat!|Muted!|
+7676|Double-Jump: Shield!|Hot air rises!|Don't get burninated!
+7678|Double-Jump: Shield!|Hot air rises!|Don't get burninated!
+7680|Double-Jump: Shield!|Hot air rises!|Don't get burninated!
+7682|Double-Jump: Shield!|Hot air rises!|Don't get burninated!
+7696|Double-Jump & Slow-Fall: Rocket|Rocket propelled parasol!|Where did it go?
+7736|Punch Range: Dragon Knight's Spear|Dragon Skewer.|No more toothpicks left.|
+7746|XP Buff: Fishing|Aquatic draconian wisdom!|Your aquatic wisdom is no more.|
+7748|XP Buff: Superhero Battles|Super draconic wisdom!|Your super wisdom is no more.|
+7750|XP Buff: Ghost Hunting|Ghastly draconic wisdom|Your ghastly wisdom is no more.
+7752|XP Buff: Cooking|Gourmet draconic wisdom!|Your gastronomic wisdom is no more.|
+7754|XP Buff: Surgery|Emergency draconic wisdom!|Your medical wisdom is no more.|
+7756|XP Buff: Wolf Worlds|You have the world serpent's wisdom!|Your wisdom is no more.|
+7758|XP Buff: Fossil Processing|Prehistoric draconic wisdom!|Your ancient wisdom is no more.
+7760|XP Buff: Startopia|Star draconic wisdom!|Your astronomical wisdom is no more.|
+7762|XP Buff: Startopia|Chaos draconic wisdom!|Your chaotic wisdom is no more.
+7828|Punch Damage: Golden Heart|For true love!|Lost true love!|
+7830|Punch Damage: Heart|For love!|Love lost!
+7832|Punch Damage: Golden Heart|For true love!|Lost true love!|
+7834|Double-Jump: Heart|Glowing with love!|Your love has gone!
+7836|Slow-Fall: Ear Flap|Elephants can fly!|No more ear power!|
+7838|Slow-Fall: Ear Flap|Elephants can fly!|No more ear power!|
+7840|Slow-Fall: Ear Flap|Elephants can fly!|No more ear power!|
+7842|Slow-Fall: Ear Flap|Elephants can fly!|No more ear power!|
+7906|Speedy: Saddled Up!|Show off!|Back to the stables.
+7908|Speedy: Coachman|Trot on, trot on!|Hup, hup, whoa!|
+7910|Double-Jump: Eagle|Let the eagle guide you!|No more eagle powers!
+7912|Punch Damage: War Hammers|The darkness has arrived!|Back in the toolshed!
+7914|Double-Jump: Condor|What graceful wings you have!|Where did my wings go?
+7916|Double-Jump: Aim High|Hooah!|Back in the hangar!
+7918|Speedy: Crackfire|Chocks secured!|Ready for take off!
+7938|Build Range: Paintball|Time to paint!|Safety First!|
+7940|Punch Damage: Knockout|Sting like a fireball!|Time to hang up the gloves.
+7942|Floating!|Whoooooooaaaaaaaa...|Gravity - it's the law.
+7948|Iron Skinned|Immunity!|Back to normal and boring human skin!
+7950|Punch Damage: Tank|Target in sight!|Return to base!
+
+// April
+8006|Punch Range & Fireproof: Hellfire|Raising hell!|Your fire has been doused!
+8008|Punch Range & Fireproof: Hellfire|Raising hell!|Your fire has been doused!
+8010|Punch Range & Fireproof: Hellfire|Raising hell!|Your fire has been doused!
+8012|Punch Range & Fireproof: Hellfire|Raising hell!|Your fire has been doused!
+8016|Speedy: Spring Flinger|A spring in your step!|No more spring!
+8018|Speedy: S.P.I.D.E.R.!|Freed from the wire web!|Back into storage!
+8024|Double-Jump: Magical Energy!|Aural energy!|The aura faded away!
+8026|Double-Jump: Magical Energy!|Aural energy!|The aura faded away!
+8036|Balloon Bunny!|Bunny balloon bunny|Popped!
+8042|Climbing: Barko|Nails... too smooth!|Claw your way up!
+8046|XP Buff: Providers|Bunny-dragon wisdom!|Your wisdom is no more.
+8054|High Jump: Bunny|Hop-hop away!|Bunny is tired!
+8056|Easter!|Easter Egged!|Restocking!
+8190|Halo!|The holiest of jeans!|Holy moly!
+8192|Buddy's Extra Blocks...|Buddy's Effortless Blocks...|Aw, no more bonus blocks from Buddy.
+8194|Double Jump: Glowy!|Feel the glow!|Dark, darkest, darker still!
+8286|Double Jump|You can jump in mid-air! It's like flying, but less.|Gravity - it's the law.
+8288|Speedy: Genie's Lamp|Wish granted!|Chillin' in the lamp!
+8290|Speedy: Genie's Lamp|Wish granted!|Chillin' in the lamp!
+8292|Speedy: Genie's Lamp|Wish granted!|Chillin' in the lamp!
+8294|Speedy: Genie's Lamp|Wish granted!|Chillin' in the lamp!
+8302|Double-Jump: Steampunked|Steam power!|Run out of steam!
+8306|Punch Range + Slow-Fall: Comet|Cosmic energy!|Your hair, what happened to your hair?
+8356|Speedy: Poopy|Relieved!|Oh, this is just disgusting!
+8358|Eyeballs!|I see you!|I don't see you!
+8362|Double-Jump: Buzzzz!|Buzz, buzzzz, buzz!|Buzz off!
+8364|Snot Attack!|Achoo! Achoo! ACHOOO!|Sniff, sniff!
+8366|Double-Jump + Punch Damage: Four Arms Attack|Ah, stupid two arms!|Wham! Bam! Pow! Bonk!
+8368|Speedy: 'roach|Ewwww, a giant 'roach!|Bugged out!
+8372|Punch Damage: Giant Eye|Whattcha looking at?|Back to tiny two eyes!
+8374|Bob The Gross Blob|Slippery Grossness!|Bob is tired!
+// 8400+ gross food
+8432|Punch Range + Punch Damage: Destructor!|Galactic Code THX1137... Destruction protocol: initiate!|Take a break!
+8434|Punch Range + Punch Damage: Destructor!|Galactic Code THX1137... Destruction protocol: initiate!|Take a break!
+8436|Punch Range + Punch Damage: Destructor!|Galactic Code THX1137... Destruction protocol: initiate!|Take a break!
+8438|Punch Range + Punch Damage: Destructor!|Galactic Code THX1137... Destruction protocol: initiate!|Take a break!
+8458|Muted by stitches! Ew!|Lips stitched! No talking!|Ahh... Lips unstitched!
+8464|Punch Range: Focused Eyes|Your vision is normal.|Give people the evil eye.
+8486|Healing: Loving Halo!|It's the power of love!|Where is the love!
+8488|Chaos Corruption!|Fueled by dark energy!|The darkness has left you! ...for now...
+8492|Goin' down to wormtown!|Wormtouched arms! Digging increased!|Your wormy arms have wiggled away!
+8494|Speedy: Snakewolf|You have serpent speed!|No longer slithering with the pack.|
+8496|Ghost Immunity: Ghostking|You WILL suffer me!|The dead do not suffer the living to pass!
+8498|Knock Back Reduction: Fattenator|Because I'm fat!|You are the biggest loser!
+8510|Grumpy Pineapple!|Would you like some juice?|This doesn't help my grumpiness!
+8512|Speedy: Pineapple Squish!|Get ya squish on!|All squished out!
+8538|Malady: Chaos Infection!|You've been infected with CHAOS!|MISSING
+8540|Malady: Moldy Guts|MISSING|Your guts no longer moldy!
+8542|Malady: Brainworms!|You've been infected with Brainworms!|MISSING
+8544|Malady: Lupus!|You've been infected with lupus!|You no longer have lupus!
+8546|Malady: Ecto-Bones!|You've been infected with Ecto-Bones!|Your bones are no longer ectoplasmic!
+8552|Double Jump and Slowfall: Angel of Mercy!|Mercy from above!|Merciful no more!
+8554|Discover the Vaccine: Caduceaxe!|Medical mysteries under every block!|No caduceaxe! Now why would you do that?!
+// Malady: Torn Punching Muscle! Torn Punching Muscle: survived!
+// Malady: Broken Heat! Oh no! You have a broken heart! We're so sorry!|Broken Heart: survived!
+// Malady: Chicken Feet! Ba-kaw! Feeling... CHICKEN?
+
+// IOTM
+8576|Double Jump: Batastic!|Some seriously helpful bats!|Bats are chillin'
+8578|Double Jump: Batastic!|Some seriously helpful bats!|Bats are chillin'
+8580|Double Jump: Batastic!|Some seriously helpful bats!|Bats are chillin'
+8582|Double Jump: Batastic!|Some seriously helpful bats!|Bats are chillin'
+
+8588|Double Jump: Eternal Flame|Soar like the Phoenix!|Blaze extinguished!
+// Ezcook tentacles
+8588|Double-Jump: Eternal Flame|Soar like the Phoenix!|Blaze extinguished!
+8604|Punch Damage: Dungeonist|Prepare to be pinched!|Aaaah, soothing!
+8732|Bamboo Slash|Bamboozled!|Sword concealed!
+8736|Obsidian Chop!|Axe attack!|Axe concealed!
+8812|Speedy: Firefly|Look at the Glow... way you go Growtopians!|Back to Non-glowing human Legs
+8814|Punch Damage: SNAKEY SNAP!|Hissy hair, attack!|There, there, my pretties - calm yourselves...
+
+// IOTM
+8816|Punch Damage: Astro Beam|AAAAARRRGH!|Astro tech removed
+8818|Punch Damage: Astro Beam|AAAAARRRGH!|Astro tech removed
+8820|Punch Damage: Astro Beam|AAAAARRRGH!|Astro tech removed
+8822|Punch Damage: Astro Beam|AAAAARRRGH!|Astro tech removed
+
+// PAW
+8830|Speedy: Shoes|Smooth!|Put on the shoe rack!
+8834|Speedy: Mystical|Growboard? Keep it, I've got an Etherboard now!|Back to the... shelf!
+8856|Speedy: War cry!|Time for a soothing foot spa?|MISSING
+8862|Double-Jump: Valkyrie|Valhalla awaits!|Time to feast!
+8866|Speedy: Valkyrie|Running into battle!|Give your feet a rest!
+8892|High Jump: Sneaky|No more sneaking!|Sooo sneaky!
+8894|Punch Range: Bamboo-Fu|Just munchin'|Panda is sleepy.
+
+// IOTM
+8896|Speedy: World Lock|Giddy-up!|Locked away!
+8898|Speedy: World Lock|Giddy-up!|Locked away!
+8900|Speedy: World Lock|Giddy-up!|Locked away!
+8902|Speedy: World Lock|Giddy-up!|Locked away!
+
+// Harvest 2019
+8908|Harvest Collector: Tea Basket|Straight to your backpack with the harvest.|Back to picking up scraps from the ground.
+8910|Punch Power: Leaf Blower|It's awfully windy around here!|Power off!
+8912|Punch Range + Reduced Damage: The Last Straw|Throw hay from far away! But hay is weaker than a punch.|
+8914|Double-Jump: Mosquito|Bzzzzzzzzzz!|Buzz-off!|
+8924|Fortune Favor: Moon Charm|Blessings of the Harvest.|Out on your luck.
+
+// Time Tossed
+8942|Punch Damage: Crescent blade!|Slice is nice!|Nice slicin' - now take a break!
+8944|Punch Damage: Sun Smash!|Unsheathed the sun! My eyes!|The sun has set!
+8946|Punch Damage: Breaker of Storms|Watch out, storms!|Storms broken!
+8948|Speedy: Speeder|Speed is on your side!|Back to your chores!
+8950|Punch Range: Snipeshot|Scope up: It's time to go long!|Scope down: Time to get close!
+8952|Speedy: Monster Truck|Let's Roll!|Puny human! Boo!|
+8954|Quick Recover: Healing Tome|A heavenly touch revives you.|No more grapefruit and health drinks, back to that unhealthy diet of yours.
+8956|Speedy: Ghost Mobile|Faster than death!|Back to life!
+8958|Speedy: Ghost Bike|Catch up to the wicked!|Penance stare: Complete!|
+8960|Punch Range: T.K.O.|Sprrroing!|Pah! Pesky regular fists!
+9006|Punch Damage: Anubis Form|You are one with the spirit of Anubis!|Return from the afterlife!
+
+9008|Double Jump: Cursed!|Spirits released!|Spirits locked away...
+9010|Double Jump: Cursed!|Spirits released!|Spirits locked away...
+9012|Double Jump: Cursed!|Spirits released!|Spirits locked away...
+9014|Double Jump: Cursed!|Spirits released!|Spirits locked away...
+
+// Halloween 2019
+9032|Punch Damage: Underworld!|Consumed by the power of the Underworld!|The scythe returns to its domain!
+9034|Speedy & Wall Climb: Tarantula!|Creeping & crawling!|Back to Non-glowing human legs!
+9038|Speedy: Supernatural|Too fast, too much pain!|Where's the foot spa!
+9056|Speedy: Demon Stallion|You're a tiny demon prancer!|No more evil prancing for you!
+9058|Punch Damage: Cursed!|For honor... pah, for darkness!|Cast away, until it calls again...
+
+// Daily Challenge Update
+9060|Hilarious Honker|Hello, is anybody there?|Hello? Hey, where did you go!?
+9062|Calling Chimera|Hello, is anybody there?|Hello? Hey, where did you go!?
+9064|Double Jump - Rainbow Crystal Cloak|You're somewhere over the rainbow.|I guess dreams only come true for others, not you.
+9066|Growganoth's Claw!|The CLAAAAAW's coming for ya!|Oh, it won't be too happy about this!
+9068|Rebuild Tools: Nano Nurse Bot|The Nano Nurse provides everything a surgeon needs.|Back to your own skills.
+9070|Redraw Cards: Battle Boots|You've got a trick or two in your boots.|No more games for you.
+9072|Woof Time: Alpha's Shawl|Lead the pack!|You run alone.
+9074|Big Catch: Mega-Hooky Vest|Patients pays off for those who fish.|Back to your small hooks.
+9076|Flipping: Superb Chef's Super Spatule|Tiles look like really big flapjacks.|The world looks bland.
+9078|Slippery: Slippery Chemical Coat|Slipping around.|Back to the drawing board.
+9082|Punch Damage: Rocket Power|Charged to 11!|What? Are you crazy?
+9084|Malady Increase: Tainted Cheese|The stinkier the better.|I guess cheddar will have to do.
+9086|Hugsy|It's me, Hugsy! Hugsy'll be your pal!|Awww poor Hugsy!
+9088|Slowfall: Spectral Mantle|Chained to the other side.|Released from your soul bondage.
+9092|Efficent Tools: Captain's Log|Captains log: Today our mission begins.|Stardate... umm... today.
+9098|Explosion Chance Reduction: Ghostking's Command|Command the spirits.|Run!!! Don't look back, just run.
+
+
+9114|Double-Jump: Nightmare|Float away!|Too scary!
+9116|Punch Power + Build Range: Laser Scimitar|Feel the power of the dark side!|Tucked away for safe keeping!
+9118|Punch Power + Build Range: Laser Scimitar|Feel the power of the dark side!|Tucked away for safe keeping!
+9120|Punch Power + Build Range: Laser Scimitar|Feel the power of the dark side!|Tucked away for safe keeping!
+9122|Punch Power + Build Range: Laser Scimitar|Feel the power of the dark side!|Tucked away for safe keeping!
+
+9132|Double Jump + Slow Fall: Turkey Hat|This silly turkey has found a new home on your head.|This takes hat hair to another level!
+9134|Speedy: Riding Bell|Celebrate the comming of the harvest in style.|Your feet are back on solid ground.
+
+9136|Speedy + High Jump: Imperial|I have you in my sights...|Back to base!
+9138|Speedy + High Jump: Rebel|Gold leader standing by...|Back to base!
+
+9172|Double-Jump: WinterBot!|Fuelled for lift off!|Under maintenance!
+//9174
+
+9182|Double-Jump: Frosty Wings|Stay frosty!|Thawed Out!
+9184|Double-Jump: Riding Eagle Owl|Twit-TWOOO!|Sleepy time!
+9190|Double-Jump: Fire & Ice|Feel the heat, feel the chill!|At the dry cleaners!
+9192|Punch Power: Yeti|AAARRRGH!|Yeti must resist!
+9194|Punch Damage: Hammer|Frozen Hammer Time!|Back in the tool shed!
+9208|Speedy: Polar Bear|A speedy kind of 'glacial' pace|Time to slow down!
+9210|Double-Jump: Winter Radiance|Brrr, it's cold!|Jumping to stay warm!
+
+// IOTM
+9236|Punch Power: Ancient Smackdown!|Power of the ancients!|Returned to the ancients.
+
+9252|Speedy: Rocket|Confetti rocket powered propulsion!|Aww, darn it...
+9254|Punch Damage: Euphoria!|Firework explosion!|Feeling underwhelmed...
+9256|Bubble Blaster|Bubblicious!|No more bubbles...
+9272|Punch Damage: Draconic Breath|Unleash the fire!|Another village spared!
+9280|Jin Chan Leash|Hop on|Hop off
+//9292
+9304|Punch Power: Brutal Hand Fans|Chi acitivated! Punch power increased!|All out of Chi|
+
+// Valentines
+9320|Double Jump: Cloudyleap!|Rise to Cloud Nine!|Your feet are back on solid ground!
+9322|Double Jump: Sunset Step!|Rise to the golden sunset!|Your feet are back on solid ground!
+9326|Punch Damage: Golden Heartthrob Helm|Hearthrob Hearts!|Gone is the manly love!
+9344|Speedy + Double Jump: Datemaster|Rise on the wings of love!|Bling!
+9352|Double Jump: Pink Teeny Angel Wings|It's like flying, but less.|Gravity, it's the law.
+
+// Spelunkorama V2
+9348|Medusas's Gaze|Medusa's Crown effect: On|Medusa's Crown effect: Off
+9356|Lightsource: Magic Stones|I'm attacking the darkness!|My magic fades went out.|
+9360|Speedy: Armored Riding Troll|Tame the wild.|Back on your own two feet.|
+9364|Lightsource: Dwarven Mining Helm|Let there be light!|The candle died out
+9376|Punch Damage: Mining Mech|Heigh-ho, Heigh-ho, it's off to work I go!|Heigh-ho, Heigh-ho, it's home from I go!
+9378|Build Range: Lightning Gauntlets|Like a jedi but cooler.|Your fingers still tingle.
+9394|Double Jump: Balrog Wings|Rise on fire and shadow!|Return from whence you came!
+9396|Punch Power: Balrog's Tail|Demonic blade.|Unarmed.
+
+9408|Double Jump + Punch Pull: Gravity Pull|The weight of the galaxy is on your shoulders!|A weight is removed!
+
+9410|Punch Damage: Purple Lightning|Ultimate POWER!!!|Noooooooo!
+9420|Run: Slithering Slippers|I decided to go for a little run.|Im pretty tired... I think Ill go home now.
+9422|Double Jump: Shamrock!|Rocking the Wings!|I need a wing... man!|
+9424|Slow-Fall: Giant Falling Shamrock|Oooooh I'm slowly falling!|Aaargh, too fast!
+9426|Speedy: Dala Horsie|Rollin' around at the speed of...|Whoooa Nelly!
+9428|Double-Jump: Money Aura|I'm in the money!|I need a loan!
+
+9442|Speedy: Chick Tricycle|Cheep Cheep!|Back on your own two feet!|
+9446|Double Jump: Egg Champion Cape|Flutter through the sky with a smile!|Please don't run away!
+9450|Punch Power: Super Hot, Hot Cross Buns|Flaming Buns!|Melted!
+9452|Speedy: Loafers|Bread for speed!|Hungry again!
+
+9462|Punch Damage: Hair Punch|Hair Wax On!|Hair Wax Off!
+9464|Punch Damage: Hair Punch|Come out swinging!|Bad hair day.
+
+9606|Punch Damage: Doomsday Warhammer|Warhammer fire up!|Time to cool down!
+
+9608|Speedy: Chip and Drip|Quick! Run to the fridge for more dip!|All outta dip!
+9610|Double Jump: Spice Boost!|Fire up the burners!|Cool the jets, eat some Guac
+
+9648|Speedy: Rip Tide!|Surfs Up, this wave's huge!|Total Wipeout dude!
+
+9650|Putt Putt Putt|Tractors are not speedy.|You can walk faster than that thing!
+9654|Punch Damage: Pineapple Superhero!|Pineapple Power Activate!|Pineapple Power Deactivate
+9656|Double Jump: Pineapple Coronet!|Arise! You're royalty jumping|Back down to earth
+9698|Punch Damage: Arm Blaster|This is Mega errr Dude|I wily better stop now
+9712|Double Jump: Crystal Power!|The power of the crystal propels you!|Taken the shine right off
+9714|Punch Damage: My Pet Sputnik!|Sending out a signal, is there anyone there!|Signal Lost!
+
+9760|Double-Jump: Pegasus Wings!|Take flight and hold tight!|Woah there nelly, back to earth!
+
+9730|Double-Jump: Phoenix Scarf!|Phoenix Descend!|Rise Oh Phoenix and watch over me!
+9732|Double Jump: Greg The Octopus!|8 Arms up, up and away!|All suckered out!
+9734|Punch Damage: Starfish Leash|Stars ready shine!!!|Time to put the stars to bed!
+9738|Punch Damage: Staff of the Deep!|Let the fish fly!|Over fished and outta here!
+9742|High jump: Flamingo Wings!|Up, up and away|Heading South for the winter and back to earth!
+9758|Punch Damage + Build Range: Neptune's Trident|The storm has passed!|Neptune Rising with the waves!
+
+10044|Speedy & Punch Power: Golem's Gift!|Behold the power of the Golem!|Golems gone!
+
+10046|Punch Range: Growboy|Get your game on!|Batteries outta juice!
+10048|Punch Damage : TSED!|Sneak attack active!|Caaaaaarnivorous reeeeeptileeeee!
+10050|Punch Damage : Really Dangerous Pet Llama|Armed to the back Llama Teeth!|No Longer REALLY dangerous!
+10052|Punch Range : Eldritch Crossbow|May the flame guide you oh fiery arrow|That's enough for now
+10054|Double Jump : Zodiac Wings!|Let's jump to the stars!|All stargazed out!
+10064|Punch Damage : Capuchin Leash!|Ban'armed to the back teeth!|Stop monkey'ing around now!
+10066|Speedy: Riding Gorilla!|Go Go Gorilla Go Go!|Let's chill and grab a banana smoothie!
+
+10128|Mechanical Butler: Punch Damage & Punch Range|Tea for 2 and 2 for tea!|Down to the tea leaves!
+
+10130|Sun Shooter Bow : Punch Damage & Punch Range|May the light of the sun empower you|Burned-out!
+10132|Yin Yang Pendant : Speedy|Yin Yang and you don't stop a rockin'|That's plenty of yin'ing and yang'ing for now
+10148|Harvest Shawl : Double Jump!|Leaf'ing you behind!|This tree has no leaves!
+10158|Magnificent Favor: Mooncake Magnificence|Let there be balance.|I feel dizzy.
+
+10166|Punch Damage: Haunted Jack O' Lantern|Pump up the Pumpkin Power!|Lights out, going mouldy!
+
+10172|Double Jump : Neon Wings!|Neon the way to the moon!|Lights out!
+10188|Double Jump: Ghoulish Wings!|Sprouts, sprouts and away!|No more gas!
+10178|Double Jump: Fried Wings|A mix of herbs and spices that's out of this world!|All winged out!
+10180|Double Jump: Party Plume Wings!|Get your plume on!|Plumed out now!
+10170|Double Jump: Aqua Wings!|Splashing towards the stars!|There's a hole in the tank!
+10182|Double Jump : Musical Wings!|A symphonic high!|All the low notes!
+10168|Double Jump : Bling Wings!|Rising like the stock market!|Crashing like the stock market!
+10184|Double Jump: Dark Sunset Cape|The sun has well and truly set!|Dark Sun guide me skyward!
+10186|Double Jump & Slowfall : Darkest Skull Parasol|Skulls ignite and send me skyward!|What skullduggery is this!
+10206|Lightsource : Demogorgon Mask|Let there be light!|The candle died out
+10210|Double Jump: Cloak of Equilibrium|Onwards to the sun and... and moon!|All outta balance!!
+10216|Farming Role Requirement Reduction : Frankenstein's Monster Mask|Me going to scare you!|Back to being less scary!
+10218|Trawlerman's Friend|Reduce fishing time|Normal fishing time
+10232|Punch Damage : Reanimated Howly|Full Moon Rising!|Morning is broken!
+10236|Speedy : Zombie Horse|Hooves of flaming fury!|Cool down Nelly!
+10246|Lightsource: Celestial Dragon Charm|The essence of the sun, moon and stars; I command you!|The new moon has risen!
+10248|Speedy: Riding RV|Going coast to coast!|Oh no, you've got a flat tire!
+10250|Punch Range: Ultra Sportsball Bat|Batter up, home run!|Strike 3, you're out!
+10252|Extra Gems...|Effortless Gems...|Aw, no more bonus gems.
+10260|Punch Range: All You Can Eat Bib!|Foooooood Fight!!|Time to clean up!
+10278|Punch Damage & Light Source : Torch of Enlightenment|For freedom and liberty!|Until next time...
+10288|Fire Hose : JackBowe's Koala|Extinguish those flames!|Stopped, for now!
+10292|AVIAN SUCTION : Turkey Sucker|I'm gonna get you, sucka!|Need to exhale a litte!
+10330|Punch Damage & Punch Range: Shadow Crown|May you have the blackest of Fridays!|Weekend is over!
+10332|Double Jump : Matrix Aura|Oh lots of fancy numbers!|Too much weird maths!
+10334|Punch Power : Black Balrog's Tail|Black Demonic Blade!|Unarmed!
+10336|Punch Range : Black Burning Eyes|Your eyes are quite warm and really dark!|Everything looks so much cooler!
+10338|Double Jump: Black Egg Champion Cape|Flutter through the sky with a smile... only darker!|Please don't run away!
+10388|Punch Damage: Swordfish Sword!|Dangerous Fish Activate!|As dangerous as a Goldfish!
+10390|Speedy in Water: Jet Ski Chariot!|Show off mode active!|Splash Down!
+10392|Punch Range: Water Gun Hat!|Water Pistols at dawn!|Out of H2O no!
+10404|Speedy: Sledding Penguin!|Ready to sled!|Snow more sledding for you!
+10406|Punch Damage : Staff of Deepest Winter|Snow storm!|Too warm for snow!
+10408|Acid Proof|Get your Kramp on|Kramped out!
+10424|Double Jump: Rift Cape!|A rift in time, here I come!|Gravity pulling you down again?
+10426|Double-Jump: Mystic Snow Fox!|Mystic tails propel me!|A fox no more!
+10438|Speedy : Snow Leopard Shawl|Move with the speed and grace of a Snow Leopard!|Move as slowly as a lazy Growtopian!
+10442|Punch Range : Winter Light Launcher!|Get ready to get festive!|The party is over!
+10490|Performance Enhanced!|Increased Points with Gloves!|Get back to the competition!
+10492|Speedy : Radical Rollers|Rollin' Rollin' Rollin'!|Back to boring walking!
+10494|Punch Damage: Walktopian|Beats up the max!|Outta batteries
+10496|Double Jump: Crown|Cosmos, I command thee!|Cosmic Crash!
+10498|Punch Power: Candy Cane Scythe|Candy Canes for all!|That's enough candy for now!
+10500|Double Jump : Snow Aura!|Snow is falling but you're jumping!|It's snow joke!
+10502|Double Jump : Neon Tree Aura!|Light up the night!|Outta Power!
+10504|Putt Putt Putt|Tractors are not speedy.|You can walk faster than that thing!
+10526|Musical|You're too busy rocking to punch anybody!|The music has stopped.
+10534|Double Jump: Confetti Jump Pack|Fire up the retro rockets!|Back to the present day!
+10576|Double Jump: Draconic Soul Aura|The flames and your soul combine!|Human, all too human!
+10578|Build Range & Punch Damage : Mystic Battle Lance|Fire burns within you!|Extinguished!
+10586|Punch Range : Oxen Battle Helm|Power of the Ox!|Xo no!
+10594|Build Range: Golden Ox Pendant|Be more Ox!|A little less Ox!
+10600|Speedy & Cookie Hunter : Zodiac Year of the Horse|Zodiac Powers!|Another Year!
+10606|Speedy & Cookie Hunter : Zodiac Year of the Rooster|Zodiac Powers!|Another Year!
+10608|Speedy & Cookie Hunter : Zodiac Year of the Dog|Zodiac Powers!|Another Year!
+10610|Speedy & Cookie Hunter : Zodiac Year of the Pig|Zodiac Powers!|Another Year!
+10612|Speedy & Cookie Hunter : Zodiac Year of the Rat|Zodiac Powers!|Another Year!
+10610|Speedy & Cookie Hunter : Zodiac Year of the Ox|Zodiac Powers!|Another Year!
+10618|Speedy & Punch Damage: Pirate Ship!|Up anchors, set the course for adventure!|Run aground again!
+10626|Punch Range: Snipeshot|Scope up: It's time go long!|Scope down: Time to get close!
+10632|Double Jump + Slow Fall: Silk Scarf|Float through the air with the greatest of ease!|Back down to earth!
+10634|Double Jump + Slow Fall: Silk Scarf|Float through the air with the greatest of ease!|Back down to earth!
+// 10644| Possible effect
+10652|Punch Damage: Love Charged|Powered up with love!|Just normal love now!
+10660|Lucky in Love: Increased chance of Golden Heart Crystal|Increased chance of Golden Heart Crystal!|The honeymoon phase is over!
+10666|Double Jump & Slowfall : Grow Air Balloon|Inflate and I won't be late!|Going dowwwwwwwn!
+10670|Punch Range : Bow of the Rainbow|Raining Rainbows|Somewhere over the...
+10674|Double-Jump: Crown of Seasons|Seasons... I choose you!|Season finale!
+10678|Speedy & Build Range : Hooves of Cernunnos!|Rootin' and a tootin!|Root, I'm outta here!!
+10680|Punch Range : Finias' Red Javelin|Spear me a pun for once please!|Jav you had enough?
+10684|Double Jump : Mothman Wings|Kinda really want to just buzz around a bulb right now!|Grounded!
+10686|Punch Damage: Shady Agent Shades!|Here come the "shady agents" in black!|There go the "shady agents" in black!
+10688|Speedy & Surfboard : Cardboard Nessie!|Wait, does cardboard float!|Eugh, papier mache!
+10694|Punch Range & Punch Damage : Mini Minokawa|Finally full... of suns!|Sun for my tum tum!
+10714|Punch Damage + Slowfall: Steampunk Arm|Wind back the Clock!|Keep on ticking!
+10718|High Jump & Slow Fall : Grow X Rocket Wings|Commencing countdown, engines on!|No longer floating in a most peculiar way!
+10720|Speedy: Easter Jeepney!|Beep Beep, I'm in my Jeep...ney|Off the Buses!
+10722|Punch Damage : Bunny Ear Magnifying Glass!|Curiouser and Curiouser!|Solved the case!
+10724|Punch Range: Snipeshot|Scope down: Lil Growpeep lost their sheep!|Scope up: Lil Growpeep found their sheep!
+10726|Build Range : Bloom Aura|Spring is in the air and in bloom!|The season turned, turned, turned!
+10728|Speedy : Home Made Butter Lamb|Butter be fast!|<Missing>
+10774|Speedy + Quick Recover: Field Medics Mecha Med Scarf!|Heres to a speedy recovery!|No medical enhancements here!
+10778|Free Hugs: Care Pear|Free Hugs!|So lonely!
+10780|Punch Damage: Giving Growaxe|Demonic blade.|Unarmed.
+
+// CDM
+10800|Punch Range : Cactus Cannon|Get ready to get spiky!|Much less chance of a splinter now!
+10802|Punch Damage: Sombrero Assault|3 Hats, free hats, yay... hats!!|That's enough hats!
+10804|Punch Range: Waay Chivo Mask|Way to goat man!|De-goated!
+10806|Double Jump : Volcanic Cape|Ready to erupt!|Pumice
+
+10810|Light Source + Build Range|I'm alive with static!|Electric shock!
+
+// Voucher Days
+10878|Speedy: Radical Rider|Ready to glide and be radical!|Less radical by half!
+
+// Pineapple Week
+10886|Punch Range: Pineapple Chakram|You are now a pineapple ninja!|Back to the shadows of the pineapple!
+10888|Punch Damage: Giant Pineapple Pizza Paddle!|Make them know the joys of Pineapple on Pizza!|This concludes the argument!
+10890|Speedy : Rocket Powered Pineapple Vacuum|Rocket powered cleaning!|Too mean, too clean!
+10892|Double Jump : Pineapple Aura|Majestically floating like a pineapple!|Outta Juice!
+10894|Punch Damage: Pineapple Shoulder Cannon!|Get Juicy!|Really not juicy any more!
+
+10914|Speedy: Pure Being|Your essence has been purified!|Fallen from grace!
+
+10922|Punch Damage: Pegasus Lance!|Pointy flying horse stick activate!|Nag nag nag!
+
+10952|Double Jump & Punch Range: Space Badger|Set to stun!|Set to none!
+10954|Double Jump & Punch Range: Space Mouse|Set to stun!|Set to none!
+10956|Double Jump & Punch Range: Space Dog|Set to stun!|Set to none!
+10958|Double Jump & Punch Range: Space Pig|Set to stun!|Set to none!
+10960|Double Jump & Punch Range: Space Rabbit|Set to stun!|Set to none!
+
+10990|Speedy: Alien Recon Wagon|Ready for the mission!|Mission complete!
+10994|Punch Damage: Unknown Space Pet|Scratch! Attack!|Tired out!
+10996|Punch Damage: Space Rover|Space Rover go go go!|Space Rover no no no!
+10998|Punch Range: Suspicious Weather|Nothing to see here!|Nothing to see there!
+11000|Punch Range: Channel G News Van|Reporting Live!|Ran out of tape!
+
+11006|Punch Damage + Speedy: Soul Scythe|My soul is awakened!|I need soul food now!
+
+11008|Speedy : Phoenix Armor|Run with the phoenix!|No more flame in your set!
+11012|Speedy & Speedy in Water: Neptune's Chariot|Command the 7 seas!|Your feet are back on dry land!
+
+11028|Speedy : Pegasus Shoes|With the wind beneath your winged shoes|Slow down!
+11030|Build Range : Pegasus Crown|Feather Reach!|Plucked!
+11046|Punch Damage: Hydro Cannon|Hydro power!|Time to dry off!
+11048|Double Jump + Slow Fall: Summer Glider|Glide through the air with the greatest of ease!|Back down to earth!
+11050|Double Jump: Ultraviolet Aura|Rising with the light of the aura.|The light has faded.
+11052|Punch Range: Super Duper Ice Cream Scooper|Ice cream! Ice cream! Come get your ice cream.|The Ice Cream man is gone.
+
+11076|Ambu-Lance: Punch Damage|Mecha Medic coming trough!|Emergency sorted!
+
+11078|Cute Mutant Wonky : Punch Range|Cute Out!!|Cute In!
+11080|Cute Mutant Plonky : Punch Range|Cute Out!!|Cute In!
+11082|Cute Mutant Boogle : Punch Range|Cute Out!!|Cute In!
+
+11084|Punch Damage : Beowulf's Blade|Dragon Flame!!|Drag-gone!
+
+11090|Speedy : Mecha Med Shoes|Emergency! Emergency!|Med-evac complete!
+
+11094|Extended Punch and Build Range...|Stretch Growstrong!|Snapped!
+
+11116|Punch Damage + Punch Power: Crystal Crown|Spikes and Sparkles!|No longer shiny!
+
+11118|Punch Damage: Sonic Buster Katana|Slashing at the speed of sound!|I shealth my blade!
+11120|Punch Damage : Primordial Jade Lance|Ancient and justified!|Jaded!
+
+11132|Speedy : Noodle Bowl Hat!|Noodles! Noodles everywhere!|Full to bursting!!
+11134|Double Jump : Samille's Soul Abductor|Jump into souls!|Jump out of souls!
+11140|Punch Damage : Legendary Destroyer|Fists of fury - Activate!!|No more punchy punchy!
+11142|Double Jump + Speedy: Legendary Owl|Dominate the night!|Your watch is over!
+11158|Punch Range: Zodiac Ring|The Zodiac flows through you!|Zodi-nooo!
+11162|Punch Range: Finger Gun|Pow! Pow! Pow!|No! No! No!!
+11164|Speedy : Rainbow Shoes|Taste my Rainbows!|Wait, where's the pot of gold?
+11168|Speedy : Riding Cloud|Run with the breeze!|Cloud Burst!
+
+11232|Build Range: Ouroboros Charm|Endless cycle!|Seemingly not that endless!!
+11238|Double Jump : Fall Wings|Rising not falling!|Falling not rising!
+11242|Speedy : Harvest Hood-ini|Now you see me!|Now you don't!
+11244|Punch Damage & Punch Power : Crystal of Hoa!|Blooming Awesome!|Wilted!
+11248|Punch Range: Staff of S'mores|Time to get toasty!|Too yummy, all gone!
+11250|Punch Range : Harvest Jade Hat|Spin Attack Activate!|Oddjob no more!
+11284|Punch Range : Paper Wasp Pet|Folded to a sharp point!|Unfolded!
+11288|Double Jump: Wyvern Wings|Wyvern? Why not!|I miss those wings!
+11290|Punch Damage : Robot Lord Cape|I have the POWER!!|I had the Power!
+11292|Double Jump + Slowfall|Touch the sky!|Hit the ground!
+11294|Double-Jump: Lucid Wings!|Shine on you crazy diamond!|No more dazzle!
+11298|Punch Power + Punch Damage: Sakura's Revenge!|Pink and black never look back!|No longer a ninja!
+11300|Double Jump : Neon Party Cape!|Party Time!|Excellent!
+11302|Double Jump : Sacred Scarf|The sigils grant you power!|Sacrilege!
+11306|Punch Damage: Clam Cruiser|Ahoy! A cruisin' we shall go!|Land lubbers!
+11308|Punch Damage: Royal Clam Cruiser|Ahoy! A cruisin' we shall go!|Land lubbers!
+11310|Speedy: Trick or Treat Troll|Tame the wild.|Back on your own two feet.
+11312|Punch Range: Spider Sniper|Got you in my sights!|I'm all tied up!
+11314|Punch Damage: Cauldron Cannon|Fire burn and cauldron bubble!|The charm is firm and good!
+11316|Punch Damage: Skull of Burning Horrors|Fatal terror!|Free to breathe again!
+11318|Double Jump + Slow Fall: Possessing Scarf|Let your spirits soar!|You feel like yourself again!
+11320|Punch Range: Waay Chivo Skull|Way to goat man!|De-goated!
+11324|Punch Range: Pharaoh's Pendant|Unleash the Pharaoh's might!|Back to a common Growtopian!
+11326|Punch Range : Ferryman of the Underworld|Come sail away to the after party!|Wet Feet!
+11350|Double-Jump: Eagle Wings|Red, white and blue!|Now I feel blue
+11352|Double-Jump: Star Aura|Feel the force!|Meh!
+
+// Intentional weird !:
+11354|Speedy!: Turkey Float!|On with the parade!|Clean up time!
+11356|Speedy & Double Jump: Ameri-car|Cars and stripes!|Outta gass!!
+11358|Punch Damage: Super Slapshot Stick|Slapshot!|Back to the bench!
+
+11378|Black Harvest Shawl : Double Jump!|Black Leaf'ing you behind!|This tree has no black leaves!
+11380|Punch Range : Black Bow of the Rainbow|Raining Black Rainbows|Somewhere over the...
+11382|Speedy : Black Radical Rollers|Rollin' Rollin' Rollin'|Back to boring walking!
+11384|Punch Damage & Punch Range : Matrix Visor|Wow! That's a lot of numbers|No numbers, no nothing
+11386|Build Range : Shadow Cubes Aura|Cubes ahoy!|Byeeeeee cubes!
+
+11406|Pod Scanner : Alien Scanner|Scanning for Landing Pods!|Scanner off!
+
+11438|Punch Range : Digital Bow|Get with the Glitch!|De-bugged
+11440|Punch Range: Mystic Bow|The mystic power compels you!|The mystic power dissipates!
+11442|Punch Range: Mystic Bow|The mystic power compels you!|The mystic power dissipates!
+
+11454|Punch Power: Freezing Skull Mask|Frozen Cheeks!|Ahh warm again!
+11456|Speedy: Diamond Dog Sledge|Running with the dogs today!|We were the wild ones!
+11458|Punch Damage: Santa's Super Sack|Naughty or Nice?!|List complete!
+11460|Punch Range: Snow Cone Pet|Slushy!|Hard as Ice!
+11462|Double-Jump: Wings of Deepest Winter|What graceful wings you have!|Where did my wings go?
+11464|Punch Damage: Ice Dragon Scythe|Nothing will stand in my way!|The scythe returns to its celvet case.
+11466|Punch Range: Aura Antlers|Antler seen nothing yet!|De-horned!
+11468|Speedy: Candy Cruiser|Sugar crash!|Sweet speed!
+11478|Double Jump: Rift Wings!|A rift in time, here I come!|Gravity pulling you down again?
+11480|Double Jump: Northern Lights Aura|A jump to the North!|Going South?
+11482|Punch Damage: Cloak of S'mores|Burn my mallow friends!|No more fire!
+11504|Fairy Light Wings : Double Jump!|To festivity and beyond!|Back from beyond!
+11506|Double Jump & Punch Range: Mask of The Dragon|Flames rise!|Flames fall!
+11508|Double Jump & Punch Range: Royal Mask of The Dragon|Flames rise!|Flames fall!
+
+11532|Speedy : Radical Stage|Everyone wants a piece of me!|Social Misfit!
+11534|Growby : Punch Range|Annoying annoying annoying!|Batteries dead!
+11536|Beat Box Mask: Punch Damage|Grab the mic!|You dropped the beat!
+11542|Neon Party Yo-Yo: Punch Range|Let the games begin!|Out of ink!
+11544|Partydactyl Wings: Double Jump|Let's party to the skies!|6am comes into land.
+11546|Punch Range : Mood Mask|In the mood for mayham!|In a mood now!
+11548|Punch Range + Double Jump: Guardian Armor|Guardians assemble.|Going it alone.
+11552|Punch Range + Double Jump: Royal Guardian Armor|Guardians assemble.|Going it alone.
+11554|Double Jump & Punch Range: Bodvar!|Hammer time!|Dropped the hammer!
+11556|Double Jump & Punch Range: Val!|Hammer time!|Dropped the hammer!
+11558|Double Jump & Punch Range: Sam Fisher!|Target Selected!|Lost Target!
+11560|Double Jump & Punch Range: Ezio!|Jump to adventure!|Laying Low.
+11562|Punch Damage : Blood Dragon Pet|Pulsing Power!|Taking a Break
+11588|Double-Jump & Slow-Fall: Wings of Daidalos|Take to the skies!|Down to earth!
+11594|Punch Range: Riding Rabbid!|Charge!!!|Flushed Away!
+11620|Speedy & Cookie Hunter : Zodiac Year of the Tiger|Zodiac Powers!|Another Year!
+11622|Punch Range: Draconic Soul Cannon|Flame on!|Flame off!
+11624|Build Range: Tiger Pauldrons|Roaring Strength!|Losing Strength!
+11626|Punch Damage + Punch Power: Mythic Tiger Crown|You've got the power!|You've lost the power!
+11628|Speedy: Fireworks Feet|Lights Out!|Brighter than the Moon!
+11630|Punch Damage + Punch Power: Monkey Warrior's Staff|Rising against the elite!|Falling to the ground!
+11634|Year of the Tiger Mask: Sparkles|Oooh it sparkles!|I miss the sparkles...
+11638|Cooking Skills: Dumplings Hat|Your ancestors would be proud!|Your ancestors would be proud!
+11660|Double Jump : Shattered Wings!|Breaking Free!!|Broke Down!
+11662|Double Jump : Royal Shattered Wings!|Breaking Free!!|Broke Down!
+11664|Double Jump : Heartbreak Wings!|Break some hearts!|You broke the wings!
+11666|Double Jump : Golden Heartbreak Wings!|Break some hearts!|You broke the wings!
+11668|High Jump + Slow Fall: Heart Balloons|Love is in the air!|Love's not in the air!
+11670|Speedy in Water & Surfboard : Swan Boat!|Through the tunnel of love!|The swan needs to rest!
+11672|Punch Damage + Punch Range: Stained Glass Crown|Let the light shine!|Sun's down!
+11674|Punch Damage: Fancy Flute!|Ya like Jazz?|I'll take that as a no
+
+11704|Punch Damage : Alpha Wolf|Roll in like a wrecking ball!|Wolf needs a break!
+11706|Punch Damage : Royal Alpha Wolf|Roll in like a wrecking ball!|Wolf needs a break!
+11708|Speedy : Superstar Sneakers|You're a star!!|Out of the spotlight!
+11710|Punch Range : Mr. Grownopoly's Suitcase|Uptown top ranking!|Downtown!
+11714|Double Jump : Shamrock Shields|May the roads rise with you!|Shamrock-less
+11716|Punch Damage: Mallet of Sucelles|Mallet Time!|Stop Mallet Time!
+11718|Punch Range: Harp of Aibell|A merrily played tune!|Stop harping on!
+11720|Punch Range: Eye of Balor|Eye Eye!|Eyes down!
+11722|Speedy : Rainbow Cloud Rider|Ride the rainbow!|Multicolored fruit-flavored candy!
+11724|Double-Jump & Speedy : Cauldron of the Dagda|Spirits released!|Spirits locked away!
+11748|Raise the Flag : Banner Bandolier|Show off mode enabled!|Where's my flag?
+11750|Build Range + High Jump: Crescent Charm|Shiming, Shimmering, Splendid!|Sun's up!
+11752|Build Range + High Jump: Royal Crescent Charm|Shiming, Shimmering, Splendid!|Sun's up!
+11760|Build Range : Growing Guardian Armor|Let it Grow! Let it Grow! Let it Grow!|Withered Away!
+11762|Punch Range : Growing Guardian Gauntlets|Let it Grow! Let it Grow! Let it Grow!|Withered Away!
+11764|Punch Damage: Edison, The Lightbulb|Lighting up your world!|Light's out!
+11766|Double Jump: Other Winged Angel|Rise to the top!|Fell to the ground!
+11768|Punch Range: Fish Tank Head|Just keep swimming!|Fish out of water!
+11770|High Jump + Slow Fall: Mechanical Assistance|Lending a helping hand!|You're armless!
+
+11784|Speedy & High Jump: Hip Hops|Up, up and away!|Dow, down and here!
+11786|Punch Range : Soft-boiled Scepter|Egg-cellent!|Cracked into pieces!
+11788|Build Range: Easter Creature|Hatched to perfection!|Had a big fall!
+11790|Double Jump: Mechanical Dove Wings!|Soaring, Flying!|Diving, Falling!
+11792|Double Jump: Easter Kite Aura!|Spinning Around|Stopped Spinning!
+11818|Double Jump: Equinox Scarf!|Season d'etre!|Enlightened!
+11820|Build Range : Crown of Spring|Blooming!|Whithered!
+11822|Build Range : Crown of Summer|Leaf Majesty!|Leaft Alone!
+11824|Build Range : Crown of Autumn|Harvest Royalty!|Harvested Royalty!
+11826|Build Range : Crown of Winter|Tis the season!|Tis ain't the season!
+11828|Speedy : Boots of Spring|Trippin' Around!|Skippin' Around!
+11830|Speedy : Boots of Summer|Beat the heat!|Bare feet!
+11832|Speedy : Boots of Autumn|Run over!|Fell over!
+11834|Speedy : Boots of Winter|Its freezing shoes!|You've got cold feet!
+
+11870|Double Jump: Volcanic Wings|Flame on!|Flame off!
+11872|Punch Damage: Comida Crusher|It takes two to taco!|I dont want to taco bout it!
+11874|Light Source: Pet Alebrije|Shining bright like a diamond!|Now a diamond in the rough!
+11876|Punch Range + Punch Damage: Serpent Shoulders|A taste of poison paradise!|Ssssslipped away!
+11878|Build Range : Artist's Hair|Beauty is in the hair of the beholder!|Withered to pieces!
+11882|Punch Range + Build Range: Neurovision|Target Acquired!|Entourage Offline!
+11884|Punch Range + Build Range: Royal Neurovision|Target Acquired!|Entourage Offline!
+11904|Speedy : Golden Radical Rider|Ready to glide and be radical!|Less radical by half!
+11906|Double Jump and Light Source : Nocturnal Crown|Striking fear into your enemies!|Hiding in the shadows!
+11908|Double Jump and Light Source : Royal Nocturnal Crown|Striking fear into your enemies!|Hiding in the shadows!
+
+11988|Double Jump & Slowfall : Pineapple Parasol|Pop to the top!|Popped to the floor!
+11990|Punch Range : Baby Guzzler|Punching Partner!|Now a lone wolf!
+11992|Double-Jump: Pineapple Wings|Juiced up!|Out of Juice!
+11994|Punch Range & Punch Damage : Pineapple of Locksley|Robbing the full!|Dropping the bow!
+12000|Punch Range & Build Range : Pineapple Warrior Charm|Say hello to my pineapple friend!|Lost a friend!
+12014|Build Range & Punch Range : Dal's Phasers|Set phasers to stun!|Set phasers to none!
+12016|Build Range & Punch Damage: Gwyn's Heirloom|Slicing!|Dicing!
+12018|Grow Effect & Punch Damage: Rok's Fists|Growing Up!|Growing Down!
+12020|Grow Effect & Punch Damage: Jankom Pog's Multi-Mitt!|Jankom power up!|Jankom power Down!
+12022|Punch Damage: Mek'leth|Blades of Fury!|Blunt!
+12024|Punch Range : Mine Lazer Drill!|Mine's a Laser!|Lazeee!
+12042|Speedy: The Runaway|Run run run!|Hit the breaks!
+12050|Speedy: Class D Loader|Loading...|Un-Loaded!
+12052|Punch Range + Punch Damage: Drednok's Chestplate|Tentacles of Doom!|Good once more!
+12152|Janeway's Coffee: Speedy|On my mark... Go Fast!|Speed normalized!
+12154|Nutri-goop: Grow Effect|Big and strong!|Back to being small!
+12156|Blood Truffle Biscuits with Sweet Radish Pie: Punch Damage|Punch like a mechanic!!|Out of energy!
+12172|Punch & Build Range : Ethereal Chains!|Come here!|Fatality!
+12174|Double Jump : Pearl Butterfly Wings|Fly away!|Knocked down!
+12176|Punch Damage: Poppin' Popsicle Pickaxe|Sweet Victory!|Splat!
+12178|Build Range: Parrot Dude!|Skating Buddy!|Crashed!
+12180|Punch Range: Great Ball of Fire!|This ball is on fire!|Out of fuel!
+12182|Build Range: Pearl Tiki Crown!|A crowning glory!|Ex communicated
+12184|Punch Range: Pearl Bracelet|I've got the pearl power!|Broken Pearl.
+12186|Speedy & Double Jump: Phoenix Feet|Feets of flame!|Slow down!
+12188|Punch Range + Build Range: Neptune's Crown|Ocean Rising!|Ocean Falling!
+12190|Build Range: Ultraviolet Charm|Ultraviolet Power!|Power Down!!
+12224|Double Jump : Fire Chakram|Flames of Fury!|Flame off!
+12228|Punch Range: Ghost Pirate Head|A pirate's life for me!|Shiver me timbers!
+12230|Punch Damage: Ghost Pirate Scimitar!|A pirate's life for me!|Shiver me timbers!
+12232|Punch Damage: Neon Manta Ray|Pew Pew Pew!|The pet swam away!
+12234|Double-Jump: Atlantean Wings|For Atlantis!|Washed Away!
+12236|Speedy: Robe of Tenteacles|Speedy Squid!|Out of Ink!
+12238|Punch Damage: Crusin' Crab|Cruisin' for a brusin'!|Left in the sand!
+12240|Punch Range + Build Range: Oceanaura|Making waves!|Washed away!
+12242|Punch Damage: bllade's Celestius!|Sheathe the power!|Unleash the power!
+12246|Punch Range & Double Jump: Staff of Gale|Tornado I command thee!|Calm again!
+12248|Punch Range & Double Jump: Royal Staff of Gale|Tornado I command thee!|Calm again!
+12284|Punch Damage: Pet Pink Crocodile|It's Hammer Time!|Music hit it too hard!
+12286|Punch Range: Pet Punching Ghost|Spirit Unleashed!|Spirit Away!
+12288|Punch Damage: Pet Royal Guard|Raise up his sword!|Put down his sword!
+12292|Fireproof: Anubis Pharaoh Mask|Flaming eyes!|Colder eyes!
+12294|Fireproof: Pharaoh Mask|Flaming eyes!|Colder eyes!
+12296|Punch Range + Build Range: Braided Golden Hair|Let down thy golden extensions!|Got a new haircut!
+12298|Speedy: Typewriter Hat|Fast Typer!|AFK!
+12300|Punch Range: Arm Blades|Have a blast!|Blasting off again!
+12304|Punch Range + Build Range: Lightning Horns|Shocking the World!|Shocked!
+12304|Double Jump + Build Range: Owls of Athena|Power of Wisdom!|Powered down!
+12306|Double-Jump : DIY Wings|DIY at its finest!|Wings are down!
+12308|Punch Range: Eldritch Eyes|I see lit people!|I see cool people!
+12342|Punch Damage: Mageblade!|Bringing the thunder!|Out of charge.
+12344|Speedy: Lightning Boots!|Got to go fast!|Back in a flash!
+12346|Speedy: Royal Lightning Boots!|Got to go fast!|Back in a flash!
+12368|Punch Damage : Strange Eddie Axe!|Making metal music!|I don't like this!
+12350|Double-Jump: Personal Storm Cloud|Weather Wizard!|Drifted Away!
+12372|Speedy & Speedy in Water: Noodle's Loaf Hat|Crumbled away!|The power of breadcrumbs!
+12576|Punch Range: Garuda Mask!|For Glory!|Forsaken!
+12582|Speedy: Garuda Boots|For Glory!|Forsaken!
