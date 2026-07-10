@@ -1,6 +1,7 @@
 package dev.skullition.lockium.command;
 
 import dev.skullition.lockium.service.ChiService;
+import dev.skullition.lockium.service.ItemEffectService;
 import dev.skullition.lockium.service.RiddleService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiCacheService;
@@ -36,6 +37,7 @@ public class OwnerCommands {
   private final WikiCacheService cacheService;
   private final ChiService chiService;
   private final RiddleService riddleService;
+  private final ItemEffectService itemEffectService;
   private final BotOwners botOwners;
 
   /**
@@ -45,6 +47,7 @@ public class OwnerCommands {
    * @param cacheService service that manages wiki API caches
    * @param chiService service that holds the item chi map
    * @param riddleService service that holds the ancestral riddle dataset
+   * @param itemEffectService service that holds seed and scraped item effects
    * @param botOwners registry of bot owners used to gate slash commands
    */
   public OwnerCommands(
@@ -52,11 +55,13 @@ public class OwnerCommands {
       WikiCacheService cacheService,
       ChiService chiService,
       RiddleService riddleService,
+      ItemEffectService itemEffectService,
       BotOwners botOwners) {
     this.fruitService = fruitService;
     this.cacheService = cacheService;
     this.chiService = chiService;
     this.riddleService = riddleService;
+    this.itemEffectService = itemEffectService;
     this.botOwners = botOwners;
   }
 
@@ -88,8 +93,9 @@ public class OwnerCommands {
    * Handles {@code /owner reload}.
    *
    * <p>Calls {@link WikiCacheService#refreshCaches()} to evict and re-fetch wiki data, then reloads
-   * the {@link TreeFruitService}, {@link ChiService}, and {@link RiddleService} data files from
-   * disk. Useful after deploying new data files without restarting.
+   * the {@link TreeFruitService}, {@link ChiService}, {@link RiddleService}, and {@link
+   * ItemEffectService} data files from disk. Useful after deploying new data files without
+   * restarting.
    *
    * @param event the slash interaction
    */
@@ -102,6 +108,7 @@ public class OwnerCommands {
     fruitService.reload();
     chiService.reload();
     riddleService.reload();
+    itemEffectService.reload();
     event
         .reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING))
         .setEphemeral(true)
