@@ -2,11 +2,13 @@ package dev.skullition.lockium.service;
 
 import dev.skullition.lockium.client.GrowtopiaDetailClient;
 import dev.skullition.lockium.model.GrowtopiaDetail;
+import java.time.Clock;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
@@ -28,6 +30,7 @@ public class GrowtopiaDetailService {
   private static final Logger logger = LoggerFactory.getLogger(GrowtopiaDetailService.class);
 
   private final GrowtopiaDetailClient client;
+  private final Clock clock;
   private final AtomicReference<@Nullable CachedDetail> lastGood = new AtomicReference<>();
 
   /**
@@ -35,8 +38,15 @@ public class GrowtopiaDetailService {
    *
    * @param client declarative client for the detail endpoint
    */
+  @Autowired
   public GrowtopiaDetailService(GrowtopiaDetailClient client) {
+    this(client, Clock.systemUTC());
+  }
+
+  /** Creates the service with an explicit time source for deterministic cache expiry. */
+  GrowtopiaDetailService(GrowtopiaDetailClient client, Clock clock) {
     this.client = client;
+    this.clock = clock;
   }
 
   /**
@@ -57,7 +67,7 @@ public class GrowtopiaDetailService {
   public GrowtopiaDetail getDetail() {
     try {
       GrowtopiaDetail fresh = client.getGrowtopiaDetail();
-      lastGood.set(new CachedDetail(fresh, System.currentTimeMillis()));
+      lastGood.set(new CachedDetail(fresh, clock.millis()));
       logger.debug("Fetched fresh Growtopia detail");
       return fresh;
     } catch (RestClientException e) {
@@ -75,11 +85,11 @@ public class GrowtopiaDetailService {
   @Nullable
   private GrowtopiaDetail fallback() {
     CachedDetail cached = lastGood.get();
-    if (cached != null
-        && System.currentTimeMillis() - cached.at() < Duration.ofHours(24).toMillis()) {
+    long now = clock.millis();
+    if (cached != null && now - cached.at() < Duration.ofHours(24).toMillis()) {
       logger.info(
           "Returning cached detail (age {}m) after upstream failure",
-          (System.currentTimeMillis() - cached.at()) / 60000);
+          (now - cached.at()) / 60000);
       return cached.detail();
     }
     logger.debug("No usable cached Growtopia detail is available");
