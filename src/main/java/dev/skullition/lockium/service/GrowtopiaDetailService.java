@@ -25,7 +25,7 @@ import org.springframework.web.client.RestClientException;
  */
 @Service
 public class GrowtopiaDetailService {
-  private static final Logger log = LoggerFactory.getLogger(GrowtopiaDetailService.class);
+  private static final Logger logger = LoggerFactory.getLogger(GrowtopiaDetailService.class);
 
   private final GrowtopiaDetailClient client;
   private final AtomicReference<@Nullable CachedDetail> lastGood = new AtomicReference<>();
@@ -58,9 +58,11 @@ public class GrowtopiaDetailService {
     try {
       GrowtopiaDetail fresh = client.getGrowtopiaDetail();
       lastGood.set(new CachedDetail(fresh, System.currentTimeMillis()));
+      logger.debug("Fetched fresh Growtopia detail");
       return fresh;
     } catch (RestClientException e) {
-      log.warn("Failed to fetch detail: {} – using cached", e.getMessage());
+      logger.warn(
+          "Failed to fetch Growtopia detail: {}; attempting cached fallback", e.getMessage());
       return fallback();
     }
   }
@@ -75,11 +77,12 @@ public class GrowtopiaDetailService {
     CachedDetail cached = lastGood.get();
     if (cached != null
         && System.currentTimeMillis() - cached.at() < Duration.ofHours(24).toMillis()) {
-      log.info(
+      logger.info(
           "Returning cached detail (age {}m) after upstream failure",
           (System.currentTimeMillis() - cached.at()) / 60000);
       return cached.detail();
     }
+    logger.debug("No usable cached Growtopia detail is available");
     return null;
   }
 

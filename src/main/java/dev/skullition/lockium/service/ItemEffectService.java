@@ -243,6 +243,7 @@ public class ItemEffectService {
   private int loadOverlay(Map<Integer, List<ItemEffect>> map) {
     Path overlayPath = Path.of(lockiumProperties.scrapedEffectsPath());
     if (!Files.exists(overlayPath)) {
+      logger.debug("Scraped effects overlay does not exist at {}", overlayPath);
       return 0;
     }
 

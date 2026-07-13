@@ -28,6 +28,7 @@
 
     <!-- ===== DEV ===== -->
     <springProfile name="dev">
+        <logger name="dev.skullition.lockium" level="DEBUG"/>
         <logger name="org.flywaydb" level="WARN"/>
 
         <root level="INFO">

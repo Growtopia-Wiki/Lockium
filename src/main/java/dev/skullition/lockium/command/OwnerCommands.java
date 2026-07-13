@@ -14,7 +14,10 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import io.github.freya022.botcommands.api.core.BotOwners;
+import java.util.concurrent.TimeUnit;
 import net.dv8tion.jda.api.entities.Activity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Owner-only slash commands for runtime administration.
@@ -33,6 +36,8 @@ import net.dv8tion.jda.api.entities.Activity;
  */
 @Command
 public class OwnerCommands {
+  private static final Logger logger = LoggerFactory.getLogger(OwnerCommands.class);
+
   private final TreeFruitService fruitService;
   private final WikiCacheService cacheService;
   private final ChiService chiService;
@@ -85,6 +90,11 @@ public class OwnerCommands {
     if (rejectNonOwner(event)) {
       return;
     }
+    logger.info(
+        "Owner {} updating activity in guild {} to '{}'",
+        event.getUser().getId(),
+        event.getGuild().getId(),
+        activity);
     event.getJDA().getPresence().setActivity(Activity.customStatus(activity));
     event.reply("Activity updated to %s".formatted(activity)).setEphemeral(true).queue();
   }
@@ -104,11 +114,23 @@ public class OwnerCommands {
     if (rejectNonOwner(event)) {
       return;
     }
+    logger.info(
+        "Owner {} requested a full cache reload in guild {}",
+        event.getUser().getId(),
+        event.getGuild().getId());
+    long start = System.nanoTime();
     cacheService.refreshCaches();
     fruitService.reload();
     chiService.reload();
     riddleService.reload();
     itemEffectService.reload();
+    logger.info(
+        "Full cache reload completed in {} ms: treeFruits={}, chi={}, riddles={}, effectItems={}",
+        TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start),
+        fruitService.size(),
+        chiService.size(),
+        riddleService.size(),
+        itemEffectService.size());
     event
         .reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING))
         .setEphemeral(true)
@@ -125,6 +147,10 @@ public class OwnerCommands {
     if (botOwners.isOwner(event.getUser())) {
       return false;
     }
+    logger.warn(
+        "Rejected owner command from user {} in guild {}",
+        event.getUser().getId(),
+        event.getGuild().getId());
     event
         .reply("%s Only bot owners can use this command.".formatted(AppEmojis.NO))
         .setEphemeral(true)

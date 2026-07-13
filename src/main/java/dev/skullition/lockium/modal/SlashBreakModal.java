@@ -20,6 +20,8 @@ import java.util.List;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Modal handler for the {@code /gt break} command.
@@ -46,6 +48,8 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
  */
 @Handler
 public class SlashBreakModal {
+  private static final Logger logger = LoggerFactory.getLogger(SlashBreakModal.class);
+
   /** Modal identifier referenced by {@code Modals#create(...).bindTo(...)}. */
   public static final String MODAL_NAME = "SlashBreak: break";
 
@@ -103,6 +107,13 @@ public class SlashBreakModal {
       @ModalInput(INPUT_LUCKY) String luckyString,
       @ModalInput(INPUT_CLOTHING) List<String> clothing,
       @ModalInput(INPUT_ANCES) String ancesString) {
+    logger.debug(
+        "onBreakModal: itemId={}, blockCount={}, lucky={}, clothing={}, tesseractLevel={}",
+        itemCatalogue.itemId(),
+        blockCount,
+        luckyString,
+        clothing,
+        ancesString);
     final boolean lucky = parseBoolean(luckyString);
     final boolean buddy = clothing.contains(CLOTHING_BBH);
     final boolean galaxy = clothing.contains(CLOTHING_GALAXY);
@@ -111,6 +122,7 @@ public class SlashBreakModal {
     if (ances == -1) {
       return;
     } else if (ances > 6) {
+      logger.debug("onBreakModal: rejected tesseractLevel={}", ances);
       event
           .reply("The maximum level of Ancestral Tesseract of Dimensions is 6.")
           .setEphemeral(true)
@@ -255,6 +267,11 @@ public class SlashBreakModal {
                     gemDropsFormatted)));
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemCatalogue, components);
+    logger.debug(
+        "onBreakModal: completed itemId={}, farmable={}, clothingBonus={}%",
+        item.id(),
+        isFarmable,
+        clothingBonus);
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -279,6 +296,7 @@ public class SlashBreakModal {
     try {
       return Integer.parseInt(input);
     } catch (NumberFormatException e) {
+      logger.debug("onBreakModal: rejected non-integer tesseractLevel={}", input);
       event.reply("`%s` is not a valid integer!".formatted(input)).setEphemeral(true).queue();
     }
     return -1;

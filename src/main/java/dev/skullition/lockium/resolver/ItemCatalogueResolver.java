@@ -10,6 +10,8 @@ import net.dv8tion.jda.api.interactions.commands.CommandInteractionPayload;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * BotCommands resolver that converts a slash-command string into an {@link ItemCatalogue}.
@@ -37,6 +39,8 @@ import org.jspecify.annotations.Nullable;
 public class ItemCatalogueResolver
     extends ClassParameterResolver<ItemCatalogueResolver, ItemCatalogue>
     implements SlashParameterResolver<ItemCatalogueResolver, ItemCatalogue> {
+  private static final Logger logger = LoggerFactory.getLogger(ItemCatalogueResolver.class);
+
   private final WikiService wikiService;
 
   /**
@@ -64,7 +68,13 @@ public class ItemCatalogueResolver
   @Nullable
   private ItemCatalogue resolveItemByName(OptionMapping optionMapping) {
     String itemName = optionMapping.getAsString().trim();
-
-    return wikiService.findByName(itemName);
+    ItemCatalogue item = wikiService.findByName(itemName);
+    if (item == null) {
+      logger.debug("resolveItemByName: rejected unresolved itemName={}", itemName);
+    } else {
+      logger.debug(
+          "resolveItemByName: itemName={} resolved to itemId={}", itemName, item.itemId());
+    }
+    return item;
   }
 }

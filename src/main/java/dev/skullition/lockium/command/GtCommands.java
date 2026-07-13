@@ -227,15 +227,18 @@ public class GtCommands {
               description = "The item name you are looking for.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery) {
-    logger.debug("onSlashItem: itemQuery={}", itemQuery);
+    logger.debug(
+        "onSlashItem: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
     final ItemDetailResponse itemResponse = wikiService.getItemDetail(itemQuery);
     final GrowtopiaObject item = itemResponse.item();
     final GrowtopiaObject seed = itemResponse.seed();
     final boolean scrapeNeeded = itemEffectService.requiresScrape(item);
     if (scrapeNeeded) {
+      logger.debug("onSlashItem: deferring reply while scraping effects for itemId={}", item.id());
       event.deferReply().queue();
     }
     final List<ItemEffect> itemEffects = itemEffectService.getEffects(item);
+    logger.debug("onSlashItem: found {} effect(s) for itemId={}", itemEffects.size(), item.id());
 
     List<ContainerChildComponent> components = new ArrayList<>();
 
@@ -348,6 +351,8 @@ public class GtCommands {
               description = "The item name you are looking for.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery) {
+    logger.debug(
+        "onSlashSprite: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
     ItemDetailResponse item = wikiService.getItemDetail(itemQuery);
     String itemUrl = ItemUtils.getItemSpriteUrl(item.item().id());
     String seedUrl = ItemUtils.getItemSpriteUrl(item.seed().id());
@@ -387,14 +392,22 @@ public class GtCommands {
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many blocks?") int blockCount) {
+    logger.debug(
+        "onSlashBreak: itemId={}, itemName={}, blockCount={}",
+        itemQuery.itemId(),
+        itemQuery.itemName(),
+        blockCount);
     var itemDetail = wikiService.getItemDetail(itemQuery);
     var item = itemDetail.item();
     var category = ItemCategory.fromId(item.categoryInfo().id());
 
     if (!isValidItemCategory(category)) {
+      logger.debug(
+          "onSlashBreak: rejected itemId={} with category={}", itemQuery.itemId(), category);
       event.reply("This is not a valid item to break.").queue();
       return;
     } else if (blockCount < 10 || blockCount > 1_000_000) {
+      logger.debug("onSlashBreak: rejected blockCount={}", blockCount);
       event.reply("Must be at least 10 and no more than 1,000,000 blocks!").queue();
       return;
     }
@@ -469,13 +482,20 @@ public class GtCommands {
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many trees?") int treeCount) {
+    logger.debug(
+        "onSlashHarvest: itemId={}, itemName={}, treeCount={}",
+        itemQuery.itemId(),
+        itemQuery.itemName(),
+        treeCount);
     if (treeCount < 10 || treeCount > 1_000_000) {
+      logger.debug("onSlashHarvest: rejected treeCount={}", treeCount);
       event.reply("Must be at least 10 and no more than 1,000,000 trees!").queue();
       return;
     }
     var itemDetail = wikiService.getItemDetail(itemQuery);
     var item = itemDetail.item();
     if (!item.canHaveTrees()) {
+      logger.debug("onSlashHarvest: rejected itemId={} because it cannot have trees", item.id());
       event.reply("This item cannot have trees").queue();
       return;
     }
@@ -609,13 +629,20 @@ public class GtCommands {
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many items?") int itemCount) {
+    logger.debug(
+        "onSlashRecycle: itemId={}, itemName={}, itemCount={}",
+        itemQuery.itemId(),
+        itemQuery.itemName(),
+        itemCount);
     if (itemCount < 1 || itemCount > 100_000) {
+      logger.debug("onSlashRecycle: rejected itemCount={}", itemCount);
       event.reply("Must be between 1 and 100,000 items.").queue();
       return;
     }
     var itemDetail = wikiService.getItemDetail(itemQuery);
     var item = itemDetail.item();
     if (item.rarity() == 999) {
+      logger.debug("onSlashRecycle: rejected itemId={} with no rarity", item.id());
       event.reply("Items with no rarity are currently not supported.").queue();
       return;
     }
@@ -669,13 +696,20 @@ public class GtCommands {
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
       @SlashOption(description = "How many trees?") int treeCount) {
+    logger.debug(
+        "onSlashMooncakes: itemId={}, itemName={}, treeCount={}",
+        itemQuery.itemId(),
+        itemQuery.itemName(),
+        treeCount);
     if (treeCount < 1 || treeCount > 500_000) {
+      logger.debug("onSlashMooncakes: rejected treeCount={}", treeCount);
       event.reply("Tree count must be between 1 and 500,000.").queue();
       return;
     }
     var itemDetail = wikiService.getItemDetail(itemQuery);
     var item = itemDetail.item();
     if (item.rarity() == 999) {
+      logger.debug("onSlashMooncakes: rejected itemId={} with no rarity", item.id());
       event.reply("Trees with no rarity do not drop any cakes.").queue();
       return;
     }
@@ -738,6 +772,7 @@ public class GtCommands {
       GlobalSlashEvent event,
       @SlashOption(description = "Which role to choose.", usePredefinedChoices = true)
           RoleType role) {
+    logger.debug("onSlashRole: role={}", role);
     final String roleName = role.getRoleName();
     final int baseXp = role.getBaseXp();
     final int baseGem = role.getBaseGemCost();
@@ -794,6 +829,7 @@ public class GtCommands {
       subcommand = "events",
       description = "Check when the Growtopia events will occur.")
   public void onSlashEvents(GlobalSlashEvent event) {
+    logger.debug("onSlashEvents: requested event schedule");
     ZonedDateTime now = GrowtopiaTimeUtil.now();
     List<ContainerChildComponent> components = new ArrayList<>();
     components.add(
@@ -841,6 +877,7 @@ public class GtCommands {
       subcommand = "telephone",
       description = "Get all the available telephone numbers.")
   public void onSlashTelephone(GlobalSlashEvent event) {
+    logger.debug("onSlashTelephone: requested telephone directory");
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of("### ☎️ All Telephone Numbers"),
@@ -882,6 +919,7 @@ public class GtCommands {
           Integer maxLevel) {
     int min = minLevel == null ? 1 : minLevel;
     int max = maxLevel == null ? MAX_GT_LEVEL : maxLevel;
+    logger.debug("onSlashXp: minLevel={}, maxLevel={}", min, max);
     if (min < 1 || max > MAX_GT_LEVEL || min >= max) {
       logger.debug("onSlashXp: rejected level range {}-{}", min, max);
       event
@@ -947,10 +985,13 @@ public class GtCommands {
       GlobalSlashEvent event,
       @SlashOption(description = "Days since the account was created (wrench yourself in-game).")
           int days) {
+    logger.debug("onSlashStartDate: days={}", days);
     long daysSinceRelease =
         ChronoUnit.DAYS.between(
             GROWTOPIA_RELEASE_DATE, LocalDate.now(GrowtopiaTimeUtil.GROWTOPIA_ZONE));
     if (days < 0 || days > daysSinceRelease) {
+      logger.debug(
+          "onSlashStartDate: rejected days={}, gameAgeDays={}", days, daysSinceRelease);
       event
           .reply(
               "Can't be more days than the game has been online for! (%d)"
@@ -984,6 +1025,7 @@ public class GtCommands {
       subcommand = "time",
       description = "Check the current Growtopia time.")
   public void onSlashTime(GlobalSlashEvent event) {
+    logger.debug("onSlashTime: requested current Growtopia time");
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
@@ -1008,7 +1050,9 @@ public class GtCommands {
   public void onSlashRiddle(
       GlobalSlashEvent event,
       @SlashOption(description = "Part of the riddle text.") String description) {
+    logger.debug("onSlashRiddle: description={}", description);
     var matches = riddleService.search(description);
+    logger.debug("onSlashRiddle: found {} match(es)", matches.size());
     if (matches.isEmpty()) {
       event.reply("Could not find any known riddle with the input provided.").queue();
       return;
@@ -1048,7 +1092,9 @@ public class GtCommands {
       GlobalSlashEvent event,
       @SlashOption(description = "Partial item name to search for.") String query) {
     String needle = ItemUtils.norm(query);
+    logger.debug("onSlashSearch: query={}, normalizedQuery={}", query, needle);
     if (needle.length() < 3) {
+      logger.debug("onSlashSearch: rejected normalized query with length={}", needle.length());
       event.reply("Search query must be at least 3 characters.").queue();
       return;
     }
@@ -1058,6 +1104,8 @@ public class GtCommands {
             .filter(name -> ItemUtils.norm(name).contains(needle))
             .sorted(String.CASE_INSENSITIVE_ORDER)
             .toList();
+    logger.debug(
+        "onSlashSearch: found {} match(es) for normalizedQuery={}", matches.size(), needle);
     if (matches.isEmpty()) {
       event.reply("No items found matching `%s`.".formatted(query)).queue();
       return;
@@ -1103,13 +1151,16 @@ public class GtCommands {
       GlobalSlashEvent event,
       @SlashOption(name = "world_name", description = "World name to find a render for.")
           String worldName) {
+    logger.debug("onSlashWorld: worldName={}", worldName);
     if (!WORLD_NAME_PATTERN.matcher(worldName).matches()) {
+      logger.debug("onSlashWorld: rejected invalid worldName={}", worldName);
       event.reply("World names can only contain letters/numbers/underscores.").queue();
       return;
     }
 
     var render = worldRenderService.fetchWorldRender(worldName);
     if (render.isEmpty()) {
+      logger.debug("onSlashWorld: no render found for worldName={}", worldName);
       event
           .reply(
               "That world does not seem to be rendered. "
@@ -1152,8 +1203,10 @@ public class GtCommands {
       subcommand = "wotd",
       description = "Render today's World of the Day.")
   public void onSlashWotd(GlobalSlashEvent event) {
+    logger.debug("onSlashWotd: requesting Growtopia detail");
     var detail = detailService.getDetail();
     if (detail == null) {
+      logger.warn("onSlashWotd: no fresh or cached Growtopia detail available");
       event
           .reply("Unexpected error while trying to query WOTD data. Please try again later.")
           .queue();
@@ -1161,6 +1214,7 @@ public class GtCommands {
     }
 
     String wotd = detail.wotd().fullSize().substring(7);
+    logger.debug("onSlashWotd: resolved worldName={}", wotdName(detail));
 
     String renderUrl = lockiumProperties.renderUrl();
     var container =
@@ -1181,8 +1235,10 @@ public class GtCommands {
    */
   @JDASlashCommand(name = "gt", subcommand = "stats", description = "Game server stats.")
   public void onSlashStats(GlobalSlashEvent event) {
+    logger.debug("onSlashStats: requesting Growtopia detail");
     var detail = detailService.getDetail();
     if (detail == null) {
+      logger.warn("onSlashStats: no fresh or cached Growtopia detail available");
       event
           .reply("Failed to fetch data from the Growtopia servers. Please try again later.")
           .queue();
@@ -1193,10 +1249,11 @@ public class GtCommands {
     try {
       onlineUsers = Integer.parseInt(detail.onlineUsers());
     } catch (NumberFormatException e) {
-      logger.warn("stats: invalid online_user value: {}", detail.onlineUsers());
+      logger.warn("onSlashStats: invalid online user value={}", detail.onlineUsers());
       event.reply("Server API sent invalid data, in maintenance?").queue();
       return;
     }
+    logger.debug("onSlashStats: onlineUsers={}, worldName={}", onlineUsers, wotdName(detail));
 
     String status;
     if (onlineUsers <= 0) {

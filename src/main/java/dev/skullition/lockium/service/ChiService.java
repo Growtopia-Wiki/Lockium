@@ -23,11 +23,12 @@ import org.springframework.stereotype.Service;
  * container header can display the chi without the command call sites knowing about this service.
  *
  * <p>Lines starting with {@code //} or blank lines are ignored. Lines with a non-numeric ID are
- * logged and skipped; lines without exactly one {@code |} separator are skipped silently.
+ * logged and skipped; lines without exactly one {@code |} separator are also logged and skipped.
  */
 @Service
 public class ChiService {
-  private final Logger logger = LoggerFactory.getLogger(ChiService.class);
+  private static final Logger logger = LoggerFactory.getLogger(ChiService.class);
+
   private volatile Map<Integer, Chi> chiMap = Map.of();
 
   /**
@@ -57,8 +58,10 @@ public class ChiService {
                     int id = Integer.parseInt(parts[0].trim());
                     map.put(id, Chi.fromString(parts[1]));
                   } catch (NumberFormatException ignored) {
-                    logger.info("Ignoring line: {}", line);
+                    logger.warn("Ignoring ChiList row with a non-numeric item ID: {}", line);
                   }
+                } else {
+                  logger.warn("Ignoring malformed ChiList row: {}", line);
                 }
               });
     } catch (Exception e) {

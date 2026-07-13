@@ -8,6 +8,8 @@ import dev.skullition.lockium.properties.WikiApiProperties;
 import java.net.http.HttpClient;
 import java.time.Duration;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -38,6 +40,7 @@ import tools.jackson.databind.json.JsonMapper;
  */
 @Configuration
 public class ClientConfig {
+  private static final Logger logger = LoggerFactory.getLogger(ClientConfig.class);
 
   private final WikiApiProperties apiProperties;
   private final LockiumProperties lockiumProperties;
@@ -69,6 +72,7 @@ public class ClientConfig {
    */
   @Bean
   public WikiClient wikiClient(RestClient.Builder builder) {
+    logger.debug("Configuring Wiki API client with base URL {}", apiProperties.url());
     RestClient restClient =
         builder
             .baseUrl(apiProperties.url())
@@ -93,6 +97,8 @@ public class ClientConfig {
    */
   @Bean
   public GrowtopiaWikiClient growtopiaWikiClient(RestClient.Builder builder) {
+    logger.debug(
+        "Configuring Growtopia Wiki client with base URL {}", lockiumProperties.wikiRawUrl());
     HttpClient httpClient =
         HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
     var requestFactory = new JdkClientHttpRequestFactory(httpClient);
@@ -124,6 +130,8 @@ public class ClientConfig {
    */
   @Bean
   public GrowtopiaDetailClient growtopiaDetailClient(JsonMapper mapper) {
+    logger.debug(
+        "Configuring Growtopia detail client with base URL {}", lockiumProperties.detailUrl());
     var converter = new JacksonJsonHttpMessageConverter(mapper);
     converter.setSupportedMediaTypes(List.of(MediaType.APPLICATION_JSON, MediaType.TEXT_HTML));
 

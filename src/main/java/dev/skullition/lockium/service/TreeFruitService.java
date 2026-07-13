@@ -25,7 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TreeFruitService {
-  private final Logger logger = LoggerFactory.getLogger(TreeFruitService.class);
+  private static final Logger logger = LoggerFactory.getLogger(TreeFruitService.class);
+
   private volatile Map<Integer, Integer> maxDrops = Map.of();
 
   /**
@@ -55,8 +56,10 @@ public class TreeFruitService {
                     int drops = Integer.parseInt(parts[1].trim());
                     map.put(id, drops);
                   } catch (NumberFormatException ignored) {
-                    logger.info("Ignoring line: {}", line);
+                    logger.warn("Ignoring TreeFruitMaxDrop row with a non-numeric value: {}", line);
                   }
+                } else {
+                  logger.warn("Ignoring malformed TreeFruitMaxDrop row: {}", line);
                 }
               });
     } catch (Exception e) {

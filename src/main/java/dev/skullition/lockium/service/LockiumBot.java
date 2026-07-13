@@ -67,6 +67,10 @@ public class LockiumBot extends JDAService {
         .setActivity(Activity.customStatus(lockiumProperties.status()))
         .setEventManager(eventManager)
         .build();
-    logger.info("Lockium started, Wiki API={}", wikiApiProperties.url());
+    logger.info(
+        "JDA initialized: Wiki API={}, gatewayIntents={}, cacheFlags={}",
+        wikiApiProperties.url(),
+        getIntents(),
+        getCacheFlags());
   }
 }

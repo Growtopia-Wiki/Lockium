@@ -11,6 +11,7 @@ import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 
 /**
  * Service for looking up world renders on the official Growtopia S3 bucket.
@@ -47,14 +48,27 @@ public class WorldRenderService {
    */
   public Optional<WorldRender> fetchWorldRender(String worldName) {
     String fileName = worldName.toLowerCase(Locale.US) + ".png";
+    logger.debug("Checking world render file={}", fileName);
     try {
       var response = restClient.head().uri(fileName).retrieve().toBodilessEntity();
       long lastModifiedMillis = response.getHeaders().getLastModified();
       Instant lastModified =
           lastModifiedMillis > 0 ? Instant.ofEpochMilli(lastModifiedMillis) : null;
+      logger.debug("Found world render file={}, lastModified={}", fileName, lastModified);
       return Optional.of(new WorldRender(renderUrl + fileName, lastModified));
+    } catch (RestClientResponseException e) {
+      if (e.getStatusCode().value() == 404) {
+        logger.debug("World render does not exist for file={}", fileName);
+      } else {
+        logger.warn(
+            "World render lookup failed for file={} with status {}: {}",
+            fileName,
+            e.getStatusCode().value(),
+            e.getMessage());
+      }
+      return Optional.empty();
     } catch (RestClientException e) {
-      logger.debug("No render found for world {}: {}", worldName, e.getMessage());
+      logger.warn("World render lookup failed for file={}: {}", fileName, e.getMessage());
       return Optional.empty();
     }
   }

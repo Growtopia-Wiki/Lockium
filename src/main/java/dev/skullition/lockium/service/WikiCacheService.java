@@ -1,6 +1,11 @@
 package dev.skullition.lockium.service;
 
+import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemsResponse;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,6 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WikiCacheService {
+  private static final Logger logger = LoggerFactory.getLogger(WikiCacheService.class);
+
   private final WikiDataService dataService;
 
   /**
@@ -38,10 +45,25 @@ public class WikiCacheService {
    * cache), then rebuilds the {@code itemIndex} cache from that same response.
    */
   public void refreshCaches() {
-    // 1 API call gets the new data and updates the "items" cache
-    ItemsResponse freshItems = dataService.refreshItems();
+    logger.info("Refreshing Wiki item caches");
+    long start = System.nanoTime();
+    try {
+      // 1 API call gets the new data and updates the "items" cache
+      ItemsResponse freshItems = dataService.refreshItems();
 
-    // We pass that fresh data to update the "itemIndex" cache instantly
-    dataService.refreshNameIndex(freshItems);
+      // We pass that fresh data to update the "itemIndex" cache instantly
+      Map<String, ItemCatalogue> nameIndex = dataService.refreshNameIndex(freshItems);
+      logger.info(
+          "Refreshed Wiki caches in {} ms: items={}, indexedNames={}",
+          TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start),
+          freshItems.items().size(),
+          nameIndex.size());
+    } catch (RuntimeException e) {
+      logger.warn(
+          "Wiki cache refresh failed after {} ms: {}",
+          TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start),
+          e.getMessage());
+      throw e;
+    }
   }
 }

@@ -2,6 +2,8 @@ package dev.skullition.lockium.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import dev.skullition.lockium.properties.LockiumProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
@@ -30,6 +32,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableCaching
 public class CacheConfig {
+  private static final Logger logger = LoggerFactory.getLogger(CacheConfig.class);
 
   private final LockiumProperties properties;
 
@@ -52,6 +55,9 @@ public class CacheConfig {
    */
   @Bean
   public CacheManager cacheManager() {
+    logger.info(
+        "Configuring Caffeine caches items and itemIndex with TTL {}",
+        properties.itemsCacheDuration());
     var cacheManager = new CaffeineCacheManager();
     cacheManager.registerCustomCache(
         "items",

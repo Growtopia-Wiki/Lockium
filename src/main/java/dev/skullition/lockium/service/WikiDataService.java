@@ -49,8 +49,15 @@ public class WikiDataService {
    */
   @Cacheable(value = "items", sync = true)
   public ItemsResponse getItems() {
-    logger.info("Items cache is empty, fetching...");
-    return client.getItems();
+    logger.info("Items cache miss; fetching items from the Wiki API");
+    try {
+      ItemsResponse items = client.getItems();
+      logger.info("Fetched {} items from the Wiki API", items.items().size());
+      return items;
+    } catch (RuntimeException e) {
+      logger.warn("Failed to fill the items cache: {}", e.getMessage());
+      throw e;
+    }
   }
 
   /**
@@ -63,7 +70,10 @@ public class WikiDataService {
    */
   @Cacheable(value = "itemIndex", key = "'byName'", sync = true)
   public Map<String, ItemCatalogue> getNameIndex() {
-    return buildIndex(getItems());
+    logger.info("Item name index cache miss; rebuilding index");
+    Map<String, ItemCatalogue> index = buildIndex(getItems());
+    logger.info("Built item name index with {} names", index.size());
+    return index;
   }
 
   /**
@@ -74,7 +84,13 @@ public class WikiDataService {
    * @return detail response containing item and seed
    */
   public ItemDetailResponse getItemDetail(int id) {
-    return client.getItemDetail(id);
+    logger.debug("Fetching item detail for catalogueId={}", id);
+    try {
+      return client.getItemDetail(id);
+    } catch (RuntimeException e) {
+      logger.warn("Failed to fetch item detail for catalogueId={}: {}", id, e.getMessage());
+      throw e;
+    }
   }
 
   /** Simple health probe – delegates to {@link WikiClient#health()}. */
@@ -91,7 +107,7 @@ public class WikiDataService {
    */
   @CachePut(value = "items")
   public ItemsResponse refreshItems() {
-    logger.info("Refreshing items...");
+    logger.debug("Fetching fresh items from the Wiki API");
     return client.getItems();
   }
 
@@ -103,6 +119,7 @@ public class WikiDataService {
    */
   @CachePut(value = "itemIndex", key = "'byName'")
   public Map<String, ItemCatalogue> refreshNameIndex(ItemsResponse items) {
+    logger.debug("Rebuilding item name index from {} items", items.items().size());
     return buildIndex(items);
   }
 

@@ -17,6 +17,8 @@ import net.dv8tion.jda.api.components.section.Section;
 import net.dv8tion.jda.api.components.separator.Separator;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Slash commands under {@code /gt provider} for provider-block earning estimates.
@@ -27,6 +29,8 @@ import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
  */
 @Command
 public class ProviderCommands {
+  private static final Logger logger = LoggerFactory.getLogger(ProviderCommands.class);
+
   /** In-game item ID of the ATM, used for the sprite thumbnail. */
   private static final int ATM_MACHINE_ID = 1008;
   /** In-game item ID of the Tackle Box, used for the sprite thumbnail. */
@@ -68,7 +72,9 @@ public class ProviderCommands {
       description = "Estimates ATM Machine earnings.")
   public void onSlashAtm(
       GlobalSlashEvent event, @SlashOption(description = "How many ATMs?") int atmCount) {
+    logger.debug("onSlashAtm: atmCount={}", atmCount);
     if (atmCount < 1 || atmCount > 500_000) {
+      logger.debug("onSlashAtm: rejected atmCount={}", atmCount);
       event.reply("Must be between 1 and 500,000 ATMs.").queue();
       return;
     }
@@ -132,7 +138,9 @@ public class ProviderCommands {
       description = "Estimates Tackle Box earnings.")
   public void onSlashTackle(
       GlobalSlashEvent event, @SlashOption(description = "How many Tackle Boxes?") int tackleCount) {
+    logger.debug("onSlashTackle: tackleCount={}", tackleCount);
     if (tackleCount < 50 || tackleCount > 500_000) {
+      logger.debug("onSlashTackle: rejected tackleCount={}", tackleCount);
       event.reply("Must be between 50 and 500,000 Tackle Boxes.").queue();
       return;
     }
@@ -188,7 +196,9 @@ public class ProviderCommands {
   public void onSlashScience(
       GlobalSlashEvent event,
       @SlashOption(description = "How many Science Stations?") int scienceCount) {
+    logger.debug("onSlashScience: scienceCount={}", scienceCount);
     if (scienceCount < 50 || scienceCount > 500_000) {
+      logger.debug("onSlashScience: rejected scienceCount={}", scienceCount);
       event.reply("Must be between 50 and 500,000 Science Stations.").queue();
       return;
     }

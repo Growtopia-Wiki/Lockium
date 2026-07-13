@@ -60,6 +60,7 @@ public class SlashPing {
       integrationTypes = {IntegrationType.GUILD_INSTALL, IntegrationType.USER_INSTALL})
   @JDASlashCommand(name = "ping", description = "Check Discord and Wiki latency.")
   public void onSlashPing(GlobalSlashEvent event) {
+    logger.debug("onSlashPing: starting Discord and Wiki API health checks");
     event.deferReply(true).queue();
 
     event
@@ -72,8 +73,10 @@ public class SlashPing {
               String wikiStatus = wikiPing >= 0 ? wikiPing + "ms" : "DOWN";
               String output =
                   String.format("Pong! Discord: %s ms. | Wiki API: %s", ping, wikiStatus);
+              logger.debug("onSlashPing: Discord={} ms, Wiki API={}", ping, wikiStatus);
               event.getHook().editOriginal(output).queue();
-            });
+            },
+            failure -> logger.warn("Discord REST ping failed: {}", failure.getMessage()));
   }
 
   /**
@@ -87,7 +90,7 @@ public class SlashPing {
       wiki.health();
       return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
     } catch (Exception e) {
-      logger.error("Ping failed!", e);
+      logger.warn("Wiki API ping failed: {}", e.getMessage());
       return -1;
     }
   }

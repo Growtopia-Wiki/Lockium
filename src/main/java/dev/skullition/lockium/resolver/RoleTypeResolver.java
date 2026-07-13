@@ -13,6 +13,8 @@ import net.dv8tion.jda.api.interactions.commands.CommandInteractionPayload;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import org.jspecify.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Resolves the {@code role} option of {@code /gt role} into a {@link RoleType}.
@@ -25,6 +27,7 @@ import org.jspecify.annotations.Nullable;
 @Resolver
 public class RoleTypeResolver extends ClassParameterResolver<RoleTypeResolver, RoleType>
     implements SlashParameterResolver<RoleTypeResolver, RoleType> {
+  private static final Logger logger = LoggerFactory.getLogger(RoleTypeResolver.class);
 
   /** Creates the resolver. */
   public RoleTypeResolver() {
@@ -46,6 +49,8 @@ public class RoleTypeResolver extends ClassParameterResolver<RoleTypeResolver, R
   @Override
   public RoleType resolve(
       SlashCommandOption option, CommandInteractionPayload event, OptionMapping optionMapping) {
-    return RoleType.valueOf(optionMapping.getAsString());
+    String value = optionMapping.getAsString();
+    logger.debug("resolve: role={}", value);
+    return RoleType.valueOf(value);
   }
 }

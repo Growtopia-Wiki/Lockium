@@ -1,6 +1,8 @@
 package dev.skullition.lockium.scheduler;
 
 import dev.skullition.lockium.service.WikiCacheService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class WikiCacheScheduler {
+  private static final Logger logger = LoggerFactory.getLogger(WikiCacheScheduler.class);
 
   private final WikiCacheService cacheService;
 
@@ -38,6 +41,7 @@ public class WikiCacheScheduler {
    */
   @Scheduled(fixedRateString = "30m")
   public void refreshCaches() {
+    logger.debug("Scheduled Wiki cache refresh triggered");
     cacheService.refreshCaches();
   }
 }

@@ -24,7 +24,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RiddleService {
-  private final Logger logger = LoggerFactory.getLogger(RiddleService.class);
+  private static final Logger logger = LoggerFactory.getLogger(RiddleService.class);
+
   private volatile List<Riddle> riddles = List.of();
 
   /**
@@ -63,10 +64,10 @@ public class RiddleService {
                     int count = Integer.parseInt(parts[2].trim());
                     list.add(new Riddle(parts[0].trim(), itemId, count));
                   } catch (NumberFormatException ignored) {
-                    logger.info("Ignoring line: {}", line);
+                    logger.warn("Ignoring ancestral riddle row with a non-numeric value: {}", line);
                   }
                 } else {
-                  logger.info("Ignoring line: {}", line);
+                  logger.warn("Ignoring malformed ancestral riddle row: {}", line);
                 }
               });
     } catch (Exception e) {

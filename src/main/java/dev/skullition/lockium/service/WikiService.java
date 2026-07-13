@@ -49,6 +49,8 @@ public class WikiService {
     var index = wiki.getNameIndex();
     ItemCatalogue exactMatch = index.get(itemName);
     if (exactMatch != null) {
+      logger.debug(
+          "findByName: exact match '{}' resolved to itemId={}", itemName, exactMatch.itemId());
       return exactMatch;
     }
 
@@ -64,6 +66,12 @@ public class WikiService {
             .orElse(null);
     if (prefixMatch == null) {
       logger.debug("findByName: no prefix match for '{}'", normalized);
+    } else {
+      logger.debug(
+          "findByName: prefix '{}' resolved to itemId={} ({})",
+          normalized,
+          prefixMatch.itemId(),
+          prefixMatch.itemName());
     }
     return prefixMatch;
   }
