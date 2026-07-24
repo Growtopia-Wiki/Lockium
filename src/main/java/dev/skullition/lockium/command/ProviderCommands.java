@@ -108,12 +108,12 @@ public class ProviderCommands {
     components.add(
         TextDisplay.of(
             """
-            ▫ ATM Cost (3/3.5 WLs each) -> `%s-%s` %s
+            ▫ ATM Cost (14/14.5 WLs each) -> `%s-%s` %s
             ▫ Cost from Store: `%s` gems\
             """
                 .formatted(
-                    formatNumber(atmCount * 3L),
-                    formatNumber((long) (atmCount * 3.5)),
+                    formatNumber(atmCount * 14L),
+                    formatNumber((long) (atmCount * 14.5)),
                     AppEmojis.WORLD_LOCK,
                     formatNumber(atmCount * 8_000L))));
 
