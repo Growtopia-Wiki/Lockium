@@ -71,21 +71,28 @@ import org.slf4j.LoggerFactory;
 @Command
 public class GtCommands {
   private static final Logger logger = LoggerFactory.getLogger(GtCommands.class);
+
   /** The day Growtopia was released. */
   private static final LocalDate GROWTOPIA_RELEASE_DATE = LocalDate.of(2012, 11, 30);
+
   /** The maximum level reachable in-game. */
   private static final int MAX_GT_LEVEL = 125;
+
   /** Daily block drop rotation, indexed by day of week (Sunday = 0). */
   private static final String[] DAILY_BLOCKS = {
     "Anemone", "Aurora", "Obsidian", "Lava Lamp", "Fissure", "Waterfall", "Hidden Door"
   };
+
   /** Maximum amount of matches shown by {@code /gt search}. */
   private static final int MAX_SEARCH_RESULTS = 20;
+
   /** Valid Growtopia world names: 1-25 letters, digits, or underscores. */
   private static final Pattern WORLD_NAME_PATTERN = Pattern.compile("[A-Za-z0-9_]{1,25}");
+
   /** Worlds rendered before this date have no reliable {@code Last-Modified} header. */
   private static final Instant INITIAL_RENDER_TIME =
       LocalDate.of(2018, 7, 27).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE).toInstant();
+
   private final Modals modals;
   private final WikiService wikiService;
   private final GrowtopiaDetailService detailService;
@@ -227,8 +234,7 @@ public class GtCommands {
               description = "The item name you are looking for.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery) {
-    logger.debug(
-        "onSlashItem: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
+    logger.debug("onSlashItem: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
     final ItemDetailResponse itemResponse = wikiService.getItemDetail(itemQuery);
     final GrowtopiaObject item = itemResponse.item();
     final GrowtopiaObject seed = itemResponse.seed();
@@ -324,11 +330,7 @@ public class GtCommands {
           .useComponentsV2()
           .queue();
     } else {
-      event
-          .replyComponents(container)
-          .setAllowedMentions(List.of())
-          .useComponentsV2()
-          .queue();
+      event.replyComponents(container).setAllowedMentions(List.of()).useComponentsV2().queue();
     }
   }
 
@@ -351,8 +353,7 @@ public class GtCommands {
               description = "The item name you are looking for.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery) {
-    logger.debug(
-        "onSlashSprite: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
+    logger.debug("onSlashSprite: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
     ItemDetailResponse item = wikiService.getItemDetail(itemQuery);
     String itemUrl = ItemUtils.getItemSpriteUrl(item.item().id());
     String seedUrl = ItemUtils.getItemSpriteUrl(item.seed().id());
@@ -521,8 +522,7 @@ public class GtCommands {
     double fuelTotal = treeDropCount * 1.1;
     String fuelTotalFormatted = formatNumber(fuelTotal);
     var extraBlocksHarvesterAvg = Math.floor(treeDropCount * 1.10) - treeDropCount;
-    String extraBlocksHarvesterAvgFormatted =
-        formatNumber(extraBlocksHarvesterAvg);
+    String extraBlocksHarvesterAvgFormatted = formatNumber(extraBlocksHarvesterAvg);
     String consumedFuelPacksFormatted = formatNumber(treeCount / 10);
     components.add(
         TextDisplay.of(
@@ -574,8 +574,7 @@ public class GtCommands {
                       + "`%s` block drop from blocks.")
                   .formatted(totalSeedsEarnedFormatted, blockBlockDropFormatted)));
       String harvesterFuelTotalFormatted = formatNumber(fuelTotal / 4);
-      String blockBlockDropHarvesterFormatted =
-          formatNumber(blockBlockDropHarvester);
+      String blockBlockDropHarvesterFormatted = formatNumber(blockBlockDropHarvester);
       components.add(
           TextDisplay.of(
               "%s Harvester: `~%s` seeds + `%s` blocks after breaking, using harvester."
@@ -591,8 +590,7 @@ public class GtCommands {
               "%s Approximately `%s` to harvest all the trees."
                   .formatted(AppEmojis.TICKING_CLOCK, timeToHarvest)));
 
-      String finalNoHarvesterFormatted =
-          formatNumber(totalSeedsEarned + (blockBlockDrop / 4));
+      String finalNoHarvesterFormatted = formatNumber(totalSeedsEarned + (blockBlockDrop / 4));
       String finalHarvesterFormatted =
           formatNumber((totalSeedsEarned * 1.10) + (blockBlockDropHarvester / 4));
       components.add(
@@ -678,8 +676,8 @@ public class GtCommands {
    * Handles {@code /gt mooncakes}.
    *
    * <p>Calculates the expected mooncake drops from harvesting trees during the Lunar New Year
-   * event. A tree's chance to drop a mooncake is {@code rarity / 150}, and roughly one in a
-   * hundred drops is a balance mooncake.
+   * event. A tree's chance to drop a mooncake is {@code rarity / 150}, and roughly one in a hundred
+   * drops is a balance mooncake.
    *
    * @param event the slash interaction
    * @param itemQuery the tree's item
@@ -891,7 +889,8 @@ public class GtCommands {
                 ▫ `41100`-`41199` - Warehouse
                 ▫ `53785` - Sales-Man
                 ▫ `77777` - Nobody
-                ▫ `90210` - Beverly Hill\
+                ▫ `90210` - Beverly Hill
+                ▫ `52368` - Remove Ghost
                 """));
     event.replyComponents(container).useComponentsV2().queue();
   }
@@ -913,10 +912,10 @@ public class GtCommands {
       description = "Calculate experience needed for levels.")
   public void onSlashXp(
       GlobalSlashEvent event,
-      @SlashOption(name = "min_level", description = "Minimum level - i.e 1.") @Nullable
-          Integer minLevel,
-      @SlashOption(name = "max_level", description = "Maximum level - i.e 125.") @Nullable
-          Integer maxLevel) {
+      @SlashOption(name = "min_level", description = "Minimum level - i.e 1.")
+          @Nullable Integer minLevel,
+      @SlashOption(name = "max_level", description = "Maximum level - i.e 125.")
+          @Nullable Integer maxLevel) {
     int min = minLevel == null ? 1 : minLevel;
     int max = maxLevel == null ? MAX_GT_LEVEL : maxLevel;
     logger.debug("onSlashXp: minLevel={}, maxLevel={}", min, max);
@@ -938,8 +937,7 @@ public class GtCommands {
     List<ContainerChildComponent> components = new ArrayList<>();
     components.add(
         TextDisplay.of(
-            "### XP required from level %d to %d: %s"
-                .formatted(min, max, formatNumber(totalXp))));
+            "### XP required from level %d to %d: %s".formatted(min, max, formatNumber(totalXp))));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
 
     StringBuilder hits = new StringBuilder("**[Hits] Blocks to break:**\n");
@@ -990,8 +988,7 @@ public class GtCommands {
         ChronoUnit.DAYS.between(
             GROWTOPIA_RELEASE_DATE, LocalDate.now(GrowtopiaTimeUtil.GROWTOPIA_ZONE));
     if (days < 0 || days > daysSinceRelease) {
-      logger.debug(
-          "onSlashStartDate: rejected days={}, gameAgeDays={}", days, daysSinceRelease);
+      logger.debug("onSlashStartDate: rejected days={}, gameAgeDays={}", days, daysSinceRelease);
       event
           .reply(
               "Can't be more days than the game has been online for! (%d)"
@@ -1183,8 +1180,7 @@ public class GtCommands {
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
-                "## %s World | %s"
-                    .formatted(AppEmojis.EARTH, worldName.toUpperCase(Locale.US))),
+                "## %s World | %s".formatted(AppEmojis.EARTH, worldName.toUpperCase(Locale.US))),
             MediaGallery.of(MediaGalleryItem.fromUrl(imageUrl)),
             TextDisplay.of(renderedText));
     event.replyComponents(container).useComponentsV2().queue();
@@ -1278,10 +1274,7 @@ public class GtCommands {
                 %s **WOTD:** %s\
                 """
                     .formatted(
-                        status,
-                        formatNumber(onlineUsers),
-                        AppEmojis.WOTD,
-                        wotdName(detail))));
+                        status, formatNumber(onlineUsers), AppEmojis.WOTD, wotdName(detail))));
     event.replyComponents(container).useComponentsV2().queue();
   }
 }
