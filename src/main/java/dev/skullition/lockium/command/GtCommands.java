@@ -392,7 +392,7 @@ public class GtCommands {
               description = "The item name you'd like to break.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
-      @SlashOption(description = "How many blocks?") int blockCount) {
+      @SlashOption(description = "How many blocks?") long blockCount) {
     logger.debug(
         "onSlashBreak: itemId={}, itemName={}, blockCount={}",
         itemQuery.itemId(),
@@ -482,7 +482,7 @@ public class GtCommands {
               description = "The item name of the trees you'd like to harvest.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
-      @SlashOption(description = "How many trees?") int treeCount) {
+      @SlashOption(description = "How many trees?") long treeCount) {
     logger.debug(
         "onSlashHarvest: itemId={}, itemName={}, treeCount={}",
         itemQuery.itemId(),
@@ -626,7 +626,7 @@ public class GtCommands {
               description = "The item name you'd like to recycle.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
-      @SlashOption(description = "How many items?") int itemCount) {
+      @SlashOption(description = "How many items?") long itemCount) {
     logger.debug(
         "onSlashRecycle: itemId={}, itemName={}, itemCount={}",
         itemQuery.itemId(),
@@ -693,7 +693,7 @@ public class GtCommands {
               description = "The item name of the trees you'd like to harvest.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
           ItemCatalogue itemQuery,
-      @SlashOption(description = "How many trees?") int treeCount) {
+      @SlashOption(description = "How many trees?") long treeCount) {
     logger.debug(
         "onSlashMooncakes: itemId={}, itemName={}, treeCount={}",
         itemQuery.itemId(),
@@ -982,7 +982,7 @@ public class GtCommands {
   public void onSlashStartDate(
       GlobalSlashEvent event,
       @SlashOption(description = "Days since the account was created (wrench yourself in-game).")
-          int days) {
+          long days) {
     logger.debug("onSlashStartDate: days={}", days);
     long daysSinceRelease =
         ChronoUnit.DAYS.between(

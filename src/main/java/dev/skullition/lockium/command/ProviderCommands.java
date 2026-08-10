@@ -71,18 +71,19 @@ public class ProviderCommands {
       subcommand = "atm",
       description = "Estimates ATM Machine earnings.")
   public void onSlashAtm(
-      GlobalSlashEvent event, @SlashOption(description = "How many ATMs?") int atmCount) {
+      GlobalSlashEvent event, @SlashOption(description = "How many ATMs?") long atmCount) {
     logger.debug("onSlashAtm: atmCount={}", atmCount);
     if (atmCount < 1 || atmCount > 500_000) {
       logger.debug("onSlashAtm: rejected atmCount={}", atmCount);
       event.reply("Must be between 1 and 500,000 ATMs.").queue();
       return;
     }
+    int atmCountInt = (int) atmCount;
 
     // Non-jackpot drops are 1-19 gems, so an average of 10.
     final double normalDropAverage = 10.0;
-    int countJackpot = atmCount / 100;
-    int countNormal = atmCount - countJackpot;
+    int countJackpot = atmCountInt / 100;
+    int countNormal = atmCountInt - countJackpot;
     long totalGems = (long) (countJackpot * 100 + countNormal * normalDropAverage);
 
     List<ContainerChildComponent> components = new ArrayList<>();
@@ -137,7 +138,7 @@ public class ProviderCommands {
       subcommand = "tackle",
       description = "Estimates Tackle Box earnings.")
   public void onSlashTackle(
-      GlobalSlashEvent event, @SlashOption(description = "How many Tackle Boxes?") int tackleCount) {
+      GlobalSlashEvent event, @SlashOption(description = "How many Tackle Boxes?") long tackleCount) {
     logger.debug("onSlashTackle: tackleCount={}", tackleCount);
     if (tackleCount < 50 || tackleCount > 500_000) {
       logger.debug("onSlashTackle: rejected tackleCount={}", tackleCount);
@@ -195,7 +196,7 @@ public class ProviderCommands {
       description = "Estimates Science Station earnings.")
   public void onSlashScience(
       GlobalSlashEvent event,
-      @SlashOption(description = "How many Science Stations?") int scienceCount) {
+      @SlashOption(description = "How many Science Stations?") long scienceCount) {
     logger.debug("onSlashScience: scienceCount={}", scienceCount);
     if (scienceCount < 50 || scienceCount > 500_000) {
       logger.debug("onSlashScience: rejected scienceCount={}", scienceCount);
