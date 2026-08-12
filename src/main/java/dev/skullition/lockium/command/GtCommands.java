@@ -440,7 +440,7 @@ public class GtCommands {
                         .setValue("0")
                         .setRequiredRange(1, 1)
                         .build()))
-            .bindTo(SlashBreakModal.MODAL_NAME, itemDetail, itemQuery, blockCount)
+            .bindTo(SlashBreakModal.MODAL_NAME, itemDetail, itemQuery, (int) blockCount)
             .build();
     event.replyModal(modal).queue();
   }
