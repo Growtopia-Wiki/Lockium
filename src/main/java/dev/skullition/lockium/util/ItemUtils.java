@@ -133,6 +133,44 @@ public class ItemUtils {
     return 100.0 / ((double) max); // Random(max)
   }
 
+  /** Chance, per fruit, that a Dreamcatcher Staff drops an extra block when harvesting a tree. */
+  public static final double DREAMCATCHER_STAFF_CHANCE = 0.02;
+
+  /** Highest rarity a Dreamcatcher Staff triggers on; higher-rarity trees are unaffected. */
+  private static final int DREAMCATCHER_STAFF_MAX_RARITY = 99;
+
+  /**
+   * Reports whether a Dreamcatcher Staff has any effect on a tree.
+   *
+   * <p>The staff only triggers on rarity {@value #DREAMCATCHER_STAFF_MAX_RARITY} and below, so
+   * rarity 999 ("no rarity") items are excluded as well.
+   *
+   * @param rarity the rarity of the harvested item
+   * @return {@code true} if the staff can drop extra blocks from this tree
+   */
+  public static boolean isDreamcatcherStaffEligible(int rarity) {
+    return rarity <= DREAMCATCHER_STAFF_MAX_RARITY;
+  }
+
+  /**
+   * Calculates the extra blocks a Dreamcatcher Staff drops over a harvest.
+   *
+   * <p>Every fruit rolls independently for a {@link #DREAMCATCHER_STAFF_CHANCE} chance at one extra
+   * block, so the expected yield is simply the fruit count scaled by that chance. This is separate
+   * from the harvester's per-tree bonus and does not compound with it.
+   *
+   * @param fruitCount total number of fruits harvested
+   * @param rarity the rarity of the harvested item
+   * @return average extra blocks, or {@code 0} if the rarity is out of range
+   */
+  public static double getExtraBlocksFromDreamcatcherStaff(double fruitCount, int rarity) {
+    if (!isDreamcatcherStaffEligible(rarity)) {
+      return 0d;
+    }
+
+    return fruitCount * DREAMCATCHER_STAFF_CHANCE;
+  }
+
   /**
    * Creates a full item container with header, body, and footer.
    *

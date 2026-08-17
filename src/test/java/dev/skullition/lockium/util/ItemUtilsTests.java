@@ -58,4 +58,12 @@ class ItemUtilsTests {
   void calculatesSeedDropChance(int rarity, double expected) {
     assertEquals(expected, ItemUtils.getChanceToDropSeedOnTreeSmash(rarity), 0.0000000001);
   }
+
+  @ParameterizedTest
+  @CsvSource({"1000, 0, 20", "1000, 99, 20", "1000, 100, 0", "1000, 999, 0", "0, 50, 0"})
+  void calculatesDreamcatcherStaffExtraBlocksAtRarityBoundaries(
+      double fruitCount, int rarity, double expected) {
+    assertEquals(
+        expected, ItemUtils.getExtraBlocksFromDreamcatcherStaff(fruitCount, rarity), 0.0000000001);
+  }
 }

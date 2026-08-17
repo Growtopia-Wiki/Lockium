@@ -468,6 +468,10 @@ public class GtCommands {
    * <p>Validates the item category and tree count, performs the calculation for harvesting trees
    * using all modifiers.
    *
+   * <p>Two modifiers are reported: the harvester's per-tree bonus, and the Dreamcatcher Staff,
+   * which rolls {@link ItemUtils#DREAMCATCHER_STAFF_CHANCE} per fruit on trees of rarity 99 and
+   * below. They roll off different bases, so they add rather than compound.
+   *
    * @param event the slash interaction
    * @param itemQuery the tree's item to harvest
    * @param treeCount number of trees; must be between 10 and 1,000,000 (inclusive)
@@ -533,6 +537,33 @@ public class GtCommands {
                     fuelTotalFormatted,
                     consumedFuelPacksFormatted)));
 
+    boolean staffEligible = ItemUtils.isDreamcatcherStaffEligible(item.rarity());
+    logger.debug(
+        "onSlashHarvest: itemId={}, rarity={}, dreamcatcherStaffEligible={}",
+        item.id(),
+        item.rarity(),
+        staffEligible);
+    if (staffEligible) {
+      double staffExtraBlocks =
+          ItemUtils.getExtraBlocksFromDreamcatcherStaff(treeDropCount, item.rarity());
+      String staffExtraBlocksFormatted = formatNumber(staffExtraBlocks);
+      String staffTotalFormatted = formatNumber(treeDropCount + staffExtraBlocks);
+      components.add(
+          TextDisplay.of(
+              ("%s Extra block drops with Dreamcatcher Staff: `~%s` (Total `~%s`) "
+                      + "(**%s%% per fruit**)")
+                  .formatted(
+                      AppEmojis.DREAMCATCHER,
+                      staffExtraBlocksFormatted,
+                      staffTotalFormatted,
+                      formatNumber(ItemUtils.DREAMCATCHER_STAFF_CHANCE * 100))));
+    } else {
+      components.add(
+          TextDisplay.of(
+              "%s Dreamcatcher Staff has no effect on this tree (rarity `99` and below only)."
+                  .formatted(AppEmojis.DREAMCATCHER)));
+    }
+
     double gemDropAvg = ItemUtils.getAverageGemCountToDropOnTreeSmash(item);
     if (gemDropAvg == 0) {
       components.add(TextDisplay.of("%s No gem drops.".formatted(AppEmojis.GEM)));
@@ -593,13 +624,34 @@ public class GtCommands {
       String finalNoHarvesterFormatted = formatNumber(totalSeedsEarned + (blockBlockDrop / 4));
       String finalHarvesterFormatted =
           formatNumber((totalSeedsEarned * 1.10) + (blockBlockDropHarvester / 4));
-      components.add(
-          TextDisplay.of(
-              "### %s TOTAL: %s seeds after one cycle, ~%s with harvester."
-                  .formatted(
-                      AppEmojis.CHECKBOX_ENABLED,
-                      finalNoHarvesterFormatted,
-                      finalHarvesterFormatted)));
+      if (staffEligible) {
+        double staffBonus = ItemUtils.DREAMCATCHER_STAFF_CHANCE;
+        double blockBlockDropStaff = blockBlockDrop * (1 + staffBonus);
+        double blockBlockDropHarvesterStaff = blockBlockDrop * (1.10 + staffBonus);
+        String finalStaffFormatted =
+            formatNumber((totalSeedsEarned * (1 + staffBonus)) + (blockBlockDropStaff / 4));
+        String finalHarvesterStaffFormatted =
+            formatNumber(
+                (totalSeedsEarned * (1.10 + staffBonus)) + (blockBlockDropHarvesterStaff / 4));
+        components.add(
+            TextDisplay.of(
+                ("### %s TOTAL: %s seeds after one cycle, ~%s with harvester, ~%s with staff, "
+                        + "~%s with both.")
+                    .formatted(
+                        AppEmojis.CHECKBOX_ENABLED,
+                        finalNoHarvesterFormatted,
+                        finalHarvesterFormatted,
+                        finalStaffFormatted,
+                        finalHarvesterStaffFormatted)));
+      } else {
+        components.add(
+            TextDisplay.of(
+                "### %s TOTAL: %s seeds after one cycle, ~%s with harvester."
+                    .formatted(
+                        AppEmojis.CHECKBOX_ENABLED,
+                        finalNoHarvesterFormatted,
+                        finalHarvesterFormatted)));
+      }
     }
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);

@@ -84,4 +84,5 @@ public class AppEmojis {
   public static final ApplicationEmoji CHALLENGE_BOARD = get("CHALLENGE_BOARD");
   public static final ApplicationEmoji LEGENDARY_WIZARD = get("LEGENDARY_WIZARD");
   public static final ApplicationEmoji FISHING_ROD = get("FISHING_ROD");
+  public static final ApplicationEmoji DREAMCATCHER = get("DREAMCATCHER");
 }
