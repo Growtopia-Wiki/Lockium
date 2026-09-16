@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 
 /**
  * Publishes the most recent Growtopia leaderboards.
@@ -72,6 +73,10 @@ public class GrowtopiaLeaderboardService {
           "refresh: overallEntries={}, boards={}",
           payload.data().overall().size(),
           payload.data().leagues().size());
+    } catch (RestClientResponseException e) {
+      // Status only; see GrowtopiaDetailService#refresh for why the body must not be logged.
+      logger.warn(
+          "Failed to poll Growtopia leaderboard: {}; keeping the last snapshot", e.getStatusCode());
     } catch (RestClientException e) {
       logger.warn(
           "Failed to poll Growtopia leaderboard: {}; keeping the last snapshot", e.getMessage());

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 
 /**
  * Publishes the most recent Growtopia server detail and records its player count.
@@ -81,6 +82,11 @@ public class GrowtopiaDetailService {
       playerCountService.record(now, payload.data().onlineCount());
       logger.debug(
           "refresh: onlineCount={}, stale={}", payload.data().onlineCount(), payload.isStale());
+    } catch (RestClientResponseException e) {
+      // Log the status alone: getMessage() embeds the whole response body, and the proxy's 403 is
+      // ~4KB of Cloudflare HTML that would otherwise be written once a minute, indefinitely.
+      logger.warn(
+          "Failed to poll Growtopia detail: {}; keeping the last snapshot", e.getStatusCode());
     } catch (RestClientException e) {
       logger.warn("Failed to poll Growtopia detail: {}; keeping the last snapshot", e.getMessage());
     }
