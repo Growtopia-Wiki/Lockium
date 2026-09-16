@@ -1325,7 +1325,9 @@ public class GtCommands {
     } else if (onlineUsers < 1000) {
       status = "%s (Server is initializing.)".formatted(AppEmojis.LOADING);
     } else {
-      status = AppEmojis.CHECKBOX_ENABLED.toString();
+      // getFormatted(), never toString(): toString() renders JDA's debug form. The other call
+      // sites are safe only because String.format routes Emoji through Formattable.
+      status = AppEmojis.CHECKBOX_ENABLED.getFormatted();
     }
 
     List<ContainerChildComponent> components = new ArrayList<>();
