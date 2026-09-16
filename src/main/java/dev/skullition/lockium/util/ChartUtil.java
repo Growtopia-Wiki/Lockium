@@ -46,6 +46,9 @@ public class ChartUtil {
   /** The site's link and heading accent. */
   private static final Color ACCENT = new Color(0x72, 0xD2, 0xDB);
 
+  /** The accent at low opacity, filling the area under the line without hiding the gridlines. */
+  private static final Color ACCENT_FILL = new Color(0x72, 0xD2, 0xDB, 38);
+
   /** Primary text colour. */
   private static final Color TEXT = Color.WHITE;
 
@@ -113,11 +116,11 @@ public class ChartUtil {
     applyPaddedRange(styler, plotted);
 
     XYSeries series = chart.addSeries("Players", times, counts);
-    // A plain line, as in the reference: an area fill at this width swamps the gridlines.
-    series.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
+    series.setXYSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Area);
     series.setMarker(SeriesMarkers.NONE);
     series.setLineColor(ACCENT);
     series.setLineWidth(2.0f);
+    series.setFillColor(ACCENT_FILL);
 
     try {
       return BitmapEncoder.getBitmapBytes(chart, BitmapFormat.PNG);
