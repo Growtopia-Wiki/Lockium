@@ -24,7 +24,8 @@ All commands work in servers, DMs, and as a user-install app.
 - `/gt role <role>` – show XP requirements per level and daily quest gem costs for a role
 - `/gt wotd` – render today's World of the Day
 - `/gt world <name>` – show a world's render from growtopiagame.com, with its last render date
-- `/gt stats` – game server stats: server status, online users, and today's WOTD
+- `/gt stats` – game server stats: server status, online users, today's WOTD, and a graph of the player count over the last 24 hours
+- `/gt leaderboard [league]` – the computed overall top 20, or a single one of the 18 league boards
 - `/gt events` – timers for the Daily Challenge, Night of the Comet, Pet Battle Tournament, and the daily block drop rotation
 - `/gt time` – current Growtopia (US Eastern) time
 - `/gt startdate <days>` – convert your account's age in days to the date you started playing
@@ -47,6 +48,8 @@ There are also owner-only text commands (`activity`, `reload`), invoked by menti
 - Spring Boot 4
 - JDA 6 + [BotCommands 3.4](https://github.com/freya022/BotCommands) – annotation-driven slash commands
 - Caffeine – in-memory caching of Wiki API data
+- H2 (in-memory) + Flyway – player-count history; the schema is shared with BotCommands
+- XChart – renders the player-count graph
 - Maven
 
 Code follows the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
