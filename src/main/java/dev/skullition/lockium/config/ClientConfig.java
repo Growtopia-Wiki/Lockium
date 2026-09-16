@@ -1,26 +1,22 @@
 package dev.skullition.lockium.config;
 
-import dev.skullition.lockium.client.GrowtopiaDetailClient;
+import dev.skullition.lockium.client.GrowtopiaProxyClient;
 import dev.skullition.lockium.client.GrowtopiaWikiClient;
 import dev.skullition.lockium.client.WikiClient;
 import dev.skullition.lockium.properties.LockiumProperties;
+import dev.skullition.lockium.properties.ProxyProperties;
 import dev.skullition.lockium.properties.WikiApiProperties;
 import java.net.http.HttpClient;
 import java.time.Duration;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
-import org.springframework.http.converter.json.JacksonJsonHttpMessageConverter;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
-import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Spring configuration that builds the declarative HTTP clients used by Lockium.
@@ -30,11 +26,11 @@ import tools.jackson.databind.json.JsonMapper;
  * <ul>
  *   <li><b>Growtopia Wiki</b> – public raw wikitext at {@code ${lockium.wiki-raw-url}}
  *   <li><b>Wiki API</b> – authenticated JSON API at {@code ${wiki.api.url}}
- *   <li><b>Growtopia Detail</b> – public endpoint at {@code ${lockium.detail-url}} which returns
- *       JSON but serves it as {@code text/html}
+ *   <li><b>Growtopia proxy</b> – internal JSON view of growtopiagame.com at {@code
+ *       ${lockium.proxy.url}}
  * </ul>
  *
- * <p>Both clients are created via {@link HttpServiceProxyFactory} so the interfaces remain pure
+ * <p>All clients are created via {@link HttpServiceProxyFactory} so the interfaces remain pure
  * declarations with {@code @HttpExchange}. No caching or retry is applied here – that belongs in
  * the service layer.
  */
@@ -42,18 +38,27 @@ import tools.jackson.databind.json.JsonMapper;
 public class ClientConfig {
   private static final Logger logger = LoggerFactory.getLogger(ClientConfig.class);
 
+  /** Identifies the bot to the operators of the services we call. */
+  private static final String USER_AGENT = "Lockium/1.2 (Growtopia Wiki Discord bot)";
+
   private final WikiApiProperties apiProperties;
   private final LockiumProperties lockiumProperties;
+  private final ProxyProperties proxyProperties;
 
   /**
    * Creates the configuration with bound properties.
    *
    * @param apiProperties properties for the Wiki API (url and bearer key)
    * @param lockiumProperties properties for public Growtopia endpoints
+   * @param proxyProperties properties for the internal Growtopia proxy
    */
-  public ClientConfig(WikiApiProperties apiProperties, LockiumProperties lockiumProperties) {
+  public ClientConfig(
+      WikiApiProperties apiProperties,
+      LockiumProperties lockiumProperties,
+      ProxyProperties proxyProperties) {
     this.apiProperties = apiProperties;
     this.lockiumProperties = lockiumProperties;
+    this.proxyProperties = proxyProperties;
   }
 
   /**
@@ -99,15 +104,14 @@ public class ClientConfig {
   public GrowtopiaWikiClient growtopiaWikiClient(RestClient.Builder builder) {
     logger.debug(
         "Configuring Growtopia Wiki client with base URL {}", lockiumProperties.wikiRawUrl());
-    HttpClient httpClient =
-        HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
+    HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
     var requestFactory = new JdkClientHttpRequestFactory(httpClient);
     requestFactory.setReadTimeout(Duration.ofSeconds(10));
 
     RestClient restClient =
         builder
             .baseUrl(lockiumProperties.wikiRawUrl())
-            .defaultHeader(HttpHeaders.USER_AGENT, "Lockium/1.2 (Growtopia Wiki Discord bot)")
+            .defaultHeader(HttpHeaders.USER_AGENT, USER_AGENT)
             .requestFactory(requestFactory)
             .build();
 
@@ -117,34 +121,32 @@ public class ClientConfig {
   }
 
   /**
-   * Builds the {@link GrowtopiaDetailClient} for {@code growtopiagame.com/detail}.
+   * Builds the {@link GrowtopiaProxyClient} for the internal Growtopia proxy.
    *
-   * <p>The official endpoint returns JSON with a {@code Content-Type: text/html} header, which
-   * breaks the default Jackson converter. This bean configures a {@link
-   * JacksonJsonHttpMessageConverter} to accept both {@code application/json} and {@code text/html}.
+   * <p>The proxy serves correct {@code application/json}, so unlike the retired {@code
+   * growtopiagame.com/detail} client this needs no custom message converter. Bounded connect and
+   * read timeouts matter here because a scheduler polls this endpoint every minute, and a hung
+   * proxy would otherwise occupy a scheduler thread indefinitely.
    *
-   * <p>Uses a dedicated {@link RestTemplate} to isolate the custom converter from the Wiki client.
-   *
-   * @param mapper the shared {@link JsonMapper} configured for the application
-   * @return a proxy implementing {@link GrowtopiaDetailClient}
+   * @param builder the autoconfigured {@link RestClient.Builder} from Spring Boot
+   * @return a proxy implementing {@link GrowtopiaProxyClient}
    */
   @Bean
-  public GrowtopiaDetailClient growtopiaDetailClient(JsonMapper mapper) {
-    logger.debug(
-        "Configuring Growtopia detail client with base URL {}", lockiumProperties.detailUrl());
-    var converter = new JacksonJsonHttpMessageConverter(mapper);
-    converter.setSupportedMediaTypes(List.of(MediaType.APPLICATION_JSON, MediaType.TEXT_HTML));
+  public GrowtopiaProxyClient growtopiaProxyClient(RestClient.Builder builder) {
+    logger.debug("Configuring Growtopia proxy client with base URL {}", proxyProperties.url());
+    HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
+    var requestFactory = new JdkClientHttpRequestFactory(httpClient);
+    requestFactory.setReadTimeout(Duration.ofSeconds(10));
 
-    RestTemplate template = new RestTemplate(List.of(converter));
     RestClient restClient =
-        RestClient.create(template) // inherits the converters
-            .mutate()
-            .baseUrl(lockiumProperties.detailUrl())
-            .defaultHeader(HttpHeaders.ACCEPT, MediaType.TEXT_HTML_VALUE)
+        builder
+            .baseUrl(proxyProperties.url())
+            .defaultHeader(HttpHeaders.USER_AGENT, USER_AGENT)
+            .requestFactory(requestFactory)
             .build();
 
     return HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient))
         .build()
-        .createClient(GrowtopiaDetailClient.class);
+        .createClient(GrowtopiaProxyClient.class);
   }
 }

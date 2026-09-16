@@ -1,6 +1,8 @@
 package dev.skullition.lockium.command;
 
 import dev.skullition.lockium.service.ChiService;
+import dev.skullition.lockium.service.GrowtopiaDetailService;
+import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
 import dev.skullition.lockium.service.ItemEffectService;
 import dev.skullition.lockium.service.RiddleService;
 import dev.skullition.lockium.service.TreeFruitService;
@@ -43,6 +45,8 @@ public class OwnerCommands {
   private final ChiService chiService;
   private final RiddleService riddleService;
   private final ItemEffectService itemEffectService;
+  private final GrowtopiaDetailService detailService;
+  private final GrowtopiaLeaderboardService leaderboardService;
   private final BotOwners botOwners;
 
   /**
@@ -53,6 +57,8 @@ public class OwnerCommands {
    * @param chiService service that holds the item chi map
    * @param riddleService service that holds the ancestral riddle dataset
    * @param itemEffectService service that holds seed and scraped item effects
+   * @param detailService publisher of the polled Growtopia detail snapshot
+   * @param leaderboardService publisher of the polled Growtopia leaderboards
    * @param botOwners registry of bot owners used to gate slash commands
    */
   public OwnerCommands(
@@ -61,12 +67,16 @@ public class OwnerCommands {
       ChiService chiService,
       RiddleService riddleService,
       ItemEffectService itemEffectService,
+      GrowtopiaDetailService detailService,
+      GrowtopiaLeaderboardService leaderboardService,
       BotOwners botOwners) {
     this.fruitService = fruitService;
     this.cacheService = cacheService;
     this.chiService = chiService;
     this.riddleService = riddleService;
     this.itemEffectService = itemEffectService;
+    this.detailService = detailService;
+    this.leaderboardService = leaderboardService;
     this.botOwners = botOwners;
   }
 
@@ -104,8 +114,11 @@ public class OwnerCommands {
    *
    * <p>Calls {@link WikiCacheService#refreshCaches()} to evict and re-fetch wiki data, then reloads
    * the {@link TreeFruitService}, {@link ChiService}, {@link RiddleService}, and {@link
-   * ItemEffectService} data files from disk. Useful after deploying new data files without
-   * restarting.
+   * ItemEffectService} data files from disk, and finally re-polls the Growtopia proxy. Useful after
+   * deploying new data files without restarting.
+   *
+   * <p>Recorded player-count samples are deliberately left untouched: this command means "re-read
+   * external data", and discarding the graph history would be a surprising side effect.
    *
    * @param event the slash interaction
    */
@@ -124,6 +137,8 @@ public class OwnerCommands {
     chiService.reload();
     riddleService.reload();
     itemEffectService.reload();
+    detailService.refresh();
+    leaderboardService.refresh();
     logger.info(
         "Full cache reload completed in {} ms: treeFruits={}, chi={}, riddles={}, effectItems={}",
         TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start),

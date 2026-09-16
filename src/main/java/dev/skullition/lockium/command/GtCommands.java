@@ -4,7 +4,6 @@ import static dev.skullition.lockium.handler.ItemNameAutocompleteHandler.ITEM_AU
 import static dev.skullition.lockium.util.FormatUtil.formatDecimal;
 import static dev.skullition.lockium.util.FormatUtil.formatNumber;
 
-import dev.skullition.lockium.client.GrowtopiaDetailClient;
 import dev.skullition.lockium.modal.SlashBreakModal;
 import dev.skullition.lockium.model.GrowtopiaDetail;
 import dev.skullition.lockium.model.GrowtopiaObject;
@@ -14,15 +13,22 @@ import dev.skullition.lockium.model.ItemDetailResponse;
 import dev.skullition.lockium.model.ItemEffect;
 import dev.skullition.lockium.model.ItemProperty;
 import dev.skullition.lockium.model.ItemProperty2;
+import dev.skullition.lockium.model.LeaderboardEntry;
+import dev.skullition.lockium.model.League;
+import dev.skullition.lockium.model.PlayerCountSample;
+import dev.skullition.lockium.model.ProxyPayload;
 import dev.skullition.lockium.model.RoleType;
-import dev.skullition.lockium.properties.LockiumProperties;
+import dev.skullition.lockium.properties.ProxyProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
+import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
 import dev.skullition.lockium.service.ItemEffectService;
+import dev.skullition.lockium.service.PlayerCountService;
 import dev.skullition.lockium.service.RiddleService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiService;
 import dev.skullition.lockium.service.WorldRenderService;
 import dev.skullition.lockium.util.AppEmojis;
+import dev.skullition.lockium.util.ChartUtil;
 import dev.skullition.lockium.util.ContainerUtil;
 import dev.skullition.lockium.util.GrowtopiaTimeUtil;
 import dev.skullition.lockium.util.ItemUtils;
@@ -57,6 +63,7 @@ import net.dv8tion.jda.api.components.textinput.TextInputStyle;
 import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
+import net.dv8tion.jda.api.utils.FileUpload;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,8 +72,9 @@ import org.slf4j.LoggerFactory;
  * Slash commands under {@code /gt} for Growtopia lookups.
  *
  * <p>All commands work in guilds, bot DMs, and private channels, and support both guild-install and
- * user-install contexts. Data comes from {@link WikiService} (cached wiki API) and {@link
- * GrowtopiaDetailClient} for live details. Responses use JDA Components V2.
+ * user-install contexts. Data comes from {@link WikiService} (cached wiki API) and from {@link
+ * GrowtopiaDetailService}/{@link GrowtopiaLeaderboardService}, which publish snapshots polled from
+ * the Growtopia proxy. Responses use JDA Components V2.
  */
 @Command
 public class GtCommands {
@@ -86,6 +94,12 @@ public class GtCommands {
   /** Maximum amount of matches shown by {@code /gt search}. */
   private static final int MAX_SEARCH_RESULTS = 20;
 
+  /** File name of the player-count chart attached by {@code /gt stats}. */
+  private static final String CHART_FILE_NAME = "playercount.png";
+
+  /** Rows shown per leaderboard, matching the proxy's computed top 20. */
+  private static final int LEADERBOARD_ROWS = 20;
+
   /** Valid Growtopia world names: 1-25 letters, digits, or underscores. */
   private static final Pattern WORLD_NAME_PATTERN = Pattern.compile("[A-Za-z0-9_]{1,25}");
 
@@ -96,7 +110,9 @@ public class GtCommands {
   private final Modals modals;
   private final WikiService wikiService;
   private final GrowtopiaDetailService detailService;
-  private final LockiumProperties lockiumProperties;
+  private final GrowtopiaLeaderboardService leaderboardService;
+  private final PlayerCountService playerCountService;
+  private final ProxyProperties proxyProperties;
   private final TreeFruitService fruitService;
   private final WorldRenderService worldRenderService;
   private final RiddleService riddleService;
@@ -107,8 +123,10 @@ public class GtCommands {
    *
    * @param modals modal manager for interactive flows
    * @param wikiService cached access to the wiki item API
-   * @param detailService client for live Growtopia data (WOTD)
-   * @param lockiumProperties application configuration, including render URLs
+   * @param detailService publisher of the polled Growtopia detail snapshot
+   * @param leaderboardService publisher of the polled Growtopia leaderboards
+   * @param playerCountService store holding the online-count history
+   * @param proxyProperties provides the player-count graph window
    * @param fruitService service used to determine an item is farmable
    * @param worldRenderService service used to look up world renders
    * @param riddleService service that holds the ancestral riddle dataset
@@ -118,7 +136,9 @@ public class GtCommands {
       Modals modals,
       WikiService wikiService,
       GrowtopiaDetailService detailService,
-      LockiumProperties lockiumProperties,
+      GrowtopiaLeaderboardService leaderboardService,
+      PlayerCountService playerCountService,
+      ProxyProperties proxyProperties,
       TreeFruitService fruitService,
       WorldRenderService worldRenderService,
       RiddleService riddleService,
@@ -126,7 +146,9 @@ public class GtCommands {
     this.modals = modals;
     this.wikiService = wikiService;
     this.detailService = detailService;
-    this.lockiumProperties = lockiumProperties;
+    this.leaderboardService = leaderboardService;
+    this.playerCountService = playerCountService;
+    this.proxyProperties = proxyProperties;
     this.fruitService = fruitService;
     this.worldRenderService = worldRenderService;
     this.riddleService = riddleService;
@@ -193,19 +215,6 @@ public class GtCommands {
       StringBuilder sb, String hits, long totalXp, int xpPerBreak, String blockName) {
     long breaks = (long) Math.ceil((double) totalXp / xpPerBreak);
     sb.append("[%s] **%s** %s.\n".formatted(hits, formatNumber(breaks), blockName));
-  }
-
-  /**
-   * Extracts the upper-cased World of the Day name from a detail payload.
-   *
-   * <p>The API returns a relative image path such as {@code worlds/thedragonattacks.png}.
-   *
-   * @param detail the detail payload
-   * @return the world name, e.g. {@code THEDRAGONATTACKS}
-   */
-  private static String wotdName(GrowtopiaDetail detail) {
-    String wotd = detail.wotd().fullSize().substring(7);
-    return wotd.substring(0, wotd.indexOf(".")).toUpperCase(Locale.US);
   }
 
   /**
@@ -1241,8 +1250,9 @@ public class GtCommands {
   /**
    * Handles {@code /gt wotd}.
    *
-   * <p>Fetches today's World of the Day from {@link GrowtopiaDetailClient}, then replies with a
-   * title and a full-size render from the URL configured in {@link LockiumProperties#renderUrl()}.
+   * <p>Reads today's World of the Day from the snapshot published by {@link
+   * GrowtopiaDetailService}. The proxy supplies an absolute render URL, so nothing is concatenated
+   * here.
    *
    * @param event the slash interaction
    */
@@ -1251,24 +1261,30 @@ public class GtCommands {
       subcommand = "wotd",
       description = "Render today's World of the Day.")
   public void onSlashWotd(GlobalSlashEvent event) {
-    logger.debug("onSlashWotd: requesting Growtopia detail");
-    var detail = detailService.getDetail();
-    if (detail == null) {
-      logger.warn("onSlashWotd: no fresh or cached Growtopia detail available");
+    logger.debug("onSlashWotd: reading detail snapshot");
+    var snapshot = detailService.getSnapshot();
+    if (snapshot == null) {
+      logger.warn("onSlashWotd: no Growtopia detail snapshot available");
       event
           .reply("Unexpected error while trying to query WOTD data. Please try again later.")
           .queue();
       return;
     }
 
-    String wotd = detail.wotd().fullSize().substring(7);
-    logger.debug("onSlashWotd: resolved worldName={}", wotdName(detail));
+    GrowtopiaDetail detail = snapshot.detail();
+    String wotdUrl = detail.wotdUrl();
+    if (wotdUrl == null) {
+      logger.debug("onSlashWotd: the proxy reported no World of the Day");
+      event.reply("There is no World of the Day set right now.").queue();
+      return;
+    }
+    logger.debug("onSlashWotd: resolved worldName={}", detail.wotdName());
 
-    String renderUrl = lockiumProperties.renderUrl();
     var container =
         ContainerUtil.createGenericContainer(
-            TextDisplay.of("## %s WOTD: %s".formatted(AppEmojis.WOTD, wotdName(detail))),
-            MediaGallery.of(MediaGalleryItem.fromUrl(renderUrl + wotd.toLowerCase(Locale.US))));
+            TextDisplay.of("## %s WOTD: %s".formatted(AppEmojis.WOTD, detail.wotdName())),
+            MediaGallery.of(MediaGalleryItem.fromUrl(wotdUrl)),
+            TextDisplay.of(freshnessNote(snapshot)));
 
     event.replyComponents(container).useComponentsV2().queue();
   }
@@ -1283,50 +1299,195 @@ public class GtCommands {
    */
   @JDASlashCommand(name = "gt", subcommand = "stats", description = "Game server stats.")
   public void onSlashStats(GlobalSlashEvent event) {
-    logger.debug("onSlashStats: requesting Growtopia detail");
-    var detail = detailService.getDetail();
-    if (detail == null) {
-      logger.warn("onSlashStats: no fresh or cached Growtopia detail available");
+    logger.debug("onSlashStats: reading detail snapshot");
+    var snapshot = detailService.getSnapshot();
+    if (snapshot == null) {
+      logger.warn("onSlashStats: no Growtopia detail snapshot available");
       event
           .reply("Failed to fetch data from the Growtopia servers. Please try again later.")
           .queue();
       return;
     }
 
-    int onlineUsers;
-    try {
-      onlineUsers = Integer.parseInt(detail.onlineUsers());
-    } catch (NumberFormatException e) {
-      logger.warn("onSlashStats: invalid online user value={}", detail.onlineUsers());
-      event.reply("Server API sent invalid data, in maintenance?").queue();
-      return;
-    }
-    logger.debug("onSlashStats: onlineUsers={}, worldName={}", onlineUsers, wotdName(detail));
+    // Reading the history and rendering the chart is past the comfortable interaction budget.
+    event.deferReply().queue();
+
+    GrowtopiaDetail detail = snapshot.detail();
+    int onlineUsers = detail.onlineCount();
+    logger.debug(
+        "onSlashStats: onlineUsers={}, worldName={}", onlineUsers, detail.wotdName());
 
     String status;
     if (onlineUsers <= 0) {
-      status = "❌ (Server is down.)";
+      status = "%s (Server is down.)".formatted(AppEmojis.EXCLAMATION);
     } else if (onlineUsers < 15) {
-      status = "🚫 (Maintenance mode - unable to enter.)";
+      status = "%s (Maintenance mode - unable to enter.)".formatted(AppEmojis.EXCLAMATION);
     } else if (onlineUsers < 1000) {
-      status = "⚠️ (Server is initializing.)";
+      status = "%s (Server is initializing.)".formatted(AppEmojis.LOADING);
     } else {
-      status = "🆙";
+      status = AppEmojis.CHECKBOX_ENABLED.toString();
     }
 
-    var container =
-        ContainerUtil.createGenericContainer(
-            TextDisplay.of(
-                "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())),
-            Separator.create(true, Separator.Spacing.LARGE),
-            TextDisplay.of(
-                """
-                🖥️ **Server Status:** %s
-                👤 **Online Users:** `%s`
-                %s **WOTD:** %s\
-                """
-                    .formatted(
-                        status, formatNumber(onlineUsers), AppEmojis.WOTD, wotdName(detail))));
-    event.replyComponents(container).useComponentsV2().queue();
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        TextDisplay.of(
+            "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+    components.add(
+        TextDisplay.of(
+            """
+            %s **Server Status:** %s
+            %s **Online Users:** `%s`
+            %s **WOTD:** %s\
+            """
+                .formatted(
+                    AppEmojis.TRANSMUTABLE,
+                    status,
+                    AppEmojis.LEGENDARY_WIZARD,
+                    formatNumber(onlineUsers),
+                    AppEmojis.WOTD,
+                    detail.wotdName() == null ? "None" : detail.wotdName())));
+
+    List<PlayerCountSample> samples =
+        playerCountService.since(Instant.now().minus(proxyProperties.graphWindow()));
+    byte[] chart =
+        ChartUtil.renderPlayerCountChart(
+            samples, onlineUsers, GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+
+    FileUpload upload = null;
+    components.add(Separator.create(true, Separator.Spacing.SMALL));
+    if (chart == null) {
+      components.add(
+          TextDisplay.of("-# Player history is still being collected; check back shortly."));
+    } else {
+      upload = FileUpload.fromData(chart, CHART_FILE_NAME);
+      components.add(MediaGallery.of(MediaGalleryItem.fromFile(upload)));
+
+      int peak = samples.stream().mapToInt(PlayerCountSample::onlineCount).max().orElse(0);
+      int low = samples.stream().mapToInt(PlayerCountSample::onlineCount).min().orElse(0);
+      // The chart's axis is not zero-based, so state the range explicitly.
+      components.add(
+          TextDisplay.of(
+              "-# Peak `%s` · Low `%s` · %s samples"
+                  .formatted(formatNumber(peak), formatNumber(low), formatNumber(samples.size()))));
+    }
+    components.add(TextDisplay.of(freshnessNote(snapshot)));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    var action = event.getHook().sendMessageComponents(container).useComponentsV2();
+    if (upload != null) {
+      action = action.addFiles(upload);
+    }
+    action.queue();
+  }
+
+  /**
+   * Handles {@code /gt leaderboard}.
+   *
+   * <p>Without a league, shows the computed top {@value #LEADERBOARD_ROWS} across every league,
+   * annotating each row with the board it came from. With a league, shows that single board.
+   *
+   * <p>Player names are user-controlled text, so they are wrapped in backticks and mentions are
+   * suppressed on the reply.
+   *
+   * @param event the slash interaction
+   * @param league the league to show, or {@code null} for the overall board
+   */
+  @JDASlashCommand(
+      name = "gt",
+      subcommand = "leaderboard",
+      description = "Show the Growtopia leaderboards.")
+  public void onSlashLeaderboard(
+      GlobalSlashEvent event,
+      @SlashOption(description = "Which league board to show.", usePredefinedChoices = true)
+          @Nullable League league) {
+    logger.debug("onSlashLeaderboard: league={}", league);
+    var snapshot = leaderboardService.getSnapshot();
+    if (snapshot == null) {
+      logger.warn("onSlashLeaderboard: no Growtopia leaderboard snapshot available");
+      event
+          .reply("Failed to fetch leaderboard data from the Growtopia servers. Try again later.")
+          .queue();
+      return;
+    }
+
+    List<LeaderboardEntry> entries =
+        league == null ? snapshot.overall() : snapshot.board(league);
+    if (entries == null || entries.isEmpty()) {
+      logger.debug("onSlashLeaderboard: rejected empty board for league={}", league);
+      event.reply("That league board is empty right now.").queue();
+      return;
+    }
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(
+        TextDisplay.of(
+            "## %s Growtopia Leaderboard".formatted(AppEmojis.CHALLENGE_BOARD)));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+    components.add(
+        TextDisplay.of(
+            "### %s"
+                .formatted(
+                    league == null
+                        ? "Overall Top %d".formatted(LEADERBOARD_ROWS)
+                        : league.getDisplayName())));
+
+    StringBuilder rows = new StringBuilder();
+    entries.stream()
+        .limit(LEADERBOARD_ROWS)
+        .forEach(
+            entry -> {
+              rows.append(
+                  "▫ `#%2d` `%s` — `%s`"
+                      .formatted(entry.rank(), entry.name(), formatNumber(entry.score())));
+              if (league == null) {
+                League source = League.fromApiKey(entry.league());
+                rows.append(
+                    " -# (%s)"
+                        .formatted(source == null ? entry.league() : source.getDisplayName()));
+              }
+              rows.append('\n');
+            });
+    components.add(TextDisplay.of(rows.toString()));
+    components.add(Separator.create(true, Separator.Spacing.SMALL));
+    components.add(TextDisplay.of(freshnessNote(snapshot.payload(), snapshot.storedAt())));
+
+    Container container = ContainerUtil.createGenericContainer(components);
+    event
+        .replyComponents(container)
+        .setAllowedMentions(List.of())
+        .useComponentsV2()
+        .queue();
+  }
+
+  /**
+   * Builds the footnote describing how current a detail snapshot is.
+   *
+   * @param snapshot the snapshot being rendered
+   * @return a {@code -#} footnote line
+   */
+  private static String freshnessNote(GrowtopiaDetailService.DetailSnapshot snapshot) {
+    return freshnessNote(snapshot.payload(), snapshot.storedAt());
+  }
+
+  /**
+   * Builds the footnote describing how current a proxy payload is.
+   *
+   * <p>Two things can be stale independently: the proxy may have served its own cache because the
+   * game site was unreachable, and Lockium's last successful poll may itself be old.
+   *
+   * @param payload the envelope the data arrived in
+   * @param storedAt when Lockium received it
+   * @return a {@code -#} footnote line
+   */
+  private static String freshnessNote(ProxyPayload<?> payload, Instant storedAt) {
+    if (payload.isStale()) {
+      return "-# %s The game server data is stale (%s); last live <t:%d:R>."
+          .formatted(
+              AppEmojis.EXCLAMATION,
+              payload.stale().reason(),
+              payload.stale().servedAt().getEpochSecond());
+    }
+    return "-# Last updated <t:%d:R>.".formatted(storedAt.getEpochSecond());
   }
 }

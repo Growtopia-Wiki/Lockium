@@ -1,9 +1,11 @@
 package dev.skullition.lockium.service;
 
-import dev.skullition.lockium.client.GrowtopiaDetailClient;
+import dev.skullition.lockium.client.GrowtopiaProxyClient;
 import dev.skullition.lockium.model.GrowtopiaDetail;
+import dev.skullition.lockium.model.ProxyPayload;
 import java.time.Clock;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.concurrent.atomic.AtomicReference;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -13,94 +15,107 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
 /**
- * Service for retrieving the official Growtopia server detail with an in-memory fallback.
+ * Publishes the most recent Growtopia server detail and records its player count.
  *
- * <p>Each call to {@link #getDetail()} attempts a live HTTP request via {@link
- * GrowtopiaDetailClient}. On success the response is stored as the "last good" value. On any {@link
- * RestClientException} (bad status, timeout, deserialization failure), the service does not
- * propagate the exception – it logs a warning and returns the cached value if it is less than 24
- * hours old.
+ * <p>A scheduler calls {@link #refresh()} once a minute; commands call {@link #getSnapshot()} and
+ * perform no I/O of their own. This is a deliberate change from the previous design, where every
+ * interaction triggered a live HTTP request.
  *
- * <p>This cache is intentionally separate from Spring's {@code @Cacheable} infrastructure: it is
- * tiny (one object), thread-safe via a single {@link AtomicReference} holding the value together
- * with its timestamp, and survives only for the lifetime of the JVM.
+ * <p>A failed poll keeps the previous snapshot and records nothing. Writing a zero on failure would
+ * put a fake trough in the player-count graph, which is worse than a brief gap.
+ *
+ * <p>The snapshot is held in a single {@link AtomicReference} and expires after 24 hours, so a
+ * long-dead proxy eventually stops the bot reporting stale figures as if they were current.
  */
 @Service
 public class GrowtopiaDetailService {
   private static final Logger logger = LoggerFactory.getLogger(GrowtopiaDetailService.class);
 
-  private final GrowtopiaDetailClient client;
+  /** How long a snapshot stays usable after the last successful poll. */
+  private static final Duration SNAPSHOT_LIFETIME = Duration.ofHours(24);
+
+  private final GrowtopiaProxyClient client;
+  private final PlayerCountService playerCountService;
   private final Clock clock;
-  private final AtomicReference<@Nullable CachedDetail> lastGood = new AtomicReference<>();
+  private final AtomicReference<@Nullable DetailSnapshot> snapshot = new AtomicReference<>();
 
   /**
    * Creates the service.
    *
-   * @param client declarative client for the detail endpoint
+   * @param client declarative client for the Growtopia proxy
+   * @param playerCountService store that keeps the online-count history
    */
   @Autowired
-  public GrowtopiaDetailService(GrowtopiaDetailClient client) {
-    this(client, Clock.systemUTC());
+  public GrowtopiaDetailService(
+      GrowtopiaProxyClient client, PlayerCountService playerCountService) {
+    this(client, playerCountService, Clock.systemUTC());
   }
 
-  /** Creates the service with an explicit time source for deterministic cache expiry. */
-  GrowtopiaDetailService(GrowtopiaDetailClient client, Clock clock) {
+  /** Creates the service with an explicit time source for deterministic expiry. */
+  GrowtopiaDetailService(
+      GrowtopiaProxyClient client, PlayerCountService playerCountService, Clock clock) {
     this.client = client;
+    this.playerCountService = playerCountService;
     this.clock = clock;
   }
 
   /**
-   * Returns the current Growtopia detail, using cache on failure.
+   * Polls the proxy, publishes the result, and records the online count.
    *
-   * <p>Workflow:
-   *
-   * <ol>
-   *   <li>Call the upstream API
-   *   <li>On success: store the response with its timestamp, return fresh data
-   *   <li>On {@link RestClientException}: log at WARN and delegate to {@link #fallback()}
-   * </ol>
-   *
-   * @return fresh {@link GrowtopiaDetail}, or a cached copy if the request fails and the cache is
-   *     younger than 24 hours, or {@code null} if no usable data exists
+   * <p>Never throws: a {@link RestClientException} is logged at WARN and the previous snapshot is
+   * left in place. A 403 is the expected outcome when running outside the proxy's allowlisted IP.
    */
-  @Nullable
-  public GrowtopiaDetail getDetail() {
+  public void refresh() {
     try {
-      GrowtopiaDetail fresh = client.getGrowtopiaDetail();
-      lastGood.set(new CachedDetail(fresh, clock.millis()));
-      logger.debug("Fetched fresh Growtopia detail");
-      return fresh;
+      ProxyPayload<GrowtopiaDetail> payload = client.getDetail();
+      Instant now = clock.instant();
+      snapshot.set(new DetailSnapshot(payload.data(), payload, now));
+
+      if (!payload.warnings().isEmpty()) {
+        logger.warn(
+            "Proxy reported {} shape warning(s) on /detail: {}",
+            payload.warnings().size(),
+            payload.warnings());
+      }
+
+      playerCountService.record(now, payload.data().onlineCount());
+      logger.debug(
+          "refresh: onlineCount={}, stale={}", payload.data().onlineCount(), payload.isStale());
     } catch (RestClientException e) {
-      logger.warn(
-          "Failed to fetch Growtopia detail: {}; attempting cached fallback", e.getMessage());
-      return fallback();
+      logger.warn("Failed to poll Growtopia detail: {}; keeping the last snapshot", e.getMessage());
     }
   }
 
   /**
-   * Returns the last good response if it is younger than 24 hours.
+   * Returns the most recently polled detail.
    *
-   * @return the cached detail, or {@code null} if absent or expired
+   * <p>Performs no I/O — the value comes from the last successful {@link #refresh()}.
+   *
+   * @return the current snapshot, or {@code null} when nothing has been polled yet or the last
+   *     success is older than 24 hours
    */
   @Nullable
-  private GrowtopiaDetail fallback() {
-    CachedDetail cached = lastGood.get();
-    long now = clock.millis();
-    if (cached != null && now - cached.at() < Duration.ofHours(24).toMillis()) {
-      logger.info(
-          "Returning cached detail (age {}m) after upstream failure",
-          (now - cached.at()) / 60000);
-      return cached.detail();
+  public DetailSnapshot getSnapshot() {
+    DetailSnapshot current = snapshot.get();
+    if (current == null) {
+      logger.debug("getSnapshot: no detail has been polled yet");
+      return null;
     }
-    logger.debug("No usable cached Growtopia detail is available");
-    return null;
+    Duration age = Duration.between(current.storedAt(), clock.instant());
+    if (age.compareTo(SNAPSHOT_LIFETIME) >= 0) {
+      logger.debug("getSnapshot: discarding snapshot aged {}m", age.toMinutes());
+      return null;
+    }
+    return current;
   }
 
   /**
-   * A successfully fetched detail paired with the time it was stored.
+   * A detail payload together with the envelope it arrived in.
    *
-   * @param detail the last good response
-   * @param at epoch milliseconds when the response was stored
+   * @param detail the parsed detail data
+   * @param payload the full envelope, which carries proxy staleness and shape warnings
+   * @param storedAt when Lockium received it
    */
-  private record CachedDetail(GrowtopiaDetail detail, long at) {}
+  public record DetailSnapshot(
+      GrowtopiaDetail detail, ProxyPayload<GrowtopiaDetail> payload, Instant storedAt) {}
 }

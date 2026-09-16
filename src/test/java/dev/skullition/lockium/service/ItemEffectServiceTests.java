@@ -250,7 +250,6 @@ class ItemEffectServiceTests {
     var properties =
         new LockiumProperties(
             "Enjoy your day!",
-            "https://growtopiagame.com/detail",
             "https://s3.amazonaws.com/world.growtopiagame.com/",
             Duration.ofHours(1),
             "https://growtopiawiki.com",
