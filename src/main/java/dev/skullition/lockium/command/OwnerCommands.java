@@ -179,7 +179,6 @@ public class OwnerCommands {
         event
             .replyComponents(ContainerUtil.createGenericContainer(components))
             .setAllowedMentions(List.of())
-            .setEphemeral(true)
             .useComponentsV2();
     if (attachment != null) {
       reply.addFiles(attachment);
