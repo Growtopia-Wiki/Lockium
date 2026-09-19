@@ -1,0 +1,17 @@
+delivery=initial
+ephemeral=true
+componentsV2=false
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ ],
+  "content" : "<:LOADING:1054633244> Reloaded all bot cache.",
+  "embeds" : [ ],
+  "flags" : 0,
+  "poll" : null,
+  "tts" : false
+}

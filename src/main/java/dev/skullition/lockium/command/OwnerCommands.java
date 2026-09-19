@@ -1,5 +1,7 @@
 package dev.skullition.lockium.command;
 
+import static dev.skullition.lockium.util.FormatUtil.formatNumber;
+
 import dev.skullition.lockium.service.ChiService;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
@@ -8,6 +10,7 @@ import dev.skullition.lockium.service.RiddleService;
 import dev.skullition.lockium.service.TreeFruitService;
 import dev.skullition.lockium.service.WikiCacheService;
 import dev.skullition.lockium.util.AppEmojis;
+import dev.skullition.lockium.util.ContainerUtil;
 import io.github.freya022.botcommands.api.commands.annotations.Command;
 import io.github.freya022.botcommands.api.commands.application.CommandScope;
 import io.github.freya022.botcommands.api.commands.application.annotations.Test;
@@ -16,8 +19,18 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import io.github.freya022.botcommands.api.core.BotOwners;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import net.dv8tion.jda.api.components.container.ContainerChildComponent;
+import net.dv8tion.jda.api.components.separator.Separator;
+import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.utils.FileUpload;
+import net.dv8tion.jda.api.utils.MarkdownSanitizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +41,7 @@ import org.slf4j.LoggerFactory;
  *
  * <ul>
  *   <li>{@code /owner activity} – update the bot's Discord presence
+ *   <li>{@code /owner guilds} – list every guild the bot is connected to
  *   <li>{@code /owner reload} – force a full refresh of all in-memory caches
  * </ul>
  *
@@ -39,6 +53,9 @@ import org.slf4j.LoggerFactory;
 @Command
 public class OwnerCommands {
   private static final Logger logger = LoggerFactory.getLogger(OwnerCommands.class);
+
+  /** Leaves room for the heading and component metadata below Discord's message limit. */
+  private static final int GUILD_LIST_INLINE_LENGTH = 3_000;
 
   private final TreeFruitService fruitService;
   private final WikiCacheService cacheService;
@@ -110,6 +127,67 @@ public class OwnerCommands {
   }
 
   /**
+   * Handles {@code /owner guilds}.
+   *
+   * <p>Lists the guilds already held by JDA's cache. Long lists are attached as a UTF-8 text file
+   * because Discord limits the combined text in a Components V2 message. {@link
+   * Guild#getMemberCount()} does not load or cache members, so this does not require the privileged
+   * member intent; without that intent, however, Discord does not keep the count updated between
+   * guild payloads.
+   *
+   * @param event the slash interaction
+   */
+  @JDASlashCommand(
+      name = "owner",
+      subcommand = "guilds",
+      description = "List every server the bot is in.")
+  public void onSlashGuilds(GuildSlashEvent event) {
+    if (rejectNonOwner(event)) {
+      return;
+    }
+
+    List<Guild> guilds = new ArrayList<>(event.getJDA().getGuilds());
+    guilds.sort(
+        Comparator.comparing(Guild::getName, String.CASE_INSENSITIVE_ORDER)
+            .thenComparing(Guild::getId));
+    logger.info(
+        "Owner {} requested the guild list in guild {}: guilds={}",
+        event.getUser().getId(),
+        event.getGuild().getId(),
+        guilds.size());
+
+    List<ContainerChildComponent> components = new ArrayList<>();
+    components.add(TextDisplay.of("## Servers (`%s`)".formatted(formatNumber(guilds.size()))));
+    components.add(Separator.create(true, Separator.Spacing.LARGE));
+    FileUpload attachment = null;
+    if (guilds.isEmpty()) {
+      components.add(TextDisplay.of("The bot is not connected to any servers."));
+    } else {
+      String guildList = createGuildList(guilds);
+      if (guildList.length() <= GUILD_LIST_INLINE_LENGTH) {
+        components.add(TextDisplay.of(guildList));
+      } else {
+        components.add(
+            TextDisplay.of(
+                "The complete server list is attached because it exceeds Discord's message "
+                    + "limit."));
+        attachment = FileUpload.fromData(guildList.getBytes(StandardCharsets.UTF_8), "guilds.txt");
+      }
+    }
+
+    var reply =
+        event
+            .replyComponents(ContainerUtil.createGenericContainer(components))
+            .setAllowedMentions(List.of())
+            .setEphemeral(true)
+            .useComponentsV2();
+    if (attachment != null) {
+      reply.addFiles(attachment);
+    }
+    reply.queue();
+  }
+
+  /**
    * Handles {@code /owner reload}.
    *
    * <p>Calls {@link WikiCacheService#refreshCaches()} to evict and re-fetch wiki data, then reloads
@@ -150,6 +228,17 @@ public class OwnerCommands {
         .reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING))
         .setEphemeral(true)
         .queue();
+  }
+
+  private static String createGuildList(List<Guild> guilds) {
+    StringBuilder content = new StringBuilder();
+    for (Guild guild : guilds) {
+      content.append(
+          "▫ %s — `%s` members\n"
+              .formatted(
+                  MarkdownSanitizer.escape(guild.getName()), formatNumber(guild.getMemberCount())));
+    }
+    return content.toString();
   }
 
   /**

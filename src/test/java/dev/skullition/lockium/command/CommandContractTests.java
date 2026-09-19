@@ -53,6 +53,7 @@ class CommandContractTests {
             "gt provider tackle",
             "gt provider science",
             "owner activity",
+            "owner guilds",
             "owner reload",
             "ping"),
         actual);

@@ -1,0 +1,36 @@
+delivery=initial
+ephemeral=true
+componentsV2=true
+allowedMentions=[]
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "## Servers (`2`)",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "▫ Alpha Server — `34` members\n▫ Zeta Server — `12` members\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}
