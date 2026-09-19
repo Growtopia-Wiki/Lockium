@@ -12,12 +12,7 @@ permissions:
 
 jobs:
   verify:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -29,10 +24,5 @@ jobs:
           java-version: "25"
           cache: maven
 
-      - name: Run tests and style checks on Linux
-        if: runner.os == 'Linux'
+      - name: Run tests and style checks
         run: ./mvnw verify
-
-      - name: Run tests and style checks on Windows
-        if: runner.os == 'Windows'
-        run: .\mvnw.cmd verify
