@@ -19,8 +19,7 @@ import org.jspecify.annotations.Nullable;
  *     omits the image
  */
 public record GrowtopiaDetail(
-    @JsonProperty("online_count") int onlineCount,
-    @JsonProperty("wotd") @Nullable String wotdUrl) {
+    @JsonProperty("online_count") int onlineCount, @JsonProperty("wotd") @Nullable String wotdUrl) {
 
   /**
    * Extracts the upper-cased world name from {@link #wotdUrl()}.

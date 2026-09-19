@@ -15,8 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GrowtopiaLeaderboardScheduler {
-  private static final Logger logger =
-      LoggerFactory.getLogger(GrowtopiaLeaderboardScheduler.class);
+  private static final Logger logger = LoggerFactory.getLogger(GrowtopiaLeaderboardScheduler.class);
 
   private final GrowtopiaLeaderboardService leaderboardService;
 

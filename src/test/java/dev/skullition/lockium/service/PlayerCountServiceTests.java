@@ -100,7 +100,8 @@ class PlayerCountServiceTests {
   private static PlayerCountService newService() {
     var dataSource = new DriverManagerDataSource();
     dataSource.setUrl(
-        "jdbc:h2:mem:pct-%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1"
+        ("jdbc:h2:mem:pct-%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;"
+                + "DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1")
             .formatted(UUID.randomUUID()));
     dataSource.setUsername("sa");
     dataSource.setPassword("");

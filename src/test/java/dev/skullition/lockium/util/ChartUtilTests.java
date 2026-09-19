@@ -19,8 +19,7 @@ class ChartUtilTests {
   @Test
   void rendersPngForTwoOrMoreSamples() {
     byte[] png =
-        ChartUtil.renderPlayerCountChart(
-            samples(10), 40_000, GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+        ChartUtil.renderPlayerCountChart(samples(10), 40_000, GrowtopiaTimeUtil.GROWTOPIA_ZONE);
 
     assertNotNull(png);
     // Exact bytes vary with the JDK's rasteriser, so assert the PNG signature instead.
@@ -37,21 +36,19 @@ class ChartUtilTests {
   }
 
   @Test
-  void returnsNullForASingleSample() {
-    assertNull(
-        ChartUtil.renderPlayerCountChart(samples(1), 100, GrowtopiaTimeUtil.GROWTOPIA_ZONE));
+  void returnsNullForSingleSample() {
+    assertNull(ChartUtil.renderPlayerCountChart(samples(1), 100, GrowtopiaTimeUtil.GROWTOPIA_ZONE));
   }
 
   @Test
-  void rendersAConstantSeries() {
+  void rendersConstantSeries() {
     List<PlayerCountSample> flat = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
       flat.add(new PlayerCountSample(START.plusSeconds(60L * i), 30_000));
     }
 
     // min == max would otherwise produce a zero-height axis.
-    assertNotNull(
-        ChartUtil.renderPlayerCountChart(flat, 30_000, GrowtopiaTimeUtil.GROWTOPIA_ZONE));
+    assertNotNull(ChartUtil.renderPlayerCountChart(flat, 30_000, GrowtopiaTimeUtil.GROWTOPIA_ZONE));
   }
 
   @Test
@@ -67,9 +64,9 @@ class ChartUtilTests {
 
   @Test
   void leavesShortSeriesUntouched() {
-    List<PlayerCountSample> short_ = samples(20);
+    List<PlayerCountSample> shortSeries = samples(20);
 
-    assertEquals(short_, ChartUtil.downsample(short_));
+    assertEquals(shortSeries, ChartUtil.downsample(shortSeries));
   }
 
   @Test

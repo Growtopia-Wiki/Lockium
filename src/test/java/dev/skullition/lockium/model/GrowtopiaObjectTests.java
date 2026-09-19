@@ -15,12 +15,7 @@ class GrowtopiaObjectTests {
   }
 
   @ParameterizedTest
-  @CsvSource({
-    "#123, FF112233",
-    "#1234, 44112233",
-    "#112233, FF112233",
-    "#11223344, 44112233"
-  })
+  @CsvSource({"#123, FF112233", "#1234, 44112233", "#112233, FF112233", "#11223344, 44112233"})
   void convertsRgbaHexToArgb(String hex, String expectedHex) {
     int expected = (int) Long.parseLong(expectedHex, 16);
 

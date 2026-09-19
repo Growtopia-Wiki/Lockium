@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 /**
  * In-memory lookup for ancestral riddles.
  *
- * <p>Data is loaded once at startup from {@code classpath:data/AncestralRiddles.txt} (format
- * {@code description|itemId|count}). The file is static reference data used by {@code /gt riddle}
- * to find which block an in-game ancestral riddle requires.
+ * <p>Data is loaded once at startup from {@code classpath:data/AncestralRiddles.txt} (format {@code
+ * description|itemId|count}). The file is static reference data used by {@code /gt riddle} to find
+ * which block an in-game ancestral riddle requires.
  *
  * <p>Lines starting with {@code //} or blank lines are ignored. Malformed lines are logged and
  * skipped.

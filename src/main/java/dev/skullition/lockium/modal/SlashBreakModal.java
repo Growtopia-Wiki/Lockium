@@ -39,9 +39,9 @@ import org.slf4j.LoggerFactory;
  * </ul>
  *
  * <p>Clothing block bonuses (all of the above except Lucky!) are capped at {@value
- * #CLOTHING_BONUS_CAP}% in-game. Due to an in-game oversight, the Winter Wishing Star's 2% is
- * added <em>after</em> the cap check, so the actual observed maximum is 17%. This handler
- * replicates that behavior.
+ * #CLOTHING_BONUS_CAP}% in-game. Due to an in-game oversight, the Winter Wishing Star's 2% is added
+ * <em>after</em> the cap check, so the actual observed maximum is 17%. This handler replicates that
+ * behavior.
  *
  * <p>Data is passed from the slash command via {@code @ModalData} to avoid re-fetching the Wiki
  * API. Results are rendered using Discord Components V2.
@@ -247,8 +247,7 @@ public class SlashBreakModal {
 
     String baseBlockDropFormatted = formatNumber(baseBlockDrop);
     String baseBlockSeedDropFormatted = formatNumber(baseSeedDrop);
-    String totalBlocksAndSeedsFormatted =
-        formatNumber(baseSeedDrop + seedsFromDroppedBlocks);
+    String totalBlocksAndSeedsFormatted = formatNumber(baseSeedDrop + seedsFromDroppedBlocks);
     String gemDropsFormatted = formatNumber(gemDrops);
     components.add(
         TextDisplay.of(
@@ -269,9 +268,7 @@ public class SlashBreakModal {
     Container container = ItemUtils.createItemContainer(itemDetail, itemCatalogue, components);
     logger.debug(
         "onBreakModal: completed itemId={}, farmable={}, clothingBonus={}%",
-        item.id(),
-        isFarmable,
-        clothingBonus);
+        item.id(), isFarmable, clothingBonus);
     event.replyComponents(container).useComponentsV2().queue();
   }
 

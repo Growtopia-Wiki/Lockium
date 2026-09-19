@@ -2,8 +2,8 @@ package dev.skullition.lockium.service;
 
 import dev.skullition.lockium.client.GrowtopiaProxyClient;
 import dev.skullition.lockium.model.GrowtopiaLeaderboard;
-import dev.skullition.lockium.model.League;
 import dev.skullition.lockium.model.LeaderboardEntry;
+import dev.skullition.lockium.model.League;
 import dev.skullition.lockium.model.ProxyPayload;
 import java.time.Clock;
 import java.time.Duration;

@@ -41,7 +41,7 @@ class GrowtopiaLeaderboardServiceTests {
   }
 
   @Test
-  void returnsNullForABoardTheProxyDidNotSend() {
+  void returnsNullForBoardTheProxyDidNotSend() {
     GrowtopiaProxyClient client = mock(GrowtopiaProxyClient.class);
     when(client.getLeaderboard()).thenReturn(payload());
     GrowtopiaLeaderboardService service = new GrowtopiaLeaderboardService(client, fixedClock());

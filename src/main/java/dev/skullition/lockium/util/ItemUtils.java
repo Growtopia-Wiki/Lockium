@@ -70,8 +70,8 @@ public class ItemUtils {
   /**
    * Removes Growtopia color codes from an item name.
    *
-   * <p>The game encodes text colors as a backtick followed by one character (e.g. {@code
-   * `6Immortal Dirt}, {@code ``} to reset). A dangling trailing backtick is also removed.
+   * <p>The game encodes text colors as a backtick followed by one character (e.g. {@code `6Immortal
+   * Dirt}, {@code ``} to reset). A dangling trailing backtick is also removed.
    *
    * @param itemName raw name from the API; may contain color codes
    * @return the name without color codes

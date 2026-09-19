@@ -34,8 +34,7 @@ class ItemsResponseTests {
     ItemsResponse response = JsonMapper.builder().build().readValue(json, ItemsResponse.class);
 
     assertEquals(List.of(10, 11), response.items().keySet().stream().toList());
-    assertEquals(
-        new ItemCatalogue(10, 20, 21, "Dirt", "Dirt Seed"), response.items().get(10));
+    assertEquals(new ItemCatalogue(10, 20, 21, "Dirt", "Dirt Seed"), response.items().get(10));
     assertEquals("Bedrock", response.items().get(11).itemName());
     assertNull(response.items().get(11).seedName());
   }

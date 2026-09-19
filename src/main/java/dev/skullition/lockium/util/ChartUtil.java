@@ -25,8 +25,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Renders the online-player history as a PNG line chart.
  *
- * <p>Colours follow the Growtopia Wiki's own scheme so the image sits naturally beside the site:
- * a deep teal ground, a light cyan accent for the series, and white text.
+ * <p>Colours follow the Growtopia Wiki's own scheme so the image sits naturally beside the site: a
+ * deep teal ground, a light cyan accent for the series, and white text.
  *
  * <p>Rendering is pure computation with no Spring dependencies, matching {@link FormatUtil} and
  * {@link ItemUtils}. A failure never propagates — callers receive {@code null} and are expected to

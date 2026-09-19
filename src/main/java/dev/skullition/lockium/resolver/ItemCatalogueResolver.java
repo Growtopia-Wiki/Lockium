@@ -16,22 +16,24 @@ import org.slf4j.LoggerFactory;
 /**
  * BotCommands resolver that converts a slash-command string into an {@link ItemCatalogue}.
  *
- * <p>Register this once with {@code @Resolver} and any command parameter of type
- * {@code ItemCatalogue} will be automatically resolved:
+ * <p>Register this once with {@code @Resolver} and any command parameter of type {@code
+ * ItemCatalogue} will be automatically resolved:
+ *
  * <pre>
  * public void onSlashItem(ItemCatalogue item) { ... }
  * </pre>
  *
  * <p>Resolution steps:
+ *
  * <ol>
- *   <li>Discord sends the raw string</li>
- *   <li>Whitespace is trimmed</li>
+ *   <li>Discord sends the raw string
+ *   <li>Whitespace is trimmed
  *   <li>{@link WikiService#findByName(String)} performs an exact lookup with a normalized-prefix
- *       fallback</li>
+ *       fallback
  * </ol>
  *
- * <p>If no match is found, {@code null} is returned and BotCommands replies
- * with the standard "Invalid option" message, keeping command handlers clean.
+ * <p>If no match is found, {@code null} is returned and BotCommands replies with the standard
+ * "Invalid option" message, keeping command handlers clean.
  *
  * @see WikiService
  */
@@ -72,8 +74,7 @@ public class ItemCatalogueResolver
     if (item == null) {
       logger.debug("resolveItemByName: rejected unresolved itemName={}", itemName);
     } else {
-      logger.debug(
-          "resolveItemByName: itemName={} resolved to itemId={}", itemName, item.itemId());
+      logger.debug("resolveItemByName: itemName={} resolved to itemId={}", itemName, item.itemId());
     }
     return item;
   }

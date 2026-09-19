@@ -19,10 +19,9 @@ import org.springframework.context.annotation.Configuration;
  * <p>Registering this bean enables BotCommands' database-backed features, such as persistent
  * components and the database application-commands cache.
  *
- * <p><b>Consequence:</b> with this bean present BotCommands validates its own schema during
- * startup and refuses to start unless {@code bc.bc_version} reads {@code 3.0.0}. {@link
- * FlywayConfig} is what puts it there, which is why the framework migration runs ahead of the
- * application's own.
+ * <p><b>Consequence:</b> with this bean present BotCommands validates its own schema during startup
+ * and refuses to start unless {@code bc.bc_version} reads {@code 3.0.0}. {@link FlywayConfig} is
+ * what puts it there, which is why the framework migration runs ahead of the application's own.
  *
  * @see FlywayConfig
  */

@@ -39,8 +39,8 @@ import org.springframework.web.client.RestClientResponseException;
  * <ul>
  *   <li><b>Seed</b> – the curated {@code classpath:data/Effects.txt}; unreadable seed data fails
  *       startup.
- *   <li><b>Overlay</b> – the external file at {@code ${lockium.scraped-effects-path}}, holding
- *       only rows scraped at runtime; missing or unreadable overlay data is tolerated.
+ *   <li><b>Overlay</b> – the external file at {@code ${lockium.scraped-effects-path}}, holding only
+ *       rows scraped at runtime; missing or unreadable overlay data is tolerated.
  * </ul>
  *
  * <p>Both files use {@code itemId|name|applyMessage|removeMessage}. Blank lines and lines beginning
@@ -52,9 +52,9 @@ import org.springframework.web.client.RestClientResponseException;
  * 404 or page without an {@code Item/Mod} template is negative-cached as an immutable empty list.
  * Transient HTTP failures are not cached and can be retried by a later lookup.
  *
- * <p>Thread safety: immutable effect lists are held in a {@link ConcurrentHashMap}. Atomic
- * {@code computeIfAbsent} calls serialize scrapes for the same ID, a read/write lock prevents a
- * runtime reload from racing with a scrape, and appends to the overlay are serialized separately.
+ * <p>Thread safety: immutable effect lists are held in a {@link ConcurrentHashMap}. Atomic {@code
+ * computeIfAbsent} calls serialize scrapes for the same ID, a read/write lock prevents a runtime
+ * reload from racing with a scrape, and appends to the overlay are serialized separately.
  */
 @Service
 public class ItemEffectService {
@@ -72,8 +72,7 @@ public class ItemEffectService {
   private final ReentrantReadWriteLock stateLock = new ReentrantReadWriteLock();
   private final GrowtopiaWikiClient wikiClient;
   private final LockiumProperties lockiumProperties;
-  private volatile ConcurrentHashMap<Integer, List<ItemEffect>> effects =
-      new ConcurrentHashMap<>();
+  private volatile ConcurrentHashMap<Integer, List<ItemEffect>> effects = new ConcurrentHashMap<>();
 
   /**
    * Creates the service.

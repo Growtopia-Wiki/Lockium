@@ -72,9 +72,9 @@ class ItemEffectServiceTests {
     Files.writeString(
         overlay,
         """
-                    98|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
-                    98|Additional Effect|Applied.|Removed.|ignored
-                    """,
+        98|Enhanced Digging|You can smash bricks more quickly.|Smash time is over.
+        98|Additional Effect|Applied.|Removed.|ignored
+        """,
         StandardCharsets.UTF_8);
     GrowtopiaWikiClient wikiClient = mock(GrowtopiaWikiClient.class);
     ItemEffectService service = createService(wikiClient, overlay);

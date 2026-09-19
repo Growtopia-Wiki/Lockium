@@ -26,9 +26,12 @@ import org.junit.jupiter.api.Test;
  */
 class FlywayMigrationTests {
 
-  /** Connection settings mirroring {@code spring.datasource.url} in {@code application.properties}. */
+  /**
+   * Connection settings mirroring {@code spring.datasource.url} in {@code application.properties}.
+   */
   private static String jdbcUrl() {
-    return "jdbc:h2:mem:flyway-%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1"
+    return ("jdbc:h2:mem:flyway-%s;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;"
+            + "DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1")
         .formatted(UUID.randomUUID());
   }
 

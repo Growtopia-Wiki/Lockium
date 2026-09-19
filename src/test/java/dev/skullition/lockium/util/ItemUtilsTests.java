@@ -15,12 +15,13 @@ class ItemUtilsTests {
   @ParameterizedTest
   @CsvSource(
       delimiter = '|',
-      textBlock = """
-      Plain Dirt | Plain Dirt
-      `6Colored Dirt | Colored Dirt
-      ``Reset Dirt | Reset Dirt
-      ` | ''
-      """)
+      textBlock =
+          """
+          Plain Dirt | Plain Dirt
+          `6Colored Dirt | Colored Dirt
+          ``Reset Dirt | Reset Dirt
+          ` | ''
+          """)
   void stripsGrowtopiaColorCodes(String input, String expected) {
     assertEquals(expected, ItemUtils.stripColorCodes(input));
   }

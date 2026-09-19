@@ -6,9 +6,9 @@ import java.util.Locale;
  * US-locale number formatting helpers for user-facing output.
  *
  * <p>All numbers shown to Discord users are formatted with {@link Locale#US} so the output is
- * stable regardless of the JVM's default locale (e.g. {@code 1,234,567} and {@code 3.5} rather
- * than {@code 1.234.567} and {@code 3,5}). Import these methods statically instead of calling
- * {@code String.format(Locale.US, ...)} inline.
+ * stable regardless of the JVM's default locale (e.g. {@code 1,234,567} and {@code 3.5} rather than
+ * {@code 1.234.567} and {@code 3,5}). Import these methods statically instead of calling {@code
+ * String.format(Locale.US, ...)} inline.
  *
  * <p>When the codebase migrates to Kotlin, these are intended to become extension functions (e.g.
  * {@code Long.toFormattedString()}).

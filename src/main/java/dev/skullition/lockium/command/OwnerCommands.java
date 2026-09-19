@@ -131,7 +131,7 @@ public class OwnerCommands {
         "Owner {} requested a full cache reload in guild {}",
         event.getUser().getId(),
         event.getGuild().getId());
-    long start = System.nanoTime();
+    final long start = System.nanoTime();
     cacheService.refreshCaches();
     fruitService.reload();
     chiService.reload();

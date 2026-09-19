@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
 /**
  * Slash commands under {@code /gt provider} for provider-block earning estimates.
  *
- * <p>Providers are blocks that produce items over time (ATMs, Tackle Boxes, Science
- * Stations). All commands are pure calculations over hardcoded in-game drop rates - no external
- * API calls are made.
+ * <p>Providers are blocks that produce items over time (ATMs, Tackle Boxes, Science Stations). All
+ * commands are pure calculations over hardcoded in-game drop rates - no external API calls are
+ * made.
  */
 @Command
 public class ProviderCommands {
@@ -33,8 +33,10 @@ public class ProviderCommands {
 
   /** In-game item ID of the ATM, used for the sprite thumbnail. */
   private static final int ATM_MACHINE_ID = 1008;
+
   /** In-game item ID of the Tackle Box, used for the sprite thumbnail. */
   private static final int TACKLE_BOX_ID = 3044;
+
   /** Tackle Box drop pool with in-game weights. */
   private static final List<TackleDrop> TACKLE_DROPS =
       List.of(
@@ -45,8 +47,10 @@ public class ProviderCommands {
           new TackleDrop("Shrimp Lure", 100),
           new TackleDrop("Uranium Glowing Lure", 50),
           new TackleDrop("Mega-Pellet Bait", 50));
+
   /** In-game item ID of the Science Station, used for the sprite thumbnail. */
   private static final int SCIENCE_STATION_ID = 928;
+
   /** Science Station chemical drop chances, in percent. */
   private static final List<ChemicalDrop> CHEMICAL_DROPS =
       List.of(
@@ -59,8 +63,8 @@ public class ProviderCommands {
   /**
    * Handles {@code /gt provider atm}.
    *
-   * <p>Estimates gem earnings from harvesting ATMs. Every ATM drops 1-19 gems (average
-   * 10), and one in a hundred harvests is a jackpot of 100 gems.
+   * <p>Estimates gem earnings from harvesting ATMs. Every ATM drops 1-19 gems (average 10), and one
+   * in a hundred harvests is a jackpot of 100 gems.
    *
    * @param event the slash interaction
    * @param atmCount number of ATMs harvested per day; must be between 1 and 500,000 (inclusive)
@@ -125,8 +129,8 @@ public class ProviderCommands {
   /**
    * Handles {@code /gt provider tackle}.
    *
-   * <p>Estimates bait drops from harvesting Tackle Boxes. Each drop is picked from a weighted
-   * pool, and every harvest yields 1.5 items on average.
+   * <p>Estimates bait drops from harvesting Tackle Boxes. Each drop is picked from a weighted pool,
+   * and every harvest yields 1.5 items on average.
    *
    * @param event the slash interaction
    * @param tackleCount number of Tackle Boxes harvested per day; must be between 50 and 500,000
@@ -138,7 +142,8 @@ public class ProviderCommands {
       subcommand = "tackle",
       description = "Estimates Tackle Box earnings.")
   public void onSlashTackle(
-      GlobalSlashEvent event, @SlashOption(description = "How many Tackle Boxes?") long tackleCount) {
+      GlobalSlashEvent event,
+      @SlashOption(description = "How many Tackle Boxes?") long tackleCount) {
     logger.debug("onSlashTackle: tackleCount={}", tackleCount);
     if (tackleCount < 50 || tackleCount > 500_000) {
       logger.debug("onSlashTackle: rejected tackleCount={}", tackleCount);

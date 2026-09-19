@@ -104,8 +104,6 @@ class ProxyPayloadTests {
     assertNull(bronze.league());
 
     // An overall entry maps back to the board it came from.
-    assertEquals(
-        League.SAPPHIRE_3,
-        League.fromApiKey(leaderboard.overall().getFirst().league()));
+    assertEquals(League.SAPPHIRE_3, League.fromApiKey(leaderboard.overall().getFirst().league()));
   }
 }

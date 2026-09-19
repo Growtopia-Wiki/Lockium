@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * credentials are required because the complete production context connects to both services.
  */
 @SpringBootTest
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 class LockiumApplicationIT {
 
   @Test

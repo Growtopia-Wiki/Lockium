@@ -43,8 +43,8 @@ public class WorldRenderService {
    * Checks whether a render exists for the given world.
    *
    * @param worldName the world name; case-insensitive, stored lower-case on the bucket
-   * @return the render URL and last render time, or empty if the world has no render or the
-   *     request failed
+   * @return the render URL and last render time, or empty if the world has no render or the request
+   *     failed
    */
   public Optional<WorldRender> fetchWorldRender(String worldName) {
     String fileName = worldName.toLowerCase(Locale.US) + ".png";
@@ -77,8 +77,8 @@ public class WorldRenderService {
    * Result of a successful render lookup.
    *
    * @param url absolute URL of the render image
-   * @param lastModified when the world was last rendered, or {@code null} if the header was
-   *     missing or unparseable
+   * @param lastModified when the world was last rendered, or {@code null} if the header was missing
+   *     or unparseable
    */
   public record WorldRender(String url, @Nullable Instant lastModified) {}
 }

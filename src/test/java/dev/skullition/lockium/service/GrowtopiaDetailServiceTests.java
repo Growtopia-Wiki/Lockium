@@ -109,8 +109,7 @@ class GrowtopiaDetailServiceTests {
     var stale =
         new ProxyPayload.Stale("origin", "origin /detail returned 403", START.minusSeconds(600));
     when(client.getDetail())
-        .thenReturn(
-            new ProxyPayload<>(START, List.of(), new GrowtopiaDetail(42, null), stale));
+        .thenReturn(new ProxyPayload<>(START, List.of(), new GrowtopiaDetail(42, null), stale));
     GrowtopiaDetailService service =
         new GrowtopiaDetailService(client, playerCountService, fixedClock());
 

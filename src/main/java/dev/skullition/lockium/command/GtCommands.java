@@ -1314,8 +1314,7 @@ public class GtCommands {
 
     GrowtopiaDetail detail = snapshot.detail();
     int onlineUsers = detail.onlineCount();
-    logger.debug(
-        "onSlashStats: onlineUsers={}, worldName={}", onlineUsers, detail.wotdName());
+    logger.debug("onSlashStats: onlineUsers={}, worldName={}", onlineUsers, detail.wotdName());
 
     String status;
     if (onlineUsers <= 0) {
@@ -1353,8 +1352,7 @@ public class GtCommands {
     List<PlayerCountSample> samples =
         playerCountService.since(Instant.now().minus(proxyProperties.graphWindow()));
     byte[] chart =
-        ChartUtil.renderPlayerCountChart(
-            samples, onlineUsers, GrowtopiaTimeUtil.GROWTOPIA_ZONE);
+        ChartUtil.renderPlayerCountChart(samples, onlineUsers, GrowtopiaTimeUtil.GROWTOPIA_ZONE);
 
     FileUpload upload = null;
     components.add(Separator.create(true, Separator.Spacing.SMALL));
@@ -1413,8 +1411,7 @@ public class GtCommands {
       return;
     }
 
-    List<LeaderboardEntry> entries =
-        league == null ? snapshot.overall() : snapshot.board(league);
+    List<LeaderboardEntry> entries = league == null ? snapshot.overall() : snapshot.board(league);
     if (entries == null || entries.isEmpty()) {
       logger.debug("onSlashLeaderboard: rejected empty board for league={}", league);
       event.reply("That league board is empty right now.").queue();
@@ -1423,8 +1420,7 @@ public class GtCommands {
 
     List<ContainerChildComponent> components = new ArrayList<>();
     components.add(
-        TextDisplay.of(
-            "## %s Growtopia Leaderboard".formatted(AppEmojis.CHALLENGE_BOARD)));
+        TextDisplay.of("## %s Growtopia Leaderboard".formatted(AppEmojis.CHALLENGE_BOARD)));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
     components.add(
         TextDisplay.of(
@@ -1455,11 +1451,7 @@ public class GtCommands {
     components.add(TextDisplay.of(freshnessNote(snapshot.payload(), snapshot.storedAt())));
 
     Container container = ContainerUtil.createGenericContainer(components);
-    event
-        .replyComponents(container)
-        .setAllowedMentions(List.of())
-        .useComponentsV2()
-        .queue();
+    event.replyComponents(container).setAllowedMentions(List.of()).useComponentsV2().queue();
   }
 
   /**
