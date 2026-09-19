@@ -1,0 +1,56 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "accessory" : {
+        "media" : {
+          "url" : "https://cdn.growtopiawiki.com/sprites/3044.png"
+        },
+        "spoiler" : false,
+        "type" : 11
+      },
+      "components" : [ {
+        "content" : "### Harvesting 1,000 Tackle Boxes",
+        "type" : 10
+      }, {
+        "content" : "-# Tackle Boxes cost 10,000 Gems from the Fishin' Pack.",
+        "type" : 10
+      } ],
+      "type" : 9
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "▫ Wiggly Worms: `~468`\n▫ Shiny Flashy Worms: `~375`\n▫ Salmon Eggs: `~281`\n▫ Fishing Fly: `~187`\n▫ Shrimp Lure: `~93`\n▫ Uranium Glowing Lure: `~46`\n▫ Mega-Pellet Bait: `~46`\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "▫ Tackle Box Cost (3/3.5 WLs each) -> `3,000-3,500` <:WORLD_LOCK:972401112>\n▫ Cost from Store: `10,000,000` gems",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

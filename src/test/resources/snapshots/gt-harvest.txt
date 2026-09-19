@@ -1,0 +1,79 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 6043943,
+    "components" : [ {
+      "accessory" : {
+        "media" : {
+          "url" : "https://cdn.growtopiawiki.com/sprites/2.png"
+        },
+        "spoiler" : false,
+        "type" : 11
+      },
+      "components" : [ {
+        "content" : "## [Dirt Seed](https://growtopiawiki.com/w/Dirt_Seed)",
+        "type" : 10
+      }, {
+        "content" : "It's dirt.",
+        "type" : 10
+      } ],
+      "type" : 9
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "### Harvesting 1,000 Dirt Trees.",
+      "type" : 10
+    }, {
+      "content" : "<:TRACTOR:3945563671> Item is farmable.",
+      "type" : 10
+    }, {
+      "content" : "<:DIRT_BLOCK:1922282421> Block drops: ~**3,750**",
+      "type" : 10
+    }, {
+      "content" : "<:FUEL:2169270> Extra block drops with harvester: `~375` (Total `~4,125`) (**100 fuel packs consumed**)",
+      "type" : 10
+    }, {
+      "content" : "<:DREAMCATCHER:3292733253> Extra block drops with Dreamcatcher Staff: `~75` (Total `~3,825`) (**2% per fruit**)",
+      "type" : 10
+    }, {
+      "content" : "<:GEM:70447> Gem drops: `~1,000` (`~1` per tree)",
+      "type" : 10
+    }, {
+      "content" : "<:DIRT_SEED:2279265833> Seed drops: `125` seeds. (`~13`% chance.)",
+      "type" : 10
+    }, {
+      "content" : "`~1,063` seeds after harvesting and breaking blocks from trees, `313` block drop from blocks.",
+      "type" : 10
+    }, {
+      "content" : "<:FUEL:2169270> Harvester: `~1,031` seeds + `344` blocks after breaking, using harvester.",
+      "type" : 10
+    }, {
+      "content" : "<:TICKING_CLOCK:1039089716> Approximately `4m 37s` to harvest all the trees.",
+      "type" : 10
+    }, {
+      "content" : "### <:CHECKBOX_ENABLED:4052833957> TOTAL: 1,141 seeds after one cycle, ~1,255 with harvester, ~1,164 with staff, ~1,278 with both.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# With love, by the [Growtopia Wiki](https://growtopiawiki.com).",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

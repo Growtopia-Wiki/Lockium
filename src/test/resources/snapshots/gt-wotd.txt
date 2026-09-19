@@ -1,0 +1,41 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "## <:WOTD:2670408> WOTD: GROWTOPIAWIKI",
+      "type" : 10
+    }, {
+      "items" : [ {
+        "description" : null,
+        "media" : {
+          "url" : "https://world.example/growtopiawiki.png"
+        },
+        "spoiler" : false
+      } ],
+      "type" : 12
+    }, {
+      "content" : "-# Last updated <t:1783185690:R>.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

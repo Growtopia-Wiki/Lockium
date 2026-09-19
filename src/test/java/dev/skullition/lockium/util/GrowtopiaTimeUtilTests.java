@@ -2,11 +2,23 @@ package dev.skullition.lockium.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 /** Tests English ordinal suffix boundaries used by Growtopia timestamps. */
 class GrowtopiaTimeUtilTests {
+
+  @Test
+  void formatsTimeFromAnExplicitClock() {
+    Clock clock = Clock.fixed(Instant.parse("2026-07-04T17:22:00Z"), ZoneOffset.UTC);
+
+    assertEquals(
+        "Growtopia Time (EDT/UTC-4): July 4th, 13:22.", GrowtopiaTimeUtil.nowString(clock));
+  }
 
   @ParameterizedTest
   @CsvSource({

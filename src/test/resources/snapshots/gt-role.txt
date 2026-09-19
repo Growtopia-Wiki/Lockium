@@ -1,0 +1,43 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "## <:FARMER:2066588515> Farmer",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "### Experience to reach Level\n▫ Lv.**1**: `1,300` xp required (Total `1,300`)\n▫ Lv.**2**: `5,200` xp required (Total `6,500`)\n▫ Lv.**3**: `11,700` xp required (Total `18,200`)\n▫ Lv.**4**: `20,800` xp required (Total `39,000`)\n▫ Lv.**5**: `32,500` xp required (Total `71,500`)\n▫ Lv.**6**: `46,800` xp required (Total `118,300`)\n▫ Lv.**7**: `63,700` xp required (Total `182,000`)\n▫ Lv.**8**: `83,200` xp required (Total `265,200`)\n▫ Lv.**9**: `105,300` xp required (Total `370,500`)\n▫ Lv.**10**: `130,000` xp required (Total `500,500`)\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "### Quest Costs per Day\n▫ **1** quest(s): `0` gems (Total `0`)\n▫ **2** quest(s): `3,000` gems (Total `3,000`)\n▫ **3** quest(s): `12,000` gems (Total `15,000`)\n▫ **4** quest(s): `27,000` gems (Total `42,000`)\n▫ **5** quest(s): `48,000` gems (Total `90,000`)\n▫ **6** quest(s): `75,000` gems (Total `165,000`)\n▫ **7** quest(s): `108,000` gems (Total `273,000`)\n▫ **8** quest(s): `147,000` gems (Total `420,000`)\n▫ **9** quest(s): `192,000` gems (Total `612,000`)\n▫ **10** quest(s): `243,000` gems (Total `855,000`)\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

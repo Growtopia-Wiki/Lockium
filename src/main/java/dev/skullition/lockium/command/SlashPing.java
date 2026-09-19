@@ -6,6 +6,7 @@ import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlash
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import java.util.concurrent.TimeUnit;
+import java.util.function.LongSupplier;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
 import org.slf4j.Logger;
@@ -34,13 +35,20 @@ public class SlashPing {
   /** Service used to probe the Wiki API. */
   private final WikiService wiki;
 
+  private final LongSupplier nanoTime;
+
   /**
    * Creates the ping command.
    *
    * @param wiki the Wiki service, injected by Spring
    */
   public SlashPing(WikiService wiki) {
+    this(wiki, System::nanoTime);
+  }
+
+  SlashPing(WikiService wiki, LongSupplier nanoTime) {
     this.wiki = wiki;
+    this.nanoTime = nanoTime;
   }
 
   /**
@@ -85,10 +93,10 @@ public class SlashPing {
    * @return elapsed time in milliseconds, or {@code -1} if the call throws
    */
   private long pingMillis() {
-    long start = System.nanoTime();
+    long start = nanoTime.getAsLong();
     try {
       wiki.health();
-      return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+      return TimeUnit.NANOSECONDS.toMillis(nanoTime.getAsLong() - start);
     } catch (Exception e) {
       logger.warn("Wiki API ping failed: {}", e.getMessage());
       return -1;

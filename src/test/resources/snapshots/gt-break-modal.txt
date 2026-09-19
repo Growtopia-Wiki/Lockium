@@ -1,0 +1,63 @@
+delivery=modal
+ephemeral=false
+componentsV2=false
+allowedMentions=null
+attachments=[]
+payload={
+  "components" : [ {
+    "component" : {
+      "custom_id" : "SlashBreak: lucky",
+      "options" : [ {
+        "label" : "Yes",
+        "value" : "True"
+      }, {
+        "label" : "No",
+        "value" : "False"
+      } ],
+      "type" : 21
+    },
+    "description" : null,
+    "label" : "Using Lucky! mod?",
+    "type" : 18
+  }, {
+    "component" : {
+      "custom_id" : "SlashBreak: clothing",
+      "disabled" : false,
+      "max_values" : 3,
+      "min_values" : 0,
+      "options" : [ {
+        "default" : false,
+        "label" : "Buddy's Block Head (+2% blocks)",
+        "value" : "BBH"
+      }, {
+        "default" : false,
+        "label" : "Galaxy Skin (+10% blocks)",
+        "value" : "GALAXY"
+      }, {
+        "default" : false,
+        "label" : "Winter Wishing Star (+2% blocks)",
+        "value" : "STAR"
+      } ],
+      "required" : false,
+      "type" : 3
+    },
+    "description" : null,
+    "label" : "Clothing bonuses?",
+    "type" : 18
+  }, {
+    "component" : {
+      "custom_id" : "SlashBreak: ances",
+      "max_length" : 1,
+      "min_length" : 1,
+      "required" : true,
+      "style" : 1,
+      "type" : 4,
+      "value" : "0"
+    },
+    "description" : null,
+    "label" : "Ancestral Tesseract level?",
+    "type" : 18
+  } ],
+  "custom_id" : "break-test",
+  "title" : "Break Dirt"
+}

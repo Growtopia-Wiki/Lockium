@@ -1,0 +1,17 @@
+delivery=edit-original
+ephemeral=true
+componentsV2=false
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ ],
+  "content" : "Pong! Discord: 42 ms. | Wiki API: 5ms",
+  "embeds" : [ ],
+  "flags" : 0,
+  "poll" : null,
+  "tts" : false
+}

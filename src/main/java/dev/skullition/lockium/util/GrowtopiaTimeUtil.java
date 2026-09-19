@@ -1,5 +1,6 @@
 package dev.skullition.lockium.util;
 
+import java.time.Clock;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,7 +30,17 @@ public class GrowtopiaTimeUtil {
    * @return the current time in {@link #GROWTOPIA_ZONE}
    */
   public static ZonedDateTime now() {
-    return ZonedDateTime.now(GROWTOPIA_ZONE);
+    return now(Clock.systemUTC());
+  }
+
+  /**
+   * Returns the current Growtopia time from the supplied clock.
+   *
+   * @param clock time source
+   * @return the current time in {@link #GROWTOPIA_ZONE}
+   */
+  public static ZonedDateTime now(Clock clock) {
+    return ZonedDateTime.now(clock).withZoneSameInstant(GROWTOPIA_ZONE);
   }
 
   /**
@@ -40,7 +51,17 @@ public class GrowtopiaTimeUtil {
    * @return human-readable Growtopia time, including the zone abbreviation and UTC offset
    */
   public static String nowString() {
-    ZonedDateTime now = now();
+    return nowString(Clock.systemUTC());
+  }
+
+  /**
+   * Formats the current Growtopia time from the supplied clock for display.
+   *
+   * @param clock time source
+   * @return human-readable Growtopia time, including the zone abbreviation and UTC offset
+   */
+  public static String nowString(Clock clock) {
+    ZonedDateTime now = now(clock);
     int offsetHours = now.getOffset().getTotalSeconds() / 3600;
     return "Growtopia Time (%s/UTC%d): %s %d%s, %s."
         .formatted(

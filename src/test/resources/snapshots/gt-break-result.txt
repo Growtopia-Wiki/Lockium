@@ -1,0 +1,73 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 6043943,
+    "components" : [ {
+      "accessory" : {
+        "media" : {
+          "url" : "https://cdn.growtopiawiki.com/sprites/2.png"
+        },
+        "spoiler" : false,
+        "type" : 11
+      },
+      "components" : [ {
+        "content" : "## [Dirt Seed](https://growtopiawiki.com/w/Dirt_Seed)",
+        "type" : 10
+      }, {
+        "content" : "It's dirt.",
+        "type" : 10
+      } ],
+      "type" : 9
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "<:TRACTOR:3945563671> Item is farmable.",
+      "type" : 10
+    }, {
+      "content" : "### Optional Items Used:",
+      "type" : 10
+    }, {
+      "content" : "<:LUCKY_CLOVER:1297287700> **Lucky! effect** (10% chance of triggering) - Increased chance of block drops and 5x gems.",
+      "type" : 10
+    }, {
+      "content" : "<:ANCES_TESSERACT:1832660249> Ancestral Tesseract of Dimensions Lv.6 (10% extra blocks).",
+      "type" : 10
+    }, {
+      "content" : "<:BBH:65544> Using Buddy's Block Head (2% extra blocks).",
+      "type" : 10
+    }, {
+      "content" : "<:GALAXY_SKIN:2197154124> Using Galaxy Skin (10% extra blocks).",
+      "type" : 10
+    }, {
+      "content" : "<:EXCLAMATION:3040536141> Clothing block bonuses are capped at 15% in-game — effective bonus is +15%.",
+      "type" : 10
+    }, {
+      "content" : "### Results for 10,000 blocks:",
+      "type" : 10
+    }, {
+      "content" : "**Average Base Block Drops:** `3,250` (+`~812` seeds if broken)\n**Average Seed Drops:** `2,500` (Total `3,312` with seeds from broken blocks)\n  (<:EXCLAMATION:3040536141> Will not include all seeds dropped from extra blocks from the base broken blocks!)\n**Average Gem Drops:** `10,940`\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# With love, by the [Growtopia Wiki](https://growtopiawiki.com).",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

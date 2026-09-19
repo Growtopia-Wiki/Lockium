@@ -1,0 +1,67 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=[]
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 6043943,
+    "components" : [ {
+      "accessory" : {
+        "media" : {
+          "url" : "https://cdn.growtopiawiki.com/sprites/2.png"
+        },
+        "spoiler" : false,
+        "type" : 11
+      },
+      "components" : [ {
+        "content" : "## [Dirt Seed](https://growtopiawiki.com/w/Dirt_Seed)",
+        "type" : 10
+      }, {
+        "content" : "It's dirt.",
+        "type" : 10
+      } ],
+      "type" : 9
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "This item has no properties.",
+      "type" : 10
+    }, {
+      "content" : "**Dirt**",
+      "type" : 10
+    }, {
+      "content" : "**<:RARITY:2410134955> Rarity:** `20`  **<:COLLISION:379279122> Solid**",
+      "type" : 10
+    }, {
+      "content" : "**Hardness:** <:FIST:2158180> `2 hits` **<:PICKAXE:139953965>** `2 hits (4 seconds to restore.)`",
+      "type" : 10
+    }, {
+      "content" : "**Base color:** `#7A4E35FF` **Overlay color:** `#5C3927FF`",
+      "type" : 10
+    }, {
+      "content" : "<:GROW_SPRAY:3990390113> `30m` to grow.",
+      "type" : 10
+    }, {
+      "content" : "<:GEM:70447> `0 - 4` gems dropped.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# With love, by the [Growtopia Wiki](https://growtopiawiki.com).",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

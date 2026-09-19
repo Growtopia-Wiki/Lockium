@@ -1,0 +1,29 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "<:TICKING_CLOCK:1039089716> Growtopia Time (EDT/UTC-4): July 4th, 13:22.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

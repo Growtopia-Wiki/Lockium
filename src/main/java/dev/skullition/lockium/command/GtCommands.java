@@ -39,6 +39,7 @@ import io.github.freya022.botcommands.api.commands.application.slash.annotations
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.TopLevelSlashCommandData;
 import io.github.freya022.botcommands.api.modals.Modals;
+import java.time.Clock;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -47,6 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.IntSupplier;
 import java.util.regex.Pattern;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
@@ -117,6 +119,8 @@ public class GtCommands {
   private final WorldRenderService worldRenderService;
   private final RiddleService riddleService;
   private final ItemEffectService itemEffectService;
+  private final Clock clock;
+  private final IntSupplier cacheBuster;
 
   /**
    * Creates the command handler.
@@ -143,6 +147,34 @@ public class GtCommands {
       WorldRenderService worldRenderService,
       RiddleService riddleService,
       ItemEffectService itemEffectService) {
+    this(
+        modals,
+        wikiService,
+        detailService,
+        leaderboardService,
+        playerCountService,
+        proxyProperties,
+        fruitService,
+        worldRenderService,
+        riddleService,
+        itemEffectService,
+        Clock.systemUTC(),
+        () -> ThreadLocalRandom.current().nextInt(1_000_000));
+  }
+
+  GtCommands(
+      Modals modals,
+      WikiService wikiService,
+      GrowtopiaDetailService detailService,
+      GrowtopiaLeaderboardService leaderboardService,
+      PlayerCountService playerCountService,
+      ProxyProperties proxyProperties,
+      TreeFruitService fruitService,
+      WorldRenderService worldRenderService,
+      RiddleService riddleService,
+      ItemEffectService itemEffectService,
+      Clock clock,
+      IntSupplier cacheBuster) {
     this.modals = modals;
     this.wikiService = wikiService;
     this.detailService = detailService;
@@ -153,6 +185,8 @@ public class GtCommands {
     this.worldRenderService = worldRenderService;
     this.riddleService = riddleService;
     this.itemEffectService = itemEffectService;
+    this.clock = clock;
+    this.cacheBuster = cacheBuster;
   }
 
   /**
@@ -889,11 +923,11 @@ public class GtCommands {
       description = "Check when the Growtopia events will occur.")
   public void onSlashEvents(GlobalSlashEvent event) {
     logger.debug("onSlashEvents: requested event schedule");
-    ZonedDateTime now = GrowtopiaTimeUtil.now();
+    ZonedDateTime now = GrowtopiaTimeUtil.now(clock);
     List<ContainerChildComponent> components = new ArrayList<>();
     components.add(
         TextDisplay.of(
-            "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+            "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString(clock))));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
 
     components.add(
@@ -1045,9 +1079,8 @@ public class GtCommands {
       @SlashOption(description = "Days since the account was created (wrench yourself in-game).")
           long days) {
     logger.debug("onSlashStartDate: days={}", days);
-    long daysSinceRelease =
-        ChronoUnit.DAYS.between(
-            GROWTOPIA_RELEASE_DATE, LocalDate.now(GrowtopiaTimeUtil.GROWTOPIA_ZONE));
+    LocalDate today = LocalDate.now(clock.withZone(GrowtopiaTimeUtil.GROWTOPIA_ZONE));
+    long daysSinceRelease = ChronoUnit.DAYS.between(GROWTOPIA_RELEASE_DATE, today);
     if (days < 0 || days > daysSinceRelease) {
       logger.debug("onSlashStartDate: rejected days={}, gameAgeDays={}", days, daysSinceRelease);
       event
@@ -1059,10 +1092,7 @@ public class GtCommands {
     }
 
     long startDateEpochSeconds =
-        LocalDate.now(GrowtopiaTimeUtil.GROWTOPIA_ZONE)
-            .minusDays(days)
-            .atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE)
-            .toEpochSecond();
+        today.minusDays(days).atStartOfDay(GrowtopiaTimeUtil.GROWTOPIA_ZONE).toEpochSecond();
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
@@ -1087,7 +1117,7 @@ public class GtCommands {
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
-                "%s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+                "%s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString(clock))));
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -1236,8 +1266,7 @@ public class GtCommands {
     }
 
     // Cache-buster so Discord always fetches the latest render.
-    String imageUrl =
-        "%s?at=%d".formatted(render.get().url(), ThreadLocalRandom.current().nextInt(1_000_000));
+    String imageUrl = "%s?at=%d".formatted(render.get().url(), cacheBuster.getAsInt());
     var container =
         ContainerUtil.createGenericContainer(
             TextDisplay.of(
@@ -1332,7 +1361,7 @@ public class GtCommands {
     List<ContainerChildComponent> components = new ArrayList<>();
     components.add(
         TextDisplay.of(
-            "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString())));
+            "### %s %s".formatted(AppEmojis.TICKING_CLOCK, GrowtopiaTimeUtil.nowString(clock))));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
     components.add(
         TextDisplay.of(
@@ -1350,7 +1379,7 @@ public class GtCommands {
                     detail.wotdName() == null ? "None" : detail.wotdName())));
 
     List<PlayerCountSample> samples =
-        playerCountService.since(Instant.now().minus(proxyProperties.graphWindow()));
+        playerCountService.since(Instant.now(clock).minus(proxyProperties.graphWindow()));
     byte[] chart =
         ChartUtil.renderPlayerCountChart(samples, onlineUsers, GrowtopiaTimeUtil.GROWTOPIA_ZONE);
 

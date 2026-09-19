@@ -1,0 +1,46 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=[]
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "## <:CHALLENGE_BOARD:3535693770> Growtopia Leaderboard",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "### Overall Top 20",
+      "type" : 10
+    }, {
+      "content" : "▫ `# 1` `Player@One` — `1,234,567` -# (Gold I)\n▫ `# 2` `RunnerUp` — `900,000` -# (Silver II)\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Last updated <t:1783185690:R>.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

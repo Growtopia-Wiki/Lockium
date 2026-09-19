@@ -1,0 +1,43 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "### XP required from level 10 to 20: 110,250",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "**[Hits] Blocks to break:**\n[7-6] **6,125** Chandeliers/Sorcerer Stones.\n[4-3] **11,025** Pepper Trees.\n[3-3] **12,250** Fish Tanks.\n[5-4] **7,875** Laser Grids.\n[7-6] **10,023** Pinball Bumpers.\n[6-5] **10,023** Floor Grills.\n[10-8] **5,513** Magic Bells.\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "**Divide by:**\n▫ `x1.50` if using Biotronic Brain Enhancer.\n▫ `x1.25` with Egg Benedict.\n▫ `x1.10` with Ring Of Wisdom.\n▫ `x1.05-1.10` with Ancestral Totem of Wisdom. (+1% per level)\n▫ `x1.01` with Premium Subscription.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

@@ -1,0 +1,45 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "### <:TICKING_CLOCK:1039089716> Growtopia Time (EDT/UTC-4): July 4th, 13:22.",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "<:CHALLENGE_BOARD:3535693770> **Daily Challenge**: Starts <t:1783220400:F>",
+      "type" : 10
+    }, {
+      "content" : "☄️ **Night Of The Comet**: Starts <t:1785211200:R>",
+      "type" : 10
+    }, {
+      "content" : "<:BATTLE_LEASH:1472107510> **Pet Battle Tournament**: Starts <t:1783396800:F>",
+      "type" : 10
+    }, {
+      "content" : "<:FIST:2158180> **Daily Block Drop**: Waterfall > **Hidden Door** > Anemone",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

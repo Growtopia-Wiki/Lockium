@@ -1,0 +1,36 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=null
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ "users", "roles", "everyone" ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "### ☎️ All Telephone Numbers",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 2,
+      "type" : 14
+    }, {
+      "content" : "▫ `00000` - Operator\n▫ `02893` - Growtech Pharma\n▫ `12345` - Crazy Jim\n▫ `30912` - Growtopizza\n▫ `41100`-`41199` - Warehouse\n▫ `53785` - Sales-Man\n▫ `77777` - Nobody\n▫ `90210` - Beverly Hill\n▫ `52368` - Remove Ghost\n",
+      "type" : 10
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}
