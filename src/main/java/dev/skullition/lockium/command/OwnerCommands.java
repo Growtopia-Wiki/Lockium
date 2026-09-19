@@ -140,7 +140,7 @@ public class OwnerCommands {
   @JDASlashCommand(
       name = "owner",
       subcommand = "guilds",
-      description = "List every server the bot is in.")
+      description = "Lists every server the bot is in.")
   public void onSlashGuilds(GuildSlashEvent event) {
     if (rejectNonOwner(event)) {
       return;
