@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Slash command that measures latency to Discord and the Growtopia Wiki API.
@@ -42,6 +43,7 @@ public class SlashPing {
    *
    * @param wiki the Wiki service, injected by Spring
    */
+  @Autowired
   public SlashPing(WikiService wiki) {
     this(wiki, System::nanoTime);
   }

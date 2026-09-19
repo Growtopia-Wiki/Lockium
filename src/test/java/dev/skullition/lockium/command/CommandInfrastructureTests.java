@@ -13,6 +13,7 @@ import dev.skullition.lockium.model.RoleType;
 import dev.skullition.lockium.resolver.ItemCatalogueResolver;
 import dev.skullition.lockium.resolver.RoleTypeResolver;
 import dev.skullition.lockium.service.WikiService;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,9 +21,22 @@ import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /** Tests the autocomplete and resolver plumbing used before command methods run. */
 class CommandInfrastructureTests {
+  @Test
+  void commandBeansWithTestConstructorsIdentifyTheirInjectionConstructor() {
+    for (Class<?> type : List.of(GtCommands.class, SlashPing.class)) {
+      long injectionConstructors =
+          Arrays.stream(type.getDeclaredConstructors())
+              .filter(constructor -> constructor.isAnnotationPresent(Autowired.class))
+              .count();
+
+      assertEquals(1, injectionConstructors, type.getSimpleName());
+    }
+  }
+
   @Test
   void itemResolverTrimsInputAndReturnsTheServiceResult() {
     WikiService wiki = mock(WikiService.class);

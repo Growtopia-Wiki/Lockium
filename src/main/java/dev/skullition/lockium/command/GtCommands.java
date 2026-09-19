@@ -69,6 +69,7 @@ import net.dv8tion.jda.api.utils.FileUpload;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Slash commands under {@code /gt} for Growtopia lookups.
@@ -136,6 +137,7 @@ public class GtCommands {
    * @param riddleService service that holds the ancestral riddle dataset
    * @param itemEffectService service that loads and lazily scrapes item effects
    */
+  @Autowired
   public GtCommands(
       Modals modals,
       WikiService wikiService,
