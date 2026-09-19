@@ -40,7 +40,8 @@ All commands work in servers, DMs, and as a user-install app.
 
 Item name options support autocomplete backed by the cached Wiki item index.
 
-There are also owner-only text commands (`activity`, `reload`), invoked by mentioning the bot.
+There are also owner-only slash commands (`/owner activity`, `/owner guilds`, and `/owner reload`)
+in test guilds.
 
 ## Tech Stack
 
@@ -53,6 +54,43 @@ There are also owner-only text commands (`activity`, `reload`), invoked by menti
 - Maven
 
 Code follows the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
+
+## Testing
+
+The default suite is offline and deterministic. It calls each slash-command handler directly,
+captures the JDA reply (including Components V2 payloads, modals, attachments, ephemeral state, and
+allowed mentions), and compares successful responses with snapshots in
+`src/test/resources/snapshots`.
+
+```bash
+./mvnw test
+```
+
+When an intentional command response change makes a snapshot fail, review the output and rewrite
+the snapshots explicitly:
+
+```bash
+./mvnw test -DupdateSnapshots=true
+```
+
+Run the same formatting and style checks as CI with:
+
+```bash
+./mvnw verify
+```
+
+To apply Google Java Format before verifying:
+
+```bash
+./mvnw spotless:apply
+```
+
+The live Spring context smoke test remains separate because it connects the test bot to Discord and
+the Wiki API:
+
+```bash
+./mvnw test -Dtest=LockiumApplicationIT
+```
 
 ## Requirements
 
