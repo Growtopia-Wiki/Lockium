@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import dev.skullition.lockium.model.SpriteVariant;
 import dev.skullition.lockium.properties.ProxyProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
@@ -64,7 +65,13 @@ class GtItemCommandsTests {
   void snapshotsItemBackedReplies() throws IOException {
     assertSnapshot("gt-item", event -> commands.onSlashItem(event, CommandFixtures.DIRT_CATALOGUE));
     assertSnapshot(
-        "gt-sprite", event -> commands.onSlashSprite(event, CommandFixtures.DIRT_CATALOGUE));
+        "gt-sprite", event -> commands.onSlashSprite(event, CommandFixtures.DIRT_CATALOGUE, null));
+    assertSnapshot(
+        "gt-sprite-seed",
+        event -> commands.onSlashSprite(event, CommandFixtures.DIRT_CATALOGUE, SpriteVariant.SEED));
+    assertSnapshot(
+        "gt-sprite-tree",
+        event -> commands.onSlashSprite(event, CommandFixtures.DIRT_CATALOGUE, SpriteVariant.TREE));
     assertSnapshot(
         "gt-harvest",
         event -> commands.onSlashHarvest(event, CommandFixtures.DIRT_CATALOGUE, 1_000));

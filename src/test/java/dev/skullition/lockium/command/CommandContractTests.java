@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dev.skullition.lockium.handler.ItemNameAutocompleteHandler;
 import dev.skullition.lockium.modal.SlashBreakModal;
+import dev.skullition.lockium.model.SpriteVariant;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.autocomplete.annotations.AutocompleteHandler;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
 /** Guards the registered Discord command names and framework linkage annotations. */
@@ -97,6 +99,22 @@ class CommandContractTests {
     assertEquals(
         autocomplete.getAnnotation(AutocompleteHandler.class).value(), slashOption.autocomplete());
     assertEquals(SlashBreakModal.MODAL_NAME, modal.getAnnotation(ModalHandler.class).value());
+  }
+
+  @Test
+  void spriteVariantIsAnOptionalPredefinedChoice() throws ReflectiveOperationException {
+    Method sprite =
+        GtCommands.class.getMethod(
+            "onSlashSprite", eventType(), itemCatalogueType(), SpriteVariant.class);
+    Parameter variant = sprite.getParameters()[2];
+    SlashOption option = variant.getAnnotation(SlashOption.class);
+
+    assertTrue(
+        variant.isAnnotationPresent(Nullable.class)
+            || variant.getAnnotatedType().isAnnotationPresent(Nullable.class));
+    assertTrue(option.usePredefinedChoices());
+    assertEquals(
+        List.of("SEED", "TREE"), Arrays.stream(SpriteVariant.values()).map(Enum::name).toList());
   }
 
   private static String commandPath(Method method) {

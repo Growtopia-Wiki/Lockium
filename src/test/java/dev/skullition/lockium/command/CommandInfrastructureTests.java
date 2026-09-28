@@ -10,8 +10,10 @@ import static org.mockito.Mockito.when;
 import dev.skullition.lockium.handler.ItemNameAutocompleteHandler;
 import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.RoleType;
+import dev.skullition.lockium.model.SpriteVariant;
 import dev.skullition.lockium.resolver.ItemCatalogueResolver;
 import dev.skullition.lockium.resolver.RoleTypeResolver;
+import dev.skullition.lockium.resolver.SpriteVariantResolver;
 import dev.skullition.lockium.service.WikiService;
 import java.util.Arrays;
 import java.util.List;
@@ -70,6 +72,25 @@ class CommandInfrastructureTests {
     assertEquals(OptionType.STRING, resolver.getOptionType());
     assertEquals("Star Captain", choices.get(1).getName());
     assertSame(RoleType.STAR_CAPTAIN, resolver.resolve(null, null, mapping));
+  }
+
+  @Test
+  void spriteChoicesUseDisplayNamesAndRoundTrip() {
+    SpriteVariantResolver resolver = new SpriteVariantResolver();
+    List<Command.Choice> choices = List.copyOf(resolver.getPredefinedChoices(null));
+    assertEquals(OptionType.STRING, resolver.getOptionType());
+    assertEquals("Seed", choices.get(0).getName());
+    assertEquals("SEED", choices.get(0).getAsString());
+    assertEquals("Tree", choices.get(1).getName());
+    assertEquals("TREE", choices.get(1).getAsString());
+
+    for (Command.Choice choice : choices) {
+      OptionMapping mapping = mock(OptionMapping.class);
+      when(mapping.getAsString()).thenReturn(choice.getAsString());
+
+      assertSame(
+          SpriteVariant.valueOf(choice.getAsString()), resolver.resolve(null, null, mapping));
+    }
   }
 
   @Test

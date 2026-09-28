@@ -34,7 +34,7 @@ payload={
       "items" : [ {
         "description" : null,
         "media" : {
-          "url" : "https://cdn.growtopiawiki.com/sprites/2.png"
+          "url" : "https://cdn.growtopiawiki.com/sprites/3.png"
         },
         "spoiler" : false
       } ],

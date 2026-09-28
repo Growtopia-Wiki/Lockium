@@ -18,6 +18,7 @@ import dev.skullition.lockium.model.League;
 import dev.skullition.lockium.model.PlayerCountSample;
 import dev.skullition.lockium.model.ProxyPayload;
 import dev.skullition.lockium.model.RoleType;
+import dev.skullition.lockium.model.SpriteVariant;
 import dev.skullition.lockium.properties.ProxyProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
@@ -382,11 +383,12 @@ public class GtCommands {
   /**
    * Handles {@code /gt sprite}.
    *
-   * <p>Displays three renders for the chosen item: the placed block sprite, the seed sprite, and
-   * the fully grown tree sprite, using URLs from {@link ItemUtils}.
+   * <p>Displays the item's main sprite by default, or its seed/tree sprite when selected, using
+   * URLs from {@link ItemUtils}.
    *
    * @param event the slash interaction
    * @param itemQuery the item to preview
+   * @param variant the sprite variant, or {@code null} for the main sprite
    */
   @JDASlashCommand(
       name = "gt",
@@ -397,21 +399,29 @@ public class GtCommands {
       @SlashOption(
               description = "The item name you are looking for.",
               autocomplete = ITEM_AUTOCOMPLETE_NAME)
-          ItemCatalogue itemQuery) {
-    logger.debug("onSlashSprite: itemId={}, itemName={}", itemQuery.itemId(), itemQuery.itemName());
+          ItemCatalogue itemQuery,
+      @SlashOption(
+              description = "Show the seed or tree sprite instead.",
+              usePredefinedChoices = true)
+          @Nullable SpriteVariant variant) {
+    logger.debug(
+        "onSlashSprite: itemId={}, itemName={}, variant={}",
+        itemQuery.itemId(),
+        itemQuery.itemName(),
+        variant);
     ItemDetailResponse item = wikiService.getItemDetail(itemQuery);
-    String itemUrl = ItemUtils.getItemSpriteUrl(item.item().id());
-    String seedUrl = ItemUtils.getItemSpriteUrl(item.seed().id());
-    String treeUrl = ItemUtils.getTreeSpriteUrl(item.seed().id());
+    String spriteUrl;
+    if (variant == SpriteVariant.SEED) {
+      spriteUrl = ItemUtils.getItemSpriteUrl(item.seed().id());
+    } else if (variant == SpriteVariant.TREE) {
+      spriteUrl = ItemUtils.getTreeSpriteUrl(item.seed().id());
+    } else {
+      spriteUrl = ItemUtils.getItemSpriteUrl(item.item().id());
+    }
 
     Container container =
         ItemUtils.createItemContainer(
-            item,
-            itemQuery,
-            MediaGallery.of(
-                MediaGalleryItem.fromUrl(itemUrl),
-                MediaGalleryItem.fromUrl(seedUrl),
-                MediaGalleryItem.fromUrl(treeUrl)));
+            item, itemQuery, MediaGallery.of(MediaGalleryItem.fromUrl(spriteUrl)));
 
     event.replyComponents(container).useComponentsV2().queue();
   }
