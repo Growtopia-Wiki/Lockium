@@ -24,5 +24,11 @@ jobs:
           java-version: "25"
           cache: maven
 
-      - name: Run tests and style checks
-        run: ./mvnw verify
+      - name: Check Java formatting with Spotless
+        run: ./mvnw -B -ntp spotless:check
+
+      - name: Check Java style with Checkstyle
+        run: ./mvnw -B -ntp checkstyle:check
+
+      - name: Run tests, package, and SpotBugs
+        run: ./mvnw -B -ntp verify

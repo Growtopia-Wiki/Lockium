@@ -42,6 +42,29 @@ class WikiServiceTests {
   }
 
   @Test
+  void normalizedExactMatchWinsOverEarlierPrefixMatch() {
+    WikiDataService dataService = mock(WikiDataService.class);
+    ItemCatalogue dirt = item(1, 2, 3, "Dirt", "Dirt Seed");
+    ItemCatalogue dirtyBomb = item(2, 4, 5, "Dirty Bomb", "Dirty Bomb Seed");
+    Map<String, ItemCatalogue> index = new LinkedHashMap<>();
+    index.put("Dirty Bomb", dirtyBomb);
+    index.put("Dirt", dirt);
+    when(dataService.getNameIndex()).thenReturn(index);
+
+    ItemCatalogue result = new WikiService(dataService).findByName("dIRT");
+
+    assertSame(dirt, result);
+  }
+
+  @Test
+  void emptyNameDoesNotMatchTheFirstIndexedItem() {
+    WikiDataService dataService = mock(WikiDataService.class);
+    when(dataService.getNameIndex()).thenReturn(Map.of("Dirt", item(1, 2, 3, "Dirt", null)));
+
+    assertNull(new WikiService(dataService).findByName("  "));
+  }
+
+  @Test
   void missingNameReturnsNull() {
     WikiDataService dataService = mock(WikiDataService.class);
     when(dataService.getNameIndex()).thenReturn(Map.of("Dirt", item(1, 2, 3, "Dirt", null)));

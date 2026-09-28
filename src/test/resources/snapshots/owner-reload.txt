@@ -1,4 +1,4 @@
-delivery=initial
+delivery=edit-original
 ephemeral=true
 componentsV2=false
 allowedMentions=null

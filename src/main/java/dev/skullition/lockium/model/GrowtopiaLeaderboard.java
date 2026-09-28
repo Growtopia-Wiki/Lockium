@@ -1,6 +1,8 @@
 package dev.skullition.lockium.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +18,13 @@ import java.util.Map;
  */
 public record GrowtopiaLeaderboard(
     @JsonProperty("overall") List<LeaderboardEntry> overall,
-    @JsonProperty("leagues") Map<String, List<LeaderboardEntry>> leagues) {}
+    @JsonProperty("leagues") Map<String, List<LeaderboardEntry>> leagues) {
+
+  /** Makes the received boards immutable while preserving the proxy's order. */
+  public GrowtopiaLeaderboard {
+    overall = List.copyOf(overall);
+    Map<String, List<LeaderboardEntry>> copy = new LinkedHashMap<>();
+    leagues.forEach((name, entries) -> copy.put(name, List.copyOf(entries)));
+    leagues = Collections.unmodifiableMap(copy);
+  }
+}

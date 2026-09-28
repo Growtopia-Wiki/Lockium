@@ -25,7 +25,8 @@ class ItemsResponseTests {
             "11": {
               "itemId": 22,
               "seedId": 0,
-              "itemName": "Bedrock"
+              "itemName": "Bedrock",
+              "seedName": null
             }
           }
         }

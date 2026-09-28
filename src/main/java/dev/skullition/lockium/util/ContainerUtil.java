@@ -1,6 +1,5 @@
 package dev.skullition.lockium.util;
 
-import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -15,9 +14,8 @@ import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
  * Factory helpers for creating consistent JDA {@link Container} layouts.
  *
  * <p>All generic Lockium containers share the same footer and accent color. Use these methods or
- * {@link ItemUtils#createItemContainer(ItemDetailResponse, ItemCatalogue,
- * ContainerChildComponent...)} instead of building containers manually to ensure visual
- * consistency.
+ * {@link ItemUtils#createItemContainer(ItemDetailResponse, ContainerChildComponent...)} instead of
+ * building containers manually to ensure visual consistency.
  *
  * @see ItemUtils#createItemContainer
  */

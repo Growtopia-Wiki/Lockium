@@ -1,12 +1,15 @@
 package dev.skullition.lockium.service;
 
 import dev.skullition.lockium.properties.LockiumProperties;
+import java.net.http.HttpClient;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.Locale;
 import java.util.Optional;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -23,20 +26,28 @@ import org.springframework.web.client.RestClientResponseException;
 @Service
 public class WorldRenderService {
   private static final Logger logger = LoggerFactory.getLogger(WorldRenderService.class);
+  private static final String USER_AGENT = "Lockium/1.2 (Growtopia Wiki Discord bot)";
 
   private final RestClient restClient;
   private final String renderUrl;
 
   /**
-   * Creates the service.
+   * Creates the service with bounded HTTP timeouts and a descriptive user agent.
    *
    * @param builder the autoconfigured {@link RestClient.Builder} from Spring Boot
    * @param lockiumProperties provides the render base URL
    */
   public WorldRenderService(RestClient.Builder builder, LockiumProperties lockiumProperties) {
     this.renderUrl = lockiumProperties.renderUrl();
+    HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
+    var requestFactory = new JdkClientHttpRequestFactory(httpClient);
+    requestFactory.setReadTimeout(Duration.ofSeconds(10));
     this.restClient =
-        builder.baseUrl(renderUrl).requestFactory(new JdkClientHttpRequestFactory()).build();
+        builder
+            .baseUrl(renderUrl)
+            .defaultHeader(HttpHeaders.USER_AGENT, USER_AGENT)
+            .requestFactory(requestFactory)
+            .build();
   }
 
   /**

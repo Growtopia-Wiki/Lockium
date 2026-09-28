@@ -302,12 +302,13 @@ public class GtCommands {
     }
     components.add(TextDisplay.of(propFlag));
 
-    if (item.getClothingType() != null) {
-      String clothingType = item.getClothingType().getItemName();
-      var icon = item.getClothingType().getIcon();
-      components.add(TextDisplay.of("**%s Clothes - %s**".formatted(icon, clothingType)));
+    var clothingType = item.getClothingType();
+    if (clothingType != null) {
+      components.add(
+          TextDisplay.of(
+              "**%s Clothes - %s**".formatted(clothingType.getIcon(), clothingType.getItemName())));
     } else if (item.categoryInfo().type() != null) {
-      String categoryType = item.categoryInfo().name();
+      String categoryType = item.categoryInfo().type();
       components.add(
           TextDisplay.of("**%s - %s**".formatted(item.categoryInfo().name(), categoryType)));
     } else {
@@ -366,7 +367,7 @@ public class GtCommands {
       components.add(TextDisplay.of(effectText.toString()));
     }
 
-    Container container = ItemUtils.createItemContainer(itemResponse, itemQuery, components);
+    Container container = ItemUtils.createItemContainer(itemResponse, components);
 
     if (scrapeNeeded) {
       event
@@ -420,8 +421,7 @@ public class GtCommands {
     }
 
     Container container =
-        ItemUtils.createItemContainer(
-            item, itemQuery, MediaGallery.of(MediaGalleryItem.fromUrl(spriteUrl)));
+        ItemUtils.createItemContainer(item, MediaGallery.of(MediaGalleryItem.fromUrl(spriteUrl)));
 
     event.replyComponents(container).useComponentsV2().queue();
   }
@@ -709,7 +709,7 @@ public class GtCommands {
       }
     }
 
-    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, components);
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -775,7 +775,7 @@ public class GtCommands {
         TextDisplay.of(
             "### %s Total gems: `~%s`".formatted(AppEmojis.CHECKBOX_ENABLED, gemCountFormatted)));
 
-    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, components);
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -858,7 +858,7 @@ public class GtCommands {
                     formatDecimal(treeCount / 2500.0, 2),
                     formatDecimal(dropChance * 100, 1))));
 
-    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, components);
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -1516,12 +1516,10 @@ public class GtCommands {
    * @return a {@code -#} footnote line
    */
   private static String freshnessNote(ProxyPayload<?> payload, Instant storedAt) {
-    if (payload.isStale()) {
+    ProxyPayload.Stale stale = payload.stale();
+    if (stale != null) {
       return "-# %s The game server data is stale (%s); last live <t:%d:R>."
-          .formatted(
-              AppEmojis.EXCLAMATION,
-              payload.stale().reason(),
-              payload.stale().servedAt().getEpochSecond());
+          .formatted(AppEmojis.EXCLAMATION, stale.reason(), stale.servedAt().getEpochSecond());
     }
     return "-# Last updated <t:%d:R>.".formatted(storedAt.getEpochSecond());
   }

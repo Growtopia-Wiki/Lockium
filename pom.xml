@@ -33,6 +33,7 @@
 		<google-java-format.version>1.36.1</google-java-format.version>
 		<maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
 		<spotless-maven-plugin.version>3.10.1</spotless-maven-plugin.version>
+		<spotbugs-maven-plugin.version>4.10.4.1</spotbugs-maven-plugin.version>
 		<kotlin.version>2.4.20</kotlin.version>
 		<kotlin-coroutines.version>1.11.0</kotlin-coroutines.version>
 	</properties>
@@ -194,6 +195,23 @@
 						<version>${checkstyle.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>${spotbugs-maven-plugin.version}</version>
+				<configuration>
+					<excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>spotbugs-check</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>

@@ -37,14 +37,19 @@ public class WikiService {
    * Finds an item by name with fallback to normalized prefix search.
    *
    * <p>1. Exact (case-sensitive) match against the index.<br>
-   * 2. If not found, performs an O(N) scan comparing each name normalized with {@link
-   * ItemUtils#norm(String)} against the normalized input, returning the first prefix match.
+   * 2. If not found, performs an O(N) scan for an exact normalized match.<br>
+   * 3. If no exact match exists, returns the first normalized prefix match.
    *
    * @param itemName user input; matched case-insensitively by the fallback scan
    * @return matching catalogue entry, or {@code null} if not found
    */
   @Nullable
   public ItemCatalogue findByName(String itemName) {
+    String normalized = ItemUtils.norm(itemName);
+    if (normalized.isEmpty()) {
+      logger.debug("findByName: rejecting an empty item name");
+      return null;
+    }
 
     var index = wiki.getNameIndex();
     ItemCatalogue exactMatch = index.get(itemName);
@@ -54,16 +59,21 @@ public class WikiService {
       return exactMatch;
     }
 
-    logger.debug("findByName: no exact match for '{}', falling back to prefix scan", itemName);
-
-    // Fallback O(N) lookup - Might remove if laggy.
-    String normalized = ItemUtils.norm(itemName);
-    ItemCatalogue prefixMatch =
-        index.entrySet().stream()
-            .filter(entry -> ItemUtils.norm(entry.getKey()).startsWith(normalized))
-            .map(Map.Entry::getValue)
-            .findFirst()
-            .orElse(null);
+    logger.debug("findByName: no exact match for '{}', scanning normalized names", itemName);
+    ItemCatalogue prefixMatch = null;
+    for (Map.Entry<String, ItemCatalogue> entry : index.entrySet()) {
+      String normalizedName = ItemUtils.norm(entry.getKey());
+      if (normalizedName.equals(normalized)) {
+        logger.debug(
+            "findByName: normalized exact match '{}' resolved to itemId={}",
+            itemName,
+            entry.getValue().itemId());
+        return entry.getValue();
+      }
+      if (prefixMatch == null && normalizedName.startsWith(normalized)) {
+        prefixMatch = entry.getValue();
+      }
+    }
     if (prefixMatch == null) {
       logger.debug("findByName: no prefix match for '{}'", normalized);
     } else {

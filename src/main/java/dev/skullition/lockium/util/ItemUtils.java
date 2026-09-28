@@ -2,7 +2,6 @@ package dev.skullition.lockium.util;
 
 import dev.skullition.lockium.model.Chi;
 import dev.skullition.lockium.model.GrowtopiaObject;
-import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class ItemUtils {
    * @param map immutable map of in-game item ID to chi
    */
   public static void setChiMap(Map<Integer, Chi> map) {
-    chiMap = map;
+    chiMap = Map.copyOf(map);
   }
 
   /**
@@ -178,19 +177,15 @@ public class ItemUtils {
    * from the seed's overlay color.
    *
    * @param item the detail response containing item and seed
-   * @param itemCatalogue catalogue entry for display name fallback
    * @param components middle section components (properties, stats, etc.)
    * @return a complete {@link Container} ready to send
    */
   public static Container createItemContainer(
-      ItemDetailResponse item,
-      ItemCatalogue itemCatalogue,
-      List<ContainerChildComponent> components) {
+      ItemDetailResponse item, List<ContainerChildComponent> components) {
     List<ContainerChildComponent> container = new ArrayList<>();
 
     // 1. Add Header
-    String itemName =
-        itemCatalogue.seedName() == null ? item.item().name() : itemCatalogue.seedName();
+    String itemName = item.item().name();
     String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(itemName));
     var chiEmoji = chiMap.getOrDefault(item.item().id(), Chi.NONE).getEmoji();
     String chiPrefix = chiEmoji == null ? "" : chiEmoji.getFormatted() + " ";
@@ -214,16 +209,15 @@ public class ItemUtils {
   }
 
   /**
-   * Varargs overload of {@link #createItemContainer(ItemDetailResponse, ItemCatalogue, List)}.
+   * Varargs overload of {@link #createItemContainer(ItemDetailResponse, List)}.
    *
    * @param item the detail response
-   * @param itemCatalogue catalogue entry
    * @param components middle components
    * @return a complete container
    */
   public static Container createItemContainer(
-      ItemDetailResponse item, ItemCatalogue itemCatalogue, ContainerChildComponent... components) {
-    return createItemContainer(item, itemCatalogue, List.of(components));
+      ItemDetailResponse item, ContainerChildComponent... components) {
+    return createItemContainer(item, List.of(components));
   }
 
   /**

@@ -3,6 +3,7 @@ package dev.skullition.lockium.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.skullition.lockium.util.ItemUtils;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import tools.jackson.databind.JsonNode;
@@ -28,6 +29,11 @@ import tools.jackson.databind.JsonNode;
  */
 public record ItemsResponse(@JsonProperty Map<Integer, ItemCatalogue> items) {
 
+  /** Copies the catalogue so callers cannot mutate the cached API response. */
+  public ItemsResponse {
+    items = Collections.unmodifiableMap(new LinkedHashMap<>(items));
+  }
+
   /**
    * Jackson creator that converts the raw string-keyed map into typed objects.
    *
@@ -46,14 +52,15 @@ public record ItemsResponse(@JsonProperty Map<Integer, ItemCatalogue> items) {
     rawItems.forEach(
         (key, node) -> {
           int catalogueId = Integer.parseInt(key);
+          JsonNode seedName = node.get("seedName");
           var item =
               new ItemCatalogue(
                   catalogueId,
                   node.get("itemId").asInt(),
                   node.get("seedId").asInt(),
                   ItemUtils.stripColorCodes(node.get("itemName").asString()),
-                  node.get("seedName") != null
-                      ? ItemUtils.stripColorCodes(node.get("seedName").asString())
+                  seedName != null && !seedName.isNull()
+                      ? ItemUtils.stripColorCodes(seedName.asString())
                       : null);
           items.put(catalogueId, item);
         });

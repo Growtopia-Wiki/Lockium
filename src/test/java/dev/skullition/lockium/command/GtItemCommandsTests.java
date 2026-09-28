@@ -1,5 +1,6 @@
 package dev.skullition.lockium.command;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -81,6 +82,17 @@ class GtItemCommandsTests {
     assertSnapshot(
         "gt-mooncakes",
         event -> commands.onSlashMooncakes(event, CommandFixtures.DIRT_CATALOGUE, 1_000));
+  }
+
+  @Test
+  void itemHeaderUsesTheMainItemNameAndWikiPage() {
+    DiscordEventHarness harness = new DiscordEventHarness();
+
+    commands.onSlashItem(harness.slashEvent(), CommandFixtures.DIRT_CATALOGUE);
+
+    String snapshot = harness.snapshot();
+    assertTrue(snapshot.contains("## [Dirt](https://growtopiawiki.com/w/Dirt)"));
+    assertFalse(snapshot.contains("[Dirt Seed](https://growtopiawiki.com/w/Dirt_Seed)"));
   }
 
   @Test

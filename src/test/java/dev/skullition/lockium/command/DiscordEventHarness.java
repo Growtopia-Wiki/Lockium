@@ -72,6 +72,8 @@ final class DiscordEventHarness {
 
   GuildSlashEvent guildEvent() {
     GuildSlashEvent event = mock(GuildSlashEvent.class, Answers.CALLS_REAL_METHODS);
+    LocalizableInteractionHook hook = hook();
+    doReturn(hook).when(event).getHook();
     doAnswer(
             invocation -> {
               capture.delivery = "initial";

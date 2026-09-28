@@ -30,6 +30,11 @@ public record ProxyPayload<T>(
     @JsonProperty("data") T data,
     @JsonProperty("stale") @Nullable Stale stale) {
 
+  /** Copies warnings so a published snapshot cannot change after construction. */
+  public ProxyPayload {
+    warnings = List.copyOf(warnings);
+  }
+
   /**
    * Whether the proxy served this from its cache rather than a live origin fetch.
    *

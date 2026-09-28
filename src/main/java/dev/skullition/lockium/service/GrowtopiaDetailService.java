@@ -22,8 +22,9 @@ import org.springframework.web.client.RestClientResponseException;
  * perform no I/O of their own. This is a deliberate change from the previous design, where every
  * interaction triggered a live HTTP request.
  *
- * <p>A failed poll keeps the previous snapshot and records nothing. Writing a zero on failure would
- * put a fake trough in the player-count graph, which is worse than a brief gap.
+ * <p>A failed poll keeps the previous snapshot and records nothing. Stale proxy responses are still
+ * published for commands to identify, but are not recorded as current player-count samples. Writing
+ * a zero on failure would put a fake trough in the graph, which is worse than a brief gap.
  *
  * <p>The snapshot is held in a single {@link AtomicReference} and expires after 24 hours, so a
  * long-dead proxy eventually stops the bot reporting stale figures as if they were current.
@@ -79,7 +80,9 @@ public class GrowtopiaDetailService {
             payload.warnings());
       }
 
-      playerCountService.record(now, payload.data().onlineCount());
+      if (!payload.isStale()) {
+        playerCountService.record(now, payload.data().onlineCount());
+      }
       logger.debug(
           "refresh: onlineCount={}, stale={}", payload.data().onlineCount(), payload.isStale());
     } catch (RestClientResponseException e) {

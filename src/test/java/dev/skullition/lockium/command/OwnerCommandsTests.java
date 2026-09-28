@@ -1,6 +1,8 @@
 package dev.skullition.lockium.command;
 
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -127,17 +129,40 @@ class OwnerCommandsTests {
   @Test
   void ownerReloadRefreshesEveryExternalDataset() throws IOException {
     DiscordEventHarness harness = new DiscordEventHarness();
+    GuildSlashEvent event = ownerEvent(harness);
 
-    commands.onSlashReload(ownerEvent(harness));
+    commands.onSlashReload(event);
 
     SnapshotAssertions.assertMatches("owner-reload", harness.snapshot());
-    verify(cache).refreshCaches();
-    verify(fruits).reload();
-    verify(chi).reload();
-    verify(riddles).reload();
-    verify(effects).reload();
-    verify(details).refresh();
-    verify(leaderboards).refresh();
+    var interactions = inOrder(event, cache, fruits, chi, riddles, effects, details, leaderboards);
+    interactions.verify(event).deferReply(true);
+    interactions.verify(cache).refreshCaches();
+    interactions.verify(fruits).reload();
+    interactions.verify(chi).reload();
+    interactions.verify(riddles).reload();
+    interactions.verify(effects).reload();
+    interactions.verify(details).refresh();
+    interactions.verify(leaderboards).refresh();
+    interactions.verify(event).getHook();
+  }
+
+  @Test
+  void ownerReloadReportsRefreshFailureAfterDeferring() {
+    DiscordEventHarness harness = new DiscordEventHarness();
+    GuildSlashEvent event = ownerEvent(harness);
+    doThrow(new IllegalStateException("upstream unavailable")).when(cache).refreshCaches();
+
+    commands.onSlashReload(event);
+
+    String reply = harness.snapshot();
+    org.junit.jupiter.api.Assertions.assertAll(
+        () ->
+            org.junit.jupiter.api.Assertions.assertTrue(reply.startsWith("delivery=edit-original")),
+        () -> org.junit.jupiter.api.Assertions.assertTrue(reply.contains("ephemeral=true")),
+        () -> org.junit.jupiter.api.Assertions.assertTrue(reply.contains("Cache reload failed")));
+    verify(event).deferReply();
+    verify(fruits, never()).reload();
+    verify(leaderboards, never()).refresh();
   }
 
   @Test

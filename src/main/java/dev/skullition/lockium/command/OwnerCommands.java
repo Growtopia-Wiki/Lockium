@@ -208,14 +208,24 @@ public class OwnerCommands {
         "Owner {} requested a full cache reload in guild {}",
         event.getUser().getId(),
         event.getGuild().getId());
+    event.deferReply(true).queue();
     final long start = System.nanoTime();
-    cacheService.refreshCaches();
-    fruitService.reload();
-    chiService.reload();
-    riddleService.reload();
-    itemEffectService.reload();
-    detailService.refresh();
-    leaderboardService.refresh();
+    try {
+      cacheService.refreshCaches();
+      fruitService.reload();
+      chiService.reload();
+      riddleService.reload();
+      itemEffectService.reload();
+      detailService.refresh();
+      leaderboardService.refresh();
+    } catch (RuntimeException e) {
+      logger.error("Full cache reload failed", e);
+      event
+          .getHook()
+          .editOriginal("%s Cache reload failed; check the bot logs.".formatted(AppEmojis.NO))
+          .queue();
+      return;
+    }
     logger.info(
         "Full cache reload completed in {} ms: treeFruits={}, chi={}, riddles={}, effectItems={}",
         TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start),
@@ -223,10 +233,7 @@ public class OwnerCommands {
         chiService.size(),
         riddleService.size(),
         itemEffectService.size());
-    event
-        .reply("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING))
-        .setEphemeral(true)
-        .queue();
+    event.getHook().editOriginal("%s Reloaded all bot cache.".formatted(AppEmojis.LOADING)).queue();
   }
 
   private static String createGuildList(List<Guild> guilds) {

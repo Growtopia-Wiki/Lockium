@@ -117,6 +117,7 @@ class GrowtopiaDetailServiceTests {
 
     assertTrue(service.getSnapshot().payload().isStale());
     assertEquals("origin", service.getSnapshot().payload().stale().reason());
+    verify(playerCountService, never()).record(any(), anyInt());
   }
 
   private static Clock fixedClock() {

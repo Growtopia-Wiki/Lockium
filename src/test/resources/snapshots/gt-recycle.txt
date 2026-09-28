@@ -19,7 +19,7 @@ payload={
         "type" : 11
       },
       "components" : [ {
-        "content" : "## [Dirt Seed](https://growtopiawiki.com/w/Dirt_Seed)",
+        "content" : "## [Dirt](https://growtopiawiki.com/w/Dirt)",
         "type" : 10
       }, {
         "content" : "It's dirt.",

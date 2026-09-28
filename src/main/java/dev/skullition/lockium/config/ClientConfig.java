@@ -69,7 +69,9 @@ public class ClientConfig {
    * <ul>
    *   <li>Base URL from {@code wiki.api.url}
    *   <li>Bearer token from {@code wiki.api.key} added to every request
-   *   <li>JDK HttpClient via {@link JdkClientHttpRequestFactory} for HTTP/2 support
+   *   <li>JDK HttpClient via {@link JdkClientHttpRequestFactory} with 5-second connect and
+   *       10-second read timeouts
+   *   <li>A descriptive user agent identifying the bot to the API operator
    * </ul>
    *
    * @param builder the autoconfigured {@link RestClient.Builder} from Spring Boot
@@ -78,11 +80,16 @@ public class ClientConfig {
   @Bean
   public WikiClient wikiClient(RestClient.Builder builder) {
     logger.debug("Configuring Wiki API client with base URL {}", apiProperties.url());
+    HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
+    var requestFactory = new JdkClientHttpRequestFactory(httpClient);
+    requestFactory.setReadTimeout(Duration.ofSeconds(10));
+
     RestClient restClient =
         builder
             .baseUrl(apiProperties.url())
             .defaultHeaders(headers -> headers.setBearerAuth(apiProperties.key()))
-            .requestFactory(new JdkClientHttpRequestFactory())
+            .defaultHeader(HttpHeaders.USER_AGENT, USER_AGENT)
+            .requestFactory(requestFactory)
             .build();
 
     RestClientAdapter adapter = RestClientAdapter.create(restClient);

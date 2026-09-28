@@ -178,7 +178,12 @@ public record GrowtopiaObject(
    * @param raw integer bitmask
    * @param names list of flag names; never {@code null} (could be empty)
    */
-  public record PropFlag(int raw, List<String> names) {}
+  public record PropFlag(int raw, List<String> names) {
+    /** Copies the API's diagnostic flag list so the model stays immutable. */
+    public PropFlag {
+      names = List.copyOf(names);
+    }
+  }
 
   /**
    * RGBA color representation.
