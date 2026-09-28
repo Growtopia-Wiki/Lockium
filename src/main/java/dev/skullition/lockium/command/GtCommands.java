@@ -367,7 +367,7 @@ public class GtCommands {
       components.add(TextDisplay.of(effectText.toString()));
     }
 
-    Container container = ItemUtils.createItemContainer(itemResponse, components);
+    Container container = ItemUtils.createItemContainer(itemResponse, itemQuery, components);
 
     if (scrapeNeeded) {
       event
@@ -421,7 +421,8 @@ public class GtCommands {
     }
 
     Container container =
-        ItemUtils.createItemContainer(item, MediaGallery.of(MediaGalleryItem.fromUrl(spriteUrl)));
+        ItemUtils.createItemContainer(
+            item, itemQuery, MediaGallery.of(MediaGalleryItem.fromUrl(spriteUrl)));
 
     event.replyComponents(container).useComponentsV2().queue();
   }
@@ -709,7 +710,7 @@ public class GtCommands {
       }
     }
 
-    Container container = ItemUtils.createItemContainer(itemDetail, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -775,7 +776,7 @@ public class GtCommands {
         TextDisplay.of(
             "### %s Total gems: `~%s`".formatted(AppEmojis.CHECKBOX_ENABLED, gemCountFormatted)));
 
-    Container container = ItemUtils.createItemContainer(itemDetail, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
   }
 
@@ -858,7 +859,7 @@ public class GtCommands {
                     formatDecimal(treeCount / 2500.0, 2),
                     formatDecimal(dropChance * 100, 1))));
 
-    Container container = ItemUtils.createItemContainer(itemDetail, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
   }
 

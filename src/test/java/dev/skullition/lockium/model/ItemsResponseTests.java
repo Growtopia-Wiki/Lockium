@@ -19,8 +19,8 @@ class ItemsResponseTests {
             "10": {
               "itemId": 20,
               "seedId": 21,
-              "itemName": "`6Dirt",
-              "seedName": "`2Dirt Seed"
+              "itemName": "`6Comet Dust",
+              "seedName": "`2Starseed"
             },
             "11": {
               "itemId": 22,
@@ -35,7 +35,7 @@ class ItemsResponseTests {
     ItemsResponse response = JsonMapper.builder().build().readValue(json, ItemsResponse.class);
 
     assertEquals(List.of(10, 11), response.items().keySet().stream().toList());
-    assertEquals(new ItemCatalogue(10, 20, 21, "Dirt", "Dirt Seed"), response.items().get(10));
+    assertEquals(new ItemCatalogue(10, 20, 21, "Comet Dust", "Starseed"), response.items().get(10));
     assertEquals("Bedrock", response.items().get(11).itemName());
     assertNull(response.items().get(11).seedName());
   }

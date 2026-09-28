@@ -12,8 +12,8 @@ import org.jspecify.annotations.Nullable;
  * @param itemId the in-game item ID for the placed block
  * @param seedId the in-game item ID for the seed form
  * @param itemName display name of the item; never {@code null}
- * @param seedName display name of the seed; {@code null} if the item has no seed form (e.g.,
- *     bedrock, locks)
+ * @param seedName name of a separate seed Wiki page; {@code null} or empty if the item has no
+ *     separate seed page (including ordinary items such as Dirt)
  * @since 0.1.0
  */
 public record ItemCatalogue(

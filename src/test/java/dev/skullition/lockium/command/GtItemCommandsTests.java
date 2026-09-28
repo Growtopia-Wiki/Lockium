@@ -44,7 +44,10 @@ class GtItemCommandsTests {
     effects = mock(ItemEffectService.class);
     when(wiki.getItemDetail(CommandFixtures.DIRT_CATALOGUE))
         .thenReturn(CommandFixtures.dirtDetail());
+    when(wiki.getItemDetail(CommandFixtures.COMET_DUST_CATALOGUE))
+        .thenReturn(CommandFixtures.cometDustDetail());
     when(effects.getEffects(CommandFixtures.dirtDetail().item())).thenReturn(List.of());
+    when(effects.getEffects(CommandFixtures.cometDustDetail().item())).thenReturn(List.of());
     when(fruits.getMaxDrop(2)).thenReturn(8);
     commands =
         new GtCommands(
@@ -93,6 +96,17 @@ class GtItemCommandsTests {
     String snapshot = harness.snapshot();
     assertTrue(snapshot.contains("## [Dirt](https://growtopiawiki.com/w/Dirt)"));
     assertFalse(snapshot.contains("[Dirt Seed](https://growtopiawiki.com/w/Dirt_Seed)"));
+  }
+
+  @Test
+  void itemHeaderLinksToCatalogueSeedPageWhenPresent() {
+    DiscordEventHarness harness = new DiscordEventHarness();
+
+    commands.onSlashItem(harness.slashEvent(), CommandFixtures.COMET_DUST_CATALOGUE);
+
+    String snapshot = harness.snapshot();
+    assertTrue(snapshot.contains("## [Comet Dust](https://growtopiawiki.com/w/Starseed)"));
+    assertFalse(snapshot.contains("https://growtopiawiki.com/w/Comet_Dust"));
   }
 
   @Test

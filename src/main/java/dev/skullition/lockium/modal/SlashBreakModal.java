@@ -265,7 +265,7 @@ public class SlashBreakModal {
                     AppEmojis.EXCLAMATION,
                     gemDropsFormatted)));
 
-    Container container = ItemUtils.createItemContainer(itemDetail, components);
+    Container container = ItemUtils.createItemContainer(itemDetail, itemCatalogue, components);
     logger.debug(
         "onBreakModal: completed itemId={}, farmable={}, clothingBonus={}%",
         item.id(), isFarmable, clothingBonus);

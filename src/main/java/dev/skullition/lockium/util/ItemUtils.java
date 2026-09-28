@@ -2,6 +2,7 @@ package dev.skullition.lockium.util;
 
 import dev.skullition.lockium.model.Chi;
 import dev.skullition.lockium.model.GrowtopiaObject;
+import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.ItemDetailResponse;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -173,26 +174,29 @@ public class ItemUtils {
   /**
    * Creates a full item container with header, body, and footer.
    *
-   * <p>The header shows the sprite, wiki-linked name, and description. The accent color is taken
-   * from the seed's overlay color.
+   * <p>The header shows the sprite, item name, and description. A nonempty catalogue seed name
+   * identifies the Wiki page to link; otherwise the main item name is used for the URL. The accent
+   * color is taken from the seed's overlay color.
    *
    * @param item the detail response containing item and seed
+   * @param catalogue entry from the full items response, including the optional seed page name
    * @param components middle section components (properties, stats, etc.)
    * @return a complete {@link Container} ready to send
    */
   public static Container createItemContainer(
-      ItemDetailResponse item, List<ContainerChildComponent> components) {
+      ItemDetailResponse item, ItemCatalogue catalogue, List<ContainerChildComponent> components) {
     List<ContainerChildComponent> container = new ArrayList<>();
 
     // 1. Add Header
-    String itemName = item.item().name();
-    String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(itemName));
+    String seedName = catalogue.seedName();
+    String wikiPageName = seedName != null && !seedName.isBlank() ? seedName : item.item().name();
+    String itemUrl = String.format(GROWTOPIA_WIKI_URL, getWikiItemName(wikiPageName));
     var chiEmoji = chiMap.getOrDefault(item.item().id(), Chi.NONE).getEmoji();
     String chiPrefix = chiEmoji == null ? "" : chiEmoji.getFormatted() + " ";
     Section header =
         Section.of(
             Thumbnail.fromUrl(getItemSpriteUrl(item.item().id())),
-            TextDisplay.of(String.format("## %s[%s](%s)", chiPrefix, itemName, itemUrl)),
+            TextDisplay.of(String.format("## %s[%s](%s)", chiPrefix, item.item().name(), itemUrl)),
             TextDisplay.of(item.item().description()));
     container.add(header);
     container.add(Separator.create(true, Separator.Spacing.LARGE));
@@ -209,15 +213,16 @@ public class ItemUtils {
   }
 
   /**
-   * Varargs overload of {@link #createItemContainer(ItemDetailResponse, List)}.
+   * Varargs overload of {@link #createItemContainer(ItemDetailResponse, ItemCatalogue, List)}.
    *
    * @param item the detail response
+   * @param catalogue entry from the full items response
    * @param components middle components
    * @return a complete container
    */
   public static Container createItemContainer(
-      ItemDetailResponse item, ContainerChildComponent... components) {
-    return createItemContainer(item, List.of(components));
+      ItemDetailResponse item, ItemCatalogue catalogue, ContainerChildComponent... components) {
+    return createItemContainer(item, catalogue, List.of(components));
   }
 
   /**

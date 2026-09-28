@@ -11,13 +11,21 @@ import java.util.List;
 
 /** Stable API objects shared by command response tests. */
 final class CommandFixtures {
-  static final ItemCatalogue DIRT_CATALOGUE = new ItemCatalogue(1, 2, 3, "Dirt", "Dirt Seed");
+  static final ItemCatalogue DIRT_CATALOGUE = new ItemCatalogue(1, 2, 3, "Dirt", "");
+  static final ItemCatalogue COMET_DUST_CATALOGUE =
+      new ItemCatalogue(4, 5, 6, "Comet Dust", "Starseed");
 
   private CommandFixtures() {}
 
   static ItemDetailResponse dirtDetail() {
     GrowtopiaObject item = object(2, "Dirt", "It's dirt.", 1_800);
     GrowtopiaObject seed = object(3, "Dirt Seed", "A dirt seed.", 1_800);
+    return new ItemDetailResponse(item, seed);
+  }
+
+  static ItemDetailResponse cometDustDetail() {
+    GrowtopiaObject item = object(5, "Comet Dust", "Dust from a comet.", 3_600);
+    GrowtopiaObject seed = object(6, "Starseed", "A seed from the stars.", 3_600);
     return new ItemDetailResponse(item, seed);
   }
 

@@ -19,7 +19,7 @@ import tools.jackson.databind.JsonNode;
  *
  * <pre>{@code
  * "items": {
- *   "2": {"itemId":2,"seedId":3,"itemName":"Dirt","seedName":"Dirt Seed"}
+ *   "2": {"itemId":2,"seedId":3,"itemName":"Dirt","seedName":""}
  * }
  * }</pre>
  *
