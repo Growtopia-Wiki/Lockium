@@ -1,14 +1,17 @@
 package dev.skullition.lockium.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.AdditionalAnswers.delegatesTo;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import dev.skullition.lockium.modal.SlashBreakModal;
+import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.properties.ProxyProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
@@ -24,13 +27,18 @@ import java.io.IOException;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import net.dv8tion.jda.api.components.ModalTopLevelComponent;
+import net.dv8tion.jda.api.modals.Modal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Answers;
+import org.mockito.ArgumentCaptor;
 
 /** End-to-end unit coverage for opening and submitting the break calculator modal. */
 class BreakFlowTests {
@@ -41,44 +49,73 @@ class BreakFlowTests {
 
   @Test
   void snapshotsBreakModalOpenedBySlashCommand() throws IOException {
-    Modals modals = mock(Modals.class);
-    ModalBuilder builder = mock(ModalBuilder.class, Answers.RETURNS_SELF);
-    List<ModalTopLevelComponent> components = new ArrayList<>();
-    when(modals.create("Break Dirt")).thenReturn(builder);
-    doAnswer(
-            invocation -> {
-              Arrays.stream(invocation.getArguments())
-                  .map(ModalTopLevelComponent.class::cast)
-                  .forEach(components::add);
-              return builder;
-            })
-        .when(builder)
-        .addComponents(any(ModalTopLevelComponent[].class));
-    when(builder.build())
-        .thenAnswer(
-            invocation -> {
-              net.dv8tion.jda.api.modals.Modal modal =
-                  net.dv8tion.jda.api.modals.Modal.create("break-test", "Break Dirt")
-                      .addComponents(components)
-                      .build();
-              return mock(
-                  io.github.freya022.botcommands.api.modals.Modal.class, delegatesTo(modal));
-            });
-    WikiService wiki = mock(WikiService.class);
-    when(wiki.getItemDetail(CommandFixtures.DIRT_CATALOGUE))
-        .thenReturn(CommandFixtures.dirtDetail());
-    GtCommands commands = commands(modals, wiki);
     DiscordEventHarness harness = new DiscordEventHarness();
 
-    commands.onSlashBreak(harness.slashEvent(), CommandFixtures.DIRT_CATALOGUE, 10_000);
+    openBreakModal(CommandFixtures.DIRT_CATALOGUE, harness);
 
     SnapshotAssertions.assertMatches("gt-break-modal", harness.snapshot());
+  }
+
+  @ParameterizedTest
+  @MethodSource("breakModalTitles")
+  void opensBreakModalWithinTitleLimit(String itemName, String expectedTitle) {
+    ItemCatalogue itemQuery = new ItemCatalogue(1, 2, 3, itemName, "");
+    DiscordEventHarness harness = new DiscordEventHarness();
+
+    Modal modal = openBreakModal(itemQuery, harness);
+
+    assertEquals(expectedTitle, modal.getTitle());
+    assertTrue(modal.getTitle().length() <= Modal.MAX_TITLE_LENGTH);
+    assertTrue(harness.snapshot().startsWith("delivery=modal\n"));
+  }
+
+  private static Stream<Arguments> breakModalTitles() {
+    return Stream.of(
+        Arguments.of("A".repeat(38), "Break " + "A".repeat(38)),
+        Arguments.of("A".repeat(39), "Break " + "A".repeat(39)),
+        Arguments.of("A".repeat(40), "Break " + "A".repeat(38) + "…"),
+        Arguments.of("A".repeat(200), "Break " + "A".repeat(38) + "…"),
+        Arguments.of(
+            "Bountiful Growtopian-Eating Looming Plant",
+            "Break Bountiful Growtopian-Eating Looming Pl…"));
+  }
+
+  private static Modal openBreakModal(ItemCatalogue itemQuery, DiscordEventHarness harness) {
+    Modals modals = mock(Modals.class);
+    ModalBuilder builder = mock(ModalBuilder.class, Answers.RETURNS_SELF);
+    when(modals.create(anyString()))
+        .thenAnswer(
+            invocation -> {
+              Modal.Builder jdaBuilder = Modal.create("break-test", invocation.getArgument(0));
+              doAnswer(
+                      componentInvocation -> {
+                        Arrays.stream(componentInvocation.getArguments())
+                            .map(ModalTopLevelComponent.class::cast)
+                            .forEach(jdaBuilder::addComponents);
+                        return builder;
+                      })
+                  .when(builder)
+                  .addComponents(any(ModalTopLevelComponent[].class));
+              when(builder.build())
+                  .thenAnswer(
+                      buildInvocation ->
+                          mock(
+                              io.github.freya022.botcommands.api.modals.Modal.class,
+                              delegatesTo(jdaBuilder.build())));
+              return builder;
+            });
+    WikiService wiki = mock(WikiService.class);
+    when(wiki.getItemDetail(itemQuery)).thenReturn(CommandFixtures.dirtDetail());
+    GtCommands commands = commands(modals, wiki);
+    var event = harness.slashEvent();
+
+    commands.onSlashBreak(event, itemQuery, 10_000);
+
     verify(builder)
-        .bindTo(
-            SlashBreakModal.MODAL_NAME,
-            CommandFixtures.dirtDetail(),
-            CommandFixtures.DIRT_CATALOGUE,
-            10_000);
+        .bindTo(SlashBreakModal.MODAL_NAME, CommandFixtures.dirtDetail(), itemQuery, 10_000);
+    ArgumentCaptor<Modal> modal = ArgumentCaptor.forClass(Modal.class);
+    verify(event).replyModal(modal.capture());
+    return modal.getValue();
   }
 
   @Test

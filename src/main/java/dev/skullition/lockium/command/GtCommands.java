@@ -66,6 +66,7 @@ import net.dv8tion.jda.api.components.textinput.TextInputStyle;
 import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
+import net.dv8tion.jda.api.modals.Modal;
 import net.dv8tion.jda.api.utils.FileUpload;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
@@ -432,7 +433,8 @@ public class GtCommands {
    *
    * <p>Validates the item category and block count, then opens a modal to collect modifiers (Lucky
    * mod, clothing bonuses like Buddy's Block Head / Galaxy Skin / Winter Wishing Star, and the
-   * Ancestral Tesseract level). The calculation itself is performed in {@link SlashBreakModal}.
+   * Ancestral Tesseract level). Long modal titles are shortened to Discord's title limit; the full
+   * item data is passed to {@link SlashBreakModal} for the calculation.
    *
    * @param event the slash interaction
    * @param itemQuery the block to break
@@ -469,9 +471,14 @@ public class GtCommands {
       return;
     }
 
+    String modalTitle = "Break %s".formatted(itemQuery.itemName());
+    if (modalTitle.length() > Modal.MAX_TITLE_LENGTH) {
+      modalTitle = modalTitle.substring(0, Modal.MAX_TITLE_LENGTH - 1) + "…";
+    }
+
     var modal =
         modals
-            .create("Break %s".formatted(itemQuery.itemName()))
+            .create(modalTitle)
             .addComponents(
                 Label.of(
                     "Using Lucky! mod?",
