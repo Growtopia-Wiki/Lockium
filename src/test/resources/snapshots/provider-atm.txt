@@ -38,7 +38,7 @@ payload={
       "spacing" : 1,
       "type" : 14
     }, {
-      "content" : "▫ ATM Cost (14/14.5 WLs each) -> `14,000-14,500` <:WORLD_LOCK:972401112>\n▫ Cost from Store: `8,000,000` gems",
+      "content" : "▫ Cost from Store: `8,000,000` gems",
       "type" : 10
     }, {
       "divider" : true,

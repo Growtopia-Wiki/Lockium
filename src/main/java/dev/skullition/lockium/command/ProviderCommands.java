@@ -111,16 +111,7 @@ public class ProviderCommands {
                     formatNumber(totalGems * 30))));
     components.add(Separator.create(true, Separator.Spacing.SMALL));
     components.add(
-        TextDisplay.of(
-            """
-            ▫ ATM Cost (14/14.5 WLs each) -> `%s-%s` %s
-            ▫ Cost from Store: `%s` gems\
-            """
-                .formatted(
-                    formatNumber(atmCount * 14L),
-                    formatNumber((long) (atmCount * 14.5)),
-                    AppEmojis.WORLD_LOCK,
-                    formatNumber(atmCount * 8_000L))));
+        TextDisplay.of("▫ Cost from Store: `%s` gems".formatted(formatNumber(atmCount * 8_000L))));
 
     Container container = ContainerUtil.createGenericContainer(components);
     event.replyComponents(container).useComponentsV2().queue();
@@ -170,15 +161,7 @@ public class ProviderCommands {
     components.add(Separator.create(true, Separator.Spacing.SMALL));
     components.add(
         TextDisplay.of(
-            """
-            ▫ Tackle Box Cost (3/3.5 WLs each) -> `%s-%s` %s
-            ▫ Cost from Store: `%s` gems\
-            """
-                .formatted(
-                    formatNumber(tackleCount * 3L),
-                    formatNumber((long) (tackleCount * 3.5)),
-                    AppEmojis.WORLD_LOCK,
-                    formatNumber(tackleCount * 10_000L))));
+            "▫ Cost from Store: `%s` gems".formatted(formatNumber(tackleCount * 10_000L))));
 
     Container container = ContainerUtil.createGenericContainer(components);
     event.replyComponents(container).useComponentsV2().queue();

@@ -38,7 +38,7 @@ payload={
       "spacing" : 1,
       "type" : 14
     }, {
-      "content" : "▫ Tackle Box Cost (3/3.5 WLs each) -> `3,000-3,500` <:WORLD_LOCK:972401112>\n▫ Cost from Store: `10,000,000` gems",
+      "content" : "▫ Cost from Store: `10,000,000` gems",
       "type" : 10
     }, {
       "divider" : true,
