@@ -68,6 +68,7 @@ import net.dv8tion.jda.api.interactions.IntegrationType;
 import net.dv8tion.jda.api.interactions.InteractionContextType;
 import net.dv8tion.jda.api.modals.Modal;
 import net.dv8tion.jda.api.utils.FileUpload;
+import net.dv8tion.jda.api.utils.MarkdownSanitizer;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,6 +99,9 @@ public class GtCommands {
 
   /** Maximum amount of matches shown by {@code /gt search}. */
   private static final int MAX_SEARCH_RESULTS = 20;
+
+  /** Maximum search input length, keeping echoed queries within Discord's message limits. */
+  private static final int MAX_SEARCH_QUERY_LENGTH = 100;
 
   /** File name of the player-count chart attached by {@code /gt stats}. */
   private static final String CHART_FILE_NAME = "playercount.png";
@@ -1193,17 +1197,31 @@ public class GtCommands {
    * wiki index, listing up to {@value #MAX_SEARCH_RESULTS} matches alphabetically.
    *
    * @param event the slash interaction
-   * @param query partial item name; must be at least 3 characters
+   * @param query partial item name; at most {@value #MAX_SEARCH_QUERY_LENGTH} characters, with at
+   *     least 3 after normalization
    */
   @JDASlashCommand(name = "gt", subcommand = "search", description = "Search items by name.")
   public void onSlashSearch(
       GlobalSlashEvent event,
       @SlashOption(description = "Partial item name to search for.") String query) {
+    if (query.length() > MAX_SEARCH_QUERY_LENGTH) {
+      logger.debug("onSlashSearch: rejected query with length={}", query.length());
+      event
+          .reply(
+              "Search query must be at most %s characters."
+                  .formatted(formatNumber(MAX_SEARCH_QUERY_LENGTH)))
+          .setAllowedMentions(List.of())
+          .queue();
+      return;
+    }
     String needle = ItemUtils.norm(query);
     logger.debug("onSlashSearch: query={}, normalizedQuery={}", query, needle);
     if (needle.length() < 3) {
       logger.debug("onSlashSearch: rejected normalized query with length={}", needle.length());
-      event.reply("Search query must be at least 3 characters.").queue();
+      event
+          .reply("Search query must be at least 3 characters.")
+          .setAllowedMentions(List.of())
+          .queue();
       return;
     }
 
@@ -1214,14 +1232,18 @@ public class GtCommands {
             .toList();
     logger.debug(
         "onSlashSearch: found {} match(es) for normalizedQuery={}", matches.size(), needle);
+    String displayQuery = MarkdownSanitizer.escape(query);
     if (matches.isEmpty()) {
-      event.reply("No items found matching `%s`.".formatted(query)).queue();
+      event
+          .reply("No items found matching \"%s\".".formatted(displayQuery))
+          .setAllowedMentions(List.of())
+          .queue();
       return;
     }
 
     List<ContainerChildComponent> components = new ArrayList<>();
     components.add(
-        TextDisplay.of("### 🔍 %d result(s) for \"%s\"".formatted(matches.size(), query)));
+        TextDisplay.of("### 🔍 %d result(s) for \"%s\"".formatted(matches.size(), displayQuery)));
     components.add(Separator.create(true, Separator.Spacing.LARGE));
 
     StringBuilder names = new StringBuilder();
@@ -1238,7 +1260,7 @@ public class GtCommands {
     }
 
     Container container = ContainerUtil.createGenericContainer(components);
-    event.replyComponents(container).useComponentsV2().queue();
+    event.replyComponents(container).setAllowedMentions(List.of()).useComponentsV2().queue();
   }
 
   /**

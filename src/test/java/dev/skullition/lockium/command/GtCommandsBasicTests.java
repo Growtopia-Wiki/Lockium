@@ -1,7 +1,11 @@
 package dev.skullition.lockium.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import dev.skullition.lockium.model.ItemCatalogue;
@@ -25,11 +29,14 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.json.JsonMapper;
 
 /** Snapshot and validation tests for commands that do not require full item API fixtures. */
 class GtCommandsBasicTests {
   private static final Clock CLOCK =
       Clock.fixed(Instant.parse("2026-07-04T17:22:00Z"), ZoneOffset.UTC);
+  private static final JsonMapper JSON = JsonMapper.builder().build();
 
   @BeforeAll
   static void initializeEmojis() throws ClassNotFoundException {
@@ -80,6 +87,85 @@ class GtCommandsBasicTests {
     assertTrue(world.snapshot().contains("letters/numbers/underscores"));
   }
 
+  @Test
+  void acceptsSearchQueryAt100Utf16Characters() {
+    WikiService wiki = mock(WikiService.class);
+    when(wiki.getNameIndex()).thenReturn(Map.of());
+    GtCommands commands = commands(wiki, mock(RiddleService.class));
+    String query = "😀".repeat(50);
+    assertEquals(100, query.length());
+    DiscordEventHarness search = new DiscordEventHarness();
+
+    commands.onSlashSearch(search.slashEvent(), query);
+
+    verify(wiki).getNameIndex();
+    assertTrue(search.snapshot().contains("No items found matching"));
+  }
+
+  @Test
+  void rejectsOversizedSearchQueriesBeforeLookingUpTheIndex() throws IOException {
+    WikiService wiki = mock(WikiService.class);
+    GtCommands commands = commands(wiki, mock(RiddleService.class));
+    List<String> queries =
+        List.of(
+            "x".repeat(101),
+            "😀".repeat(51),
+            "x".repeat(1_974),
+            "x".repeat(6_000),
+            "dirt" + " ".repeat(97));
+    for (String query : queries) {
+      DiscordEventHarness search = new DiscordEventHarness();
+      commands.onSlashSearch(search.slashEvent(), query);
+      JsonNode payload = payload(search.snapshot());
+      assertEquals(
+          "Search query must be at most 100 characters.", payload.path("content").asString());
+      assertEquals("[]", payload.path("allowed_mentions").path("parse").toString());
+    }
+
+    verify(wiki, never()).getNameIndex();
+  }
+
+  @Test
+  void escapesMaliciousNoMatchSearchTextAndDisablesMentions() throws IOException {
+    WikiService wiki = mock(WikiService.class);
+    when(wiki.getNameIndex()).thenReturn(Map.of());
+    GtCommands commands = commands(wiki, mock(RiddleService.class));
+    String query = "x` @everyone `x";
+    DiscordEventHarness search = new DiscordEventHarness();
+
+    commands.onSlashSearch(search.slashEvent(), query);
+
+    JsonNode payload = payload(search.snapshot());
+    String content = payload.path("content").asString();
+    assertTrue(content.startsWith("No items found matching \""));
+    assertTrue(content.endsWith("\"."));
+    assertTrue(content.contains("x\\`"));
+    assertTrue(content.contains("\\`x"));
+    assertTrue(content.contains("@everyone"));
+    assertFalse(content.contains(query));
+    assertEquals("[]", payload.path("allowed_mentions").path("parse").toString());
+  }
+
+  @Test
+  void escapesMatchingSearchTextAndDisablesMentions() throws IOException {
+    WikiService wiki = mock(WikiService.class);
+    String query = "x` @everyone `x";
+    when(wiki.getNameIndex()).thenReturn(Map.of(query, new ItemCatalogue(3, 1, 1, query, null)));
+    GtCommands commands = commands(wiki, mock(RiddleService.class));
+    DiscordEventHarness search = new DiscordEventHarness();
+
+    commands.onSlashSearch(search.slashEvent(), query);
+
+    JsonNode payload = payload(search.snapshot());
+    assertEquals("[]", payload.path("allowed_mentions").path("parse").toString());
+    String header =
+        payload.path("components").get(0).path("components").get(0).path("content").asString();
+    assertTrue(header.contains("1 result(s) for"));
+    assertTrue(header.contains("x\\`"));
+    assertTrue(header.contains("\\`x"));
+    assertFalse(header.contains(query));
+  }
+
   private static GtCommands commands(WikiService wiki, RiddleService riddles) {
     return new GtCommands(
         mock(Modals.class),
@@ -100,6 +186,11 @@ class GtCommandsBasicTests {
     DiscordEventHarness harness = new DiscordEventHarness();
     invocation.invoke(harness.slashEvent());
     SnapshotAssertions.assertMatches(name, harness.snapshot());
+  }
+
+  private static JsonNode payload(String snapshot) throws IOException {
+    String marker = "payload=";
+    return JSON.readTree(snapshot.substring(snapshot.indexOf(marker) + marker.length()));
   }
 
   @FunctionalInterface
