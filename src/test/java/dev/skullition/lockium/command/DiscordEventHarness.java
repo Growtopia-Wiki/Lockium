@@ -8,6 +8,7 @@ import static org.mockito.Mockito.mock;
 
 import io.github.freya022.botcommands.api.commands.application.slash.GlobalSlashEvent;
 import io.github.freya022.botcommands.api.commands.application.slash.GuildSlashEvent;
+import io.github.freya022.botcommands.api.components.event.ButtonEvent;
 import io.github.freya022.botcommands.api.localization.interaction.LocalizableInteractionHook;
 import io.github.freya022.botcommands.api.modals.ModalEvent;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import net.dv8tion.jda.api.entities.Message.MentionType;
 import net.dv8tion.jda.api.modals.Modal;
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageCreateAction;
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageEditAction;
+import net.dv8tion.jda.api.requests.restaction.interactions.MessageEditCallbackAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ModalCallbackAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 import net.dv8tion.jda.api.utils.FileUpload;
@@ -110,6 +112,53 @@ final class DiscordEventHarness {
         .when(event)
         .deferReply();
     return event;
+  }
+
+  /** Captures both component edits and ephemeral replies from a button callback. */
+  ButtonEvent buttonEvent() {
+    ButtonEvent event = mock(ButtonEvent.class, Answers.CALLS_REAL_METHODS);
+    doReturn(hook()).when(event).getHook();
+    MessageEditCallbackAction[] edit = new MessageEditCallbackAction[1];
+    edit[0] =
+        mock(
+            MessageEditCallbackAction.class,
+            invocation -> captureAction(capture, edit[0], invocation));
+    doAnswer(
+            invocation -> {
+              resetMessage("edit-original");
+              return edit[0];
+            })
+        .when(event)
+        .deferEdit();
+    doAnswer(
+            invocation -> {
+              resetMessage("initial");
+              capture.message = invocation.getArgument(0);
+              return action;
+            })
+        .when(event)
+        .reply(any(MessageCreateData.class));
+    doAnswer(
+            invocation -> {
+              resetMessage("deferred");
+              return action;
+            })
+        .when(event)
+        .deferReply();
+    return event;
+  }
+
+  private void resetMessage(String delivery) {
+    capture.delivery = delivery;
+    capture.message = null;
+    capture.modal = null;
+    capture.content = null;
+    capture.components.clear();
+    capture.ephemeral = false;
+    capture.componentsV2 = false;
+    capture.queued = false;
+    capture.allowedMentions = null;
+    capture.attachments.clear();
   }
 
   String snapshot() {
@@ -222,6 +271,22 @@ final class DiscordEventHarness {
             })
         .when(hook)
         .editOriginal(any(String.class));
+    doAnswer(
+            invocation -> {
+              resetMessage("edit-original");
+              capture.components.addAll(componentCollection(invocation.getArgument(0)));
+              return editAction;
+            })
+        .when(hook)
+        .editOriginalComponents(anyCollection());
+    doAnswer(
+            invocation -> {
+              resetMessage("edit-original");
+              capture.components.addAll(componentCollection(invocation.getArgument(0)));
+              return editAction;
+            })
+        .when(hook)
+        .editOriginalComponents(any(MessageTopLevelComponent[].class));
     return hook;
   }
 
@@ -250,6 +315,16 @@ final class DiscordEventHarness {
       throws Throwable {
     String method = invocation.getMethod().getName();
     switch (method) {
+      case "setContent" -> capture.content = invocation.getArgument(0);
+      case "setComponents" -> {
+        capture.message = null;
+        capture.components.clear();
+        capture.components.addAll(componentCollection(invocation.getArgument(0)));
+      }
+      case "addComponents" -> {
+        capture.message = null;
+        capture.components.addAll(componentCollection(invocation.getArgument(0)));
+      }
       case "setEphemeral" -> capture.ephemeral = invocation.getArgument(0);
       case "useComponentsV2" -> capture.componentsV2 = true;
       case "setAllowedMentions" -> {
@@ -286,6 +361,9 @@ final class DiscordEventHarness {
 
   private static Collection<? extends MessageTopLevelComponent> componentCollection(
       Object argument) {
+    if (argument instanceof MessageTopLevelComponent component) {
+      return List.of(component);
+    }
     if (argument instanceof Collection<?> components) {
       return components.stream()
           .filter(MessageTopLevelComponent.class::isInstance)

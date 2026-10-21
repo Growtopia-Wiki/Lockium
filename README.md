@@ -26,6 +26,7 @@ All commands work in servers, DMs, and as a user-install app.
 - `/gt world <name>` – show a world's render from growtopiagame.com, with its last render date
 - `/gt stats` – game server stats: server status, online users, today's WOTD, and a graph of the player count over the last 24 hours
 - `/gt leaderboard [league]` – the computed overall top 20, or a single one of the 18 league boards
+- `/gt auction [item]` – browse auction listings, optionally filtered by item name, with WL bids and estimated timers; Previous/Next keep a stable snapshot, while Refresh reads the latest cached snapshot
 - `/gt events` – timers for the Daily Challenge, Night of the Comet, Pet Battle Tournament, and the daily block drop rotation
 - `/gt time` – current Growtopia (US Eastern) time
 - `/gt startdate <days>` – convert your account's age in days to the date you started playing
@@ -139,6 +140,15 @@ Defaults live in `src/main/resources/application.properties` and can be overridd
 | `lockium.status`               | `Enjoy your day!`               | Custom Discord activity status    |
 | `lockium.items-cache-duration` | `1h`                            | TTL for the cached Wiki item list |
 | `wiki.api.url`                 | `https://api.growtopiawiki.com` | Wiki API base URL                 |
+| `lockium.proxy.auction.enabled` | `true` | Enable shared auction polling (also controls owner reload) |
+| `lockium.proxy.auction.poll-interval` | `1m` | Auction polling interval |
+| `lockium.proxy.auction.max-age` | `10m` | Maximum snapshot age measured from the proxy's `fetched_at` |
+| `lockium.proxy.auction.max-backoff` | `10m` | Maximum retry delay after failed auction refreshes |
+
+Auction browsing is read-only. Only the person who opened a view can use its controls. Views expire
+after ten minutes, or sooner if their snapshot reaches the maximum age. Timers are estimates;
+an elapsed timer does not establish the auction's outcome. Local proxy access may receive a WAF
+403; polling backs off and the command reports unavailable data or a retained snapshot's age.
 
 ## Support
 Join the Growtopia Wiki server: https://discord.gg/VYK9tuQQQE

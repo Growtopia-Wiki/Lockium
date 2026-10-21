@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import dev.skullition.lockium.service.ChiService;
+import dev.skullition.lockium.service.GrowtopiaAuctionService;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
 import dev.skullition.lockium.service.ItemEffectService;
@@ -38,6 +39,7 @@ class OwnerCommandsTests {
   private ItemEffectService effects;
   private GrowtopiaDetailService details;
   private GrowtopiaLeaderboardService leaderboards;
+  private GrowtopiaAuctionService auctions;
   private BotOwners owners;
   private OwnerCommands commands;
 
@@ -55,9 +57,11 @@ class OwnerCommandsTests {
     effects = mock(ItemEffectService.class);
     details = mock(GrowtopiaDetailService.class);
     leaderboards = mock(GrowtopiaLeaderboardService.class);
+    auctions = mock(GrowtopiaAuctionService.class);
     owners = mock(BotOwners.class);
     commands =
-        new OwnerCommands(fruits, cache, chi, riddles, effects, details, leaderboards, owners);
+        new OwnerCommands(
+            fruits, cache, chi, riddles, effects, details, leaderboards, auctions, owners);
   }
 
   @Test
@@ -134,7 +138,8 @@ class OwnerCommandsTests {
     commands.onSlashReload(event);
 
     SnapshotAssertions.assertMatches("owner-reload", harness.snapshot());
-    var interactions = inOrder(event, cache, fruits, chi, riddles, effects, details, leaderboards);
+    var interactions =
+        inOrder(event, cache, fruits, chi, riddles, effects, details, leaderboards, auctions);
     interactions.verify(event).deferReply(true);
     interactions.verify(cache).refreshCaches();
     interactions.verify(fruits).reload();
@@ -143,6 +148,7 @@ class OwnerCommandsTests {
     interactions.verify(effects).reload();
     interactions.verify(details).refresh();
     interactions.verify(leaderboards).refresh();
+    interactions.verify(auctions).refresh();
     interactions.verify(event).getHook();
   }
 
@@ -163,6 +169,7 @@ class OwnerCommandsTests {
     verify(event).deferReply();
     verify(fruits, never()).reload();
     verify(leaderboards, never()).refresh();
+    verify(auctions, never()).refresh();
   }
 
   @Test
@@ -178,6 +185,7 @@ class OwnerCommandsTests {
     verify(cache, never()).refreshCaches();
     verify(details, never()).refresh();
     verify(leaderboards, never()).refresh();
+    verify(auctions, never()).refresh();
     verify(event, never()).getJDA();
   }
 

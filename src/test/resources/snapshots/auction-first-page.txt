@@ -1,0 +1,50 @@
+delivery=initial
+ephemeral=false
+componentsV2=true
+allowedMentions=[]
+attachments=[]
+payload={
+  "allowed_mentions" : {
+    "parse" : [ ],
+    "replied_user" : true
+  },
+  "components" : [ {
+    "accent_color" : 16756655,
+    "components" : [ {
+      "content" : "## <:AUCTION:56125987> Auction listings\nSnapshot age: 0s ago. Timers are estimates.\n6 results · Page 1 of 2\n\n**Item 1**\nOwner: Owner 1 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 1 WL · 5m 0s remaining\n\n**Item 2**\nOwner: Owner 2 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 2 WL · 5m 0s remaining\n\n**Item 3**\nOwner: Owner 3 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 3 WL · 5m 0s remaining\n\n**Item 4**\nOwner: Owner 4 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 4 WL · 5m 0s remaining\n\n**Item 5**\nOwner: Owner 5 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 5 WL · 5m 0s remaining",
+      "type" : 10
+    }, {
+      "components" : [ {
+        "custom_id" : "auction-previous-1",
+        "disabled" : true,
+        "label" : "Previous",
+        "style" : 2,
+        "type" : 2
+      }, {
+        "custom_id" : "auction-next-1",
+        "disabled" : false,
+        "label" : "Next",
+        "style" : 2,
+        "type" : 2
+      }, {
+        "custom_id" : "auction-refresh-1",
+        "disabled" : false,
+        "label" : "Refresh",
+        "style" : 1,
+        "type" : 2
+      } ],
+      "type" : 1
+    }, {
+      "divider" : true,
+      "spacing" : 1,
+      "type" : 14
+    }, {
+      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "type" : 10
+    } ],
+    "spoiler" : false,
+    "type" : 17
+  } ],
+  "flags" : 32768,
+  "tts" : false
+}

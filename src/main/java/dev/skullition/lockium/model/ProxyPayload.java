@@ -9,13 +9,15 @@ import org.jspecify.annotations.Nullable;
  * Envelope returned by every route of the internal Growtopia proxy.
  *
  * <p>The proxy wraps each route's payload in this identical structure, so one generic record covers
- * {@code /detail} and {@code /leaderboard} alike. Spring derives a {@code
+ * {@code /detail}, {@code /leaderboard}, and {@code /auction} alike. Spring derives a {@code
  * ParameterizedTypeReference} from the declared return type of the client method, so the type
  * variable resolves correctly through {@code RestClient}.
  *
  * <p>When the origin site is unreachable or unparseable the proxy serves its last good copy, up to
  * 24 hours old, as HTTP 203 with {@link #stale()} populated. 203 is a success status, so the status
  * code alone is easy to overlook — check {@link #isStale()} instead, which also carries the reason.
+ * {@link Stale#servedAt()} is when the proxy served the stale response; {@link #fetchedAt()}
+ * remains the time the proxy last fetched the origin.
  *
  * @param <T> the route-specific payload type
  * @param fetchedAt when the proxy last fetched the origin; JSON property {@code "fetched_at"}
@@ -36,7 +38,7 @@ public record ProxyPayload<T>(
   }
 
   /**
-   * Whether the proxy served this from its cache rather than a live origin fetch.
+   * Whether the proxy served a stale fallback after an origin or parsing failure.
    *
    * @return {@code true} when {@link #stale()} is present
    */
@@ -50,7 +52,7 @@ public record ProxyPayload<T>(
    * @param reason {@code "origin"} when the site errored, which recovers by itself, or {@code
    *     "parse"} when the site's HTML changed and the proxy needs fixing
    * @param message human-readable explanation from the proxy
-   * @param servedAt when the cached copy was originally fetched; JSON property {@code "served_at"}
+   * @param servedAt when the proxy served this stale response; JSON property {@code "served_at"}
    */
   public record Stale(
       @JsonProperty("reason") String reason,

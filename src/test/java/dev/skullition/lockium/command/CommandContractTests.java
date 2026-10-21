@@ -25,7 +25,12 @@ class CommandContractTests {
   @Test
   void exposesTheExpectedSlashCommandSurface() {
     Set<String> actual =
-        Stream.of(GtCommands.class, ProviderCommands.class, OwnerCommands.class, SlashPing.class)
+        Stream.of(
+                GtCommands.class,
+                AuctionCommands.class,
+                ProviderCommands.class,
+                OwnerCommands.class,
+                SlashPing.class)
             .flatMap(type -> Arrays.stream(type.getDeclaredMethods()))
             .filter(method -> method.isAnnotationPresent(JDASlashCommand.class))
             .map(CommandContractTests::commandPath)
@@ -34,6 +39,7 @@ class CommandContractTests {
     assertEquals(
         Set.of(
             "gt item",
+            "gt auction",
             "gt sprite",
             "gt break",
             "gt harvest",
@@ -64,7 +70,12 @@ class CommandContractTests {
   @Test
   void everySlashEntryPointCarriesRegistrationMetadata() {
     for (Class<?> type :
-        List.of(GtCommands.class, ProviderCommands.class, OwnerCommands.class, SlashPing.class)) {
+        List.of(
+            GtCommands.class,
+            AuctionCommands.class,
+            ProviderCommands.class,
+            OwnerCommands.class,
+            SlashPing.class)) {
       for (Method method : type.getDeclaredMethods()) {
         if (method.getName().startsWith("onSlash")) {
           assertTrue(

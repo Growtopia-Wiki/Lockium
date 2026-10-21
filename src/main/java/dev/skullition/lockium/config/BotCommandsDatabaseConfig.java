@@ -5,6 +5,7 @@ import io.github.freya022.botcommands.api.core.db.HikariSourceSupplier;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitialization;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,12 +34,15 @@ public class BotCommandsDatabaseConfig {
    * Adapts the autoconfigured Hikari pool to the interface BotCommands expects.
    *
    * <p>BotCommands derives its connection limit and transaction-duration warnings from the pool's
-   * own settings, so {@code spring.datasource.hikari.*} governs both frameworks.
+   * own settings, so {@code spring.datasource.hikari.*} governs both frameworks. Database
+   * initialization must finish before this supplier is exposed: enabled button services validate
+   * the BotCommands schema during construction, before the application-ready event.
    *
    * @param dataSource the autoconfigured data source, which Spring Boot backs with HikariCP
    * @return a supplier handing BotCommands the same pool the application uses
    */
   @Bean
+  @DependsOnDatabaseInitialization
   public HikariSourceSupplier hikariSourceSupplier(DataSource dataSource) {
     if (!(dataSource instanceof HikariDataSource hikari)) {
       throw new IllegalStateException(

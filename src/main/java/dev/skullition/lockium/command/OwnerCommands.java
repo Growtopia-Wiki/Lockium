@@ -3,6 +3,7 @@ package dev.skullition.lockium.command;
 import static dev.skullition.lockium.util.FormatUtil.formatNumber;
 
 import dev.skullition.lockium.service.ChiService;
+import dev.skullition.lockium.service.GrowtopiaAuctionService;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
 import dev.skullition.lockium.service.GrowtopiaLeaderboardService;
 import dev.skullition.lockium.service.ItemEffectService;
@@ -64,6 +65,7 @@ public class OwnerCommands {
   private final ItemEffectService itemEffectService;
   private final GrowtopiaDetailService detailService;
   private final GrowtopiaLeaderboardService leaderboardService;
+  private final GrowtopiaAuctionService auctionService;
   private final BotOwners botOwners;
 
   /**
@@ -76,6 +78,7 @@ public class OwnerCommands {
    * @param itemEffectService service that holds seed and scraped item effects
    * @param detailService publisher of the polled Growtopia detail snapshot
    * @param leaderboardService publisher of the polled Growtopia leaderboards
+   * @param auctionService service that refreshes the Growtopia auction snapshot
    * @param botOwners registry of bot owners used to gate slash commands
    */
   public OwnerCommands(
@@ -86,6 +89,7 @@ public class OwnerCommands {
       ItemEffectService itemEffectService,
       GrowtopiaDetailService detailService,
       GrowtopiaLeaderboardService leaderboardService,
+      GrowtopiaAuctionService auctionService,
       BotOwners botOwners) {
     this.fruitService = fruitService;
     this.cacheService = cacheService;
@@ -94,6 +98,7 @@ public class OwnerCommands {
     this.itemEffectService = itemEffectService;
     this.detailService = detailService;
     this.leaderboardService = leaderboardService;
+    this.auctionService = auctionService;
     this.botOwners = botOwners;
   }
 
@@ -218,6 +223,7 @@ public class OwnerCommands {
       itemEffectService.reload();
       detailService.refresh();
       leaderboardService.refresh();
+      auctionService.refresh();
     } catch (RuntimeException e) {
       logger.error("Full cache reload failed", e);
       event

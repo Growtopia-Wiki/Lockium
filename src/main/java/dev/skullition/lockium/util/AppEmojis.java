@@ -18,7 +18,8 @@ import net.dv8tion.jda.api.entities.emoji.ApplicationEmoji;
  * <ol>
  *   <li>Upload the emoji to the {@code resources/emojis} directory
  *   <li>Add a constant: {@code public static final ApplicationEmoji NAME = get("NAME");}
- *   <li>The string must match the emoji name exactly (case-sensitive)
+ *   <li>The string must match the Java field name exactly (case-sensitive); BotCommands derives the
+ *       asset and Discord emoji names in snake_case (e.g. {@code AUCTION} uses {@code auction.png})
  * </ol>
  */
 @AppEmojiContainer
@@ -85,4 +86,5 @@ public class AppEmojis {
   public static final ApplicationEmoji LEGENDARY_WIZARD = get("LEGENDARY_WIZARD");
   public static final ApplicationEmoji FISHING_ROD = get("FISHING_ROD");
   public static final ApplicationEmoji DREAMCATCHER = get("DREAMCATCHER");
+  public static final ApplicationEmoji AUCTION = get("AUCTION");
 }
