@@ -44,6 +44,12 @@ Item name options support autocomplete backed by the cached Wiki item index.
 There are also owner-only slash commands (`/owner activity`, `/owner guilds`, and `/owner reload`)
 in test guilds.
 
+Owner command registration is checked when configured guilds become ready. If Discord's command
+IDs or subcommands disagree with the bot's routing, the bot attempts a guild registration repair.
+An unresolved owner invocation also requests a check; retry the command after recovery completes.
+Checks allow one attempt per guild per minute and log registration IDs and outcomes. They respect
+`botcommands.application.testGuildIds` and any `botcommands.application.guildsToUpdate` restriction.
+
 ## Tech Stack
 
 - **Java 25** (project is built on the latest JDK)
