@@ -41,14 +41,8 @@ All commands work in servers, DMs, and as a user-install app.
 
 Item name options support autocomplete backed by the cached Wiki item index.
 
-There are also owner-only slash commands (`/owner activity`, `/owner guilds`, and `/owner reload`)
-in test guilds.
-
-Owner command registration is checked when configured guilds become ready. If Discord's command
-IDs or subcommands disagree with the bot's routing, the bot attempts a guild registration repair.
-An unresolved owner invocation also requests a check; retry the command after recovery completes.
-Checks allow one attempt per guild per minute and log registration IDs and outcomes. They respect
-`botcommands.application.testGuildIds` and any `botcommands.application.guildsToUpdate` restriction.
+There are also owner-only slash commands (`/owner activity`, `/owner guilds`,
+`/owner leave <server_id>`, and `/owner reload`) in test guilds.
 
 ## Tech Stack
 
@@ -151,8 +145,11 @@ Defaults live in `src/main/resources/application.properties` and can be overridd
 | `lockium.proxy.auction.max-age` | `10m` | Maximum snapshot age measured from the proxy's `fetched_at` |
 | `lockium.proxy.auction.max-backoff` | `10m` | Maximum retry delay after failed auction refreshes |
 
-Auction browsing is read-only. Only the person who opened a view can use its controls. Views expire
-after ten minutes, or sooner if their snapshot reaches the maximum age. Timers are estimates;
+Auction browsing is read-only. Only the person who opened a view can use its controls. Refresh has
+a ten-second per-user cooldown across channels and a five-second cooldown shared by everyone in a
+channel; opening another view does not reset either limit. Views expire after ten minutes, or sooner
+if their snapshot reaches the maximum age. Discord timestamps show snapshot age and estimated end
+times, updating as time passes. Timers are estimates;
 an elapsed timer does not establish the auction's outcome. Local proxy access may receive a WAF
 403; polling backs off and the command reports unavailable data or a retained snapshot's age.
 

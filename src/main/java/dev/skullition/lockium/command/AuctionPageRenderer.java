@@ -8,6 +8,7 @@ import dev.skullition.lockium.model.ProxyPayload;
 import dev.skullition.lockium.util.AppEmojis;
 import dev.skullition.lockium.util.ContainerUtil;
 import java.time.Clock;
+import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import net.dv8tion.jda.api.components.buttons.Button;
 import net.dv8tion.jda.api.components.container.Container;
 import net.dv8tion.jda.api.components.container.ContainerChildComponent;
 import net.dv8tion.jda.api.components.textdisplay.TextDisplay;
+import net.dv8tion.jda.api.utils.TimeFormat;
 import org.jspecify.annotations.Nullable;
 
 /** Renders a bounded, paginated view of one accepted auction snapshot. */
@@ -29,6 +31,10 @@ final class AuctionPageRenderer {
   private static final int OWNER_LIMIT = 50;
   private static final int WORLD_LIMIT = 50;
   private static final Duration OUT_OF_DATE_AGE = Duration.ofMinutes(2);
+  private static final long MIN_DISPLAYABLE_EPOCH_SECOND =
+      Instant.parse("0001-01-01T00:00:00Z").getEpochSecond();
+  private static final long MAX_DISPLAYABLE_EPOCH_SECOND =
+      Instant.parse("9999-12-31T23:59:59Z").getEpochSecond();
 
   private final Clock clock;
   private final Duration maxAge;
@@ -72,8 +78,9 @@ final class AuctionPageRenderer {
     long ageSeconds = elapsedSeconds(payload.fetchedAt(), now);
     StringBuilder text = new StringBuilder();
     text.append("## %s Auction listings\n".formatted(AppEmojis.AUCTION));
-    text.append("Snapshot age: ").append(formatDuration(ageSeconds)).append(" ago.");
-    text.append(" Timers are estimates.");
+    text.append("Snapshot: ")
+        .append(relativeTimestamp(payload.fetchedAt()))
+        .append(". Timers are estimates.");
     Duration age = Duration.ofSeconds(ageSeconds);
     appendFreshnessNotices(text, payload, failedAt, age);
     if (!normalizedFilter.isEmpty()) {
@@ -162,11 +169,9 @@ final class AuctionPageRenderer {
   private static String renderListing(AuctionListing listing, Instant now, Instant fetchedAt) {
     long elapsed = elapsedSeconds(fetchedAt, now);
     long remaining = Math.max(0, listing.remainingSeconds());
-    long secondsLeft = elapsed >= remaining ? 0 : remaining - elapsed;
-    String timer =
-        secondsLeft == 0
-            ? "Timer elapsed; outcome unknown"
-            : formatDuration(secondsLeft) + " remaining";
+    Instant anchor = fetchedAt.isAfter(now) ? now : fetchedAt;
+    boolean elapsedTimer = elapsed >= remaining;
+    String timer = estimatedEnd(anchor, remaining, elapsedTimer);
 
     return "**%s**\nOwner: %s · World: %s\n%s Bid: %s WL · %s"
         .formatted(
@@ -176,6 +181,29 @@ final class AuctionPageRenderer {
             AppEmojis.WORLD_LOCK,
             formatNumber(listing.bidWl()),
             timer);
+  }
+
+  private static String estimatedEnd(Instant anchor, long remainingSeconds, boolean elapsedTimer) {
+    String elapsedNotice = elapsedTimer ? " · Timer elapsed; outcome unknown" : "";
+    try {
+      Instant estimatedEnd = anchor.plusSeconds(remainingSeconds);
+      long epochSecond = estimatedEnd.getEpochSecond();
+      if (epochSecond < MIN_DISPLAYABLE_EPOCH_SECOND
+          || epochSecond > MAX_DISPLAYABLE_EPOCH_SECOND) {
+        return "Estimated end is too far away to display" + elapsedNotice;
+      }
+      return "Estimated end: " + relativeTimestamp(estimatedEnd) + elapsedNotice;
+    } catch (DateTimeException | ArithmeticException exception) {
+      return "Estimated end is too far away to display" + elapsedNotice;
+    }
+  }
+
+  private static String relativeTimestamp(Instant instant) {
+    if (instant.getEpochSecond() < MIN_DISPLAYABLE_EPOCH_SECOND
+        || instant.getEpochSecond() > MAX_DISPLAYABLE_EPOCH_SECOND) {
+      return "timestamp unavailable";
+    }
+    return TimeFormat.RELATIVE.format(instant);
   }
 
   private static String normalizeFilter(String filter) {
@@ -219,23 +247,6 @@ final class AuctionPageRenderer {
       return 0;
     }
     return Duration.between(from, to).getSeconds();
-  }
-
-  private static String formatDuration(long seconds) {
-    long days = seconds / 86_400;
-    long hours = (seconds % 86_400) / 3_600;
-    long minutes = (seconds % 3_600) / 60;
-    long remainderSeconds = seconds % 60;
-    if (days > 0) {
-      return formatNumber(days) + "d " + formatNumber(hours) + "h";
-    }
-    if (seconds >= 3_600) {
-      return formatNumber(hours) + "h " + formatNumber(minutes) + "m";
-    }
-    if (seconds >= 60) {
-      return formatNumber(minutes) + "m " + formatNumber(remainderSeconds) + "s";
-    }
-    return formatNumber(remainderSeconds) + "s";
   }
 
   /** A page description that can append its interactive controls without mutating itself. */

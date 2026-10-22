@@ -1,5 +1,6 @@
 package dev.skullition.lockium.command;
 
+import dev.skullition.lockium.handler.AuctionRefreshChannelCooldown;
 import dev.skullition.lockium.model.GrowtopiaAuction;
 import dev.skullition.lockium.model.ProxyPayload;
 import dev.skullition.lockium.properties.AuctionProperties;
@@ -46,8 +47,15 @@ public class AuctionCommands {
   /** Creates the command using the framework's temporary button registry. */
   @Autowired
   public AuctionCommands(
-      GrowtopiaAuctionService service, Buttons buttons, AuctionProperties properties) {
-    this(service, AuctionControlFactory.using(buttons), properties, Clock.systemUTC());
+      GrowtopiaAuctionService service,
+      Buttons buttons,
+      AuctionProperties properties,
+      AuctionRefreshChannelCooldown channelCooldown) {
+    this(
+        service,
+        AuctionControlFactory.using(buttons, channelCooldown),
+        properties,
+        Clock.systemUTC());
   }
 
   /** Creates a browser with deterministic controls and time for isolated command tests. */

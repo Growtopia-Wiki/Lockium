@@ -1,5 +1,7 @@
 package dev.skullition.lockium.command;
 
+import dev.skullition.lockium.handler.AuctionRefreshChannelCooldown;
+import dev.skullition.lockium.service.AuctionRefreshCooldowns;
 import io.github.freya022.botcommands.api.components.Buttons;
 import io.github.freya022.botcommands.api.components.event.ButtonEvent;
 import java.time.Duration;
@@ -20,8 +22,16 @@ interface AuctionControlFactory {
       Consumer<ButtonEvent> refresh,
       Runnable expired);
 
-  /** Adapts BotCommands' temporary, user-restricted buttons without persisting browser state. */
-  static AuctionControlFactory using(Buttons buttons) {
+  /**
+   * Adapts BotCommands' temporary, user-restricted buttons without persisting browser state.
+   *
+   * <p>All views and control generations reuse one reference so rerendering cannot reset the user's
+   * Refresh cooldown. The channel filter is also shared across views.
+   */
+  static AuctionControlFactory using(
+      Buttons buttons, AuctionRefreshChannelCooldown channelCooldown) {
+    var refreshLimit =
+        buttons.createRateLimitReference(AuctionRefreshCooldowns.GROUP, "shared-refresh");
     return (ownerId, lifetime, previous, next, refresh, expired) -> {
       var previousButton =
           buttons
@@ -43,6 +53,8 @@ interface AuctionControlFactory {
           buttons
               .primary("Refresh")
               .ephemeral()
+              .rateLimitReference(refreshLimit)
+              .addFilter(channelCooldown)
               .addUserIds(ownerId)
               .noTimeout()
               .bindTo(refresh)

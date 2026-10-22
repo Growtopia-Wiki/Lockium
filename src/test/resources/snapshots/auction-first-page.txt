@@ -11,7 +11,7 @@ payload={
   "components" : [ {
     "accent_color" : 16756655,
     "components" : [ {
-      "content" : "## <:AUCTION:56125987> Auction listings\nSnapshot age: 0s ago. Timers are estimates.\n6 results · Page 1 of 2\n\n**Item 1**\nOwner: Owner 1 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 1 WL · 5m 0s remaining\n\n**Item 2**\nOwner: Owner 2 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 2 WL · 5m 0s remaining\n\n**Item 3**\nOwner: Owner 3 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 3 WL · 5m 0s remaining\n\n**Item 4**\nOwner: Owner 4 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 4 WL · 5m 0s remaining\n\n**Item 5**\nOwner: Owner 5 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 5 WL · 5m 0s remaining",
+      "content" : "## <:AUCTION:56125987> Auction listings\nSnapshot: <t:1767323045:R>. Timers are estimates.\n6 results · Page 1 of 2\n\n**Item 1**\nOwner: Owner 1 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 1 WL · Estimated end: <t:1767323345:R>\n\n**Item 2**\nOwner: Owner 2 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 2 WL · Estimated end: <t:1767323345:R>\n\n**Item 3**\nOwner: Owner 3 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 3 WL · Estimated end: <t:1767323345:R>\n\n**Item 4**\nOwner: Owner 4 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 4 WL · Estimated end: <t:1767323345:R>\n\n**Item 5**\nOwner: Owner 5 · World: WORLD\n<:WORLD_LOCK:972401112> Bid: 5 WL · Estimated end: <t:1767323345:R>",
       "type" : 10
     }, {
       "components" : [ {

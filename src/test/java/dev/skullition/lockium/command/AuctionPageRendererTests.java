@@ -111,11 +111,13 @@ class AuctionPageRendererTests {
 
     String text = pageText(renderer.render(payload, NOW.minusSeconds(5), "", 0));
 
-    assertTrue(text.contains("Snapshot age: 3m 0s ago."));
+    assertTrue(text.contains("Snapshot: " + relative(NOW.minus(Duration.ofMinutes(3))) + "."));
+    assertTrue(text.contains("Timers are estimates."));
     assertTrue(text.contains("stale cached data"));
     assertTrue(text.contains("source unavailable"));
     assertTrue(text.contains("latest refresh failed; showing the last accepted snapshot"));
     assertTrue(text.contains("Parsing warnings: 2."));
+    assertTrue(text.contains("Estimated end: " + relative(NOW.minusSeconds(60))));
     assertTrue(text.contains("Timer elapsed; outcome unknown"));
     assertFalse(text.contains("cached copy"));
   }
@@ -135,9 +137,17 @@ class AuctionPageRendererTests {
 
     String text = pageText(renderer.render(payload, null, "", 0));
 
-    assertTrue(text.contains("5m 0s remaining"));
+    String expectedEnd = relative(NOW.plus(Duration.ofMinutes(5)));
+    assertTrue(text.contains("Snapshot: " + relative(NOW.minus(Duration.ofMinutes(5))) + "."));
+    assertTrue(text.contains("Estimated end: " + expectedEnd));
+    assertTrue(text.contains("Estimated end: " + relative(NOW.minusSeconds(1))));
     assertTrue(text.contains("Timer elapsed; outcome unknown"));
-    assertFalse(text.contains("6m remaining"));
+    assertFalse(text.contains("Estimated end: " + relative(NOW.plusSeconds(599))));
+
+    AuctionPageRenderer laterRenderer =
+        new AuctionPageRenderer(Clock.fixed(NOW.plusSeconds(30), ZoneOffset.UTC), MAX_AGE);
+    String laterText = pageText(laterRenderer.render(payload, null, "", 0));
+    assertTrue(laterText.contains("Estimated end: " + expectedEnd));
   }
 
   @Test
@@ -148,8 +158,8 @@ class AuctionPageRendererTests {
 
     String text = pageText(renderer.render(payload, null, "", 0));
 
-    assertTrue(text.contains("Snapshot age: 0s ago."));
-    assertTrue(text.contains("1m 30s remaining"));
+    assertTrue(text.contains("Snapshot: " + relative(NOW.plusSeconds(300)) + "."));
+    assertTrue(text.contains("Estimated end: " + relative(NOW.plusSeconds(90))));
   }
 
   @Test
@@ -184,14 +194,54 @@ class AuctionPageRendererTests {
   @Test
   void formatsLargeSafeIntegerBidAndTimerWithoutOverflow() {
     AuctionPageRenderer renderer = renderer();
-    long safeInteger = 9_000_000_000_000_000L;
+    long safeInteger = 9_007_199_254_740_991L;
     ProxyPayload<GrowtopiaAuction> payload =
         payload(List.of(listing("Huge", "Owner", "WORLD", safeInteger, safeInteger)), NOW);
 
     String text = pageText(renderer.render(payload, null, "", 0));
 
-    assertTrue(text.contains("9,000,000,000,000,000 WL"));
-    assertTrue(text.contains("104,166,666,666d 16h remaining"));
+    assertTrue(text.contains("9,007,199,254,740,991 WL"));
+    assertTrue(text.contains("Estimated end is too far away to display"));
+    assertFalse(text.contains("<t:9007199254740991:R>"));
+  }
+
+  @Test
+  void displaysTimestampAtSupportedYearBoundariesAndFallsBackBeyondThem() {
+    Instant firstSupportedInstant = Instant.parse("0001-01-01T00:00:00Z");
+    AuctionPageRenderer firstYearRenderer =
+        new AuctionPageRenderer(Clock.fixed(firstSupportedInstant, ZoneOffset.UTC), MAX_AGE);
+    String firstYearText =
+        pageText(
+            firstYearRenderer.render(
+                payload(List.of(listing("First", "Owner", "WORLD", 1, 0)), firstSupportedInstant),
+                null,
+                "",
+                0));
+
+    Instant lastSupportedInstant = Instant.parse("9999-12-31T23:59:00Z");
+    AuctionPageRenderer lastYearRenderer =
+        new AuctionPageRenderer(Clock.fixed(lastSupportedInstant, ZoneOffset.UTC), MAX_AGE);
+    String lastYearText =
+        pageText(
+            lastYearRenderer.render(
+                payload(List.of(listing("Last", "Owner", "WORLD", 1, 59)), lastSupportedInstant),
+                null,
+                "",
+                0));
+    final String beyondLastYearText =
+        pageText(
+            lastYearRenderer.render(
+                payload(List.of(listing("Beyond", "Owner", "WORLD", 1, 60)), lastSupportedInstant),
+                null,
+                "",
+                0));
+
+    assertTrue(firstYearText.contains("Snapshot: " + relative(firstSupportedInstant) + "."));
+    assertTrue(firstYearText.contains("Estimated end: " + relative(firstSupportedInstant)));
+    assertTrue(
+        lastYearText.contains("Estimated end: " + relative(Instant.parse("9999-12-31T23:59:59Z"))));
+    assertTrue(beyondLastYearText.contains("Estimated end is too far away to display"));
+    assertFalse(beyondLastYearText.contains("<t:253402300800:R>"));
   }
 
   @Test
@@ -217,6 +267,21 @@ class AuctionPageRendererTests {
             payload(List.of(longest, longest, longest, longest, longest), NOW), null, "", 0);
     assertTrue(pageText(fullPage).length() + 100 < 4_000);
     assertNotNull(fullPage.container(List.of(Button.secondary("full-page", "Next"))));
+  }
+
+  @Test
+  void handlesFetchedAtOutsideDisplayableTimestampRangeWithoutOverflow() {
+    String text =
+        pageText(
+            renderer()
+                .render(
+                    payload(List.of(listing("Future", "Owner", "WORLD", 1, 90)), Instant.MAX),
+                    null,
+                    "",
+                    0));
+
+    assertTrue(text.contains("Snapshot: timestamp unavailable."));
+    assertTrue(text.contains("**Future**"));
   }
 
   @Test
@@ -261,5 +326,9 @@ class AuctionPageRendererTests {
       offset += substring.length();
     }
     return count;
+  }
+
+  private static String relative(Instant instant) {
+    return "<t:" + instant.getEpochSecond() + ":R>";
   }
 }
