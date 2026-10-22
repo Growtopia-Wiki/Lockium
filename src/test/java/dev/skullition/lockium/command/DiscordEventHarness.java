@@ -14,9 +14,11 @@ import io.github.freya022.botcommands.api.modals.ModalEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 import net.dv8tion.jda.api.components.MessageTopLevelComponent;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Message.MentionType;
+import net.dv8tion.jda.api.interactions.InteractionHook;
 import net.dv8tion.jda.api.modals.Modal;
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageCreateAction;
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageEditAction;
@@ -148,13 +150,30 @@ final class DiscordEventHarness {
     return event;
   }
 
+  /** Runs the saved success callback for an acknowledged deferred reply. */
+  void completeReply() {
+    if (capture.replySuccess == null || capture.interactionHook == null) {
+      throw new AssertionError("The command did not queue a deferred-reply success callback");
+    }
+    capture.replySuccess.accept(capture.interactionHook);
+  }
+
+  /** Runs the saved failure callback for an unacknowledged deferred reply. */
+  void failReply(Throwable failure) {
+    if (capture.replyFailure == null) {
+      throw new AssertionError("The command did not queue a deferred-reply failure callback");
+    }
+    capture.replyFailure.accept(failure);
+  }
+
   private void resetMessage(String delivery) {
+    final boolean preserveEphemeral = capture.ephemeral && delivery.equals("edit-original");
     capture.delivery = delivery;
     capture.message = null;
     capture.modal = null;
     capture.content = null;
     capture.components.clear();
-    capture.ephemeral = false;
+    capture.ephemeral = preserveEphemeral;
     capture.componentsV2 = false;
     capture.queued = false;
     capture.allowedMentions = null;
@@ -236,7 +255,13 @@ final class DiscordEventHarness {
                   capture.allowedMentions = new ArrayList<>(mentions);
                 }
                 case "addFiles" -> captureFiles(capture, invocation.getArgument(0));
-                case "queue" -> capture.queued = true;
+                case "queue" -> {
+                  capture.queued = true;
+                  if (invocation.getArguments().length == 2) {
+                    capture.replySuccess = invocation.getArgument(0);
+                    capture.replyFailure = invocation.getArgument(1);
+                  }
+                }
                 default -> {
                   // Other fluent settings do not affect the response contract we snapshot.
                 }
@@ -252,6 +277,7 @@ final class DiscordEventHarness {
   private LocalizableInteractionHook hook() {
     LocalizableInteractionHook hook =
         mock(LocalizableInteractionHook.class, Answers.CALLS_REAL_METHODS);
+    capture.interactionHook = hook;
     WebhookMessageCreateAction<Message> createAction = mockWebhookCreateAction(capture);
     WebhookMessageEditAction<Message> editAction = mockWebhookEditAction(capture);
     doAnswer(
@@ -387,5 +413,8 @@ final class DiscordEventHarness {
     private boolean queued;
     private List<MentionType> allowedMentions;
     private final List<String> attachments = new ArrayList<>();
+    private LocalizableInteractionHook interactionHook;
+    private Consumer<InteractionHook> replySuccess;
+    private Consumer<Throwable> replyFailure;
   }
 }

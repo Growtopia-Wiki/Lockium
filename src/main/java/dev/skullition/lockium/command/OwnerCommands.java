@@ -32,6 +32,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.utils.FileUpload;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +44,7 @@ import org.slf4j.LoggerFactory;
  * <ul>
  *   <li>{@code /owner activity} – update the bot's Discord presence
  *   <li>{@code /owner guilds} – list every guild the bot is connected to
+ *   <li>{@code /owner leave} – make the bot leave a selected guild
  *   <li>{@code /owner reload} – force a full refresh of all in-memory caches
  * </ul>
  *
@@ -192,6 +194,53 @@ public class OwnerCommands {
   }
 
   /**
+   * Handles {@code /owner leave}.
+   *
+   * <p>Validates the decimal Snowflake and resolves the guild from JDA's cache. The bot leaves only
+   * after Discord acknowledges the ephemeral Components V2 reply.
+   *
+   * @param event the slash interaction
+   * @param serverId decimal Discord server ID
+   */
+  @JDASlashCommand(
+      name = "owner",
+      subcommand = "leave",
+      description = "Make the bot leave a server.")
+  public void onSlashLeave(
+      GuildSlashEvent event,
+      @SlashOption(name = "server_id", description = "Discord server ID.") String serverId) {
+    if (rejectNonOwner(event)) {
+      return;
+    }
+
+    String targetId = normalizeSnowflake(serverId);
+    if (targetId == null) {
+      replyLeaveResult(event, "Enter a valid server ID (1–20 decimal digits).");
+      return;
+    }
+
+    Guild target = event.getJDA().getGuildById(targetId);
+    if (target == null) {
+      replyLeaveResult(event, "The bot is not connected to server `%s`.".formatted(targetId));
+      return;
+    }
+
+    String ownerId = event.getUser().getId();
+    logger.info("Owner {} requested that the bot leave server {}", ownerId, targetId);
+    event
+        .deferReply(true)
+        .useComponentsV2()
+        .queue(
+            ignored -> leaveGuild(event, target, targetId, ownerId),
+            failure ->
+                logger.warn(
+                    "Could not acknowledge owner {}'s leave request for server {}; bot will stay",
+                    ownerId,
+                    targetId,
+                    failure));
+  }
+
+  /**
    * Handles {@code /owner reload}.
    *
    * <p>Calls {@link WikiCacheService#refreshCaches()} to evict and re-fetch wiki data, then reloads
@@ -251,6 +300,72 @@ public class OwnerCommands {
                   MarkdownSanitizer.escape(guild.getName()), formatNumber(guild.getMemberCount())));
     }
     return content.toString();
+  }
+
+  private static @Nullable String normalizeSnowflake(@Nullable String serverId) {
+    if (serverId == null || serverId.isEmpty() || serverId.length() > 20) {
+      return null;
+    }
+    for (int index = 0; index < serverId.length(); index++) {
+      char digit = serverId.charAt(index);
+      if (digit < '0' || digit > '9') {
+        return null;
+      }
+    }
+    try {
+      long value = Long.parseUnsignedLong(serverId);
+      return value == 0 ? null : Long.toUnsignedString(value);
+    } catch (NumberFormatException exception) {
+      return null;
+    }
+  }
+
+  private void leaveGuild(GuildSlashEvent event, Guild target, String targetId, String ownerId) {
+    try {
+      target
+          .leave()
+          .queue(
+              ignored -> {
+                logger.info("Bot left server {} at the request of owner {}", targetId, ownerId);
+                editLeaveResult(event, "The bot has left server `%s`.".formatted(targetId));
+              },
+              failure -> {
+                logger.warn(
+                    "Bot could not leave server {} at the request of owner {}",
+                    targetId,
+                    ownerId,
+                    failure);
+                editLeaveResult(
+                    event,
+                    "Could not leave server `%s`. Check the bot logs for details."
+                        .formatted(targetId));
+              });
+    } catch (RuntimeException failure) {
+      logger.warn(
+          "Bot could not leave server {} at the request of owner {}", targetId, ownerId, failure);
+      editLeaveResult(
+          event,
+          "Could not leave server `%s`. Check the bot logs for details.".formatted(targetId));
+    }
+  }
+
+  private static void replyLeaveResult(GuildSlashEvent event, String message) {
+    event
+        .replyComponents(ContainerUtil.createGenericContainer(TextDisplay.of(message)))
+        .setEphemeral(true)
+        .setAllowedMentions(List.of())
+        .useComponentsV2()
+        .queue();
+  }
+
+  private static void editLeaveResult(GuildSlashEvent event, String message) {
+    event
+        .getHook()
+        .editOriginalComponents(
+            List.of(ContainerUtil.createGenericContainer(TextDisplay.of(message))))
+        .setAllowedMentions(List.of())
+        .useComponentsV2()
+        .queue();
   }
 
   /**

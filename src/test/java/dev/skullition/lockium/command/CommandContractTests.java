@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import dev.skullition.lockium.handler.ItemNameAutocompleteHandler;
 import dev.skullition.lockium.modal.SlashBreakModal;
 import dev.skullition.lockium.model.SpriteVariant;
+import io.github.freya022.botcommands.api.commands.application.slash.GuildSlashEvent;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.JDASlashCommand;
 import io.github.freya022.botcommands.api.commands.application.slash.annotations.SlashOption;
 import io.github.freya022.botcommands.api.commands.application.slash.autocomplete.annotations.AutocompleteHandler;
@@ -62,6 +63,7 @@ class CommandContractTests {
             "gt provider science",
             "owner activity",
             "owner guilds",
+            "owner leave",
             "owner reload",
             "ping"),
         actual);
@@ -126,6 +128,16 @@ class CommandContractTests {
     assertTrue(option.usePredefinedChoices());
     assertEquals(
         List.of("SEED", "TREE"), Arrays.stream(SpriteVariant.values()).map(Enum::name).toList());
+  }
+
+  @Test
+  void ownerLeaveUsesTheServerIdOptionName() throws ReflectiveOperationException {
+    Method leave =
+        OwnerCommands.class.getMethod("onSlashLeave", GuildSlashEvent.class, String.class);
+    SlashOption option = leave.getParameters()[1].getAnnotation(SlashOption.class);
+
+    assertEquals(String.class, leave.getParameters()[1].getType());
+    assertEquals("server_id", option.name());
   }
 
   private static String commandPath(Method method) {
