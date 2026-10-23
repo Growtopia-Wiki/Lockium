@@ -47,7 +47,8 @@ public class ContainerUtil {
 
     // Add Footer
     container.add(Separator.create(true, Separator.Spacing.SMALL));
-    container.add(TextDisplay.of("-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!"));
+    container.add(
+        TextDisplay.of("-# Crafted by the [growtopiawiki.com](https://growtopiawiki.com) team!"));
 
     return Container.of(container).withAccentColor(Color.PINK);
   }
