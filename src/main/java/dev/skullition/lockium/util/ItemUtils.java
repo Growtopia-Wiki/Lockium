@@ -26,12 +26,15 @@ import net.dv8tion.jda.api.components.thumbnail.Thumbnail;
 public class ItemUtils {
   /** Chance, per fruit, that a Dreamcatcher Staff drops an extra block when harvesting a tree. */
   public static final double DREAMCATCHER_STAFF_CHANCE = 0.02;
+
   private static final String ITEM_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s.png";
   private static final String TREE_SPRITE_URL = "https://cdn.growtopiawiki.com/sprites/%s-tree.png";
   private static final String GROWTOPIA_WIKI_URL = "https://growtopiawiki.com/w/%s";
   private static final Pattern COLOR_CODE = Pattern.compile("`.?");
+
   /** Highest rarity a Dreamcatcher Staff triggers on; higher-rarity trees are unaffected. */
   private static final int DREAMCATCHER_STAFF_MAX_RARITY = 99;
+
   /** Item ID → chi map, populated by {@link dev.skullition.lockium.service.ChiService}. */
   private static volatile Map<Integer, Chi> chiMap = Map.of();
 

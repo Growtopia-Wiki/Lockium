@@ -18,7 +18,7 @@ payload={
       "spacing" : 1,
       "type" : 14
     }, {
-      "content" : "-# Crafted by the [Growtopia Wiki](https://growtopiawiki.com)!",
+      "content" : "-# Crafted by the [growtopiawiki.com](https://growtopiawiki.com) team!",
       "type" : 10
     } ],
     "spoiler" : false,
