@@ -29,12 +29,24 @@ final class CommandFixtures {
     return new ItemDetailResponse(item, seed);
   }
 
+  /** Creates a rarityless item whose game ID can differ from its catalogue index. */
+  static ItemDetailResponse raritylessDetail(int itemId, String name) {
+    return new ItemDetailResponse(
+        object(itemId, name, "An item without rarity.", 0, 999),
+        object(itemId + 1, name + " Seed", "A seed.", 0, 999));
+  }
+
   private static GrowtopiaObject object(int id, String name, String description, int growTime) {
+    return object(id, name, description, growTime, 20);
+  }
+
+  private static GrowtopiaObject object(
+      int id, String name, String description, int growTime, int rarity) {
     return new GrowtopiaObject(
         id,
         name,
         description,
-        20,
+        rarity,
         new CategoryInfo(17, "Dirt", null),
         null,
         new TypeInfo(0, "Solid"),

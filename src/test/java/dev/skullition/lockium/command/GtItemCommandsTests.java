@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import dev.skullition.lockium.model.ItemCatalogue;
 import dev.skullition.lockium.model.SpriteVariant;
 import dev.skullition.lockium.properties.ProxyProperties;
 import dev.skullition.lockium.service.GrowtopiaDetailService;
@@ -24,6 +25,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 /** Regression tests for item-backed slash commands. */
 class GtItemCommandsTests {
@@ -85,6 +88,50 @@ class GtItemCommandsTests {
     assertSnapshot(
         "gt-mooncakes",
         event -> commands.onSlashMooncakes(event, CommandFixtures.DIRT_CATALOGUE, 1_000));
+  }
+
+  @Test
+  void fixedRecycleValueUsesAnExactFormattedTotal() throws IOException {
+    ItemCatalogue item = new ItemCatalogue(701, 1400, 1401, "Mini Growtopian", "");
+    when(wiki.getItemDetail(item))
+        .thenReturn(CommandFixtures.raritylessDetail(1400, item.itemName()));
+    DiscordEventHarness harness = new DiscordEventHarness();
+
+    commands.onSlashRecycle(harness.slashEvent(), item, 3);
+
+    String reply = harness.snapshot();
+    assertTrue(reply.contains("Gems per item: 4,000"));
+    assertTrue(reply.contains("Total gems: `12,000`"));
+    assertTrue(reply.contains("Rarity: None"));
+    assertFalse(reply.contains("~"));
+    SnapshotAssertions.assertMatches("gt-recycle-fixed", reply);
+  }
+
+  @Test
+  void knownZeroRecycleValueIsSupported() throws IOException {
+    ItemCatalogue item = new ItemCatalogue(1856, 3710, 3711, "Spectral Goggles", "");
+    when(wiki.getItemDetail(item))
+        .thenReturn(CommandFixtures.raritylessDetail(3710, item.itemName()));
+    DiscordEventHarness harness = new DiscordEventHarness();
+
+    commands.onSlashRecycle(harness.slashEvent(), item, 100);
+
+    String reply = harness.snapshot();
+    assertTrue(reply.contains("Gems per item: 0"));
+    assertTrue(reply.contains("Total gems: `0`"));
+    SnapshotAssertions.assertMatches("gt-recycle-zero", reply);
+  }
+
+  @ParameterizedTest
+  @CsvSource({"5208, Demon Megalodon", "7588, Treasure Blast"})
+  void rejectsRaritylessItemsWithNoReportedValue(int itemId, String name) {
+    ItemCatalogue item = new ItemCatalogue(1, itemId, itemId + 1, name, "");
+    when(wiki.getItemDetail(item)).thenReturn(CommandFixtures.raritylessDetail(itemId, name));
+    DiscordEventHarness harness = new DiscordEventHarness();
+
+    commands.onSlashRecycle(harness.slashEvent(), item, 100);
+
+    assertTrue(harness.snapshot().contains("The recycle value for this item is not known yet."));
   }
 
   @Test

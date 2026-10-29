@@ -728,8 +728,8 @@ public class GtCommands {
   /**
    * Handles {@code /gt recycle}.
    *
-   * <p>Calculates how many gems you'd receive for recycling an item. Currently only supports items
-   * with rarity (rarity != 999).
+   * <p>Uses exact totals for known fixed recycle values, otherwise estimates gems from rarity.
+   * Items without rarity need an explicitly known fixed value.
    *
    * @param event the slash interaction
    * @param itemQuery the item to recycle
@@ -758,9 +758,10 @@ public class GtCommands {
     }
     var itemDetail = wikiService.getItemDetail(itemQuery);
     var item = itemDetail.item();
-    if (item.rarity() == 999) {
-      logger.debug("onSlashRecycle: rejected itemId={} with no rarity", item.id());
-      event.reply("Items with no rarity are currently not supported.").queue();
+    boolean fixedValue = RecycleUtil.hasFixedRecycleValue(item.id());
+    if (item.rarity() == 999 && !fixedValue) {
+      logger.debug("onSlashRecycle: unknown recycle value for itemId={}", item.id());
+      event.reply("The recycle value for this item is not known yet.").queue();
       return;
     }
 
@@ -777,15 +778,24 @@ public class GtCommands {
       components.add(TextDisplay.of("%s Item is **not** farmable.".formatted(AppEmojis.TRACTOR)));
     }
     var recycleResult = RecycleUtil.getRecycleValueForItem(itemDetail, itemCount);
-    components.add(TextDisplay.of("%s Rarity: %s".formatted(AppEmojis.RARITY, item.rarity())));
     components.add(
         TextDisplay.of(
-            "%s Gems per item: %s - %s"
-                .formatted(AppEmojis.GEM, recycleResult.rangeMin(), recycleResult.rangeMax())));
+            "%s Rarity: %s"
+                .formatted(
+                    AppEmojis.RARITY,
+                    item.rarity() == 999 ? "None" : formatNumber(item.rarity()))));
+    String gemsPerItem =
+        fixedValue
+            ? formatNumber(recycleResult.rangeMin())
+            : "%s - %s"
+                .formatted(
+                    formatNumber(recycleResult.rangeMin()), formatNumber(recycleResult.rangeMax()));
+    components.add(TextDisplay.of("%s Gems per item: %s".formatted(AppEmojis.GEM, gemsPerItem)));
     String gemCountFormatted = formatNumber(recycleResult.gemCount());
     components.add(
         TextDisplay.of(
-            "### %s Total gems: `~%s`".formatted(AppEmojis.CHECKBOX_ENABLED, gemCountFormatted)));
+            "### %s Total gems: `%s%s`"
+                .formatted(AppEmojis.CHECKBOX_ENABLED, fixedValue ? "" : "~", gemCountFormatted)));
 
     Container container = ItemUtils.createItemContainer(itemDetail, itemQuery, components);
     event.replyComponents(container).useComponentsV2().queue();
