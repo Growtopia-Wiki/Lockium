@@ -7,7 +7,6 @@ import io.github.freya022.botcommands.api.core.JDAService;
 import io.github.freya022.botcommands.api.core.config.JDAConfiguration;
 import io.github.freya022.botcommands.api.core.events.BReadyEvent;
 import java.util.Set;
-import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.IEventManager;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -20,8 +19,9 @@ import org.springframework.stereotype.Service;
  * BotCommands {@link JDAService} implementation for Lockium.
  *
  * <p>Responsible for building the single JDA instance with the intents, cache flags, and activity
- * status defined in application properties. Delegates intent/cache configuration to {@link
- * JDAConfiguration} to keep this class focused on bootstrapping.
+ * status defined in application properties. Reads intents and cache flags from {@link
+ * JDAConfiguration} and uses the framework helper to configure them together with BotCommands'
+ * event manager and REST rate limiter.
  */
 @Service
 public class LockiumBot extends JDAService {
@@ -62,10 +62,8 @@ public class LockiumBot extends JDAService {
 
   @Override
   protected void createJDA(BReadyEvent botReadyEvent, IEventManager eventManager) {
-    JDABuilder.createDefault(discordProperties.token(), getIntents())
-        .enableCache(getCacheFlags())
+    createDefault(discordProperties.token())
         .setActivity(Activity.customStatus(lockiumProperties.status()))
-        .setEventManager(eventManager)
         .build();
     logger.info(
         "JDA initialized: Wiki API={}, gatewayIntents={}, cacheFlags={}",
