@@ -31,8 +31,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 /** Regression tests for item-backed slash commands. */
 class GtItemCommandsTests {
   private WikiService wiki;
-  private TreeFruitService fruits;
-  private ItemEffectService effects;
+    private ItemEffectService effects;
   private GtCommands commands;
 
   @BeforeAll
@@ -43,7 +42,7 @@ class GtItemCommandsTests {
   @BeforeEach
   void setUp() {
     wiki = mock(WikiService.class);
-    fruits = mock(TreeFruitService.class);
+      TreeFruitService fruits = mock(TreeFruitService.class);
     effects = mock(ItemEffectService.class);
     when(wiki.getItemDetail(CommandFixtures.DIRT_CATALOGUE))
         .thenReturn(CommandFixtures.dirtDetail());
@@ -60,7 +59,7 @@ class GtItemCommandsTests {
             mock(GrowtopiaLeaderboardService.class),
             mock(PlayerCountService.class),
             mock(ProxyProperties.class),
-            fruits,
+                fruits,
             mock(WorldRenderService.class),
             mock(RiddleService.class),
             effects,
@@ -123,7 +122,7 @@ class GtItemCommandsTests {
   }
 
   @ParameterizedTest
-  @CsvSource({"5208, Demon Megalodon", "7588, Treasure Blast"})
+  @CsvSource({"5208, Demon Megalodon", "0, Blank"})
   void rejectsRaritylessItemsWithNoReportedValue(int itemId, String name) {
     ItemCatalogue item = new ItemCatalogue(1, itemId, itemId + 1, name, "");
     when(wiki.getItemDetail(item)).thenReturn(CommandFixtures.raritylessDetail(itemId, name));

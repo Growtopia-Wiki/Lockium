@@ -22,6 +22,8 @@ class RecycleUtilTests {
     "2950, 20000",
     "1714, 167",
     "2034, 1",
+    "7588, 1000",
+    "4960, 5000",
     "914, 1",
     "916, 1",
     "918, 1",
@@ -57,7 +59,7 @@ class RecycleUtilTests {
   }
 
   @ParameterizedTest
-  @CsvSource({"5208", "7588", "1401", "9078", "2194"})
+  @CsvSource({"5208", "1401", "9078", "2194"})
   void missingValuesSeedsAndUnlistedVariantsAreNotAssumed(int itemId) {
     assertFalse(RecycleUtil.hasFixedRecycleValue(itemId));
     assertEquals(new RecycleUtil.RecycleResult(0, 0, 0), calculate(itemId, 999, false, 100));
@@ -65,24 +67,24 @@ class RecycleUtilTests {
 
   @Test
   void raritylessItemRecyclesForNothing() {
-    assertEquals(new RecycleUtil.RecycleResult(0, 0, 0), calculate(999, true, 100));
+    assertEquals(new RecycleUtil.RecycleResult(0, 0, 0), calculate(999, true));
   }
 
   @Test
   void itemWithoutSplicingRecipeRecyclesForNothing() {
-    assertEquals(new RecycleUtil.RecycleResult(0, 0, 0), calculate(100, false, 100));
+    assertEquals(new RecycleUtil.RecycleResult(0, 0, 0), calculate(100, false));
   }
 
   @ParameterizedTest
   @CsvSource({"30, 6, 205", "31, 8, 305", "100, 26, 1205", "2000, 251, 12505"})
   void calculatesRarityRangeAndTotal(int rarity, int rangeMax, long gemCount) {
     assertEquals(
-        new RecycleUtil.RecycleResult(0, rangeMax, gemCount), calculate(rarity, true, 100));
+        new RecycleUtil.RecycleResult(0, rangeMax, gemCount), calculate(rarity, true));
   }
 
   private static RecycleUtil.RecycleResult calculate(
-      int rarity, boolean hasRecipe, long itemCount) {
-    return calculate(0, rarity, hasRecipe, itemCount);
+      int rarity, boolean hasRecipe) {
+    return calculate(0, rarity, hasRecipe, 100);
   }
 
   private static RecycleUtil.RecycleResult calculate(
