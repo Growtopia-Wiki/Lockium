@@ -31,7 +31,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 /** Regression tests for item-backed slash commands. */
 class GtItemCommandsTests {
   private WikiService wiki;
-    private ItemEffectService effects;
+  private ItemEffectService effects;
   private GtCommands commands;
 
   @BeforeAll
@@ -42,7 +42,6 @@ class GtItemCommandsTests {
   @BeforeEach
   void setUp() {
     wiki = mock(WikiService.class);
-      TreeFruitService fruits = mock(TreeFruitService.class);
     effects = mock(ItemEffectService.class);
     when(wiki.getItemDetail(CommandFixtures.DIRT_CATALOGUE))
         .thenReturn(CommandFixtures.dirtDetail());
@@ -50,6 +49,7 @@ class GtItemCommandsTests {
         .thenReturn(CommandFixtures.cometDustDetail());
     when(effects.getEffects(CommandFixtures.dirtDetail().item())).thenReturn(List.of());
     when(effects.getEffects(CommandFixtures.cometDustDetail().item())).thenReturn(List.of());
+    TreeFruitService fruits = mock(TreeFruitService.class);
     when(fruits.getMaxDrop(2)).thenReturn(8);
     commands =
         new GtCommands(
@@ -59,7 +59,7 @@ class GtItemCommandsTests {
             mock(GrowtopiaLeaderboardService.class),
             mock(PlayerCountService.class),
             mock(ProxyProperties.class),
-                fruits,
+            fruits,
             mock(WorldRenderService.class),
             mock(RiddleService.class),
             effects,

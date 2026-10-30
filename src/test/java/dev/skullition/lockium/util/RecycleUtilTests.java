@@ -78,12 +78,10 @@ class RecycleUtilTests {
   @ParameterizedTest
   @CsvSource({"30, 6, 205", "31, 8, 305", "100, 26, 1205", "2000, 251, 12505"})
   void calculatesRarityRangeAndTotal(int rarity, int rangeMax, long gemCount) {
-    assertEquals(
-        new RecycleUtil.RecycleResult(0, rangeMax, gemCount), calculate(rarity, true));
+    assertEquals(new RecycleUtil.RecycleResult(0, rangeMax, gemCount), calculate(rarity, true));
   }
 
-  private static RecycleUtil.RecycleResult calculate(
-      int rarity, boolean hasRecipe) {
+  private static RecycleUtil.RecycleResult calculate(int rarity, boolean hasRecipe) {
     return calculate(0, rarity, hasRecipe, 100);
   }
 
